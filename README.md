@@ -116,10 +116,21 @@ kannada-inscription-ocr-llm/
 
 ---
 
-## 🔬 Research & Future Phases Roadmap
+## 🔬 Research & Implementation Roadmap
 
 - **Phase 1 (Completed):** Frontend foundation, institutional archaeological design system, typed epigraphical contracts, verified mock corpus, replaceable service adapter.
-- **Phase 2 (Upcoming):** Backend pipeline setup (FastAPI), Inscription preprocessing (CLAHE, Sauvola binarization, stone noise filtration).
-- **Phase 3 (Upcoming):** YOLOv11 bounding box segmentation for damaged inscriptional characters.
-- **Phase 4 (Upcoming):** Hybrid CNN + Vision Transformer (ViT) model integration achieving 98.75% paleographical epoch classification.
-- **Phase 5 (Upcoming):** Halegannada-to-Hosagannada domain LLM translation engine.
+- **Phase 2 (Completed):** Complete institutional design system:
+  - Narrow elegant left sidebar with carved Kadamba stone emblem and small wordmark.
+  - Complete suite of reusable components: Button, FormField (Input/Select/Textarea), Tabs, MetadataRow, StatusIndicator, ConfidenceIndicator, EmptyState, ErrorMessage, ConfirmDialog, ImageInspector, EpigraphComparator.
+  - Parchment, stone, charcoal ink, and historical earthy accent palette with zero gradients or neon.
+  - Reliable Kannada Unicode font integration (Noto Serif Kannada / Noto Sans Kannada) with strict distinction between historical transcriptions, translations, and metadata.
+- **Phase 3 (Completed):** Overview Research Dashboard:
+  - Header: “Kannada Heritage AI” — “Explore inscriptions. Understand their script. Preserve their meaning.”
+  - Editorial archival feature section with Halmidi stele reference imagery and direct call-to-action.
+  - Recent Inscriptions table with verified historical records (Inscription, Script, Language, Period, Review Status, Last Updated).
+  - Research Activity feed detailing real local epigraphical reviews and lexical additions.
+  - Interactive quick action cards connecting New Analysis, Inscription Archive, and Script Classifications.
+- **Phase 4 (Upcoming):** Backend pipeline setup (FastAPI), Inscription preprocessing (CLAHE, Sauvola adaptive binarization, stone noise filtration).
+- **Phase 5 (Upcoming):** YOLOv11 bounding box segmentation for damaged inscriptional characters.
+- **Phase 6 (Upcoming):** Hybrid CNN + Vision Transformer (ViT) model integration achieving 98.75% paleographical epoch classification.
+- **Phase 7 (Upcoming):** Halegannada-to-Hosagannada domain LLM translation engine.
