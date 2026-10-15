@@ -73,42 +73,67 @@ npm run build
 
 ---
 
-## 📂 Project Architecture
+## 📂 Project Architecture & Folder Structure
 
 ```
 kannada-inscription-ocr-llm/
-├── index.html                     # Scholarly typography & fonts configuration
+├── index.html                     # Scholarly typography & font configuration
 ├── package.json                   # React, Vite, Tailwind, Lucide dependencies
 ├── tailwind.config.js             # Archaeological color tokens (parchment, stone, charcoal)
 ├── tsconfig.json                  # Strict TypeScript configuration
 ├── vite.config.ts                 # Path aliases & dev server config
 ├── dataset_loader.py              # Pure Python / PyTorch loader for 10-era dataset
 ├── RESEARCH_REPORT_ANCIENT_...md  # Senior research report & paleographical matrix
+├── public/
+│   └── glyphs/                    # Authentic character rubbings across 10 script eras
+│       ├── ashoka/                # Ashokan Brahmi glyphs (1.png, 2.png, 3.png)
+│       ├── satavahana/            # Satavahana Brahmi glyphs
+│       ├── kadamba/               # Kadamba box-headed glyphs
+│       ├── badami_chalukya/       # Badami Chalukya glyphs
+│       ├── rashtrakuta/           # Rashtrakuta glyphs
+│       ├── kalyana_chalukya/      # Kalyana Chalukya soapstone glyphs
+│       ├── hoysala/               # Hoysala ornate double-loop glyphs
+│       ├── vijayanagara/          # Vijayanagara granite glyphs
+│       ├── mysuru/                # Mysuru Wodeyar cursive glyphs
+│       └── present_kannada/       # Standardized modern Unicode typography
 └── src/
     ├── types/
-    │   ├── epigraphy.ts           # Domain models: Scripts, Languages, Transcription, Translation
+    │   ├── epigraphy.ts           # Domain models: Scripts, Languages, Transcription, Translation, Rules
     │   └── index.ts
+    ├── theme/
+    │   └── themeRegistry.ts       # Centralized 10-script CSS variables & language theme tokens
     ├── data/
-    │   └── mockInscriptions.ts    # Verified historical corpus (Halmidi, Maski, Badami, Belur)
+    │   └── mockInscriptions.ts    # Canonical corpus & rules across 10 chronological epochs
     ├── services/
     │   ├── epigraphyService.ts    # Service Registry & Singleton Adapter
-    │   └── mockEpigraphyService.ts# Local demonstration adapter (Phase 1)
+    │   └── mockEpigraphyService.ts# Decoupled mock demonstration adapter
     ├── components/
     │   ├── common/
-    │   │   ├── Badge.tsx          # Institutional badges (Script, Language, Period, Substrate)
-    │   │   └── Divider.tsx        # Fine academic dividers
+    │   │   ├── Badge.tsx          # Institutional badges (Script, Language, Period, Substrate, Status, Rule)
+    │   │   ├── Button.tsx         # Scholarly buttons with tactile focus states
+    │   │   ├── ConfidenceIndicator.tsx # Visual confidence dial (OCR & Language prediction)
+    │   │   ├── Divider.tsx        # Fine academic dividers
+    │   │   ├── EmptyState.tsx     # Archival empty states with primary & secondary actions
+    │   │   ├── FormField.tsx      # Labeled inputs, selects, and textareas
+    │   │   ├── MetadataRow.tsx    # Compact key-value display rows
+    │   │   └── StatusIndicator.tsx# Live review status pills
     │   ├── layout/
-    │   │   ├── AppHeader.tsx      # Scholarly banner, branding, navigation
-    │   │   ├── AppFooter.tsx      # Epigraphia references & research disclaimer
+    │   │   ├── Sidebar.tsx        # Carved Kadamba emblem, wordmark, navigation tabs
+    │   │   ├── PageHeader.tsx     # Archival heading, Kannada sub-headings, category badges
+    │   │   ├── AppFooter.tsx      # Epigraphia citations, copyright, and research notices
     │   │   └── MainLayout.tsx     # Institutional responsive layout shell
     │   ├── explorer/
     │   │   ├── InscriptionCard.tsx# Catalog stele record cards
-    │   │   ├── InscriptionFilterBar.tsx # Multi-attribute filter & search engine
-    │   │   └── ScriptTimeline.tsx # Interactive 10-epoch paleographic timeline
-    │   └── inspector/
-    │       ├── ImageInspector.tsx # Stone inscription viewer with zoom/pan & line overlays
-    │       ├── EpigraphComparator.tsx # 4-pillar synchronized transcript & translation
-    │       └── WorkbenchView.tsx  # Dual-pane high-precision research workbench
+    │   │   ├── InscriptionFilterBar.tsx # Multi-tier filter, period selection, and sorting engine
+    │   │   └── ScriptTimeline.tsx # 10-epoch timeline, evolutionary lineage & glyph showcase
+    │   └── views/
+    │       ├── OverviewView.tsx   # Dashboard with editorial showcase, recent steles, and activity
+    │       ├── NewAnalysisView.tsx# Drag-and-drop upload & 5-stage simulated analysis workspace
+    │       ├── AnalysisResultsView.tsx # 4-pillar results workspace with dynamic historical themes
+    │       ├── ArchiveView.tsx    # Searchable archive register with grid and table modes
+    │       ├── ScriptsLanguagesView.tsx # Paleographic explorer & script vs language decoupling
+    │       ├── HistoricalRulesView.tsx # Administrative rules engine with drawer & local editor
+    │       └── SettingsView.tsx   # Institutional preferences, OCR thresholds, and model selection
     ├── App.tsx                    # Root application state & navigation router
     ├── index.css                  # Custom scrollbar, parchment tokens, typography rules
     └── main.tsx                   # React root entry
@@ -116,32 +141,130 @@ kannada-inscription-ocr-llm/
 
 ---
 
-## 🔬 Research & Implementation Roadmap
+## 🖥️ Catalog of Implemented Screens
 
-- **Phase 1 (Completed):** Frontend foundation, institutional archaeological design system, typed epigraphical contracts, verified mock corpus, replaceable service adapter.
-- **Phase 2 (Completed):** Complete institutional design system:
-  - Narrow elegant left sidebar with carved Kadamba stone emblem and small wordmark.
-  - Complete suite of reusable components: Button, FormField (Input/Select/Textarea), Tabs, MetadataRow, StatusIndicator, ConfidenceIndicator, EmptyState, ErrorMessage, ConfirmDialog, ImageInspector, EpigraphComparator.
-  - Parchment, stone, charcoal ink, and historical earthy accent palette with zero gradients or neon.
-  - Reliable Kannada Unicode font integration (Noto Serif Kannada / Noto Sans Kannada) with strict distinction between historical transcriptions, translations, and metadata.
-- **Phase 3 (Completed):** Overview Research Dashboard:
-  - Header: “Kannada Heritage AI” — “Explore inscriptions. Understand their script. Preserve their meaning.”
-  - Editorial archival feature section with Halmidi stele reference imagery and direct call-to-action.
-  - Recent Inscriptions table with verified historical records (Inscription, Script, Language, Period, Review Status, Last Updated).
-  - Research Activity feed detailing real local epigraphical reviews and lexical additions.
-  - Interactive quick action cards connecting New Analysis, Inscription Archive, and Script Classifications.
-- **Phase 4 (Completed):** Complete Inscription Upload & Analysis Workspace:
-  - Drag-and-drop & file picker for PNG, JPG, JPEG, WEBP, TIFF images (max 25 MB).
-  - In-browser local processing (no unauthorized remote upload).
-  - Optional researcher metadata (Title, Location, Date, Dynasty, Collection, Notes, Script/Language hints).
-  - Simulated 5-stage epigraphical processing pipeline (Preprocessing -> YOLOv11 localization -> CNN+ViT epoch inference -> Halegannada phonetic transliteration -> Hosagannada translation).
-- **Phase 5 (Completed):** Sophisticated Inscription Results Workspace with Dynamic Historical Themes:
-  - Strict 4-pillar separation (Script Class vs. Source Language vs. Original Transcription vs. Target Translation).
-  - Large interactive original inscription viewer with zoom/pan, line bounding box overlays, and character coordinate selection.
-  - Recognized original transcription panel with line alignment, IAST transliteration, and live demonstration correction modal.
-  - Typeset Modern Standard Kannada (*Hosagannada*) translation with narrative, aligned, and grammatical lexicon views.
-  - Evidence-based historical and linguistic context panel systematically answering 8 epigraphical questions with official citations (*Epigraphia Carnatica*).
-  - Dynamic typed theme registry with CSS variables for all 10 historical script classes (Ashoka to Modern Kannada) and secondary source languages with live preview switching.
-  - Scholarly review controls: Correct Transcription, Edit Translation, Mark for Peer Review, and Approve Result.
-- **Phase 6 (Upcoming):** Hybrid CNN + Vision Transformer (ViT) model integration achieving 98.75% paleographical epoch classification.
-- **Phase 7 (Upcoming):** Halegannada-to-Hosagannada domain LLM translation engine.
+1. **Overview Dashboard (`OverviewView.tsx`)**:
+   - Institutional banner: *"Kannada Heritage AI — Explore inscriptions. Understand their script. Preserve their meaning."*
+   - Archival feature showcase centered on the iconic **Halmidi Inscription (c. 450 CE)**.
+   - Recent Inscriptions table with direct link to individual result pages.
+   - Live research activity stream logging epigraphical verifications, lexical annotations, and rubbing ingestion.
+   - Quick Action cards for direct navigation to New Analysis, Inscription Archive, and Script Typology.
+
+2. **New Inscription Analysis Workspace (`NewAnalysisView.tsx`)**:
+   - Drag-and-drop and native file selection for PNG, JPG, JPEG, WEBP, and TIFF images (up to 25 MB).
+   - In-browser local processing and high-fidelity image preview.
+   - Optional archaeological metadata inputs: Inscription Title, Known Location, Approximate Date, Dynasty / Era, Substrate Material, Script Hint, and Researcher Notes.
+   - Simulated 5-stage epigraphical processing pipeline: Image Ingestion -> Bounding Box Localization -> CNN+ViT Epoch Inference -> Halegannada Transcription -> Hosagannada Translation.
+
+3. **High-Precision Inscription Results Workspace (`AnalysisResultsView.tsx`)**:
+   - Strict 4-pillar separation: Script Class vs. Source Language vs. Original Transcription vs. Target Translation.
+   - Interactive stone image viewer with pan, zoom (up to 400%), line bounding box overlays, and character coordinate selection.
+   - Three transcription modes: Original Script characters, Scholarly IAST Romanization, and Segmented line-by-line view.
+   - Three translation modes: Modern Standard Kannada (*Hosagannada*) narrative, Aligned bilingual lines, and Archaic Lexicon Glossary.
+   - Evidence-based historical dossier answering 8 epigraphical questions with official citations (*Epigraphia Carnatica*, *Indian Antiquary*).
+   - Dynamic typed theme switcher injecting authentic historical palettes for all 10 eras in real time.
+   - Epigraphist review controls: Correct Transcription modal, Edit Translation modal, Mark for Peer Review, and Final Verification.
+
+4. **Searchable Inscription Archive (`ArchiveView.tsx`)**:
+   - Catalog of authentic research epigraphs (Halmidi, Maski, Badami, Belur, Aihole, Dharwad, Hampi, Srirangapatna).
+   - Five multi-tier filter dropdowns: Historical Script Class, Source Language, Substrate Material, Historical Period / Century, and Review Status.
+   - Full text search across title, ruler, dynasty, accession number, and find-spot.
+   - Sorting options: Chronological (Oldest / Newest), Title (A–Z / Z–A), and Recently Catalogued.
+   - Dual View Mode switcher: Visual Stele Cards Grid vs. Dense Archival Register Table.
+   - Retains active filter state and selected result when returning from the detail inspector.
+
+5. **Historical Scripts & Languages Explorer (`ScriptsLanguagesView.tsx`)**:
+   - Interactive 10-epoch stepper with diagnostic paleographical characteristics, typical medium, and dynastic history.
+   - Direct genealogical relationships panel: Direct Ancestors, Descendant Scripts, Contemporary Parallel Scripts, and Evolutionary Branch Name.
+   - Authentic In-Project Glyph Corpus Showcase: Renders genuine character rubbings directly from `public/glyphs/<script_id>/` with Kannada phoneme, IAST transliteration, and chisel anatomy notes.
+   - Dedicated **Script vs. Language Decoupling Subtab** illustrating the fundamental epigraphical separation principle with historical case studies.
+
+6. **Historical Rules Engine Administrative Workbench (`HistoricalRulesView.tsx`)**:
+   - Structured administrative workbench displaying 10 authenticated computational rules across phonological, morphological, orthographical, metric, and paleographical categories.
+   - Clear institutional disclaimer distinguishing prototype sample rules from authoritative peer-reviewed edicts.
+   - Multi-attribute filtering by Rule Category and Review Status with keyword search.
+   - Slide-out inspection drawer detailing canonical modern directives, grammatical explanations, stone examples, and applicability.
+   - Interactive Local Session Editor: Allows updating rule parameters in local prototype state with a prominent banner confirming separation from persistent server data.
+
+7. **Institutional Settings & Configuration (`SettingsView.tsx`)**:
+   - Epigraphical display preferences (default transliteration scheme, font sizes, high-contrast rubbing filter).
+   - Replaceable model configuration (CNN+ViT epoch detector, OCR confidence threshold, domain LLM temperature).
+
+---
+
+## 🎨 Dynamic Historical Theme Switching Architecture
+
+The user interface uses a **centralized Theme Registry** (`src/theme/themeRegistry.ts`) that maps every historical script class and source language to CSS custom properties injected dynamically at the container level:
+
+- **Ashokan Brahmi (`ashoka`):** Cool austere granitic grey (`#f0f1f2`), deep charcoal ink, slate stone borders.
+- **Kadamba (`kadamba`):** Warm sandstone ochre (`#faf6ec`), box-head terracotta accents, warm ivory background.
+- **Badami Chalukya (`badami_chalukya`):** Red sandstone hues (`#fbf5ee`), cinnabar highlights, rustic borders.
+- **Rashtrakuta (`rashtrakuta`):** Imperial basalt parchment (`#f7f4ec`), deep bronze-brown accents.
+- **Kalyana Chalukya (`kalyana_chalukya`):** Soft chloritic soapstone tint (`#f4f6f2`), muted moss-green slate accents.
+- **Hoysala (`hoysala`):** Ultra-fine chloritic schist (`#f5f7f4`), deep soapstone green, ornate border styling.
+- **Vijayanagara (`vijayanagara`):** Crystalline grey granite (`#f5f5f4`), bold ironstone accents.
+- **Mysuru Wodeyar (`mysuru`):** Aged palm-leaf parchment (`#fcf8ed`), antique umber accents.
+- **Present Kannada (`present_kannada`):** Crisp museum archival paper (`#faf9f7`), high-contrast ink.
+
+---
+
+## 🔌 FastAPI Future Backend Integration Interface
+
+The frontend architecture strictly enforces the **Adapter Pattern** via `IEpigraphyService` (`src/types/epigraphy.ts`). Currently, `MockEpigraphyService` satisfies this contract. In future phases, a remote HTTP client adapter (`FastAPIEpigraphyService`) will be registered in `serviceRegistry` without changing a single React view:
+
+```typescript
+export interface IEpigraphyService {
+  /** Retrieve metadata for the 10 historical script epochs */
+  getScriptClasses(): Promise<ScriptClassMetadata[]>;
+
+  /** Retrieve classification for the historical source languages */
+  getSourceLanguages(): Promise<SourceLanguageMetadata[]>;
+
+  /** Query the catalogued inscriptional archive with multi-tier filters */
+  getInscriptions(filter?: InscriptionFilter): Promise<InscriptionRecord[]>;
+
+  /** Retrieve full details and annotations for a specific accession ID */
+  getInscriptionById(id: string): Promise<InscriptionRecord | null>;
+
+  /** Stream recent scholarly activities and epigraphical verifications */
+  getRecentActivity(): Promise<ResearchActivityItem[]>;
+
+  /** Query the historical grammar and paleographic rules registry */
+  getHistoricalRules(): Promise<HistoricalRuleItem[]>;
+
+  /**
+   * Submit an inscription rubbing for analysis
+   * Future endpoint: POST /api/v1/inscriptions/analyze
+   */
+  analyzeInscriptionImage(file: File | Blob): Promise<AnalysisJobResult>;
+}
+```
+
+### Future FastAPI Endpoint Mapping
+- `GET /api/v1/scripts` -> `getScriptClasses()`
+- `GET /api/v1/languages` -> `getSourceLanguages()`
+- `GET /api/v1/inscriptions` -> `getInscriptions(filter)`
+- `GET /api/v1/inscriptions/{id}` -> `getInscriptionById(id)`
+- `GET /api/v1/rules` -> `getHistoricalRules()`
+- `POST /api/v1/inscriptions/analyze` (multipart/form-data) -> `analyzeInscriptionImage(file)`
+
+---
+
+## ⚠️ Current Prototype & Mock-Data Limitations
+
+1. **No Live Model Inference:** Analysis uploads run in-browser simulated inference using verified canonical epigraphical records (e.g. Halmidi Stele). All outputs carry explicit `isMockData: true` flags.
+2. **In-Memory Local Session Edits:** Edits made to transcription readings, translations, or historical rules update local prototype state only. No persistent backend database (PostgreSQL/SQLite) is connected.
+3. **Curated Inscription Corpus:** The archive contains 8 curated, historically authenticated inscriptions representing canonical epigraphs rather than a complete digitized epigraphia corpus.
+4. **Selective Glyph Previews:** Genuine glyph images are rendered from `public/glyphs/` for curated samples (`1.png`, `2.png`, `3.png`) present in the project repository.
+
+---
+
+## 🚦 Verification Commands
+
+```bash
+# 1. Verify TypeScript types and compile project
+npm run build
+
+# 2. Start local research development server
+npm run dev
+```

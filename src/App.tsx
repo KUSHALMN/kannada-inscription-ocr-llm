@@ -8,6 +8,7 @@ import { ArchiveView } from './components/views/ArchiveView';
 import { ScriptsLanguagesView } from './components/views/ScriptsLanguagesView';
 import { HistoricalRulesView } from './components/views/HistoricalRulesView';
 import { SettingsView } from './components/views/SettingsView';
+import { EmptyState } from './components/common/EmptyState';
 import { epigraphyService } from './services/epigraphyService';
 import { InscriptionRecord, ScriptClassMetadata, SourceLanguageMetadata, ResearchActivityItem } from './types';
 
@@ -86,12 +87,25 @@ export const App: React.FC = () => {
             />
           )}
 
-          {activeTab === 'results' && activeResult && (
-            <AnalysisResultsView
-              inscription={activeResult}
-              onReturnToArchive={() => setActiveTab('archive')}
-              onReanalyze={() => setActiveTab('new_analysis')}
-            />
+          {activeTab === 'results' && (
+            activeResult ? (
+              <AnalysisResultsView
+                inscription={activeResult}
+                onReturnToArchive={() => setActiveTab('archive')}
+                onReanalyze={() => setActiveTab('new_analysis')}
+              />
+            ) : (
+              <div className="py-12 max-w-xl mx-auto">
+                <EmptyState
+                  title="No Inscription Record Selected"
+                  description="Please select a catalogued inscription from the permanent archive register, or start a new analysis by uploading an ancient rubbing."
+                  actionLabel="Browse Inscription Archive"
+                  onAction={() => setActiveTab('archive')}
+                  secondaryActionLabel="New Inscription Analysis"
+                  onSecondaryAction={() => setActiveTab('new_analysis')}
+                />
+              </div>
+            )
           )}
 
           {activeTab === 'archive' && (

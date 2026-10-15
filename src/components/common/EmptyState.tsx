@@ -8,6 +8,8 @@ interface EmptyStateProps {
   description: string;
   actionLabel?: string;
   onAction?: () => void;
+  secondaryActionLabel?: string;
+  onSecondaryAction?: () => void;
   className?: string;
 }
 
@@ -17,6 +19,8 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
   description,
   actionLabel,
   onAction,
+  secondaryActionLabel,
+  onSecondaryAction,
   className = '',
 }) => {
   return (
@@ -30,13 +34,18 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
           {description}
         </p>
       </div>
-      {actionLabel && onAction && (
-        <div className="pt-2">
+      <div className="pt-2 flex items-center justify-center gap-2">
+        {actionLabel && onAction && (
           <Button variant="secondary" size="sm" onClick={onAction}>
             {actionLabel}
           </Button>
-        </div>
-      )}
+        )}
+        {secondaryActionLabel && onSecondaryAction && (
+          <Button variant="outline" size="sm" onClick={onSecondaryAction}>
+            {secondaryActionLabel}
+          </Button>
+        )}
+      </div>
     </div>
   );
 };

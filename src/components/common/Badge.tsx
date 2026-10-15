@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type BadgeVariant = 'default' | 'script' | 'language' | 'period' | 'substrate' | 'warning';
+export type BadgeVariant = 'default' | 'script' | 'language' | 'period' | 'substrate' | 'warning' | 'status' | 'rule_type';
 
 interface BadgeProps {
   children: React.ReactNode;
@@ -29,6 +29,8 @@ export const Badge: React.FC<BadgeProps> = ({
     period: 'bg-stone-50 text-stone-600 border-stone-300 font-mono text-[11px]',
     substrate: 'bg-stone-200/60 text-stone-700 border-stone-300/80',
     warning: 'bg-amber-50 text-amber-900 border-amber-300/70',
+    status: 'bg-emerald-50 text-emerald-900 border-emerald-300/70',
+    rule_type: 'bg-parchment-100 text-stone-800 border-stone-400 font-mono',
   };
 
   return (

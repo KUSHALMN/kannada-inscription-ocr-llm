@@ -16,6 +16,22 @@ export type ScriptClassId =
   | 'mysuru'
   | 'present_kannada';
 
+export interface ScriptRelationship {
+  ancestorScripts: string[];
+  descendantScripts: string[];
+  parallelScripts: string[];
+  branchName: string;
+}
+
+export interface SampleGlyphItem {
+  id: string;
+  label: string;
+  kannadaChar: string;
+  iast: string;
+  imagePath: string;
+  morphologicalNote: string;
+}
+
 export interface ScriptClassMetadata {
   id: ScriptClassId;
   name: string;
@@ -25,6 +41,8 @@ export interface ScriptClassMetadata {
   characteristicSubstrate: SubstrateMaterial[];
   historicalDynasty: string;
   significance: string;
+  relationships?: ScriptRelationship;
+  sampleGlyphs?: SampleGlyphItem[];
 }
 
 export type SourceLanguageId =
@@ -155,6 +173,41 @@ export interface InscriptionRecord {
   currentLocation: string; // e.g. "Government Museum, Bengaluru"
 }
 
+export type RuleType =
+  | 'phonological'
+  | 'morphological'
+  | 'orthographical'
+  | 'metric_poetic'
+  | 'paleographical';
+
+export type RuleReviewStatus =
+  | 'verified_epigraphist'
+  | 'preliminary_draft'
+  | 'needs_peer_review'
+  | 'deprecated';
+
+export interface HistoricalRuleItem {
+  id: string;
+  ruleCode: string;
+  ruleType: RuleType;
+  title: string;
+  kannadaTitle: string;
+  associatedScript: ScriptClassId | 'all';
+  associatedLanguage: SourceLanguageId | 'all';
+  ruleVersion: string;
+  evidenceSource: string;
+  reviewStatus: RuleReviewStatus;
+  applicability: string;
+  expertReviewRequired: boolean;
+  description: string;
+  modernKannadaRule: string;
+  inscriptionalExample: string;
+  modernEquivalent: string;
+  exceptionsOrCaveats?: string;
+  lastUpdated: string;
+  isDraftPrototype: true;
+}
+
 /**
  * Replaceable Service Adapter Contract
  * Used to decouple UI from backend, seamlessly swappable for FastAPI client.
@@ -165,6 +218,7 @@ export interface IEpigraphyService {
   getInscriptions(filter?: InscriptionFilter): Promise<InscriptionRecord[]>;
   getInscriptionById(id: string): Promise<InscriptionRecord | null>;
   getRecentActivity(): Promise<ResearchActivityItem[]>;
+  getHistoricalRules(): Promise<HistoricalRuleItem[]>;
   analyzeInscriptionImage(file: File | Blob): Promise<AnalysisJobResult>;
 }
 
@@ -172,8 +226,11 @@ export interface InscriptionFilter {
   scriptClass?: ScriptClassId | 'all';
   sourceLanguage?: SourceLanguageId | 'all';
   substrate?: SubstrateMaterial | 'all';
+  reviewStatus?: ReviewStatus | 'all';
+  historicalPeriod?: string | 'all';
   searchQuery?: string;
   century?: string;
+  sortBy?: 'chronological_asc' | 'chronological_desc' | 'title_asc' | 'title_desc' | 'recently_updated';
 }
 
 export interface AnalysisJobResult {
