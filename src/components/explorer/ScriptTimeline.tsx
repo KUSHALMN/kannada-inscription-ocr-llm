@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ScriptClassMetadata } from '../../types';
 import { Badge } from '../common/Badge';
-import { ChevronRight, Calendar, Landmark, CheckCircle2 } from 'lucide-react';
+import { Calendar, Landmark, CheckCircle2 } from 'lucide-react';
 
 interface ScriptTimelineProps {
   scripts: ScriptClassMetadata[];
