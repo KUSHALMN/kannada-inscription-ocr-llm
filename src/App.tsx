@@ -3,6 +3,7 @@ import { MainLayout } from './components/layout/MainLayout';
 import { NavItemKey } from './components/layout/Sidebar';
 import { OverviewView } from './components/views/OverviewView';
 import { NewAnalysisView } from './components/views/NewAnalysisView';
+import { AnalysisResultsView } from './components/views/AnalysisResultsView';
 import { ArchiveView } from './components/views/ArchiveView';
 import { ScriptsLanguagesView } from './components/views/ScriptsLanguagesView';
 import { HistoricalRulesView } from './components/views/HistoricalRulesView';
@@ -16,6 +17,7 @@ export const App: React.FC = () => {
   const [scripts, setScripts] = useState<ScriptClassMetadata[]>([]);
   const [languages, setLanguages] = useState<SourceLanguageMetadata[]>([]);
   const [recentActivity, setRecentActivity] = useState<ResearchActivityItem[]>([]);
+  const [activeResult, setActiveResult] = useState<InscriptionRecord | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // Load initial epigraphical data from decoupled service adapter
@@ -33,6 +35,9 @@ export const App: React.FC = () => {
         setLanguages(loadedLanguages);
         setInscriptions(loadedInscriptions);
         setRecentActivity(loadedActivity);
+        if (loadedInscriptions.length > 0 && !activeResult) {
+          setActiveResult(loadedInscriptions[0]);
+        }
       } catch (err) {
         console.error('Failed to load epigraphical data:', err);
       } finally {
@@ -43,8 +48,14 @@ export const App: React.FC = () => {
     loadCorpusData();
   }, []);
 
-  const handleSelectInscription = (_inscription: InscriptionRecord) => {
-    setActiveTab('new_analysis');
+  const handleSelectInscription = (inscription: InscriptionRecord) => {
+    setActiveResult(inscription);
+    setActiveTab('results');
+  };
+
+  const handleAnalysisComplete = (result: InscriptionRecord) => {
+    setActiveResult(result);
+    setActiveTab('results');
   };
 
   return (
@@ -70,7 +81,16 @@ export const App: React.FC = () => {
           {activeTab === 'new_analysis' && (
             <NewAnalysisView
               inscriptions={inscriptions}
-              onBackToOverview={() => setActiveTab('overview')}
+              onAnalysisComplete={handleAnalysisComplete}
+              onCancel={() => setActiveTab('overview')}
+            />
+          )}
+
+          {activeTab === 'results' && activeResult && (
+            <AnalysisResultsView
+              inscription={activeResult}
+              onReturnToArchive={() => setActiveTab('archive')}
+              onReanalyze={() => setActiveTab('new_analysis')}
             />
           )}
 

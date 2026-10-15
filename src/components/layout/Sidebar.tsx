@@ -16,7 +16,8 @@ export type NavItemKey =
   | 'archive'
   | 'scripts_languages'
   | 'historical_rules'
-  | 'settings';
+  | 'settings'
+  | 'results';
 
 interface SidebarProps {
   activeTab: NavItemKey;
@@ -139,7 +140,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {/* Navigation Links */}
           <nav className="p-3 space-y-1">
             {navItems.map((item) => {
-              const isActive = activeTab === item.key;
+              const isActive = activeTab === item.key || (activeTab === 'results' && item.key === 'new_analysis');
               return (
                 <button
                   key={item.key}
