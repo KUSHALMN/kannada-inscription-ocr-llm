@@ -117,6 +117,19 @@ export interface TranslationResult {
   isMockData: true;
 }
 
+export type ReviewStatus = 'verified' | 'in_review' | 'pending_verification' | 'archived';
+
+export interface ResearchActivityItem {
+  id: string;
+  timestamp: string;
+  type: 'transcription_verified' | 'translation_updated' | 'rubbing_catalogued' | 'lexicon_added';
+  title: string;
+  description: string;
+  scholar: string;
+  inscriptionId: string;
+  inscriptionTitle: string;
+}
+
 export interface InscriptionRecord {
   id: string;
   accessionNumber: string; // Institutional catalog number (e.g. KHA-INS-0450-01)
@@ -133,6 +146,8 @@ export interface InscriptionRecord {
   imageUrl: string;
   thumbnailUrl?: string;
   conditionRating: 'excellent' | 'fair' | 'weathered' | 'partially_effaced';
+  reviewStatus: ReviewStatus;
+  lastUpdated: string;
   historicalContext: HistoricalContext;
   transcription: TranscriptionResult;
   translation: TranslationResult;
@@ -149,6 +164,7 @@ export interface IEpigraphyService {
   getSourceLanguages(): Promise<SourceLanguageMetadata[]>;
   getInscriptions(filter?: InscriptionFilter): Promise<InscriptionRecord[]>;
   getInscriptionById(id: string): Promise<InscriptionRecord | null>;
+  getRecentActivity(): Promise<ResearchActivityItem[]>;
   analyzeInscriptionImage(file: File | Blob): Promise<AnalysisJobResult>;
 }
 
