@@ -9,7 +9,8 @@ import {
 import {
   MOCK_INSCRIPTIONS,
   SCRIPT_CLASSES_METADATA,
-  SOURCE_LANGUAGES_METADATA
+  SOURCE_LANGUAGES_METADATA,
+  MOCK_RESEARCH_ACTIVITY,
 } from '../data/mockInscriptions';
 
 /**
@@ -67,6 +68,10 @@ export class MockEpigraphyService implements IEpigraphyService {
   async getInscriptionById(id: string): Promise<InscriptionRecord | null> {
     const found = this.inscriptions.find(ins => ins.id === id);
     return Promise.resolve(found || null);
+  }
+
+  async getRecentActivity(): Promise<import('../types').ResearchActivityItem[]> {
+    return Promise.resolve([...MOCK_RESEARCH_ACTIVITY]);
   }
 
   /**

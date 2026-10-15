@@ -214,6 +214,8 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
     },
     imageUrl: 'https://images.unsplash.com/photo-1599732497206-8b9d031cce16?auto=format&fit=crop&q=80&w=1200',
     conditionRating: 'fair',
+    reviewStatus: 'verified',
+    lastUpdated: '14 Oct 2026',
     historicalContext: {
       dynasty: 'Kadambas of Banavasi',
       ruler: 'King Kakusthavarma',
@@ -307,6 +309,8 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
     },
     imageUrl: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=1200',
     conditionRating: 'weathered',
+    reviewStatus: 'verified',
+    lastUpdated: '08 Oct 2026',
     historicalContext: {
       dynasty: 'Mauryan Empire',
       ruler: 'Emperor Ashoka Maurya',
@@ -387,6 +391,8 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
     },
     imageUrl: 'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&q=80&w=1200',
     conditionRating: 'excellent',
+    reviewStatus: 'in_review',
+    lastUpdated: '12 Oct 2026',
     historicalContext: {
       dynasty: 'Badami Chalukyas',
       ruler: 'Chalukya Chieftain Kappe Arabhatta',
@@ -480,6 +486,8 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
     },
     imageUrl: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&q=80&w=1200',
     conditionRating: 'excellent',
+    reviewStatus: 'pending_verification',
+    lastUpdated: '15 Oct 2026',
     historicalContext: {
       dynasty: 'Hoysala Empire',
       ruler: 'Mahamandaleshvara King Vishnuvardhana (Bittideva)',
@@ -550,5 +558,48 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
     },
     provenance: 'Installed inside the inner courtyard corridor of the Chennakeshava Temple Complex at Belur, Hassan District.',
     currentLocation: 'In situ stele, Chennakeshava Temple, Belur'
+  }
+];
+
+export const MOCK_RESEARCH_ACTIVITY: import('../types').ResearchActivityItem[] = [
+  {
+    id: 'act-01',
+    timestamp: '2 hours ago',
+    type: 'transcription_verified',
+    title: 'Epigraphical Reading Confirmed',
+    description: 'Line 3 of the Halmidi Stele was verified against high-resolution rubbing photographs.',
+    scholar: 'Dr. M. R. Seshadri (Epigraphist)',
+    inscriptionId: 'ins-halmidi-001',
+    inscriptionTitle: 'Halmidi Inscription (c. 450 CE)'
+  },
+  {
+    id: 'act-02',
+    timestamp: 'Yesterday at 16:45',
+    type: 'lexicon_added',
+    title: 'Archaic Vocabulary Cross-Referenced',
+    description: 'Added morphological note on "Bāgaḷchu" (hero endowment) to the Purvada Halegannada lexicon.',
+    scholar: 'Prof. K. N. Gowda (Linguistics)',
+    inscriptionId: 'ins-halmidi-001',
+    inscriptionTitle: 'Halmidi Inscription (c. 450 CE)'
+  },
+  {
+    id: 'act-03',
+    timestamp: '12 Oct 2026',
+    type: 'translation_updated',
+    title: 'Tripadi Metrical Structure Analyzed',
+    description: 'Updated modern Kannada translation of Badami cliff inscription to preserve 3-line lyrical cadence.',
+    scholar: 'Epigraphical Review Board',
+    inscriptionId: 'ins-badami-003',
+    inscriptionTitle: 'Kappe Arabhatta Inscription of Badami'
+  },
+  {
+    id: 'act-04',
+    timestamp: '08 Oct 2026',
+    type: 'rubbing_catalogued',
+    title: 'New Archival Rubbing Ingested',
+    description: 'Registered high-contrast paper squeeze of the Maski Minor Rock Edict from the ASI Mysore register.',
+    scholar: 'Archival Cataloging Team',
+    inscriptionId: 'ins-maski-002',
+    inscriptionTitle: 'Maski Minor Rock Edict of Ashoka'
   }
 ];
