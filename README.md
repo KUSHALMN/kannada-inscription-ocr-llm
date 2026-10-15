@@ -130,7 +130,18 @@ kannada-inscription-ocr-llm/
   - Recent Inscriptions table with verified historical records (Inscription, Script, Language, Period, Review Status, Last Updated).
   - Research Activity feed detailing real local epigraphical reviews and lexical additions.
   - Interactive quick action cards connecting New Analysis, Inscription Archive, and Script Classifications.
-- **Phase 4 (Upcoming):** Backend pipeline setup (FastAPI), Inscription preprocessing (CLAHE, Sauvola adaptive binarization, stone noise filtration).
-- **Phase 5 (Upcoming):** YOLOv11 bounding box segmentation for damaged inscriptional characters.
+- **Phase 4 (Completed):** Complete Inscription Upload & Analysis Workspace:
+  - Drag-and-drop & file picker for PNG, JPG, JPEG, WEBP, TIFF images (max 25 MB).
+  - In-browser local processing (no unauthorized remote upload).
+  - Optional researcher metadata (Title, Location, Date, Dynasty, Collection, Notes, Script/Language hints).
+  - Simulated 5-stage epigraphical processing pipeline (Preprocessing -> YOLOv11 localization -> CNN+ViT epoch inference -> Halegannada phonetic transliteration -> Hosagannada translation).
+- **Phase 5 (Completed):** Sophisticated Inscription Results Workspace with Dynamic Historical Themes:
+  - Strict 4-pillar separation (Script Class vs. Source Language vs. Original Transcription vs. Target Translation).
+  - Large interactive original inscription viewer with zoom/pan, line bounding box overlays, and character coordinate selection.
+  - Recognized original transcription panel with line alignment, IAST transliteration, and live demonstration correction modal.
+  - Typeset Modern Standard Kannada (*Hosagannada*) translation with narrative, aligned, and grammatical lexicon views.
+  - Evidence-based historical and linguistic context panel systematically answering 8 epigraphical questions with official citations (*Epigraphia Carnatica*).
+  - Dynamic typed theme registry with CSS variables for all 10 historical script classes (Ashoka to Modern Kannada) and secondary source languages with live preview switching.
+  - Scholarly review controls: Correct Transcription, Edit Translation, Mark for Peer Review, and Approve Result.
 - **Phase 6 (Upcoming):** Hybrid CNN + Vision Transformer (ViT) model integration achieving 98.75% paleographical epoch classification.
 - **Phase 7 (Upcoming):** Halegannada-to-Hosagannada domain LLM translation engine.
