@@ -82,31 +82,31 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {isMobileOpen && (
         <div
           onClick={onCloseMobile}
-          className="fixed inset-0 bg-stone-900/40 z-40 lg:hidden backdrop-blur-[1px]"
+          className="fixed inset-0 bg-black/70 z-40 lg:hidden backdrop-blur-sm"
         />
       )}
 
       {/* Sidebar Container */}
       <aside
-        className={`fixed top-0 bottom-0 left-0 z-50 w-64 bg-parchment-100 border-r border-heritage-border flex flex-col justify-between transition-transform duration-200 ease-in-out lg:translate-x-0 ${
+        className={`fixed top-0 bottom-0 left-0 z-50 w-64 bg-[#0D121F]/95 backdrop-blur-2xl border-r border-white/[0.08] flex flex-col justify-between transition-transform duration-300 ease-in-out lg:translate-x-0 ${
           isMobileOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div>
           {/* Institutional Brand Header */}
-          <div className="p-5 border-b border-heritage-border flex items-center justify-between">
+          <div className="p-5 border-b border-white/[0.08] flex items-center justify-between">
             <div className="flex items-center gap-3">
               {/* Historical Chiseled Emblem */}
-              <div className="w-9 h-9 border border-heritage-ochre/50 bg-parchment-200 rounded-xs flex items-center justify-center shadow-subtle flex-shrink-0">
+              <div className="w-10 h-10 border border-amber-500/40 bg-gradient-to-br from-amber-500/20 to-amber-900/40 rounded-md flex items-center justify-center shadow-glow-amber flex-shrink-0">
                 <svg
                   viewBox="0 0 24 24"
-                  className="w-5 h-5 text-stone-800"
+                  className="w-5 h-5 text-amber-300"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="1.75"
+                  strokeWidth="2"
                 >
                   {/* Classical Kadamba Box-Head & Inscribed Glyph cross */}
-                  <rect x="4" y="3" width="16" height="4" rx="0.5" className="fill-heritage-ochre/20" />
+                  <rect x="4" y="3" width="16" height="4" rx="0.5" className="fill-amber-400/30" />
                   <path d="M12 7v14" />
                   <path d="M7 14c0-2.5 5-2.5 5-2.5s5 0 5 2.5" />
                   <path d="M6 18c0-3 6-3 6-3s6 0 6 3" />
@@ -114,10 +114,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
               </div>
 
               <div>
-                <span className="font-serif font-bold text-sm text-stone-900 tracking-tight block">
+                <span className="font-serif font-bold text-sm text-white tracking-tight block">
                   Kannada Heritage AI
                 </span>
-                <span className="text-[10px] font-kannada text-stone-600 block">
+                <span className="text-[10px] font-kannada text-amber-300/80 block">
                   ಕನ್ನಡ ಶಾಸನ ಅಧ್ಯಯನ ವೇದಿಕೆ
                 </span>
               </div>
@@ -126,38 +126,41 @@ export const Sidebar: React.FC<SidebarProps> = ({
             {/* Mobile close button */}
             <button
               onClick={onCloseMobile}
-              className="lg:hidden text-stone-400 hover:text-stone-700 p-1"
+              className="lg:hidden text-stone-400 hover:text-white p-1 rounded hover:bg-white/10"
             >
               <X className="w-4 h-4" />
             </button>
           </div>
 
           {/* Institutional Academic Subtitle */}
-          <div className="px-5 py-2.5 bg-stone-100/60 border-b border-stone-200/60 text-[10px] font-mono text-stone-500 uppercase tracking-widest">
-            Archaeological Workbench
+          <div className="px-5 py-2 bg-white/[0.02] border-b border-white/[0.06] flex items-center justify-between">
+            <span className="text-[10px] font-mono text-amber-400/80 uppercase tracking-widest font-semibold">
+              Archaeological Workbench
+            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400/60"></span>
           </div>
 
           {/* Navigation Links */}
-          <nav className="p-3 space-y-1">
+          <nav className="p-3 space-y-1.5">
             {navItems.map((item) => {
               const isActive = activeTab === item.key || (activeTab === 'results' && item.key === 'new_analysis');
               return (
                 <button
                   key={item.key}
                   onClick={() => handleNavClick(item.key)}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xs text-xs transition-colors ${
+                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-md text-xs transition-all duration-200 group ${
                     isActive
-                      ? 'bg-parchment-50 text-stone-900 border border-stone-300 font-semibold shadow-subtle'
-                      : 'text-stone-600 hover:bg-stone-200/50 hover:text-stone-900 border border-transparent'
+                      ? 'bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-transparent text-white border-l-2 border-amber-400 font-semibold shadow-sm'
+                      : 'text-stone-400 hover:bg-white/[0.05] hover:text-stone-100 border-l-2 border-transparent'
                   }`}
                 >
                   <div className="flex items-center gap-2.5">
-                    <span className={isActive ? 'text-heritage-ochre' : 'text-stone-400'}>
+                    <span className={`transition-colors ${isActive ? 'text-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]' : 'text-stone-500 group-hover:text-stone-300'}`}>
                       {item.icon}
                     </span>
-                    <span className="font-sans text-left">{item.label}</span>
+                    <span className="font-sans text-left tracking-wide">{item.label}</span>
                   </div>
-                  <span className="text-[10px] font-kannada text-stone-400">
+                  <span className={`text-[10px] font-kannada transition-colors ${isActive ? 'text-amber-300/80' : 'text-stone-500 group-hover:text-stone-400'}`}>
                     {item.kannadaLabel}
                   </span>
                 </button>
@@ -167,16 +170,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Footer Status Indicators */}
-        <div className="p-4 border-t border-heritage-border bg-stone-100/40 space-y-2">
-          <div className="flex items-center justify-between text-[11px] font-mono text-stone-600">
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-stone-600"></span>
-              Local Demo Adapter
+        <div className="p-4 border-t border-white/[0.08] bg-black/30 space-y-2.5">
+          <div className="flex items-center justify-between text-[11px] font-mono text-stone-300">
+            <span className="flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span>Epigraphy Adapter</span>
             </span>
-            <span className="text-stone-400 font-mono text-[10px]">Phase 1-3</span>
+            <span className="text-amber-400/90 font-mono text-[10px] bg-amber-400/10 px-1.5 py-0.5 rounded border border-amber-400/20">Phase 1-3</span>
           </div>
-          <div className="flex items-center gap-1.5 text-[10px] font-serif italic text-stone-500">
-            <ShieldCheck className="w-3.5 h-3.5 text-stone-400 flex-shrink-0" />
+          <div className="flex items-center gap-1.5 text-[10px] font-serif italic text-stone-400">
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
             <span>FastAPI Contract Ready</span>
           </div>
         </div>
