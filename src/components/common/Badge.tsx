@@ -15,22 +15,22 @@ export const Badge: React.FC<BadgeProps> = ({
   className = '',
   size = 'md',
 }) => {
-  const baseStyles = 'inline-flex items-center font-medium border rounded-xs uppercase tracking-wider select-none';
+  const baseStyles = 'inline-flex items-center font-medium border rounded-md uppercase tracking-wider select-none font-mono';
   
   const sizeStyles = {
-    sm: 'text-[10px] px-1.5 py-0.5 leading-tight',
+    sm: 'text-[10px] px-2 py-0.5 leading-tight',
     md: 'text-xs px-2.5 py-0.5 leading-normal',
   };
 
   const variantStyles: Record<BadgeVariant, string> = {
-    default: 'bg-stone-100 text-stone-700 border-stone-300',
-    script: 'bg-parchment-200 text-stone-900 border-heritage-ochre/40',
-    language: 'bg-stone-100 text-heritage-terracotta border-heritage-terracotta/30',
-    period: 'bg-stone-50 text-stone-600 border-stone-300 font-mono text-[11px]',
-    substrate: 'bg-stone-200/60 text-stone-700 border-stone-300/80',
-    warning: 'bg-amber-50 text-amber-900 border-amber-300/70',
-    status: 'bg-emerald-50 text-emerald-900 border-emerald-300/70',
-    rule_type: 'bg-parchment-100 text-stone-800 border-stone-400 font-mono',
+    default: 'bg-white/[0.06] text-stone-300 border-white/10',
+    script: 'bg-amber-500/10 text-amber-300 border-amber-500/30 shadow-sm',
+    language: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/30',
+    period: 'bg-white/[0.04] text-stone-300 border-white/10 font-mono text-[11px]',
+    substrate: 'bg-stone-800/80 text-stone-300 border-white/10',
+    warning: 'bg-amber-500/15 text-amber-300 border-amber-500/40 shadow-glow-amber',
+    status: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/40 shadow-glow-emerald',
+    rule_type: 'bg-purple-500/15 text-purple-300 border-purple-500/30 font-mono',
   };
 
   return (

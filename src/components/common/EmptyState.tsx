@@ -24,24 +24,24 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`border border-stone-300/80 bg-stone-50/60 p-10 text-center rounded-xs space-y-3 ${className}`}>
-      <div className="w-10 h-10 mx-auto rounded-xs border border-stone-300 bg-parchment-100 flex items-center justify-center text-stone-500 shadow-subtle">
-        {icon || <Archive className="w-5 h-5 text-stone-500" />}
+    <div className={`border border-white/10 bg-[#0F1521]/70 backdrop-blur-md p-10 text-center rounded-xl space-y-4 shadow-lg ${className}`}>
+      <div className="w-12 h-12 mx-auto rounded-lg border border-amber-500/30 bg-amber-500/10 flex items-center justify-center text-amber-400 shadow-glow-amber">
+        {icon || <Archive className="w-6 h-6 text-amber-400" />}
       </div>
       <div>
-        <h4 className="font-serif font-bold text-sm text-stone-900">{title}</h4>
-        <p className="text-xs text-stone-500 max-w-sm mx-auto mt-1 font-serif leading-relaxed">
+        <h4 className="font-serif font-bold text-base text-white tracking-wide">{title}</h4>
+        <p className="text-xs text-stone-300 max-w-sm mx-auto mt-1.5 font-serif leading-relaxed">
           {description}
         </p>
       </div>
-      <div className="pt-2 flex items-center justify-center gap-2">
+      <div className="pt-2 flex items-center justify-center gap-3">
         {actionLabel && onAction && (
-          <Button variant="secondary" size="sm" onClick={onAction}>
+          <Button variant="primary" size="sm" onClick={onAction}>
             {actionLabel}
           </Button>
         )}
         {secondaryActionLabel && onSecondaryAction && (
-          <Button variant="outline" size="sm" onClick={onSecondaryAction}>
+          <Button variant="secondary" size="sm" onClick={onSecondaryAction}>
             {secondaryActionLabel}
           </Button>
         )}
@@ -64,18 +64,18 @@ export const ErrorMessage: React.FC<ErrorMessageProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`border border-heritage-terracotta/40 bg-amber-50/50 p-3.5 rounded-xs flex items-start gap-3 text-xs ${className}`}>
-      <AlertCircle className="w-4 h-4 text-heritage-terracotta mt-0.5 flex-shrink-0" />
-      <div className="flex-1 space-y-0.5">
-        <h5 className="font-mono text-[11px] uppercase tracking-wider font-bold text-stone-800">
+    <div className={`border border-amber-500/30 bg-amber-500/10 p-4 rounded-lg flex items-start gap-3 text-xs backdrop-blur-md ${className}`}>
+      <AlertCircle className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" />
+      <div className="flex-1 space-y-1">
+        <h5 className="font-mono text-[11px] uppercase tracking-wider font-bold text-amber-300">
           {title}
         </h5>
-        <p className="text-stone-700 font-serif leading-relaxed">{message}</p>
+        <p className="text-stone-300 font-serif leading-relaxed">{message}</p>
       </div>
       {onDismiss && (
         <button
           onClick={onDismiss}
-          className="text-stone-400 hover:text-stone-700 p-0.5"
+          className="text-stone-400 hover:text-white p-1 rounded hover:bg-white/10"
           title="Dismiss"
         >
           <X className="w-3.5 h-3.5" />
@@ -109,15 +109,15 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/40 backdrop-blur-[1px]">
-      <div className="bg-parchment-50 border border-stone-400 rounded-xs max-w-md w-full p-6 shadow-elevation space-y-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+      <div className="bg-[#0F1521] border border-white/15 rounded-xl max-w-md w-full p-6 shadow-elevation space-y-4">
         <div>
-          <h3 className="font-serif font-bold text-base text-stone-900">{title}</h3>
-          <p className="text-xs text-stone-600 mt-1 font-serif leading-relaxed">
+          <h3 className="font-serif font-bold text-lg text-white">{title}</h3>
+          <p className="text-xs text-stone-300 mt-1.5 font-serif leading-relaxed">
             {description}
           </p>
         </div>
-        <div className="flex items-center justify-end gap-2 pt-3 border-t border-heritage-border">
+        <div className="flex items-center justify-end gap-2.5 pt-4 border-t border-white/10">
           <Button variant="outline" size="sm" onClick={onCancel}>
             {cancelLabel}
           </Button>
