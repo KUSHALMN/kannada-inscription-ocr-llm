@@ -63,8 +63,8 @@ export const App: React.FC = () => {
     <MainLayout activeTab={activeTab} onNavigate={setActiveTab}>
       {isLoading ? (
         <div className="py-28 text-center space-y-3">
-          <div className="inline-block w-7 h-7 border-2 border-stone-400 border-t-stone-900 rounded-full animate-spin"></div>
-          <p className="text-xs font-serif text-stone-600">Accessing Inscription Archive Registers...</p>
+          <div className="inline-block w-8 h-8 border-2 border-stone-800 border-t-amber-400 rounded-full animate-spin"></div>
+          <p className="text-xs font-serif text-stone-400">Accessing Inscription Archive Registers...</p>
         </div>
       ) : (
         <>

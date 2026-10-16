@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { PageHeader } from '../layout/PageHeader';
 import { Button } from '../common/Button';
 import { FormField, Input, Select } from '../common/FormField';
-import { Server, FileDown, CheckCircle, Database } from 'lucide-react';
+import { Server, FileDown, CheckCircle, Database, Sparkles } from 'lucide-react';
 
 export const SettingsView: React.FC = () => {
   const [apiEndpoint, setApiEndpoint] = useState<string>('http://localhost:8000/api/v1');
@@ -25,22 +25,22 @@ export const SettingsView: React.FC = () => {
       />
 
       {isSaved && (
-        <div className="bg-stone-100 border border-stone-300 p-3 rounded-xs text-xs text-stone-800 flex items-center gap-2">
-          <CheckCircle className="w-4 h-4 text-stone-600" />
-          <span>Configuration settings updated successfully.</span>
+        <div className="bg-obsidian-950/90 border border-emerald-500/40 p-3.5 rounded-sm text-xs text-emerald-300 flex items-center gap-2.5 shadow-glow-emerald-sm backdrop-blur-md">
+          <CheckCircle className="w-4 h-4 text-emerald-400" />
+          <span>Configuration settings updated and applied to active session.</span>
         </div>
       )}
 
       {/* Backend API Configuration */}
-      <div className="border border-heritage-border bg-parchment-50 p-6 rounded-xs space-y-4 shadow-subtle">
-        <div className="flex items-center gap-2.5 border-b border-heritage-border pb-3">
-          <Server className="w-4 h-4 text-stone-700" />
-          <h3 className="font-serif font-bold text-base text-stone-900">
+      <div className="border border-stone-800/80 bg-obsidian-900/90 p-6 rounded-sm space-y-4 shadow-obsidian-card backdrop-blur-md">
+        <div className="flex items-center gap-2.5 border-b border-stone-800/80 pb-3">
+          <Server className="w-4 h-4 text-amber-400" />
+          <h3 className="font-serif font-bold text-base text-stone-100">
             Backend Model & API Endpoint
           </h3>
         </div>
 
-        <p className="text-xs text-stone-600 font-serif leading-relaxed">
+        <p className="text-xs text-stone-300 font-serif leading-relaxed">
           Configure the FastAPI backend server hosting the YOLOv11 character segmentation weights and 
           the hybrid CNN + Vision Transformer epoch classifier (98.75% accuracy model).
         </p>
@@ -57,18 +57,18 @@ export const SettingsView: React.FC = () => {
             />
           </FormField>
 
-          <div className="flex items-center gap-2 text-xs text-stone-500 font-mono">
-            <span className="w-2 h-2 rounded-full bg-stone-400"></span>
-            <span>Current Service Adapter: <strong>MockEpigraphyService (Offline Demonstrator)</strong></span>
+          <div className="flex items-center gap-2 text-xs text-stone-400 font-mono bg-obsidian-950/80 p-2.5 rounded-sm border border-stone-800">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Current Service Adapter: <strong className="text-amber-300">MockEpigraphyService (Offline Demonstrator)</strong></span>
           </div>
         </div>
       </div>
 
       {/* Epigraphical Export Preferences */}
-      <div className="border border-heritage-border bg-parchment-50 p-6 rounded-xs space-y-4 shadow-subtle">
-        <div className="flex items-center gap-2.5 border-b border-heritage-border pb-3">
-          <FileDown className="w-4 h-4 text-stone-700" />
-          <h3 className="font-serif font-bold text-base text-stone-900">
+      <div className="border border-stone-800/80 bg-obsidian-900/90 p-6 rounded-sm space-y-4 shadow-obsidian-card backdrop-blur-md">
+        <div className="flex items-center gap-2.5 border-b border-stone-800/80 pb-3">
+          <FileDown className="w-4 h-4 text-amber-400" />
+          <h3 className="font-serif font-bold text-base text-stone-100">
             Scholarly Export Standards
           </h3>
         </div>
@@ -92,10 +92,10 @@ export const SettingsView: React.FC = () => {
       </div>
 
       {/* Typography & Rendering Preferences */}
-      <div className="border border-heritage-border bg-parchment-50 p-6 rounded-xs space-y-4 shadow-subtle">
-        <div className="flex items-center gap-2.5 border-b border-heritage-border pb-3">
-          <Database className="w-4 h-4 text-stone-700" />
-          <h3 className="font-serif font-bold text-base text-stone-900">
+      <div className="border border-stone-800/80 bg-obsidian-900/90 p-6 rounded-sm space-y-4 shadow-obsidian-card backdrop-blur-md">
+        <div className="flex items-center gap-2.5 border-b border-stone-800/80 pb-3">
+          <Database className="w-4 h-4 text-amber-400" />
+          <h3 className="font-serif font-bold text-base text-stone-100">
             Kannada Typography & Rendering
           </h3>
         </div>
@@ -123,7 +123,7 @@ export const SettingsView: React.FC = () => {
           variant="primary"
           size="md"
           onClick={handleSave}
-          icon={<CheckCircle className="w-4 h-4" />}
+          icon={<Sparkles className="w-4 h-4" />}
         >
           Save Configuration
         </Button>
