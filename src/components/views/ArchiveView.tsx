@@ -5,7 +5,7 @@ import { InscriptionCard } from '../explorer/InscriptionCard';
 import { InscriptionFilterBar } from '../explorer/InscriptionFilterBar';
 import { EmptyState } from '../common/EmptyState';
 import { Badge } from '../common/Badge';
-import { Calendar, MapPin, Landmark, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Calendar, MapPin, Landmark, ArrowRight, ShieldCheck, Database } from 'lucide-react';
 
 interface ArchiveViewProps {
   inscriptions: InscriptionRecord[];
@@ -104,14 +104,15 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
       />
 
       {/* Institutional Metadata & Scope Banner */}
-      <div className="bg-parchment-100/60 border border-heritage-border p-3 rounded-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs font-serif text-stone-700">
-        <div className="flex items-center gap-2">
-          <ShieldCheck className="w-4 h-4 text-heritage-ochre flex-shrink-0" />
+      <div className="bg-gradient-to-r from-obsidian-950 via-stone-900 to-obsidian-950 border border-amber-500/30 p-3.5 rounded-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs font-serif text-stone-300 shadow-glow-amber-sm backdrop-blur-md">
+        <div className="flex items-center gap-2.5">
+          <ShieldCheck className="w-4 h-4 text-amber-400 flex-shrink-0" />
           <span>
-            Institutional epigraphical corpus containing <strong>{inscriptions.length}</strong> catalogued inscriptions spanning 3rd C. BCE to 19th C. CE.
+            Institutional epigraphical corpus containing <strong className="text-amber-300 font-mono">{inscriptions.length}</strong> catalogued inscriptions spanning 3rd C. BCE to 19th C. CE.
           </span>
         </div>
-        <div className="font-mono text-[11px] text-stone-500 whitespace-nowrap">
+        <div className="font-mono text-[11px] text-stone-400 flex items-center gap-1.5 whitespace-nowrap bg-obsidian-950/80 px-2.5 py-1 rounded border border-stone-800">
+          <Database className="w-3 h-3 text-amber-500/70" />
           ASI & State Archaeology Register
         </div>
       </div>
@@ -144,77 +145,77 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
         </div>
       ) : (
         /* Archival Table View */
-        <div className="border border-heritage-border rounded-xs overflow-hidden shadow-subtle bg-parchment-50">
+        <div className="border border-stone-800/80 rounded-sm overflow-hidden shadow-obsidian-card bg-obsidian-900/90 backdrop-blur-md">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-xs">
               <thead>
-                <tr className="bg-stone-100 border-b border-heritage-border text-stone-600 font-mono text-[11px] uppercase tracking-wider">
-                  <th className="py-2.5 px-3">Accession #</th>
-                  <th className="py-2.5 px-3">Title & Epigraph Name</th>
-                  <th className="py-2.5 px-3">Script Era</th>
-                  <th className="py-2.5 px-3">Language</th>
-                  <th className="py-2.5 px-3">Period & Dynasty</th>
-                  <th className="py-2.5 px-3">Find-Spot</th>
-                  <th className="py-2.5 px-3">Status</th>
-                  <th className="py-2.5 px-3 text-right">Action</th>
+                <tr className="bg-obsidian-950 border-b border-stone-800 text-stone-400 font-mono text-[11px] uppercase tracking-wider">
+                  <th className="py-3 px-3.5">Accession #</th>
+                  <th className="py-3 px-3.5">Title & Epigraph Name</th>
+                  <th className="py-3 px-3.5">Script Era</th>
+                  <th className="py-3 px-3.5">Language</th>
+                  <th className="py-3 px-3.5">Period & Dynasty</th>
+                  <th className="py-3 px-3.5">Find-Spot</th>
+                  <th className="py-3 px-3.5">Status</th>
+                  <th className="py-3 px-3.5 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-heritage-border/60">
+              <tbody className="divide-y divide-stone-800/60">
                 {filteredInscriptions.map((ins) => (
                   <tr
                     key={ins.id}
                     onClick={() => onSelectInscription(ins)}
-                    className="hover:bg-parchment-100/70 transition-colors cursor-pointer group"
+                    className="hover:bg-obsidian-800/60 transition-colors cursor-pointer group"
                   >
-                    <td className="py-3 px-3 font-mono text-stone-500 whitespace-nowrap">
+                    <td className="py-3 px-3.5 font-mono text-stone-400 whitespace-nowrap">
                       {ins.accessionNumber}
                     </td>
-                    <td className="py-3 px-3">
-                      <div className="font-serif font-bold text-stone-900 group-hover:text-heritage-ochre transition-colors">
+                    <td className="py-3 px-3.5">
+                      <div className="font-serif font-bold text-stone-100 group-hover:text-amber-300 transition-colors">
                         {ins.title}
                       </div>
-                      <div className="font-kannada text-xs text-stone-600 mt-0.5">
+                      <div className="font-kannada text-xs text-amber-400/90 mt-0.5">
                         {ins.kannadaTitle}
                       </div>
                     </td>
-                    <td className="py-3 px-3 whitespace-nowrap">
+                    <td className="py-3 px-3.5 whitespace-nowrap">
                       <Badge variant="script" size="sm">{ins.scriptClass.replace('_', ' ')}</Badge>
                     </td>
-                    <td className="py-3 px-3 whitespace-nowrap">
+                    <td className="py-3 px-3.5 whitespace-nowrap">
                       <Badge variant="language" size="sm">{ins.sourceLanguage.replace('_', ' ')}</Badge>
                     </td>
-                    <td className="py-3 px-3">
-                      <div className="flex items-center gap-1 font-serif text-stone-800 text-xs">
-                        <Calendar className="w-3 h-3 text-stone-400 flex-shrink-0" />
+                    <td className="py-3 px-3.5">
+                      <div className="flex items-center gap-1 font-serif text-stone-200 text-xs">
+                        <Calendar className="w-3 h-3 text-amber-500/70 flex-shrink-0" />
                         <span>{ins.historicalContext.approximateDate}</span>
                       </div>
-                      <div className="flex items-center gap-1 text-[11px] text-stone-500 mt-0.5">
-                        <Landmark className="w-3 h-3 text-stone-400 flex-shrink-0" />
+                      <div className="flex items-center gap-1 text-[11px] text-stone-400 mt-0.5">
+                        <Landmark className="w-3 h-3 text-stone-500 flex-shrink-0" />
                         <span>{ins.historicalContext.dynasty}</span>
                       </div>
                     </td>
-                    <td className="py-3 px-3">
-                      <div className="flex items-center gap-1 text-stone-700 font-serif">
-                        <MapPin className="w-3 h-3 text-stone-400 flex-shrink-0" />
+                    <td className="py-3 px-3.5">
+                      <div className="flex items-center gap-1 text-stone-300 font-serif">
+                        <MapPin className="w-3 h-3 text-stone-500 flex-shrink-0" />
                         <span>{ins.historicalContext.findSpot.village}, {ins.historicalContext.findSpot.district}</span>
                       </div>
                     </td>
-                    <td className="py-3 px-3 whitespace-nowrap">
+                    <td className="py-3 px-3.5 whitespace-nowrap">
                       <Badge variant="status" size="sm">
                         {ins.reviewStatus.replace('_', ' ')}
                       </Badge>
                     </td>
-                    <td className="py-3 px-3 text-right whitespace-nowrap">
+                    <td className="py-3 px-3.5 text-right whitespace-nowrap">
                       <button
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
                           onSelectInscription(ins);
                         }}
-                        className="inline-flex items-center gap-1 font-mono text-[11px] text-stone-600 hover:text-stone-900 border border-stone-300 hover:border-stone-500 px-2.5 py-1 rounded-xs bg-parchment-50 shadow-subtle group-hover:bg-white transition-colors"
+                        className="inline-flex items-center gap-1 font-mono text-[11px] text-stone-300 hover:text-amber-300 border border-stone-700 hover:border-amber-400 px-2.5 py-1 rounded-sm bg-obsidian-950 shadow-subtle group-hover:bg-obsidian-900 transition-all"
                       >
                         <span>Inspect</span>
-                        <ArrowRight className="w-3 h-3 text-stone-400 group-hover:translate-x-0.5 transition-transform" />
+                        <ArrowRight className="w-3 h-3 text-stone-500 group-hover:translate-x-0.5 group-hover:text-amber-400 transition-transform" />
                       </button>
                     </td>
                   </tr>
