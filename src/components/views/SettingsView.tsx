@@ -25,22 +25,22 @@ export const SettingsView: React.FC = () => {
       />
 
       {isSaved && (
-        <div className="bg-obsidian-950/90 border border-emerald-500/40 p-3.5 rounded-sm text-xs text-emerald-300 flex items-center gap-2.5 shadow-glow-emerald-sm backdrop-blur-md">
-          <CheckCircle className="w-4 h-4 text-emerald-400" />
+        <div className="bg-emerald-50 border border-emerald-200 p-3.5 rounded-md text-xs text-emerald-800 flex items-center gap-2.5 shadow-xs font-medium">
+          <CheckCircle className="w-4 h-4 text-emerald-600" />
           <span>Configuration settings updated and applied to active session.</span>
         </div>
       )}
 
       {/* Backend API Configuration */}
-      <div className="border border-stone-800/80 bg-obsidian-900/90 p-6 rounded-sm space-y-4 shadow-obsidian-card backdrop-blur-md">
-        <div className="flex items-center gap-2.5 border-b border-stone-800/80 pb-3">
-          <Server className="w-4 h-4 text-amber-400" />
-          <h3 className="font-serif font-bold text-base text-stone-100">
+      <div className="border border-slate-200 bg-white p-6 rounded-lg space-y-4 shadow-xs">
+        <div className="flex items-center gap-2.5 border-b border-slate-100 pb-3">
+          <Server className="w-4 h-4 text-amber-600" />
+          <h3 className="font-serif font-bold text-base text-slate-900">
             Backend Model & API Endpoint
           </h3>
         </div>
 
-        <p className="text-xs text-stone-300 font-serif leading-relaxed">
+        <p className="text-xs text-slate-600 font-serif leading-relaxed">
           Configure the FastAPI backend server hosting the YOLOv11 character segmentation weights and 
           the hybrid CNN + Vision Transformer epoch classifier (98.75% accuracy model).
         </p>
@@ -57,18 +57,18 @@ export const SettingsView: React.FC = () => {
             />
           </FormField>
 
-          <div className="flex items-center gap-2 text-xs text-stone-400 font-mono bg-obsidian-950/80 p-2.5 rounded-sm border border-stone-800">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>Current Service Adapter: <strong className="text-amber-300">MockEpigraphyService (Offline Demonstrator)</strong></span>
+          <div className="flex items-center gap-2 text-xs text-slate-600 font-mono bg-slate-50 p-2.5 rounded-md border border-slate-200">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Current Service Adapter: <strong className="text-amber-800 font-bold">MockEpigraphyService (Offline Demonstrator)</strong></span>
           </div>
         </div>
       </div>
 
       {/* Epigraphical Export Preferences */}
-      <div className="border border-stone-800/80 bg-obsidian-900/90 p-6 rounded-sm space-y-4 shadow-obsidian-card backdrop-blur-md">
-        <div className="flex items-center gap-2.5 border-b border-stone-800/80 pb-3">
-          <FileDown className="w-4 h-4 text-amber-400" />
-          <h3 className="font-serif font-bold text-base text-stone-100">
+      <div className="border border-slate-200 bg-white p-6 rounded-lg space-y-4 shadow-xs">
+        <div className="flex items-center gap-2.5 border-b border-slate-100 pb-3">
+          <FileDown className="w-4 h-4 text-amber-600" />
+          <h3 className="font-serif font-bold text-base text-slate-900">
             Scholarly Export Standards
           </h3>
         </div>
@@ -92,10 +92,10 @@ export const SettingsView: React.FC = () => {
       </div>
 
       {/* Typography & Rendering Preferences */}
-      <div className="border border-stone-800/80 bg-obsidian-900/90 p-6 rounded-sm space-y-4 shadow-obsidian-card backdrop-blur-md">
-        <div className="flex items-center gap-2.5 border-b border-stone-800/80 pb-3">
-          <Database className="w-4 h-4 text-amber-400" />
-          <h3 className="font-serif font-bold text-base text-stone-100">
+      <div className="border border-slate-200 bg-white p-6 rounded-lg space-y-4 shadow-xs">
+        <div className="flex items-center gap-2.5 border-b border-slate-100 pb-3">
+          <Database className="w-4 h-4 text-amber-600" />
+          <h3 className="font-serif font-bold text-base text-slate-900">
             Kannada Typography & Rendering
           </h3>
         </div>

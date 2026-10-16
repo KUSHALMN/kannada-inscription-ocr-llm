@@ -310,8 +310,8 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
 
       {/* Review Feedback Alert */}
       {reviewBannerNotice && (
-        <div className="bg-obsidian-900/90 border border-amber-500/40 p-3 rounded-xs text-xs text-amber-200 flex items-center gap-2 shadow-glow-amber-sm backdrop-blur-md">
-          <CheckCircle className="w-4 h-4 text-amber-400 flex-shrink-0" />
+        <div className="bg-emerald-50 border border-emerald-200 p-3.5 rounded-lg text-xs text-emerald-900 flex items-center gap-2.5 shadow-xs">
+          <CheckCircle className="w-4 h-4 text-emerald-600 flex-shrink-0" />
           <span>{reviewBannerNotice}</span>
         </div>
       )}
@@ -616,8 +616,8 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                   onClick={() => setActiveRightPanelTab('translation')}
                   className={`flex items-center gap-1.5 px-3 py-2 text-xs font-medium border-b-2 transition-colors ${
                     activeRightPanelTab === 'translation'
-                      ? 'border-amber-400 font-bold bg-stone-900/90 text-amber-300'
-                      : 'border-transparent text-stone-400 hover:text-stone-200'
+                      ? 'border-amber-600 font-bold bg-amber-50/70 text-amber-900'
+                      : 'border-transparent text-slate-500 hover:text-slate-900'
                   }`}
                 >
                   <Languages className="w-3.5 h-3.5" />
@@ -628,8 +628,8 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                   onClick={() => setActiveRightPanelTab('context')}
                   className={`flex items-center gap-1.5 px-3 py-2 text-xs font-medium border-b-2 transition-colors ${
                     activeRightPanelTab === 'context'
-                      ? 'border-amber-400 font-bold bg-stone-900/90 text-amber-300'
-                      : 'border-transparent text-stone-400 hover:text-stone-200'
+                      ? 'border-amber-600 font-bold bg-amber-50/70 text-amber-900'
+                      : 'border-transparent text-slate-500 hover:text-slate-900'
                   }`}
                 >
                   <History className="w-3.5 h-3.5" />
@@ -640,8 +640,8 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                   onClick={() => setActiveRightPanelTab('evidence')}
                   className={`flex items-center gap-1.5 px-3 py-2 text-xs font-medium border-b-2 transition-colors ${
                     activeRightPanelTab === 'evidence'
-                      ? 'border-amber-400 font-bold bg-stone-900/90 text-amber-300'
-                      : 'border-transparent text-stone-400 hover:text-stone-200'
+                      ? 'border-amber-600 font-bold bg-amber-50/70 text-amber-900'
+                      : 'border-transparent text-slate-500 hover:text-slate-900'
                   }`}
                 >
                   <BookOpen className="w-3.5 h-3.5" />
@@ -667,45 +667,45 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                 {/* Text View Modes */}
                 <div className="flex flex-wrap items-center justify-between gap-2 text-xs border-b pb-3" style={{ borderColor: 'var(--theme-border-fine)' }}>
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-mono text-[10px] uppercase text-stone-400">View Mode:</span>
-                    <div className="flex flex-wrap border border-stone-800 rounded-sm bg-obsidian-950/80 p-0.5 text-[11px] backdrop-blur-md">
+                    <span className="font-mono text-[10px] uppercase text-slate-500">View Mode:</span>
+                    <div className="flex flex-wrap border border-slate-200 rounded-lg bg-slate-100 p-0.5 text-[11px]">
                       <button
                         onClick={() => setTranslationTextMode('four_tier')}
-                        className={`flex items-center gap-1.5 px-2.5 py-1 rounded-sm transition-all ${
+                        className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md transition-all ${
                           translationTextMode === 'four_tier'
-                            ? 'bg-gradient-to-r from-amber-500/20 to-amber-600/20 text-amber-300 font-semibold border border-amber-500/40 shadow-glow-amber-sm'
-                            : 'text-stone-400 hover:text-stone-200'
+                            ? 'bg-white text-amber-900 font-bold border border-amber-300 shadow-xs'
+                            : 'text-slate-600 hover:text-slate-900'
                         }`}
                       >
-                        <Layers className="w-3 h-3 text-amber-400" />
+                        <Layers className="w-3 h-3 text-amber-600" />
                         <span>4-Tier Split-View</span>
                       </button>
                       <button
                         onClick={() => setTranslationTextMode('narrative')}
-                        className={`px-2 py-1 rounded-sm transition-all ${
+                        className={`px-2 py-1 rounded-md transition-all ${
                           translationTextMode === 'narrative'
-                            ? 'bg-stone-800 text-stone-100 font-semibold'
-                            : 'text-stone-400 hover:text-stone-200'
+                            ? 'bg-white text-slate-900 font-bold shadow-xs'
+                            : 'text-slate-600 hover:text-slate-900'
                         }`}
                       >
                         ಸಮಗ್ರ ಭಾವಾರ್ಥ
                       </button>
                       <button
                         onClick={() => setTranslationTextMode('aligned')}
-                        className={`px-2 py-1 rounded-sm transition-all ${
+                        className={`px-2 py-1 rounded-md transition-all ${
                           translationTextMode === 'aligned'
-                            ? 'bg-stone-800 text-stone-100 font-semibold'
-                            : 'text-stone-400 hover:text-stone-200'
+                            ? 'bg-white text-slate-900 font-bold shadow-xs'
+                            : 'text-slate-600 hover:text-slate-900'
                         }`}
                       >
                         ಸಾಲು ತಾಳೆ
                       </button>
                       <button
                         onClick={() => setTranslationTextMode('grammatical')}
-                        className={`px-2 py-1 rounded-sm transition-all ${
+                        className={`px-2 py-1 rounded-md transition-all ${
                           translationTextMode === 'grammatical'
-                            ? 'bg-stone-800 text-stone-100 font-semibold'
-                            : 'text-stone-400 hover:text-stone-200'
+                            ? 'bg-white text-slate-900 font-bold shadow-xs'
+                            : 'text-slate-600 hover:text-slate-900'
                         }`}
                       >
                         ಪದಾರ್ಥ ಕೋಶ ({inscription.translation.glossary.length})
@@ -713,8 +713,8 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                     </div>
                   </div>
 
-                  <span className="text-[10px] font-mono text-amber-400/80 flex items-center gap-1">
-                    <Sparkles className="w-3 h-3" />
+                  <span className="text-[10px] font-mono text-amber-700 flex items-center gap-1 font-semibold">
+                    <Sparkles className="w-3 h-3 text-amber-600" />
                     Hosagannada (ಹೊಸಗನ್ನಡ) Engine
                   </span>
                 </div>
@@ -723,14 +723,14 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                 {translationTextMode === 'four_tier' && (
                   <div className="space-y-4">
                     {/* Audio Pronunciation & Metrical Recitation Bar */}
-                    <div className="p-3.5 rounded-sm bg-gradient-to-r from-obsidian-950 via-stone-900 to-obsidian-950 border border-amber-500/30 flex flex-wrap items-center justify-between gap-3 shadow-glow-amber-sm">
+                    <div className="p-3.5 rounded-xl bg-gradient-to-r from-amber-50/70 via-white to-amber-50/70 border border-amber-200 flex flex-wrap items-center justify-between gap-3 shadow-xs">
                       <div className="flex items-center gap-3">
                         <button
                           onClick={toggleAudioPronunciation}
-                          className={`p-2 rounded-full border transition-all ${
+                          className={`p-2.5 rounded-full border transition-all shadow-xs ${
                             isPlayingAudio
-                              ? 'bg-amber-500 text-obsidian-950 border-amber-400 shadow-glow-amber-md animate-pulse'
-                              : 'bg-obsidian-900 text-amber-400 border-amber-500/40 hover:bg-obsidian-800 hover:border-amber-400'
+                              ? 'bg-amber-600 text-white border-amber-500 animate-pulse'
+                              : 'bg-white text-amber-700 border-amber-300 hover:bg-amber-50'
                           }`}
                           title="Simulate Ancient Metric Recitation (ಅನುಷ್ಟೂಪ್ / ಕಂದ ಛಂದಸ್ಸು)"
                         >
@@ -738,14 +738,14 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                         </button>
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-semibold text-stone-200">
+                            <span className="text-xs font-bold text-slate-900">
                               {isPlayingAudio ? 'Reciting Halegannada Epigraph...' : 'Ancient Metrical Audio Synthesizer'}
                             </span>
-                            <span className="px-1.5 py-0.5 rounded text-[9px] font-mono uppercase bg-amber-500/10 text-amber-300 border border-amber-500/30">
+                            <span className="px-1.5 py-0.5 rounded text-[9px] font-mono uppercase bg-amber-100 text-amber-800 border border-amber-300 font-semibold">
                               Kanda Metre
                             </span>
                           </div>
-                          <p className="text-[10px] text-stone-400">
+                          <p className="text-[10px] text-slate-500">
                             {isPlayingAudio
                               ? 'Acoustic simulation of 5th–10th century classical Kannada phonetics & guttural cadences'
                               : 'Listen to reconstructed archaic pronunciation with authentic Sandhi phonemes'}
@@ -755,89 +755,89 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
 
                       {/* Animated Soundwave Equalizer */}
                       {isPlayingAudio && (
-                        <div className="flex items-center gap-1 h-5 px-3 py-1 bg-obsidian-900/90 rounded border border-amber-500/30">
-                          <span className="w-1 bg-amber-400 rounded-full animate-bounce h-2" style={{ animationDelay: '0ms' }} />
-                          <span className="w-1 bg-amber-400 rounded-full animate-bounce h-4" style={{ animationDelay: '150ms' }} />
-                          <span className="w-1 bg-amber-400 rounded-full animate-bounce h-5" style={{ animationDelay: '300ms' }} />
-                          <span className="w-1 bg-amber-400 rounded-full animate-bounce h-3" style={{ animationDelay: '450ms' }} />
-                          <span className="w-1 bg-amber-400 rounded-full animate-bounce h-4" style={{ animationDelay: '200ms' }} />
-                          <span className="text-[10px] font-mono text-amber-300 ml-1">44.1 kHz</span>
+                        <div className="flex items-center gap-1 h-5 px-3 py-1 bg-amber-100/80 rounded border border-amber-300">
+                          <span className="w-1 bg-amber-600 rounded-full animate-bounce h-2" style={{ animationDelay: '0ms' }} />
+                          <span className="w-1 bg-amber-600 rounded-full animate-bounce h-4" style={{ animationDelay: '150ms' }} />
+                          <span className="w-1 bg-amber-600 rounded-full animate-bounce h-5" style={{ animationDelay: '300ms' }} />
+                          <span className="w-1 bg-amber-600 rounded-full animate-bounce h-3" style={{ animationDelay: '450ms' }} />
+                          <span className="w-1 bg-amber-600 rounded-full animate-bounce h-4" style={{ animationDelay: '200ms' }} />
+                          <span className="text-[10px] font-mono text-amber-800 ml-1 font-bold">44.1 kHz</span>
                         </div>
                       )}
                     </div>
 
                     {/* Tier 1: Original Inscription Stele */}
-                    <div className="p-4 rounded-sm bg-obsidian-900/90 border border-stone-800 space-y-2 hover:border-stone-700 transition-colors">
+                    <div className="p-4 rounded-xl bg-white border border-slate-200 space-y-2 shadow-xs hover:border-slate-300 transition-colors">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="flex items-center gap-2 font-mono text-[10px] uppercase font-bold text-stone-400">
-                          <span className="w-2 h-2 rounded-full bg-stone-500" />
+                        <span className="flex items-center gap-2 font-mono text-[10px] uppercase font-bold text-slate-600">
+                          <span className="w-2 h-2 rounded-full bg-slate-400" />
                           Tier 1: Original Inscription Facsimile (ಶಿಲಾಶಾಸನ ಮೂಲ ರೂಪ)
                         </span>
-                        <span className="text-[10px] font-mono text-stone-400">
+                        <span className="text-[10px] font-mono text-slate-500">
                           {inscription.transcription.lines.length} Chiseled Lines • {inscription.historicalContext.century}
                         </span>
                       </div>
-                      <div className="flex items-center gap-3 p-2 bg-stone-950/70 rounded border border-stone-800/80">
+                      <div className="flex items-center gap-3 p-2 bg-slate-50 rounded-lg border border-slate-200">
                         <img
                           src={inscription.imageUrl}
                           alt="Thumbnail"
-                          className="w-16 h-12 object-cover rounded border border-stone-800"
+                          className="w-16 h-12 object-cover rounded border border-slate-200 shadow-xs"
                         />
-                        <div className="text-xs text-stone-300 space-y-0.5 font-mono">
-                          <div>Script: <span className="text-amber-300 font-serif">{SCRIPT_THEMES[currentScriptClass]?.name}</span></div>
-                          <div className="text-[11px] text-stone-400">Origin: {inscription.historicalContext.findSpot.village}, {inscription.historicalContext.findSpot.district}</div>
+                        <div className="text-xs text-slate-700 space-y-0.5 font-mono">
+                          <div>Script: <span className="text-amber-800 font-serif font-bold">{SCRIPT_THEMES[currentScriptClass]?.name}</span></div>
+                          <div className="text-[11px] text-slate-500">Origin: {inscription.historicalContext.findSpot.village}, {inscription.historicalContext.findSpot.district}</div>
                         </div>
                       </div>
                     </div>
 
                     {/* Tier 2: Halegannada Archaic Decipherment */}
-                    <div className="p-4 rounded-sm bg-obsidian-900/90 border border-amber-500/30 space-y-2 shadow-glow-amber-sm">
+                    <div className="p-4 rounded-xl bg-white border border-amber-200 space-y-2 shadow-xs">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="flex items-center gap-2 font-mono text-[10px] uppercase font-bold text-amber-400">
-                          <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                        <span className="flex items-center gap-2 font-mono text-[10px] uppercase font-bold text-amber-800">
+                          <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
                           Tier 2: Reconstructed Halegannada (ಹಳೆಗನ್ನಡ ಮೂಲ ಪಾಠ)
                         </span>
-                        <span className="text-[10px] font-mono text-amber-400/80">
+                        <span className="text-[10px] font-mono text-amber-700 font-semibold">
                           Orthographic Fidelity: {(inscription.transcription.scriptConfidence * 100).toFixed(1)}%
                         </span>
                       </div>
-                      <p className="font-kannada text-sm sm:text-base leading-relaxed text-stone-100 bg-obsidian-950/60 p-3 rounded border border-stone-800/80">
+                      <p className="font-kannada text-sm sm:text-base leading-relaxed text-slate-900 bg-amber-50/50 p-3 rounded-lg border border-amber-200/60 font-medium">
                         {inscription.transcription.recognizedText}
                       </p>
-                      <div className="text-xs font-mono text-stone-400 italic bg-obsidian-950/40 p-2 rounded">
-                        <span className="text-[10px] uppercase not-italic text-stone-500 font-bold block">IAST Transliteration:</span>
+                      <div className="text-xs font-mono text-slate-600 italic bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+                        <span className="text-[10px] uppercase not-italic text-slate-400 font-bold block">IAST Transliteration:</span>
                         {inscription.transcription.iastTransliteration}
                       </div>
                     </div>
 
                     {/* Tier 3: Modern Standard Kannada Translation */}
-                    <div className="p-4 rounded-sm bg-obsidian-900/90 border border-emerald-500/30 space-y-2">
+                    <div className="p-4 rounded-xl bg-white border border-emerald-200 space-y-2 shadow-xs">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="flex items-center gap-2 font-mono text-[10px] uppercase font-bold text-emerald-400">
-                          <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                        <span className="flex items-center gap-2 font-mono text-[10px] uppercase font-bold text-emerald-800">
+                          <span className="w-2 h-2 rounded-full bg-emerald-500" />
                           Tier 3: Modern Standard Kannada (ಹೊಸಗನ್ನಡ ಅಧಿಕೃತ ಭಾವಾರ್ಥ)
                         </span>
-                        <span className="text-[10px] font-mono text-emerald-400/80">Hosagannada Translation</span>
+                        <span className="text-[10px] font-mono text-emerald-700 font-semibold">Hosagannada Translation</span>
                       </div>
-                      <p className="font-kannada text-sm sm:text-base leading-relaxed text-stone-100 bg-obsidian-950/60 p-3 rounded border border-stone-800/80">
+                      <p className="font-kannada text-sm sm:text-base leading-relaxed text-slate-900 bg-emerald-50/40 p-3 rounded-lg border border-emerald-200/60 font-medium">
                         {inscription.translation.modernKannada}
                       </p>
                     </div>
 
                     {/* Tier 4: Scholarly English Translation */}
-                    <div className="p-4 rounded-sm bg-obsidian-900/90 border border-cyan-500/30 space-y-2">
+                    <div className="p-4 rounded-xl bg-white border border-sky-200 space-y-2 shadow-xs">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="flex items-center gap-2 font-mono text-[10px] uppercase font-bold text-cyan-400">
-                          <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                        <span className="flex items-center gap-2 font-mono text-[10px] uppercase font-bold text-sky-800">
+                          <span className="w-2 h-2 rounded-full bg-sky-500" />
                           Tier 4: Academic English Scholarly Translation
                         </span>
-                        <span className="text-[10px] font-mono text-cyan-400/80">Epigraphia Carnatica Standard</span>
+                        <span className="text-[10px] font-mono text-sky-700 font-semibold">Epigraphia Carnatica Standard</span>
                       </div>
-                      <p className="font-serif italic text-xs sm:text-sm leading-relaxed text-stone-200 bg-obsidian-950/60 p-3 rounded border border-stone-800/80">
+                      <p className="font-serif italic text-xs sm:text-sm leading-relaxed text-slate-800 bg-sky-50/40 p-3 rounded-lg border border-sky-200/60">
                         "{inscription.translation.englishTranslation}"
                       </p>
-                      <div className="text-[11px] text-stone-400 font-serif leading-relaxed">
-                        <span className="font-mono text-[10px] uppercase text-stone-500 font-bold block">Stylistic Context:</span>
+                      <div className="text-[11px] text-slate-600 font-serif leading-relaxed">
+                        <span className="font-mono text-[10px] uppercase text-slate-400 font-bold block">Stylistic Context:</span>
                         {inscription.translation.stylisticNotes}
                       </div>
                     </div>

@@ -20,21 +20,21 @@ export const ConfidenceIndicator: React.FC<ConfidenceIndicatorProps> = ({
 
   return (
     <div className={`space-y-1.5 font-mono text-[11px] ${className}`}>
-      <div className="flex items-center justify-between text-stone-300">
-        <span className="uppercase text-[10px] tracking-wider text-stone-400">{label}</span>
-        <span className={`font-bold ${isHigh ? 'text-emerald-400' : isMed ? 'text-amber-400' : 'text-rose-400'}`}>
+      <div className="flex items-center justify-between text-slate-700">
+        <span className="uppercase text-[10px] tracking-wider text-slate-500 font-semibold">{label}</span>
+        <span className={`font-bold ${isHigh ? 'text-emerald-700' : isMed ? 'text-amber-700' : 'text-rose-700'}`}>
           {normalized.toFixed(1)}%
         </span>
       </div>
       {showBar && (
-        <div className="w-full h-1.5 bg-white/[0.08] rounded-full overflow-hidden p-0.5">
+        <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
           <div
             className={`h-full rounded-full transition-all duration-500 ${
               isHigh
-                ? 'bg-gradient-to-r from-emerald-500 to-teal-400 shadow-glow-emerald'
+                ? 'bg-gradient-to-r from-emerald-500 to-teal-500'
                 : isMed
-                ? 'bg-gradient-to-r from-amber-500 to-yellow-400 shadow-glow-amber'
-                : 'bg-gradient-to-r from-rose-500 to-red-400'
+                ? 'bg-gradient-to-r from-amber-500 to-yellow-500'
+                : 'bg-gradient-to-r from-rose-500 to-red-500'
             }`}
             style={{ width: `${Math.min(Math.max(normalized, 0), 100)}%` }}
           />

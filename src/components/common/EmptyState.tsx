@@ -24,13 +24,13 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`border border-white/10 bg-[#0F1521]/70 backdrop-blur-md p-10 text-center rounded-xl space-y-4 shadow-lg ${className}`}>
-      <div className="w-12 h-12 mx-auto rounded-lg border border-amber-500/30 bg-amber-500/10 flex items-center justify-center text-amber-400 shadow-glow-amber">
-        {icon || <Archive className="w-6 h-6 text-amber-400" />}
+    <div className={`border border-slate-200 bg-white p-10 text-center rounded-xl space-y-4 shadow-sm ${className}`}>
+      <div className="w-12 h-12 mx-auto rounded-xl border border-amber-200 bg-amber-50 flex items-center justify-center text-amber-700 shadow-xs">
+        {icon || <Archive className="w-6 h-6 text-amber-700" />}
       </div>
       <div>
-        <h4 className="font-serif font-bold text-base text-white tracking-wide">{title}</h4>
-        <p className="text-xs text-stone-300 max-w-sm mx-auto mt-1.5 font-serif leading-relaxed">
+        <h4 className="font-serif font-bold text-base text-slate-900 tracking-wide">{title}</h4>
+        <p className="text-xs text-slate-600 max-w-sm mx-auto mt-1.5 font-serif leading-relaxed">
           {description}
         </p>
       </div>
@@ -64,18 +64,18 @@ export const ErrorMessage: React.FC<ErrorMessageProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`border border-amber-500/30 bg-amber-500/10 p-4 rounded-lg flex items-start gap-3 text-xs backdrop-blur-md ${className}`}>
-      <AlertCircle className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" />
+    <div className={`border border-amber-200 bg-amber-50 p-4 rounded-xl flex items-start gap-3 text-xs shadow-xs ${className}`}>
+      <AlertCircle className="w-4 h-4 text-amber-700 mt-0.5 flex-shrink-0" />
       <div className="flex-1 space-y-1">
-        <h5 className="font-mono text-[11px] uppercase tracking-wider font-bold text-amber-300">
+        <h5 className="font-mono text-[11px] uppercase tracking-wider font-bold text-amber-900">
           {title}
         </h5>
-        <p className="text-stone-300 font-serif leading-relaxed">{message}</p>
+        <p className="text-slate-700 font-serif leading-relaxed">{message}</p>
       </div>
       {onDismiss && (
         <button
           onClick={onDismiss}
-          className="text-stone-400 hover:text-white p-1 rounded hover:bg-white/10"
+          className="text-slate-400 hover:text-slate-700 p-1 rounded hover:bg-amber-100"
           title="Dismiss"
         >
           <X className="w-3.5 h-3.5" />
@@ -109,15 +109,15 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
-      <div className="bg-[#0F1521] border border-white/15 rounded-xl max-w-md w-full p-6 shadow-elevation space-y-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
+      <div className="bg-white border border-slate-200 rounded-xl max-w-md w-full p-6 shadow-xl space-y-4">
         <div>
-          <h3 className="font-serif font-bold text-lg text-white">{title}</h3>
-          <p className="text-xs text-stone-300 mt-1.5 font-serif leading-relaxed">
+          <h3 className="font-serif font-bold text-lg text-slate-900">{title}</h3>
+          <p className="text-xs text-slate-600 mt-1.5 font-serif leading-relaxed">
             {description}
           </p>
         </div>
-        <div className="flex items-center justify-end gap-2.5 pt-4 border-t border-white/10">
+        <div className="flex items-center justify-end gap-2.5 pt-4 border-t border-slate-100">
           <Button variant="outline" size="sm" onClick={onCancel}>
             {cancelLabel}
           </Button>

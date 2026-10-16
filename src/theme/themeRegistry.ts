@@ -1,13 +1,8 @@
 /**
- * Kannada Heritage AI — Dynamic Historical Epigraphical Theme Registry
+ * Kannada Heritage AI — Epigraphical Theme Registry (Light Heritage Aesthetic)
  * 
- * Provides typed CSS variable palettes mapped to the 10 historical script classes 
- * and secondary historical source languages.
- * 
- * Strict constraints:
- * - Solid or nearly-solid backgrounds (No gradients, no neon, no glassmorphism).
- * - Maximum contrast and high readability for stone inscriptions.
- * - Centralized CSS variables injected at container scope.
+ * Provides crisp, high-contrast, light-mode CSS variable palettes mapped to
+ * the 10 historical script classes and source languages.
  */
 
 import { ScriptClassId, SourceLanguageId } from '../types';
@@ -40,257 +35,253 @@ export interface LanguageThemeTokens {
 }
 
 /**
- * 10 Historical Script Class Palettes
+ * 10 Historical Script Class Palettes (Light Heritage Aesthetic)
  */
 export const SCRIPT_THEMES: Record<ScriptClassId, EpigraphThemeTokens> = {
-  // 1. Ashoka / Early Brahmi: weathered sandstone, warm chalk, dark inscription ink
+  // 1. Ashoka / Early Brahmi
   ashoka: {
     id: 'ashoka',
     name: 'Ashokan Brahmi (Mauryan Sandstone)',
-    canvasBg: '#0B0F17',
-    surfaceBg: '#0F1521',
-    surfaceSubtle: '#141C2B',
-    borderFine: 'rgba(245, 158, 11, 0.15)',
-    borderMedium: 'rgba(245, 158, 11, 0.35)',
-    inkPrimary: '#F9FAFB',
-    inkSecondary: '#D1D5DB',
-    inkMuted: '#9CA3AF',
-    accentColor: '#F59E0B', // Mauryan Gold Ochre
-    accentLight: 'rgba(245, 158, 11, 0.12)',
-    accentBorder: 'rgba(245, 158, 11, 0.3)',
+    canvasBg: '#F8FAFC',
+    surfaceBg: '#FFFFFF',
+    surfaceSubtle: '#F1F5F9',
+    borderFine: '#E2E8F0',
+    borderMedium: '#CBD5E1',
+    inkPrimary: '#0F172A',
+    inkSecondary: '#334155',
+    inkMuted: '#64748B',
+    accentColor: '#D97706',
+    accentLight: '#FEF3C7',
+    accentBorder: '#FCD34D',
   },
 
-  // 2. Satavahana: muted limestone, earthy clay, charcoal
+  // 2. Satavahana
   satavahana: {
     id: 'satavahana',
     name: 'Satavahana Brahmi (Sannati Limestone)',
-    canvasBg: '#0B0F17',
-    surfaceBg: '#0F1622',
-    surfaceSubtle: '#151D2C',
-    borderFine: 'rgba(217, 119, 6, 0.15)',
-    borderMedium: 'rgba(217, 119, 6, 0.35)',
-    inkPrimary: '#F9FAFB',
-    inkSecondary: '#D1D5DB',
-    inkMuted: '#9CA3AF',
-    accentColor: '#F97316', // Earthy terracotta pottery
-    accentLight: 'rgba(249, 115, 22, 0.12)',
-    accentBorder: 'rgba(249, 115, 22, 0.3)',
+    canvasBg: '#F8FAFC',
+    surfaceBg: '#FFFFFF',
+    surfaceSubtle: '#F8F6F0',
+    borderFine: '#E5E7EB',
+    borderMedium: '#D1D5DB',
+    inkPrimary: '#0F172A',
+    inkSecondary: '#334155',
+    inkMuted: '#64748B',
+    accentColor: '#EA580C',
+    accentLight: '#FFEDD5',
+    accentBorder: '#FDBA74',
   },
 
-  // 3. Kadamba: pale carved stone, subdued forest-ink accent, deep brown
+  // 3. Kadamba (Proto-Kannada)
   kadamba: {
     id: 'kadamba',
     name: 'Kadamba Script (Banavasi Sandstone)',
-    canvasBg: '#0B0F17',
-    surfaceBg: '#0F1722',
-    surfaceSubtle: '#14202E',
-    borderFine: 'rgba(16, 185, 129, 0.18)',
-    borderMedium: 'rgba(16, 185, 129, 0.38)',
-    inkPrimary: '#F9FAFB',
-    inkSecondary: '#D1D5DB',
-    inkMuted: '#9CA3AF',
-    accentColor: '#10B981', // Banavasi evergreen schist
-    accentLight: 'rgba(16, 185, 129, 0.12)',
-    accentBorder: 'rgba(16, 185, 129, 0.3)',
+    canvasBg: '#F8FAFC',
+    surfaceBg: '#FFFFFF',
+    surfaceSubtle: '#F0FDF4',
+    borderFine: '#E2E8F0',
+    borderMedium: '#CBD5E1',
+    inkPrimary: '#0F172A',
+    inkSecondary: '#334155',
+    inkMuted: '#64748B',
+    accentColor: '#059669',
+    accentLight: '#D1FAE5',
+    accentBorder: '#6EE7B7',
   },
 
-  // 4. Badami Chalukya: aged red sandstone, warm ivory, dark stone
+  // 4. Badami Chalukya
   badami_chalukya: {
     id: 'badami_chalukya',
     name: 'Badami Chalukya (Vatapi Red Sandstone)',
-    canvasBg: '#0B0F17',
-    surfaceBg: '#12141F',
-    surfaceSubtle: '#1A1C2B',
-    borderFine: 'rgba(239, 68, 68, 0.18)',
-    borderMedium: 'rgba(239, 68, 68, 0.38)',
-    inkPrimary: '#F9FAFB',
-    inkSecondary: '#D1D5DB',
-    inkMuted: '#9CA3AF',
-    accentColor: '#EF4444', // Vatapi Red Sandstone Cliffs
-    accentLight: 'rgba(239, 68, 68, 0.12)',
-    accentBorder: 'rgba(239, 68, 68, 0.3)',
+    canvasBg: '#F8FAFC',
+    surfaceBg: '#FFFFFF',
+    surfaceSubtle: '#FEF2F2',
+    borderFine: '#E2E8F0',
+    borderMedium: '#CBD5E1',
+    inkPrimary: '#0F172A',
+    inkSecondary: '#334155',
+    inkMuted: '#64748B',
+    accentColor: '#DC2626',
+    accentLight: '#FEE2E2',
+    accentBorder: '#FCA5A5',
   },
 
-  // 5. Rashtrakuta: basalt charcoal, parchment, restrained antique copper
+  // 5. Rashtrakuta
   rashtrakuta: {
     id: 'rashtrakuta',
     name: 'Rashtrakuta (Manyakheta Basalt & Copper)',
-    canvasBg: '#0B0F17',
-    surfaceBg: '#0F1521',
-    surfaceSubtle: '#151E2E',
-    borderFine: 'rgba(245, 158, 11, 0.18)',
-    borderMedium: 'rgba(245, 158, 11, 0.38)',
-    inkPrimary: '#F9FAFB',
-    inkSecondary: '#D1D5DB',
-    inkMuted: '#9CA3AF',
-    accentColor: '#D97706', // Antique copper plate
-    accentLight: 'rgba(217, 119, 6, 0.12)',
-    accentBorder: 'rgba(217, 119, 6, 0.3)',
+    canvasBg: '#F8FAFC',
+    surfaceBg: '#FFFFFF',
+    surfaceSubtle: '#F8FAFC',
+    borderFine: '#E2E8F0',
+    borderMedium: '#CBD5E1',
+    inkPrimary: '#0F172A',
+    inkSecondary: '#334155',
+    inkMuted: '#64748B',
+    accentColor: '#D97706',
+    accentLight: '#FEF3C7',
+    accentBorder: '#FCD34D',
   },
 
-  // 6. Kalyana Chalukya: muted soapstone, olive-grey, dark ink
+  // 6. Kalyana Chalukya
   kalyana_chalukya: {
     id: 'kalyana_chalukya',
     name: 'Kalyana Chalukya (Green Chloritic Soapstone)',
-    canvasBg: '#0B0F17',
-    surfaceBg: '#0E1720',
-    surfaceSubtle: '#13212C',
-    borderFine: 'rgba(20, 184, 166, 0.18)',
-    borderMedium: 'rgba(20, 184, 166, 0.38)',
-    inkPrimary: '#F9FAFB',
-    inkSecondary: '#D1D5DB',
-    inkMuted: '#9CA3AF',
-    accentColor: '#14B8A6', // Soapstone jade
-    accentLight: 'rgba(20, 184, 166, 0.12)',
-    accentBorder: 'rgba(20, 184, 166, 0.3)',
+    canvasBg: '#F8FAFC',
+    surfaceBg: '#FFFFFF',
+    surfaceSubtle: '#F0FDFA',
+    borderFine: '#E2E8F0',
+    borderMedium: '#CBD5E1',
+    inkPrimary: '#0F172A',
+    inkSecondary: '#334155',
+    inkMuted: '#64748B',
+    accentColor: '#0D9488',
+    accentLight: '#CCFBF1',
+    accentBorder: '#5EEAD4',
   },
 
-  // 7. Hoysala: carved-stone ivory, deep umber, subtle earthy accents
+  // 7. Hoysala
   hoysala: {
     id: 'hoysala',
     name: 'Hoysala Script (Belur Fine Soapstone)',
-    canvasBg: '#0B0F17',
-    surfaceBg: '#101524',
-    surfaceSubtle: '#161D31',
-    borderFine: 'rgba(245, 158, 11, 0.2)',
-    borderMedium: 'rgba(245, 158, 11, 0.45)',
-    inkPrimary: '#F9FAFB',
-    inkSecondary: '#D1D5DB',
-    inkMuted: '#9CA3AF',
-    accentColor: '#FBBF24', // Belur ornate gold filigree
-    accentLight: 'rgba(251, 191, 36, 0.12)',
-    accentBorder: 'rgba(251, 191, 36, 0.3)',
+    canvasBg: '#F8FAFC',
+    surfaceBg: '#FFFFFF',
+    surfaceSubtle: '#FFFBEB',
+    borderFine: '#E2E8F0',
+    borderMedium: '#CBD5E1',
+    inkPrimary: '#0F172A',
+    inkSecondary: '#334155',
+    inkMuted: '#64748B',
+    accentColor: '#B45309',
+    accentLight: '#FEF3C7',
+    accentBorder: '#FCD34D',
   },
 
-  // 8. Vijayanagara: weathered granite, pale stone, terracotta
+  // 8. Vijayanagara
   vijayanagara: {
     id: 'vijayanagara',
     name: 'Vijayanagara (Hampi Crystalline Granite)',
-    canvasBg: '#0B0F17',
-    surfaceBg: '#111420',
-    surfaceSubtle: '#181D2E',
-    borderFine: 'rgba(249, 115, 22, 0.18)',
-    borderMedium: 'rgba(249, 115, 22, 0.38)',
-    inkPrimary: '#F9FAFB',
-    inkSecondary: '#D1D5DB',
-    inkMuted: '#9CA3AF',
-    accentColor: '#F97316', // Hampi monument terracotta
-    accentLight: 'rgba(249, 115, 22, 0.12)',
-    accentBorder: 'rgba(249, 115, 22, 0.3)',
+    canvasBg: '#F8FAFC',
+    surfaceBg: '#FFFFFF',
+    surfaceSubtle: '#FFF7ED',
+    borderFine: '#E2E8F0',
+    borderMedium: '#CBD5E1',
+    inkPrimary: '#0F172A',
+    inkSecondary: '#334155',
+    inkMuted: '#64748B',
+    accentColor: '#C2410C',
+    accentLight: '#FFEDD5',
+    accentBorder: '#FDBA74',
   },
 
-  // 9. Mysuru: palm-leaf cream, faded manuscript brown, archival ink
+  // 9. Mysuru
   mysuru: {
     id: 'mysuru',
     name: 'Mysuru Wodeyar (Talagari Palm Leaf Manuscript)',
-    canvasBg: '#0B0F17',
-    surfaceBg: '#101622',
-    surfaceSubtle: '#172030',
-    borderFine: 'rgba(217, 119, 6, 0.18)',
-    borderMedium: 'rgba(217, 119, 6, 0.38)',
-    inkPrimary: '#F9FAFB',
-    inkSecondary: '#D1D5DB',
-    inkMuted: '#9CA3AF',
-    accentColor: '#D97706', // Royal Mysuru gold amber
-    accentLight: 'rgba(217, 119, 6, 0.12)',
-    accentBorder: 'rgba(217, 119, 6, 0.3)',
+    canvasBg: '#F8FAFC',
+    surfaceBg: '#FFFFFF',
+    surfaceSubtle: '#FDFBF7',
+    borderFine: '#E2E8F0',
+    borderMedium: '#CBD5E1',
+    inkPrimary: '#0F172A',
+    inkSecondary: '#334155',
+    inkMuted: '#64748B',
+    accentColor: '#B45309',
+    accentLight: '#FEF3C7',
+    accentBorder: '#FCD34D',
   },
 
-  // 10. Present Kannada: clean ivory, charcoal, restrained indigo ink
+  // 10. Present Kannada
   present_kannada: {
     id: 'present_kannada',
     name: 'Present Kannada (Standard Moveable Type)',
-    canvasBg: '#0B0F17',
-    surfaceBg: '#0F1521',
-    surfaceSubtle: '#141C2B',
-    borderFine: 'rgba(6, 182, 212, 0.18)',
-    borderMedium: 'rgba(6, 182, 212, 0.38)',
-    inkPrimary: '#F9FAFB',
-    inkSecondary: '#D1D5DB',
-    inkMuted: '#9CA3AF',
-    accentColor: '#06B6D4', // Modern Digital Cyan
-    accentLight: 'rgba(6, 182, 212, 0.12)',
-    accentBorder: 'rgba(6, 182, 212, 0.3)',
+    canvasBg: '#F8FAFC',
+    surfaceBg: '#FFFFFF',
+    surfaceSubtle: '#F0F9FF',
+    borderFine: '#E2E8F0',
+    borderMedium: '#CBD5E1',
+    inkPrimary: '#0F172A',
+    inkSecondary: '#334155',
+    inkMuted: '#64748B',
+    accentColor: '#0284C7',
+    accentLight: '#E0F2FE',
+    accentBorder: '#7DD3FC',
   },
 };
 
 /**
- * Secondary Historical Source Language Themes
+ * Secondary Historical Source Language Themes (Light Aesthetics)
  */
 export const LANGUAGE_THEMES: Record<SourceLanguageId | 'unknown', LanguageThemeTokens> = {
-  // Kannada (Purvada Halegannada, Halegannada, Nadugannada, Hosagannada)
   purvada_halegannada: {
     id: 'purvada_halegannada',
     name: 'Purvada Halegannada',
-    badgeBg: 'rgba(245, 158, 11, 0.15)',
-    badgeText: '#FDE68A',
-    badgeBorder: 'rgba(245, 158, 11, 0.35)',
-    calloutBg: 'rgba(15, 21, 33, 0.8)',
-    calloutBorder: 'rgba(245, 158, 11, 0.25)',
-    calloutText: '#FEF3C7',
+    badgeBg: '#FEF3C7',
+    badgeText: '#92400E',
+    badgeBorder: '#FDE68A',
+    calloutBg: '#FFFBEB',
+    calloutBorder: '#FDE68A',
+    calloutText: '#78350F',
   },
   halegannada: {
     id: 'halegannada',
     name: 'Classical Halegannada',
-    badgeBg: 'rgba(217, 119, 6, 0.15)',
-    badgeText: '#FBBF24',
-    badgeBorder: 'rgba(217, 119, 6, 0.35)',
-    calloutBg: 'rgba(15, 21, 33, 0.8)',
-    calloutBorder: 'rgba(217, 119, 6, 0.25)',
-    calloutText: '#FDE68A',
+    badgeBg: '#FEF3C7',
+    badgeText: '#B45309',
+    badgeBorder: '#FCD34D',
+    calloutBg: '#FFFBEB',
+    calloutBorder: '#FCD34D',
+    calloutText: '#78350F',
   },
   nadugannada: {
     id: 'nadugannada',
     name: 'Nadugannada (Middle Kannada)',
-    badgeBg: 'rgba(16, 185, 129, 0.15)',
-    badgeText: '#6EE7B7',
-    badgeBorder: 'rgba(16, 185, 129, 0.35)',
-    calloutBg: 'rgba(15, 21, 33, 0.8)',
-    calloutBorder: 'rgba(16, 185, 129, 0.25)',
-    calloutText: '#D1FAE5',
+    badgeBg: '#D1FAE5',
+    badgeText: '#065F46',
+    badgeBorder: '#A7F3D0',
+    calloutBg: '#ECFDF5',
+    calloutBorder: '#A7F3D0',
+    calloutText: '#064E3B',
   },
   hosagannada: {
     id: 'hosagannada',
     name: 'Hosagannada (Modern Kannada)',
-    badgeBg: 'rgba(6, 182, 212, 0.15)',
-    badgeText: '#67E8F9',
-    badgeBorder: 'rgba(6, 182, 212, 0.35)',
-    calloutBg: 'rgba(15, 21, 33, 0.8)',
-    calloutBorder: 'rgba(6, 182, 212, 0.25)',
-    calloutText: '#CFFAFE',
+    badgeBg: '#E0F2FE',
+    badgeText: '#075985',
+    badgeBorder: '#BAE6FD',
+    calloutBg: '#F0F9FF',
+    calloutBorder: '#BAE6FD',
+    calloutText: '#0C4A6E',
   },
-  // Sanskrit
   sanskrit: {
     id: 'sanskrit',
     name: 'Epigraphical Sanskrit',
-    badgeBg: 'rgba(244, 63, 94, 0.15)',
-    badgeText: '#FDA4AF',
-    badgeBorder: 'rgba(244, 63, 94, 0.35)',
-    calloutBg: 'rgba(15, 21, 33, 0.8)',
-    calloutBorder: 'rgba(244, 63, 94, 0.25)',
-    calloutText: '#FFE4E6',
+    badgeBg: '#FFE4E6',
+    badgeText: '#9F1239',
+    badgeBorder: '#FECDD3',
+    calloutBg: '#FFF1F2',
+    calloutBorder: '#FECDD3',
+    calloutText: '#881337',
   },
-  // Prakrit
   prakrit: {
     id: 'prakrit',
     name: 'Prakrit',
-    badgeBg: 'rgba(168, 85, 247, 0.15)',
-    badgeText: '#D8B4FE',
-    badgeBorder: 'rgba(168, 85, 247, 0.35)',
-    calloutBg: 'rgba(15, 21, 33, 0.8)',
-    calloutBorder: 'rgba(168, 85, 247, 0.25)',
-    calloutText: '#F3E8FF',
+    badgeBg: '#F3E8FF',
+    badgeText: '#6B21A8',
+    badgeBorder: '#E9D5FF',
+    calloutBg: '#FAF5FF',
+    calloutBorder: '#E9D5FF',
+    calloutText: '#581C87',
   },
-  // Unknown / Neutral fallback
   unknown: {
     id: 'unknown',
     name: 'Unspecified / Neutral',
-    badgeBg: 'rgba(156, 163, 175, 0.15)',
-    badgeText: '#E5E7EB',
-    badgeBorder: 'rgba(156, 163, 175, 0.3)',
-    calloutBg: 'rgba(15, 21, 33, 0.8)',
-    calloutBorder: 'rgba(255, 255, 255, 0.1)',
-    calloutText: '#F3F4F6',
+    badgeBg: '#F1F5F9',
+    badgeText: '#475569',
+    badgeBorder: '#CBD5E1',
+    calloutBg: '#F8FAFC',
+    calloutBorder: '#CBD5E1',
+    calloutText: '#1E293B',
   },
 };
 

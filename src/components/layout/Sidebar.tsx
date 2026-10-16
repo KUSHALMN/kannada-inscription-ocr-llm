@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Home,
   LayoutDashboard,
   SearchCode,
   Archive,
@@ -11,6 +12,7 @@ import {
 } from 'lucide-react';
 
 export type NavItemKey =
+  | 'home'
   | 'overview'
   | 'new_analysis'
   | 'archive'
@@ -33,6 +35,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onCloseMobile,
 }) => {
   const navItems: { key: NavItemKey; label: string; kannadaLabel: string; icon: React.ReactNode }[] = [
+    {
+      key: 'home',
+      label: 'Home',
+      kannadaLabel: 'ಮುಖಪುಟ',
+      icon: <Home className="w-4 h-4" />,
+    },
     {
       key: 'overview',
       label: 'Overview',
@@ -82,31 +90,31 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {isMobileOpen && (
         <div
           onClick={onCloseMobile}
-          className="fixed inset-0 bg-black/70 z-40 lg:hidden backdrop-blur-sm"
+          className="fixed inset-0 bg-slate-900/40 z-40 lg:hidden backdrop-blur-xs"
         />
       )}
 
       {/* Sidebar Container */}
       <aside
-        className={`fixed top-0 bottom-0 left-0 z-50 w-64 bg-[#0D121F]/95 backdrop-blur-2xl border-r border-white/[0.08] flex flex-col justify-between transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+        className={`fixed top-0 bottom-0 left-0 z-50 w-64 bg-white/95 backdrop-blur-xl border-r border-slate-200/90 flex flex-col justify-between transition-transform duration-300 ease-in-out lg:translate-x-0 shadow-sm ${
           isMobileOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div>
           {/* Institutional Brand Header */}
-          <div className="p-5 border-b border-white/[0.08] flex items-center justify-between">
+          <div className="p-5 border-b border-slate-200/80 bg-slate-50/50 flex items-center justify-between">
             <div className="flex items-center gap-3">
               {/* Historical Chiseled Emblem */}
-              <div className="w-10 h-10 border border-amber-500/40 bg-gradient-to-br from-amber-500/20 to-amber-900/40 rounded-md flex items-center justify-center shadow-glow-amber flex-shrink-0">
+              <div className="w-10 h-10 border border-amber-300 bg-gradient-to-br from-amber-100 to-amber-200 text-amber-800 rounded-lg flex items-center justify-center shadow-xs flex-shrink-0">
                 <svg
                   viewBox="0 0 24 24"
-                  className="w-5 h-5 text-amber-300"
+                  className="w-5 h-5 text-amber-700"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
                 >
                   {/* Classical Kadamba Box-Head & Inscribed Glyph cross */}
-                  <rect x="4" y="3" width="16" height="4" rx="0.5" className="fill-amber-400/30" />
+                  <rect x="4" y="3" width="16" height="4" rx="0.5" className="fill-amber-300/40" />
                   <path d="M12 7v14" />
                   <path d="M7 14c0-2.5 5-2.5 5-2.5s5 0 5 2.5" />
                   <path d="M6 18c0-3 6-3 6-3s6 0 6 3" />
@@ -114,10 +122,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
               </div>
 
               <div>
-                <span className="font-serif font-bold text-sm text-white tracking-tight block">
+                <span className="font-serif font-bold text-sm text-slate-900 tracking-tight block">
                   Kannada Heritage AI
                 </span>
-                <span className="text-[10px] font-kannada text-amber-300/80 block">
+                <span className="text-[10px] font-kannada text-amber-800 font-medium block">
                   ಕನ್ನಡ ಶಾಸನ ಅಧ್ಯಯನ ವೇದಿಕೆ
                 </span>
               </div>
@@ -126,41 +134,41 @@ export const Sidebar: React.FC<SidebarProps> = ({
             {/* Mobile close button */}
             <button
               onClick={onCloseMobile}
-              className="lg:hidden text-stone-400 hover:text-white p-1 rounded hover:bg-white/10"
+              className="lg:hidden text-slate-400 hover:text-slate-700 p-1 rounded hover:bg-slate-100"
             >
               <X className="w-4 h-4" />
             </button>
           </div>
 
           {/* Institutional Academic Subtitle */}
-          <div className="px-5 py-2 bg-white/[0.02] border-b border-white/[0.06] flex items-center justify-between">
-            <span className="text-[10px] font-mono text-amber-400/80 uppercase tracking-widest font-semibold">
-              Archaeological Workbench
+          <div className="px-5 py-2 bg-amber-50/60 border-b border-slate-200/60 flex items-center justify-between">
+            <span className="text-[10px] font-mono text-amber-800 uppercase tracking-widest font-semibold">
+              Epigraphical Workbench
             </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400/60"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
           </div>
 
           {/* Navigation Links */}
-          <nav className="p-3 space-y-1.5">
+          <nav className="p-3 space-y-1">
             {navItems.map((item) => {
               const isActive = activeTab === item.key || (activeTab === 'results' && item.key === 'new_analysis');
               return (
                 <button
                   key={item.key}
                   onClick={() => handleNavClick(item.key)}
-                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-md text-xs transition-all duration-200 group ${
+                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs transition-all duration-200 group ${
                     isActive
-                      ? 'bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-transparent text-white border-l-2 border-amber-400 font-semibold shadow-sm'
-                      : 'text-stone-400 hover:bg-white/[0.05] hover:text-stone-100 border-l-2 border-transparent'
+                      ? 'bg-amber-50 text-amber-900 border-l-3 border-amber-600 font-bold shadow-xs'
+                      : 'text-slate-600 hover:bg-slate-100/80 hover:text-slate-900 border-l-3 border-transparent'
                   }`}
                 >
                   <div className="flex items-center gap-2.5">
-                    <span className={`transition-colors ${isActive ? 'text-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]' : 'text-stone-500 group-hover:text-stone-300'}`}>
+                    <span className={`transition-colors ${isActive ? 'text-amber-700' : 'text-slate-400 group-hover:text-slate-600'}`}>
                       {item.icon}
                     </span>
                     <span className="font-sans text-left tracking-wide">{item.label}</span>
                   </div>
-                  <span className={`text-[10px] font-kannada transition-colors ${isActive ? 'text-amber-300/80' : 'text-stone-500 group-hover:text-stone-400'}`}>
+                  <span className={`text-[10px] font-kannada transition-colors ${isActive ? 'text-amber-700 font-medium' : 'text-slate-400 group-hover:text-slate-600'}`}>
                     {item.kannadaLabel}
                   </span>
                 </button>
@@ -170,8 +178,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Footer Status Indicators */}
-        <div className="p-4 border-t border-white/[0.08] bg-black/30 space-y-2.5">
-          <div className="flex items-center justify-between text-[11px] font-mono text-stone-300">
+        <div className="p-4 border-t border-slate-200/80 bg-slate-50 space-y-2">
+          <div className="flex items-center justify-between text-[11px] font-mono text-slate-700">
             <span className="flex items-center gap-2">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
@@ -179,10 +187,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
               </span>
               <span>Epigraphy Adapter</span>
             </span>
-            <span className="text-amber-400/90 font-mono text-[10px] bg-amber-400/10 px-1.5 py-0.5 rounded border border-amber-400/20">Phase 1-3</span>
+            <span className="text-amber-800 font-mono text-[10px] bg-amber-100 px-1.5 py-0.5 rounded border border-amber-200 font-semibold">Phase 1-3</span>
           </div>
-          <div className="flex items-center gap-1.5 text-[10px] font-serif italic text-stone-400">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+          <div className="flex items-center gap-1.5 text-[10px] font-serif italic text-slate-500">
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
             <span>FastAPI Contract Ready</span>
           </div>
         </div>

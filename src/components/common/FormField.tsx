@@ -20,16 +20,16 @@ export const FormField: React.FC<FormFieldProps> = ({
   return (
     <div className={`space-y-1.5 ${className}`}>
       {label && (
-        <label className="block text-xs font-mono uppercase tracking-wider text-stone-300">
-          {label} {required && <span className="text-amber-400">*</span>}
+        <label className="block text-xs font-mono uppercase tracking-wider text-slate-700 font-semibold">
+          {label} {required && <span className="text-amber-600">*</span>}
         </label>
       )}
       {children}
       {hint && !error && (
-        <p className="text-[11px] text-stone-400 font-serif leading-normal">{hint}</p>
+        <p className="text-[11px] text-slate-500 font-serif leading-normal">{hint}</p>
       )}
       {error && (
-        <p className="text-[11px] text-rose-400 font-mono">{error}</p>
+        <p className="text-[11px] text-rose-600 font-mono">{error}</p>
       )}
     </div>
   );
@@ -40,7 +40,7 @@ export const Input: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = ({
   ...props
 }) => (
   <input
-    className={`w-full px-3.5 py-2.5 text-xs bg-[#0F1521] border border-white/15 rounded-md text-stone-100 placeholder-stone-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400/30 transition-all duration-200 shadow-sm ${className}`}
+    className={`w-full px-3.5 py-2.5 text-xs bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:border-amber-600 focus:ring-2 focus:ring-amber-500/20 transition-all duration-200 shadow-xs ${className}`}
     {...props}
   />
 );
@@ -51,7 +51,7 @@ export const Select: React.FC<React.SelectHTMLAttributes<HTMLSelectElement>> = (
   ...props
 }) => (
   <select
-    className={`w-full px-3.5 py-2.5 text-xs bg-[#0F1521] border border-white/15 rounded-md text-stone-100 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400/30 transition-all duration-200 shadow-sm ${className}`}
+    className={`w-full px-3.5 py-2.5 text-xs bg-white border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:border-amber-600 focus:ring-2 focus:ring-amber-500/20 transition-all duration-200 shadow-xs cursor-pointer ${className}`}
     {...props}
   >
     {children}
@@ -63,7 +63,7 @@ export const Textarea: React.FC<React.TextareaHTMLAttributes<HTMLTextAreaElement
   ...props
 }) => (
   <textarea
-    className={`w-full px-3.5 py-2.5 text-xs bg-[#0F1521] border border-white/15 rounded-md text-stone-100 placeholder-stone-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400/30 font-kannada leading-relaxed transition-all duration-200 shadow-sm ${className}`}
+    className={`w-full px-3.5 py-2.5 text-xs bg-white border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:border-amber-600 focus:ring-2 focus:ring-amber-500/20 transition-all duration-200 shadow-xs ${className}`}
     {...props}
   />
 );

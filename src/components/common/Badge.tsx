@@ -23,14 +23,14 @@ export const Badge: React.FC<BadgeProps> = ({
   };
 
   const variantStyles: Record<BadgeVariant, string> = {
-    default: 'bg-white/[0.06] text-stone-300 border-white/10',
-    script: 'bg-amber-500/10 text-amber-300 border-amber-500/30 shadow-sm',
-    language: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/30',
-    period: 'bg-white/[0.04] text-stone-300 border-white/10 font-mono text-[11px]',
-    substrate: 'bg-stone-800/80 text-stone-300 border-white/10',
-    warning: 'bg-amber-500/15 text-amber-300 border-amber-500/40 shadow-glow-amber',
-    status: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/40 shadow-glow-emerald',
-    rule_type: 'bg-purple-500/15 text-purple-300 border-purple-500/30 font-mono',
+    default: 'bg-slate-100 text-slate-700 border-slate-200',
+    script: 'bg-amber-50 text-amber-800 border-amber-200 shadow-xs font-semibold',
+    language: 'bg-sky-50 text-sky-800 border-sky-200 font-semibold',
+    period: 'bg-slate-100 text-slate-700 border-slate-200 font-mono text-[11px]',
+    substrate: 'bg-stone-100 text-stone-700 border-stone-200',
+    warning: 'bg-amber-100 text-amber-900 border-amber-300 font-semibold',
+    status: 'bg-emerald-50 text-emerald-800 border-emerald-200 font-semibold',
+    rule_type: 'bg-purple-50 text-purple-800 border-purple-200 font-mono font-semibold',
   };
 
   return (

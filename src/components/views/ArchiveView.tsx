@@ -104,15 +104,15 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
       />
 
       {/* Institutional Metadata & Scope Banner */}
-      <div className="bg-gradient-to-r from-obsidian-950 via-stone-900 to-obsidian-950 border border-amber-500/30 p-3.5 rounded-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs font-serif text-stone-300 shadow-glow-amber-sm backdrop-blur-md">
+      <div className="bg-gradient-to-r from-amber-50/70 via-white to-amber-50/70 border border-amber-200 p-3.5 rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs font-serif text-slate-700 shadow-xs">
         <div className="flex items-center gap-2.5">
-          <ShieldCheck className="w-4 h-4 text-amber-400 flex-shrink-0" />
+          <ShieldCheck className="w-4 h-4 text-amber-600 flex-shrink-0" />
           <span>
-            Institutional epigraphical corpus containing <strong className="text-amber-300 font-mono">{inscriptions.length}</strong> catalogued inscriptions spanning 3rd C. BCE to 19th C. CE.
+            Institutional epigraphical corpus containing <strong className="text-amber-900 font-mono font-bold">{inscriptions.length}</strong> catalogued inscriptions spanning 3rd C. BCE to 19th C. CE.
           </span>
         </div>
-        <div className="font-mono text-[11px] text-stone-400 flex items-center gap-1.5 whitespace-nowrap bg-obsidian-950/80 px-2.5 py-1 rounded border border-stone-800">
-          <Database className="w-3 h-3 text-amber-500/70" />
+        <div className="font-mono text-[11px] text-slate-600 flex items-center gap-1.5 whitespace-nowrap bg-white px-2.5 py-1 rounded-md border border-slate-200 shadow-xs">
+          <Database className="w-3 h-3 text-amber-600" />
           ASI & State Archaeology Register
         </div>
       </div>
@@ -145,11 +145,11 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
         </div>
       ) : (
         /* Archival Table View */
-        <div className="border border-stone-800/80 rounded-sm overflow-hidden shadow-obsidian-card bg-obsidian-900/90 backdrop-blur-md">
+        <div className="border border-slate-200 rounded-lg overflow-hidden shadow-xs bg-white">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-xs">
               <thead>
-                <tr className="bg-obsidian-950 border-b border-stone-800 text-stone-400 font-mono text-[11px] uppercase tracking-wider">
+                <tr className="bg-slate-50 border-b border-slate-200 text-slate-600 font-mono text-[11px] uppercase tracking-wider">
                   <th className="py-3 px-3.5">Accession #</th>
                   <th className="py-3 px-3.5">Title & Epigraph Name</th>
                   <th className="py-3 px-3.5">Script Era</th>
@@ -160,21 +160,21 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
                   <th className="py-3 px-3.5 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-stone-800/60">
+              <tbody className="divide-y divide-slate-100">
                 {filteredInscriptions.map((ins) => (
                   <tr
                     key={ins.id}
                     onClick={() => onSelectInscription(ins)}
-                    className="hover:bg-obsidian-800/60 transition-colors cursor-pointer group"
+                    className="hover:bg-slate-50/80 transition-colors cursor-pointer group"
                   >
-                    <td className="py-3 px-3.5 font-mono text-stone-400 whitespace-nowrap">
+                    <td className="py-3 px-3.5 font-mono text-slate-500 whitespace-nowrap">
                       {ins.accessionNumber}
                     </td>
                     <td className="py-3 px-3.5">
-                      <div className="font-serif font-bold text-stone-100 group-hover:text-amber-300 transition-colors">
+                      <div className="font-serif font-bold text-slate-900 group-hover:text-amber-800 transition-colors">
                         {ins.title}
                       </div>
-                      <div className="font-kannada text-xs text-amber-400/90 mt-0.5">
+                      <div className="font-kannada text-xs text-amber-700 font-medium mt-0.5">
                         {ins.kannadaTitle}
                       </div>
                     </td>
@@ -185,18 +185,18 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
                       <Badge variant="language" size="sm">{ins.sourceLanguage.replace('_', ' ')}</Badge>
                     </td>
                     <td className="py-3 px-3.5">
-                      <div className="flex items-center gap-1 font-serif text-stone-200 text-xs">
-                        <Calendar className="w-3 h-3 text-amber-500/70 flex-shrink-0" />
+                      <div className="flex items-center gap-1 font-serif text-slate-800 text-xs">
+                        <Calendar className="w-3 h-3 text-amber-600 flex-shrink-0" />
                         <span>{ins.historicalContext.approximateDate}</span>
                       </div>
-                      <div className="flex items-center gap-1 text-[11px] text-stone-400 mt-0.5">
-                        <Landmark className="w-3 h-3 text-stone-500 flex-shrink-0" />
+                      <div className="flex items-center gap-1 text-[11px] text-slate-500 mt-0.5">
+                        <Landmark className="w-3 h-3 text-slate-400 flex-shrink-0" />
                         <span>{ins.historicalContext.dynasty}</span>
                       </div>
                     </td>
                     <td className="py-3 px-3.5">
-                      <div className="flex items-center gap-1 text-stone-300 font-serif">
-                        <MapPin className="w-3 h-3 text-stone-500 flex-shrink-0" />
+                      <div className="flex items-center gap-1 text-slate-700 font-serif">
+                        <MapPin className="w-3 h-3 text-slate-400 flex-shrink-0" />
                         <span>{ins.historicalContext.findSpot.village}, {ins.historicalContext.findSpot.district}</span>
                       </div>
                     </td>
@@ -212,10 +212,10 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
                           e.stopPropagation();
                           onSelectInscription(ins);
                         }}
-                        className="inline-flex items-center gap-1 font-mono text-[11px] text-stone-300 hover:text-amber-300 border border-stone-700 hover:border-amber-400 px-2.5 py-1 rounded-sm bg-obsidian-950 shadow-subtle group-hover:bg-obsidian-900 transition-all"
+                        className="inline-flex items-center gap-1 font-mono text-[11px] text-slate-700 hover:text-amber-900 border border-slate-200 hover:border-amber-400 px-2.5 py-1 rounded-md bg-white shadow-xs group-hover:bg-amber-50/50 transition-all font-semibold"
                       >
                         <span>Inspect</span>
-                        <ArrowRight className="w-3 h-3 text-stone-500 group-hover:translate-x-0.5 group-hover:text-amber-400 transition-transform" />
+                        <ArrowRight className="w-3 h-3 text-slate-400 group-hover:translate-x-0.5 group-hover:text-amber-600 transition-transform" />
                       </button>
                     </td>
                   </tr>
