@@ -217,50 +217,64 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
       />
 
       {/* Demonstration notice */}
-      <div className="bg-stone-100 border border-stone-300 p-3.5 rounded-xs flex items-start justify-between gap-3 text-xs">
-        <div className="flex items-start gap-2.5 font-serif text-stone-700 leading-relaxed">
-          <ShieldAlert className="w-4 h-4 text-stone-600 mt-0.5 flex-shrink-0" />
+      <div className="bg-[#0F1521]/70 border border-white/10 p-4 rounded-xl flex items-start justify-between gap-3 text-xs backdrop-blur-md shadow-sm">
+        <div className="flex items-start gap-3 font-serif text-stone-300 leading-relaxed">
+          <ShieldAlert className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" />
           <span>
-            <strong>Prototype Architecture Notice:</strong> Selected files remain entirely inside your browser memory 
-            and are not uploaded to an external server. The analysis action triggers our verified demonstration pipeline 
-            to showcase the dual-pane transcription comparator, language-aware themes, and historical context panels.
+            <strong className="text-amber-300 font-sans">Scholarly Workspace Security:</strong> Ingested rubbings and photographs 
+            remain secure in local memory. The neural pipeline executes multi-phase glyph segmentation, paleographical epoch verification, 
+            and bilingual Halegannada synthesis.
           </span>
         </div>
         <div className="flex-shrink-0">
-          <Badge variant="period" size="sm">Phase 4</Badge>
+          <Badge variant="status" size="sm">Pipeline v1.4</Badge>
         </div>
       </div>
 
       {/* Processing Overlay Dialog */}
       {isProcessing && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/50 backdrop-blur-[2px]">
-          <div className="bg-parchment-50 border border-stone-400 rounded-xs max-w-lg w-full p-6 shadow-elevation space-y-4">
-            <div className="flex items-center gap-3 border-b border-heritage-border pb-3">
-              <div className="w-8 h-8 rounded-full border-2 border-stone-400 border-t-stone-900 animate-spin flex-shrink-0" />
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+          <div className="bg-[#0F1521] border border-amber-500/30 rounded-2xl max-w-lg w-full p-7 shadow-elevation space-y-5 relative overflow-hidden">
+            {/* Animated Scanning Laser Line */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent animate-pulse" />
+
+            <div className="flex items-center gap-4 border-b border-white/10 pb-4">
+              <div className="relative">
+                <div className="w-10 h-10 rounded-full border-2 border-amber-500/30 border-t-amber-400 animate-spin flex-shrink-0" />
+                <div className="absolute inset-0 flex items-center justify-center text-amber-400 font-mono text-[10px] font-bold">
+                  {processingStep + 1}
+                </div>
+              </div>
               <div>
-                <h3 className="font-serif font-bold text-base text-stone-900">
-                  Epigraphical Recognition Pipeline Running
+                <h3 className="font-serif font-bold text-lg text-white">
+                  Epigraphical Recognition Pipeline Active
                 </h3>
-                <span className="text-[11px] font-mono text-stone-500">
-                  Karnataka Archaeological Processing Unit
+                <span className="text-[11px] font-mono text-amber-400/90 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
+                  Archaeological Neural Inference Unit
                 </span>
               </div>
             </div>
 
-            <div className="space-y-3 py-2">
-              <div className="bg-stone-100 p-3 rounded-xs border border-stone-200">
-                <span className="font-mono text-xs text-stone-800 font-semibold block mb-1">
-                  {processingStages[processingStep]}
-                </span>
-                <div className="w-full bg-stone-200 h-1.5 rounded-full overflow-hidden">
+            <div className="space-y-4 py-2">
+              <div className="bg-black/50 p-4 rounded-xl border border-white/10 space-y-2">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="font-mono text-stone-200 font-semibold block">
+                    {processingStages[processingStep]}
+                  </span>
+                  <span className="font-mono text-amber-400 font-bold">
+                    {Math.round(((processingStep + 1) / processingStages.length) * 100)}%
+                  </span>
+                </div>
+                <div className="w-full bg-white/10 h-2 rounded-full overflow-hidden p-0.5">
                   <div
-                    className="bg-stone-800 h-full transition-all duration-300"
+                    className="bg-gradient-to-r from-amber-500 to-yellow-400 h-full rounded-full transition-all duration-300 shadow-glow-amber"
                     style={{ width: `${((processingStep + 1) / processingStages.length) * 100}%` }}
                   />
                 </div>
               </div>
 
-              <p className="text-[11px] text-stone-500 font-serif italic text-center">
+              <p className="text-xs text-stone-400 font-serif italic text-center">
                 Calibrating stroke curvature against the 10 historical Kannada paleographical epochs...
               </p>
             </div>
@@ -272,11 +286,11 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Image Upload & Preview Interface (6 Cols) */}
         <div className="lg:col-span-6 space-y-4">
-          <div className="border-b border-heritage-border pb-2 flex items-center justify-between">
-            <h3 className="font-serif font-bold text-base text-stone-900">
-              1. Inscription Image / Rubbing
+          <div className="border-b border-white/10 pb-3 flex items-center justify-between">
+            <h3 className="font-serif font-bold text-lg text-white flex items-center gap-2">
+              <span>1. Inscription Image / Rubbing</span>
             </h3>
-            <span className="text-[11px] font-mono text-stone-400">Required</span>
+            <span className="text-[11px] font-mono text-amber-400/90 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20 font-semibold">Required</span>
           </div>
 
           {/* Upload Area / Dropzone */}
@@ -285,10 +299,10 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
               onDrop={handleDrop}
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
-              className={`border-2 border-dashed rounded-xs p-8 text-center transition-all cursor-pointer ${
+              className={`border-2 border-dashed rounded-2xl p-10 text-center transition-all cursor-pointer relative overflow-hidden group ${
                 isDragOver
-                  ? 'border-stone-700 bg-stone-200/50'
-                  : 'border-stone-300 bg-stone-50/70 hover:border-stone-500 hover:bg-stone-100/50'
+                  ? 'border-amber-400 bg-amber-500/10 shadow-glow-amber'
+                  : 'border-white/15 bg-[#0F1521]/70 hover:border-amber-500/40 hover:bg-[#141C2B] shadow-sm'
               }`}
               onClick={() => fileInputRef.current?.click()}
             >
@@ -304,43 +318,43 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
                 className="hidden"
               />
 
-              <div className="space-y-3">
-                <div className="w-12 h-12 mx-auto rounded-xs border border-stone-300 bg-parchment-100 flex items-center justify-center text-stone-600 shadow-subtle">
-                  <Upload className="w-6 h-6 text-stone-700" />
+              <div className="space-y-4">
+                <div className="w-14 h-14 mx-auto rounded-xl border border-amber-500/30 bg-amber-500/10 flex items-center justify-center text-amber-400 group-hover:scale-110 shadow-glow-amber transition-transform">
+                  <Upload className="w-7 h-7 text-amber-400" />
                 </div>
                 <div>
-                  <span className="font-serif font-bold text-sm text-stone-900 block">
-                    Choose an image or drag & drop here
+                  <span className="font-serif font-bold text-base text-white block">
+                    Upload ancient rubbing or stone photograph
                   </span>
-                  <p className="text-xs text-stone-500 font-serif mt-1">
-                    Supports high-resolution stone photographs, paper rubbings, and copper plate squeezes.
+                  <p className="text-xs text-stone-400 font-serif mt-1.5 max-w-sm mx-auto leading-relaxed">
+                    Drop high-resolution stone photographs, estampages, paper rubbings, or copper plate squeezes.
                   </p>
                 </div>
                 <div className="flex items-center justify-center gap-2 text-[10px] font-mono text-stone-400 uppercase pt-2">
-                  <span>PNG</span>
+                  <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10">PNG</span>
                   <span>•</span>
-                  <span>JPG</span>
+                  <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10">JPG</span>
                   <span>•</span>
-                  <span>WEBP</span>
+                  <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10">WEBP</span>
                   <span>•</span>
-                  <span>TIFF</span>
+                  <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10">TIFF</span>
                   <span>•</span>
-                  <span>Max 25 MB</span>
+                  <span className="text-amber-400/90 font-semibold">Max 25 MB</span>
                 </div>
               </div>
             </div>
           ) : (
             /* Selected File State & Interactive Preview */
-            <div className="border border-heritage-border bg-parchment-50 rounded-xs overflow-hidden shadow-subtle space-y-3">
-              <div className="relative bg-stone-950 p-2 flex items-center justify-center max-h-[340px] overflow-hidden">
+            <div className="border border-white/10 bg-[#0F1521]/80 rounded-2xl overflow-hidden shadow-elevation space-y-3">
+              <div className="relative bg-black p-3 flex items-center justify-center max-h-[360px] overflow-hidden">
                 <img
                   src={uploadedFile.previewUrl}
                   alt={uploadedFile.name}
-                  className="max-h-[320px] w-auto object-contain rounded-xs select-none"
+                  className="max-h-[340px] w-auto object-contain rounded-lg select-none"
                 />
                 <button
                   onClick={handleRemoveFile}
-                  className="absolute top-2 right-2 bg-stone-900/80 hover:bg-stone-900 text-stone-200 p-1.5 rounded-xs border border-stone-700 transition-colors shadow-subtle"
+                  className="absolute top-3 right-3 bg-black/80 hover:bg-rose-900/80 text-stone-200 hover:text-white p-2 rounded-lg border border-white/20 transition-colors shadow-md backdrop-blur-md"
                   title="Remove image"
                 >
                   <X className="w-4 h-4" />
@@ -348,29 +362,29 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
               </div>
 
               {/* File Info Bar */}
-              <div className="p-4 pt-1 space-y-2">
-                <div className="flex items-center justify-between text-xs border-b border-heritage-border pb-2">
+              <div className="p-5 pt-2 space-y-3">
+                <div className="flex items-center justify-between text-xs border-b border-white/10 pb-3">
                   <div className="truncate pr-2">
-                    <span className="font-mono text-stone-800 font-semibold block truncate">
+                    <span className="font-mono text-white font-semibold block truncate text-sm">
                       {uploadedFile.name}
                     </span>
-                    <span className="text-[11px] font-mono text-stone-500">
+                    <span className="text-[11px] font-mono text-stone-400">
                       {uploadedFile.sizeFormatted} • {uploadedFile.type}
                     </span>
                   </div>
-                  <Badge variant="period" size="sm">Ready for Analysis</Badge>
+                  <Badge variant="status" size="sm">Ready for Analysis</Badge>
                 </div>
 
                 <div className="flex items-center justify-between pt-1">
                   <button
                     onClick={() => fileInputRef.current?.click()}
-                    className="text-xs font-mono text-stone-600 hover:text-stone-900 underline"
+                    className="text-xs font-mono text-amber-400 hover:text-amber-300 underline"
                   >
                     Replace Image
                   </button>
                   <button
                     onClick={handleRemoveFile}
-                    className="text-xs font-mono text-heritage-terracotta hover:underline"
+                    className="text-xs font-mono text-rose-400 hover:underline"
                   >
                     Remove
                   </button>
@@ -388,26 +402,26 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
           )}
 
           {/* Quick Demonstrator Sample Loader */}
-          <div className="pt-2 border-t border-heritage-border/70">
-            <span className="text-[11px] font-mono uppercase tracking-wider text-stone-500 block mb-2">
-              Or Test With Archival Sample:
+          <div className="pt-3 border-t border-white/10">
+            <span className="text-[11px] font-mono uppercase tracking-wider text-stone-400 block mb-2.5 font-semibold">
+              Or Benchmark With Pre-Catalogued Stone Rubbings:
             </span>
-            <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="grid grid-cols-2 gap-3 text-xs">
               <button
                 type="button"
                 onClick={() => handleLoadSample(inscriptions[0])}
-                className="p-2 border border-stone-300 bg-stone-100 hover:bg-stone-200 text-left rounded-xs transition-colors"
+                className="p-3 border border-white/10 bg-[#0F1521]/80 hover:bg-[#141C2B] hover:border-amber-500/40 text-left rounded-xl transition-all shadow-sm group"
               >
-                <span className="font-serif font-bold text-stone-900 block truncate">Halmidi Stele</span>
-                <span className="text-[10px] font-mono text-stone-500">Kadamba (c. 450 CE)</span>
+                <span className="font-serif font-bold text-white block truncate group-hover:text-amber-300">Halmidi Stele</span>
+                <span className="text-[10px] font-mono text-amber-400/80">Kadamba (c. 450 CE)</span>
               </button>
               <button
                 type="button"
                 onClick={() => handleLoadSample(inscriptions[2] || inscriptions[0])}
-                className="p-2 border border-stone-300 bg-stone-100 hover:bg-stone-200 text-left rounded-xs transition-colors"
+                className="p-3 border border-white/10 bg-[#0F1521]/80 hover:bg-[#141C2B] hover:border-cyan-500/40 text-left rounded-xl transition-all shadow-sm group"
               >
-                <span className="font-serif font-bold text-stone-900 block truncate">Badami Cliff</span>
-                <span className="text-[10px] font-mono text-stone-500">Chalukya (c. 700 CE)</span>
+                <span className="font-serif font-bold text-white block truncate group-hover:text-cyan-300">Badami Cliff</span>
+                <span className="text-[10px] font-mono text-cyan-400/80">Chalukya (c. 700 CE)</span>
               </button>
             </div>
           </div>
@@ -415,17 +429,17 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
 
         {/* Right Column: Optional Historical Metadata Form (6 Cols) */}
         <div className="lg:col-span-6 space-y-4">
-          <div className="border-b border-heritage-border pb-2 flex items-center justify-between">
-            <h3 className="font-serif font-bold text-base text-stone-900">
-              2. Historical & Provenance Metadata
+          <div className="border-b border-white/10 pb-3 flex items-center justify-between">
+            <h3 className="font-serif font-bold text-lg text-white">
+              2. Epigraphical Provenance Metadata
             </h3>
             <span className="text-[11px] font-mono text-stone-400">All Fields Optional</span>
           </div>
 
-          <div className="border border-heritage-border bg-parchment-50 p-5 rounded-xs space-y-4 shadow-subtle">
+          <div className="border border-white/10 bg-[#0F1521]/80 backdrop-blur-md p-6 rounded-2xl space-y-4 shadow-elevation">
             <FormField
               label="Inscription Title / Designation"
-              hint="Descriptive name or local register title"
+              hint="Descriptive monument name or local museum accession title"
             >
               <Input
                 value={metadata.title}
@@ -434,10 +448,10 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
               />
             </FormField>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               <FormField
-                label="Known Location"
-                hint="Find-spot, village, taluk, or district"
+                label="Find-Spot Location"
+                hint="Find-spot, temple site, or district"
               >
                 <Input
                   value={metadata.location}
@@ -458,9 +472,9 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
               </FormField>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               <FormField
-                label="Dynasty or Historical Period"
+                label="Dynasty or Era"
                 hint="Ruling dynasty if attested"
               >
                 <Input
@@ -471,7 +485,7 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
               </FormField>
 
               <FormField
-                label="Source / Collection"
+                label="Corpus Register Citation"
                 hint="Museum or Epigraphia Carnatica Vol"
               >
                 <Input
@@ -482,8 +496,8 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
               </FormField>
             </div>
 
-            {/* Optional Pre-known Classification (Researcher never forced to guess) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-heritage-border/70">
+            {/* Optional Pre-known Classification */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-3 border-t border-white/10">
               <FormField
                 label="Known Script (Optional)"
                 hint="Select only if pre-verified"
@@ -492,7 +506,7 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
                   value={metadata.knownScript}
                   onChange={(e) => setMetadata({ ...metadata, knownScript: e.target.value as any })}
                 >
-                  <option value="uncertain">Uncertain (Automated Classification)</option>
+                  <option value="uncertain">Auto-Detect Script (Vision Model)</option>
                   <option value="ashoka">Ashokan Brahmi</option>
                   <option value="satavahana">Satavahana Brahmi</option>
                   <option value="kadamba">Kadamba (Proto-Kannada)</option>
@@ -514,10 +528,10 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
                   value={metadata.knownLanguage}
                   onChange={(e) => setMetadata({ ...metadata, knownLanguage: e.target.value as any })}
                 >
-                  <option value="uncertain">Uncertain (Automated Identification)</option>
+                  <option value="uncertain">Auto-Detect Language (Linguistic Model)</option>
                   <option value="prakrit">Prakrit</option>
                   <option value="sanskrit">Epigraphical Sanskrit</option>
-                  <option value="purvada_halegannada">Purvada Halegannada (Early Old Kannada)</option>
+                  <option value="purvada_halegannada">Purvada Halegannada</option>
                   <option value="halegannada">Classical Halegannada</option>
                   <option value="nadugannada">Nadugannada (Middle Kannada)</option>
                   <option value="hosagannada">Hosagannada (Modern Kannada)</option>
@@ -526,25 +540,25 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
             </div>
 
             <FormField
-              label="Researcher Notes"
-              hint="Condition notes, chisel depth, or specific research queries"
+              label="Field Notes & Chisel Observations"
+              hint="Condition notes, erosion severity, or ligature inquiries"
             >
               <Textarea
                 rows={3}
                 value={metadata.researcherNotes}
                 onChange={(e) => setMetadata({ ...metadata, researcherNotes: e.target.value })}
-                placeholder="e.g., Sandstone slab discovered during temple excavation. Headmark shows characteristic petika-shirsha box incision..."
+                placeholder="e.g., Deep relief petika-shirsha incisions with weathered right margin..."
               />
             </FormField>
 
             {/* Primary Action Button */}
-            <div className="pt-3 border-t border-heritage-border flex items-center justify-between">
-              <span className="text-[11px] font-mono text-stone-500">
-                {uploadedFile ? 'Ready to analyze' : 'Image required'}
+            <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+              <span className="text-xs font-mono text-stone-400">
+                {uploadedFile ? '✓ Image loaded in buffer' : 'Stone rubbing required'}
               </span>
               <Button
                 variant="primary"
-                size="md"
+                size="lg"
                 disabled={!uploadedFile}
                 onClick={handleStartAnalysis}
                 icon={<SearchCode className="w-4 h-4" />}
