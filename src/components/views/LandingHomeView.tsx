@@ -1,29 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { InscriptionRecord } from '../../types';
-import { Badge } from '../common/Badge';
-import { Button } from '../common/Button';
 import {
   ArrowRight,
-  ShieldCheck,
-  SearchCode,
-  Archive,
-  Layers,
+  Upload,
+  FileText,
+  Image as ImageIcon,
+  Feather,
   BookOpen,
-  Volume2,
-  Cpu,
-  History,
-  CheckCircle2,
-  Calendar,
-  Landmark,
   MapPin,
   ChevronRight,
-  Sparkles
+  Globe,
+  Users,
+  Compass,
+  ChevronLeft,
+  Landmark
 } from 'lucide-react';
-import { TempleAtlasSection } from './landing/TempleAtlasSection';
-import { ScriptPaleographyShowcase } from './landing/ScriptPaleographyShowcase';
-import { LiveDeciphermentPlayground } from './landing/LiveDeciphermentPlayground';
-import { UnescoHeritageSpotlight } from './landing/UnescoHeritageSpotlight';
-import { EpigraphyQuizSection } from './landing/EpigraphyQuizSection';
 
 interface LandingHomeViewProps {
   inscriptions: InscriptionRecord[];
@@ -34,6 +25,74 @@ interface LandingHomeViewProps {
   onSelectInscription: (inscription: InscriptionRecord) => void;
 }
 
+interface DynastyCardItem {
+  id: string;
+  name: string;
+  century: string;
+  kannadaPeriod: string;
+  imageUrl: string;
+  location: string;
+}
+
+const MAJOR_DYNASTIES: DynastyCardItem[] = [
+  {
+    id: 'ashoka',
+    name: 'Ashoka',
+    century: '3rd Century BCE',
+    kannadaPeriod: 'ಮೌರ್ಯ ಸಾಮ್ರಾಜ್ಯ',
+    imageUrl: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=600',
+    location: 'Maski & Brahmagiri'
+  },
+  {
+    id: 'kadamba',
+    name: 'Kadamba',
+    century: '4th–6th Century',
+    kannadaPeriod: 'ಕದಂಬ ರಾಜವಂಶ',
+    imageUrl: 'https://images.unsplash.com/photo-1599732497206-8b9d031cce16?auto=format&fit=crop&q=80&w=600',
+    location: 'Halmidi & Banavasi'
+  },
+  {
+    id: 'chalukya',
+    name: 'Chalukya',
+    century: '6th–8th Century',
+    kannadaPeriod: 'ಬಾದಾಮಿ ಚಾಲುಕ್ಯರು',
+    imageUrl: 'https://images.unsplash.com/photo-1627916607164-7b20241db935?auto=format&fit=crop&q=80&w=600',
+    location: 'Badami, Aihole, Pattadakal'
+  },
+  {
+    id: 'rashtrakuta',
+    name: 'Rashtrakuta',
+    century: '8th–10th Century',
+    kannadaPeriod: 'ರಾಷ್ಟ್ರಕೂಟ ಸಾಮ್ರಾಜ್ಯ',
+    imageUrl: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&q=80&w=600',
+    location: 'Manyakheta & Navalgund'
+  },
+  {
+    id: 'hoysala',
+    name: 'Hoysala',
+    century: '10th–14th Century',
+    kannadaPeriod: 'ಹೊಯ್ಸಳ ಸಾಮ್ರಾಜ್ಯ',
+    imageUrl: 'https://images.unsplash.com/photo-1600100397608-f010f443b745?auto=format&fit=crop&q=80&w=600',
+    location: 'Belur & Halebidu'
+  },
+  {
+    id: 'vijayanagara',
+    name: 'Vijayanagara',
+    century: '14th–16th Century',
+    kannadaPeriod: 'ವಿಜಯನಗರ ಸಾಮ್ರಾಜ್ಯ',
+    imageUrl: 'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&q=80&w=600',
+    location: 'Hampi & Hospet'
+  },
+  {
+    id: 'nayaka',
+    name: 'Nayaka',
+    century: '16th–18th Century',
+    kannadaPeriod: 'ಕೆಳದಿ ನಾಯಕರು',
+    imageUrl: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&q=80&w=600',
+    location: 'Keladi, Ikkeri, Chitradurga'
+  }
+];
+
 export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
   inscriptions,
   onNavigateToAnalysis,
@@ -42,540 +101,619 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
   onNavigateToRules,
   onSelectInscription,
 }) => {
-  // Interactive Hero Preview Tier State
-  const [heroActiveTier, setHeroActiveTier] = useState<'halegannada' | 'modern' | 'english'>('halegannada');
-  const [heroAudioPlaying, setHeroAudioPlaying] = useState<boolean>(false);
+  // Live Demo Card Tab state
+  const [activeTab, setActiveTab] = useState<'upload' | 'type' | 'example'>('upload');
+  const [typedText, setTypedText] = useState<string>('ಶ್ರೀ ವೀರನಾರಾಯಣ ಪುಂಡರೀಕದೇವರೆ...');
+  const [isDragOver, setIsDragOver] = useState<boolean>(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Featured sample inscription (Halmidi or first record)
-  const featuredInscription = inscriptions[0] || {
-    id: 'halmidi-001',
-    accessionNumber: 'EC-05-BL-001',
-    title: 'Halmidi Inscription (ಹಾಲ್ಮಿಡಿ ಶಾಸನ)',
-    kannadaTitle: 'ಕರ್ನಾಟಕದ ಮೊಟ್ಟಮೊದಲ ಅಧಿಕೃತ ಕನ್ನಡ ಶಿಲಾಶಾಸನ',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Halmidi_inscription.jpg/800px-Halmidi_inscription.jpg',
-    scriptClass: 'kadamba',
-    sourceLanguage: 'purvada_halegannada',
-    substrate: 'sandstone',
-    historicalContext: {
-      approximateDate: 'c. 450 CE',
-      century: '5th Century CE',
-      dynasty: 'Early Kadamba Dynasty',
-      ruler: 'King Kakusthavarma',
-      findSpot: { village: 'Halmidi', district: 'Hassan', state: 'Karnataka' },
-      historicalSummary: 'Earliest epigraphical evidence of classical Kannada language, recording royal grant exemptions for military heroes.',
-    },
-    transcription: {
-      recognizedText: 'ನಮಃ ಶ್ರೀಮತ್ ಕದಂಬ ಪಣ್ ಮಹಾ ಕದಂಬನ ಪಲಕಾಲಮನ್...',
-      iastTransliteration: 'namaḥ śrīmat kadamba paṇ mahā kadambana palakālaman...',
-      lines: [
-        { lineNumber: 1, originalText: 'ನಮಃ ಶ್ರೀಮತ್ ಕದಂಬ ಪಣ್', iastText: 'namaḥ śrīmat kadamba paṇ' },
-        { lineNumber: 2, originalText: 'ಮಹಾ ಕದಂಬನ ಪಲಕಾಲಮನ್', iastText: 'mahā kadambana palakālaman' },
-      ],
-      scriptConfidence: 0.9875,
-      detectedGlyphsCount: 168,
-    },
-    translation: {
-      modernKannada: 'ಶ್ರೀಮತ್ ಕದಂಬ ರಾಜವಂಶದ ಕಕುಸ್ಥವರ್ಮನ ಆಳ್ವಿಕೆಯಲ್ಲಿ ವಿಜಯಿ ಯೋಧರಿಗೆ ನೀಡಲಾದ ವೀರಗಲ್ಲು ಭೂಮಿ ಉಂಬಳಿ ದಾನ.',
-      englishTranslation: 'Salutations to the auspicious Kadamba king Kakusthavarma; recording a battle tax exemption for heroic warriors.',
-    },
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      onNavigateToAnalysis();
+    }
   };
 
-  const handlePlayHeroAudio = () => {
-    setHeroAudioPlaying(true);
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance('ನಮಃ ಶ್ರೀಮತ್ ಕದಂಬ ಪಣ್ ಮಹಾ ಕದಂಬನ ಪಲಕಾಲಮನ್');
-      utterance.rate = 0.85;
-      utterance.lang = 'kn-IN';
-      utterance.onend = () => setHeroAudioPlaying(false);
-      utterance.onerror = () => setHeroAudioPlaying(false);
-      window.speechSynthesis.speak(utterance);
+  const handleScrollCarousel = (direction: 'left' | 'right') => {
+    if (carouselRef.current) {
+      const scrollAmount = direction === 'left' ? -320 : 320;
+      carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
+  const handleSelectDynasty = (dynasty: DynastyCardItem) => {
+    const matched = inscriptions.find(ins =>
+      ins.historicalContext.dynasty.toLowerCase().includes(dynasty.name.toLowerCase()) ||
+      ins.scriptClass.toLowerCase().includes(dynasty.name.toLowerCase())
+    );
+    if (matched) {
+      onSelectInscription(matched);
     } else {
-      setTimeout(() => setHeroAudioPlaying(false), 2000);
+      onNavigateToArchive();
     }
   };
 
   return (
-    <div className="space-y-16 pb-16">
-      {/* ==========================================
-          SECTION 1: HERO SECTION
-      ========================================== */}
-      <section className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-white via-amber-50/40 to-white border border-slate-200/90 shadow-sm p-6 sm:p-10 lg:p-12">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-400/5 rounded-full blur-3xl pointer-events-none -ml-20 -mb-20" />
+    <div className="w-full space-y-16 pb-0">
+      {/* =================================================================
+          1. HERO SECTION WITH TEMPLE BACKGROUND & LIVE TRANSLATION CARD
+      ================================================================== */}
+      <section className="relative w-full min-h-[640px] lg:min-h-[700px] overflow-hidden bg-[#241B15] text-[#2B1B14] flex items-center">
+        {/* Background Image: Ancient Karnataka Temple with Pillars & Ruins */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&q=80&w=2000"
+            alt="Ancient Karnataka Temple"
+            className="w-full h-full object-cover object-center scale-105 filter brightness-95 contrast-105"
+            onError={(e) => {
+              e.currentTarget.src = 'https://images.unsplash.com/photo-1628082697850-d4fb7976e1a4?auto=format&fit=crop&q=80&w=2000';
+            }}
+          />
+          {/* Warm Golden Sunrise Overlay Gradient to match mockup */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#FBF8F2]/95 via-[#F8F3EA]/85 to-transparent sm:w-[65%] z-1" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#241B15]/80 via-transparent to-transparent z-1" />
 
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Hero Narrative */}
+          {/* Right Pillar Chiseled Kannada Text (from screenshot) */}
+          <div className="absolute right-6 sm:right-16 top-1/2 -translate-y-1/2 text-right hidden md:block z-2 pointer-events-none select-none opacity-40 hover:opacity-75 transition-opacity">
+            <div className="font-kannada font-bold text-2xl sm:text-3xl lg:text-4xl text-amber-200/80 leading-relaxed tracking-wider drop-shadow-md">
+              <p>ಶಿಲೆಯಲ್ಲಿ</p>
+              <p>ನಮ್ಮ ಇತಿಹಾಸ</p>
+              <p>ನಮ್ಮ ಭಾಷೆ</p>
+              <p>ನಮ್ಮ ಜನರು</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Hero Content Container */}
+        <div className="relative z-10 max-w-[1440px] w-full mx-auto px-4 sm:px-8 py-12 lg:py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Left Column: Heading, Narrative, and Actions */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/90 border border-amber-300 text-amber-900 text-xs font-semibold shadow-xs">
-              <ShieldCheck className="w-4 h-4 text-amber-700" />
-              <span>ASI & Epigraphia Carnatica Standard • AI Epigraphical Intelligence</span>
+            {/* Category Breadcrumb Tag */}
+            <div className="inline-block">
+              <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.2em] font-semibold text-[#8B4823]">
+                INSCRIPTIONS • HISTORY • PEOPLE • KARNATAKA'S LEGACY
+              </span>
             </div>
 
-            <div className="space-y-3">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-slate-900 tracking-tight leading-tight">
-                Reviving <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-700 via-amber-600 to-amber-800">2,300 Years</span> of Ancient Kannada Epigraphy
-              </h1>
-              <p className="font-kannada text-lg sm:text-xl text-amber-900 font-semibold leading-relaxed">
-                ಪ್ರಾಚೀನ ಕನ್ನಡ ಶಿಲಾಶಾಸನಗಳ ಕೃತಕ ಬುದ್ಧಿಮತ್ತೆ ಶೋಧನೆ, ಲಿಪಿ ವಿಕಾಸ ಮತ್ತು ಅನುವಾದ ವೇದಿಕೆ
-              </p>
-            </div>
+            {/* Main Headline (Exact typography from design) */}
+            <h1 className="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl text-[#1E120B] tracking-tight leading-[1.12]">
+              Bridging 2,300 Years <br />
+              <span className="text-[#1E120B]">of Kannada History</span>
+            </h1>
 
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl font-serif">
-              From 3rd Century BCE Ashokan Brahmi rock edicts at Maski to the 5th Century Halmidi Stele, Hoysala soapstone poetry at Belur, and ornate Vijayanagara charters at Hampi. 
-              Decipher weathered steles with YOLOv11 character segmentation, ViT epoch classification, and a 4-tier decoupled translation engine.
+            {/* Subtitle Description */}
+            <p className="text-sm sm:text-base text-[#564337] leading-relaxed max-w-xl font-serif">
+              Read, translate and explore ancient Kannada inscriptions from temples, pillars, heroes stones and monuments using AI and epigraphical knowledge.
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <Button
-                variant="primary"
-                size="lg"
-                icon={<ArrowRight className="w-4 h-4" />}
+            <div className="flex flex-wrap items-center gap-3.5 pt-1">
+              <button
                 onClick={onNavigateToAnalysis}
+                className="px-6 py-3 bg-[#7C3517] hover:bg-[#682A10] text-[#FFF9F2] rounded-lg text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-sm transition-all hover:shadow-md"
               >
-                Launch Analysis Pipeline
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                icon={<Archive className="w-4 h-4 text-amber-700" />}
+                <Feather className="w-4 h-4 text-[#F2C58A]" />
+                <span>Translate an Inscription</span>
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </button>
+
+              <button
                 onClick={onNavigateToArchive}
+                className="px-6 py-3 bg-[#FAF6F0]/90 hover:bg-[#FAF6F0] text-[#2B1B14] border border-[#DFCBB0] rounded-lg text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-xs transition-all"
               >
-                Browse Inscription Archive
-              </Button>
-              <Button
-                variant="ghost"
-                size="lg"
-                icon={<Layers className="w-4 h-4 text-slate-600" />}
-                onClick={onNavigateToScripts}
-              >
-                Script Paleography
-              </Button>
+                <BookOpen className="w-4 h-4 text-[#8B4823]" />
+                <span>Explore Inscriptions</span>
+              </button>
             </div>
 
-            {/* Micro Trust Indicators */}
-            <div className="flex flex-wrap items-center gap-6 pt-4 border-t border-slate-200/80 text-xs text-slate-600 font-mono">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                <span>10 Historical Script Dynasties</span>
+            {/* Statistics Bar (Horizontal strip from design) */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-6 border-t border-[#DECBB2]/80 max-w-2xl">
+              {/* Stat 1 */}
+              <div className="flex items-start gap-2.5">
+                <div className="p-1.5 rounded bg-[#EFE5D2] text-[#7C3517] shrink-0 mt-0.5">
+                  <FileText className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-serif font-bold text-base sm:text-lg text-[#1E120B] leading-none">
+                    10,000+
+                  </div>
+                  <div className="text-[11px] text-[#6C584C] mt-1 font-serif">
+                    Inscriptions (Growing)
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                <span>4-Tier Decoupled Translation</span>
+
+              {/* Stat 2 */}
+              <div className="flex items-start gap-2.5">
+                <div className="p-1.5 rounded bg-[#EFE5D2] text-[#7C3517] shrink-0 mt-0.5">
+                  <Landmark className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-serif font-bold text-base sm:text-lg text-[#1E120B] leading-none">
+                    12+
+                  </div>
+                  <div className="text-[11px] text-[#6C584C] mt-1 font-serif">
+                    Major Dynasties
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                <span>Sub-100ms Neural Inference</span>
+
+              {/* Stat 3 */}
+              <div className="flex items-start gap-2.5">
+                <div className="p-1.5 rounded bg-[#EFE5D2] text-[#7C3517] shrink-0 mt-0.5">
+                  <MapPin className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-serif font-bold text-base sm:text-lg text-[#1E120B] leading-none">
+                    100+
+                  </div>
+                  <div className="text-[11px] text-[#6C584C] mt-1 font-serif">
+                    Historical Sites
+                  </div>
+                </div>
+              </div>
+
+              {/* Stat 4 */}
+              <div className="flex items-start gap-2.5">
+                <div className="p-1.5 rounded bg-[#EFE5D2] text-[#7C3517] shrink-0 mt-0.5">
+                  <BookOpen className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-serif font-bold text-base sm:text-lg text-[#1E120B] leading-none">
+                    Multiple
+                  </div>
+                  <div className="text-[11px] text-[#6C584C] mt-1 font-serif">
+                    Languages &amp; Scripts
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Right Hero Interactive Card */}
+          {/* Right Column: Floating Interactive "TRY A TRANSLATION" Card */}
           <div className="lg:col-span-5">
-            <div className="bg-white rounded-xl border border-slate-200 shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300">
+            <div className="bg-[#FAF7F2] rounded-2xl border border-[#E4D7C2] shadow-2xl p-5 sm:p-6 space-y-4">
               {/* Card Header */}
-              <div className="p-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-xs font-mono text-slate-700 font-bold">LIVE DECIPHERMENT PREVIEW</span>
-                </div>
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-100 text-amber-900 border border-amber-300 font-bold">
-                  98.75% AI Confidence
+              <div className="flex items-center justify-between pb-1">
+                <span className="text-xs font-mono uppercase tracking-wider font-bold text-[#3E2D24]">
+                  TRY A TRANSLATION
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#E5F4E9] border border-[#BDE5C7] text-[#1B6331] text-[11px] font-mono font-semibold">
+                  <span className="w-2 h-2 rounded-full bg-[#27A844] animate-pulse" />
+                  <span>Live Demo</span>
                 </span>
               </div>
 
-              {/* Stele Image Visualizer with Real Photo */}
-              <div className="relative h-60 bg-slate-900 overflow-hidden group">
-                <img
-                  src={featuredInscription.imageUrl}
-                  alt={featuredInscription.title}
-                  className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
-
-                {/* Simulated AI character detection boxes */}
-                <div className="absolute top-10 left-12 w-20 h-10 border-2 border-amber-400 bg-amber-400/25 rounded shadow-sm animate-pulse flex items-start justify-end p-0.5">
-                  <span className="text-[9px] font-mono bg-amber-500 text-slate-950 font-bold px-1 rounded-xs">ಕ</span>
-                </div>
-                <div className="absolute top-16 left-36 w-24 h-12 border-2 border-emerald-400 bg-emerald-400/25 rounded shadow-sm flex items-start justify-end p-0.5">
-                  <span className="text-[9px] font-mono bg-emerald-500 text-white font-bold px-1 rounded-xs">ದಂ</span>
-                </div>
-                <div className="absolute bottom-12 right-16 w-28 h-10 border-2 border-cyan-400 bg-cyan-400/25 rounded shadow-sm flex items-start justify-end p-0.5">
-                  <span className="text-[9px] font-mono bg-cyan-500 text-white font-bold px-1 rounded-xs">ಬ</span>
-                </div>
-
-                {/* Overlay Metadata */}
-                <div className="absolute bottom-3 left-4 right-4 text-white flex items-center justify-between text-xs">
-                  <div>
-                    <div className="font-serif font-bold text-sm drop-shadow-sm">{featuredInscription.title}</div>
-                    <div className="text-[11px] text-amber-300 font-mono">
-                      {featuredInscription.historicalContext.century} • {featuredInscription.historicalContext.dynasty}
-                    </div>
-                  </div>
-                  <Badge variant="script" size="sm">Kadamba Box-Headed</Badge>
-                </div>
-              </div>
-
-              {/* Interactive 4-Tier Preview Tabs */}
-              <div className="p-4 bg-white space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex border border-slate-200 rounded-lg p-0.5 bg-slate-100 text-xs font-mono flex-1 mr-2">
-                    <button
-                      onClick={() => setHeroActiveTier('halegannada')}
-                      className={`flex-1 py-1.5 rounded-md transition-all text-center ${
-                        heroActiveTier === 'halegannada'
-                          ? 'bg-white text-amber-900 font-bold shadow-xs'
-                          : 'text-slate-600 hover:text-slate-900'
-                      }`}
-                    >
-                      1. ಹಳೆಗನ್ನಡ
-                    </button>
-                    <button
-                      onClick={() => setHeroActiveTier('modern')}
-                      className={`flex-1 py-1.5 rounded-md transition-all text-center ${
-                        heroActiveTier === 'modern'
-                          ? 'bg-white text-emerald-900 font-bold shadow-xs'
-                          : 'text-slate-600 hover:text-slate-900'
-                      }`}
-                    >
-                      2. ಹೊಸಗನ್ನಡ
-                    </button>
-                    <button
-                      onClick={() => setHeroActiveTier('english')}
-                      className={`flex-1 py-1.5 rounded-md transition-all text-center ${
-                        heroActiveTier === 'english'
-                          ? 'bg-white text-blue-900 font-bold shadow-xs'
-                          : 'text-slate-600 hover:text-slate-900'
-                      }`}
-                    >
-                      3. English
-                    </button>
-                  </div>
-
-                  <button
-                    onClick={handlePlayHeroAudio}
-                    className="p-2 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 hover:text-amber-900 border border-slate-200 transition-colors"
-                    title="Audio recitation"
-                  >
-                    <Volume2 className={`w-4 h-4 ${heroAudioPlaying ? 'text-amber-700 animate-pulse' : 'text-slate-600'}`} />
-                  </button>
-                </div>
-
-                {/* Dynamic Tier Text Output */}
-                <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-lg min-h-[90px] flex items-center">
-                  {heroActiveTier === 'halegannada' && (
-                    <div className="space-y-1">
-                      <span className="text-[10px] font-mono uppercase text-amber-800 font-bold block">
-                        Reconstructed Halegannada Transcription:
-                      </span>
-                      <p className="font-kannada text-sm text-slate-900 font-semibold leading-relaxed">
-                        {featuredInscription.transcription.recognizedText}
-                      </p>
-                    </div>
-                  )}
-
-                  {heroActiveTier === 'modern' && (
-                    <div className="space-y-1">
-                      <span className="text-[10px] font-mono uppercase text-emerald-800 font-bold block">
-                        Standard Hosagannada Translation:
-                      </span>
-                      <p className="font-kannada text-sm text-slate-900 font-semibold leading-relaxed">
-                        {featuredInscription.translation.modernKannada}
-                      </p>
-                    </div>
-                  )}
-
-                  {heroActiveTier === 'english' && (
-                    <div className="space-y-1">
-                      <span className="text-[10px] font-mono uppercase text-blue-800 font-bold block">
-                        Academic Epigraphical English:
-                      </span>
-                      <p className="font-serif italic text-xs text-slate-800 leading-relaxed">
-                        "{featuredInscription.translation.englishTranslation}"
-                      </p>
-                    </div>
-                  )}
-                </div>
-
-                {/* Action button inside card */}
+              {/* Tabs Container */}
+              <div className="grid grid-cols-3 gap-1 bg-[#EBE2D2] p-1 rounded-lg text-xs font-serif font-medium">
                 <button
-                  onClick={() => onSelectInscription(featuredInscription as InscriptionRecord)}
-                  className="w-full py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors shadow-xs"
+                  onClick={() => setActiveTab('upload')}
+                  className={`py-1.5 rounded-md flex items-center justify-center gap-1.5 transition-all ${
+                    activeTab === 'upload'
+                      ? 'bg-white text-[#7C3517] shadow-xs font-bold'
+                      : 'text-[#6C584C] hover:text-[#2B1B14]'
+                  }`}
                 >
-                  <span>Examine Full Inscription Dossier</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
+                  <Upload className="w-3.5 h-3.5" />
+                  <span>Upload Image</span>
+                </button>
+
+                <button
+                  onClick={() => setActiveTab('type')}
+                  className={`py-1.5 rounded-md flex items-center justify-center gap-1.5 transition-all ${
+                    activeTab === 'type'
+                      ? 'bg-white text-[#7C3517] shadow-xs font-bold'
+                      : 'text-[#6C584C] hover:text-[#2B1B14]'
+                  }`}
+                >
+                  <span className="font-mono text-xs">Aa</span>
+                  <span>Type Text</span>
+                </button>
+
+                <button
+                  onClick={() => setActiveTab('example')}
+                  className={`py-1.5 rounded-md flex items-center justify-center gap-1.5 transition-all ${
+                    activeTab === 'example'
+                      ? 'bg-white text-[#7C3517] shadow-xs font-bold'
+                      : 'text-[#6C584C] hover:text-[#2B1B14]'
+                  }`}
+                >
+                  <FileText className="w-3.5 h-3.5" />
+                  <span>Example</span>
                 </button>
               </div>
+
+              {/* Active Tab Content: Drag & Drop Zone */}
+              {activeTab === 'upload' && (
+                <div
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                    setIsDragOver(true);
+                  }}
+                  onDragLeave={() => setIsDragOver(false)}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    setIsDragOver(false);
+                    onNavigateToAnalysis();
+                  }}
+                  className={`border-2 border-dashed rounded-xl p-6 text-center transition-all bg-[#F4EDE0]/60 ${
+                    isDragOver ? 'border-[#7C3517] bg-[#EFE5D2]' : 'border-[#D5C2A6] hover:border-[#7C3517]'
+                  }`}
+                >
+                  <div className="w-10 h-10 rounded-full bg-[#EFE5D2] flex items-center justify-center mx-auto mb-2 text-[#7C3517]">
+                    <ImageIcon className="w-5 h-5" />
+                  </div>
+                  <p className="text-xs text-[#564337] font-serif mb-3">
+                    Drag &amp; drop an inscription image here <br />
+                    <span className="text-[11px] text-[#7C695C]">or</span>
+                  </p>
+
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileUpload}
+                    className="hidden"
+                  />
+
+                  <button
+                    onClick={() => fileInputRef.current?.click()}
+                    className="px-5 py-2 bg-[#7C3517] hover:bg-[#682A10] text-white rounded-lg text-xs font-semibold shadow-xs transition-colors"
+                  >
+                    Choose Image
+                  </button>
+
+                  <div className="text-[10px] text-[#857268] font-mono mt-3">
+                    Supports: JPG, PNG (max 10MB)
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'type' && (
+                <div className="space-y-2">
+                  <textarea
+                    rows={3}
+                    value={typedText}
+                    onChange={(e) => setTypedText(e.target.value)}
+                    placeholder="Type or paste Old Kannada text..."
+                    className="w-full p-3 rounded-lg border border-[#DFCBB0] bg-white text-xs font-kannada text-[#2B1B14] focus:outline-none focus:ring-1 focus:ring-[#7C3517]"
+                  />
+                  <button
+                    onClick={onNavigateToAnalysis}
+                    className="w-full py-2 bg-[#7C3517] text-white rounded-lg text-xs font-semibold"
+                  >
+                    Analyze Text
+                  </button>
+                </div>
+              )}
+
+              {activeTab === 'example' && (
+                <div className="p-3 bg-[#EFE5D2]/60 rounded-xl border border-[#DFCBB0] text-xs space-y-1.5 font-serif">
+                  <p className="font-bold text-[#7C3517]">Preloaded Academic Stele</p>
+                  <p className="text-[#564337] italic">
+                    Halmidi Inscription (c. 450 CE) Kadamba Box-Headed stone grant.
+                  </p>
+                  <button
+                    onClick={onNavigateToAnalysis}
+                    className="text-[#7C3517] font-bold text-xs underline"
+                  >
+                    Load Halmidi in Workspace →
+                  </button>
+                </div>
+              )}
+
+              {/* Sample Result Box (Exact 3-step format from screenshot) */}
+              <div className="pt-2 border-t border-[#E8DEC8] space-y-3">
+                <div className="flex items-center justify-between text-[10px] font-mono">
+                  <span className="font-bold uppercase tracking-wider text-[#3E2D24]">
+                    SAMPLE RESULT
+                  </span>
+                  <span className="text-[#857268]">
+                    Example from Hoysala period (12th–13th century)
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-12 gap-3 items-center">
+                  {/* Left Thumbnail: Authentic Stone Inscription */}
+                  <div className="col-span-4 h-28 rounded-lg overflow-hidden border border-[#D5C2A6] bg-slate-900 shadow-xs">
+                    <img
+                      src="https://images.unsplash.com/photo-1600100397608-f010f443b745?auto=format&fit=crop&q=80&w=400"
+                      alt="Hoysala Inscription"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* Right: 3 Numbered Steps */}
+                  <div className="col-span-8 space-y-2 text-xs">
+                    {/* Step 1: Halegannada */}
+                    <div className="flex items-start gap-2">
+                      <span className="w-4 h-4 rounded-full bg-[#1E120B] text-white flex items-center justify-center font-mono text-[10px] font-bold shrink-0 mt-0.5">
+                        1
+                      </span>
+                      <div className="min-w-0">
+                        <span className="text-[10px] font-mono text-[#564337] font-bold block">
+                          Halegannada <span className="font-normal text-[#857268]">(Original Reading)</span>
+                        </span>
+                        <p className="font-kannada text-xs font-semibold text-[#1E120B] truncate">
+                          ಶ್ರೀ ವೀರನಾರಾಯಣ ಪುಂಡರೀಕದೇವರೆ...
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Step 2: Hosa Kannada */}
+                    <div className="flex items-start gap-2">
+                      <span className="w-4 h-4 rounded-full bg-[#8B4823] text-white flex items-center justify-center font-mono text-[10px] font-bold shrink-0 mt-0.5">
+                        2
+                      </span>
+                      <div className="min-w-0">
+                        <span className="text-[10px] font-mono text-[#564337] font-bold block">
+                          Hosa Kannada <span className="font-normal text-[#857268]">(Modern Kannada)</span>
+                        </span>
+                        <p className="font-kannada text-xs font-semibold text-[#1E120B] truncate">
+                          ಶ್ರೀ ವೀರನಾರಾಯಣ ಪುಂಡರೀಕದೇವರೆ...
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Step 3: English */}
+                    <div className="flex items-start gap-2">
+                      <span className="w-4 h-4 rounded-full bg-[#B88746] text-white flex items-center justify-center font-mono text-[10px] font-bold shrink-0 mt-0.5">
+                        3
+                      </span>
+                      <div className="min-w-0">
+                        <span className="text-[10px] font-mono text-[#564337] font-bold block">
+                          English <span className="font-normal text-[#857268]">(Translation)</span>
+                        </span>
+                        <p className="font-serif text-[11px] italic text-[#1E120B] truncate">
+                          King Vira Narayana Pundarikadeva...
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ==========================================
-          SECTION 2: KEY STATISTICAL TELEMETRY
-      ========================================== */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-        <div className="bg-white border border-slate-200/90 rounded-xl p-5 shadow-xs hover:border-amber-400 transition-colors">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-mono uppercase text-slate-500 font-semibold">Epigraphs in Karnataka</span>
-            <Landmark className="w-4 h-4 text-amber-600" />
-          </div>
-          <div className="text-2xl sm:text-3xl font-serif font-extrabold text-slate-900">25,000+</div>
-          <p className="text-xs text-slate-500 mt-1 font-serif">Highest density in Indian subcontinent</p>
-        </div>
-
-        <div className="bg-white border border-slate-200/90 rounded-xl p-5 shadow-xs hover:border-amber-400 transition-colors">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-mono uppercase text-slate-500 font-semibold">Chronological Span</span>
-            <Calendar className="w-4 h-4 text-blue-600" />
-          </div>
-          <div className="text-2xl sm:text-3xl font-serif font-extrabold text-slate-900">2,300+ Yrs</div>
-          <p className="text-xs text-slate-500 mt-1 font-serif">3rd C. BCE Ashokan rock to Wodeyars</p>
-        </div>
-
-        <div className="bg-white border border-slate-200/90 rounded-xl p-5 shadow-xs hover:border-amber-400 transition-colors">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-mono uppercase text-slate-500 font-semibold">Neural Precision</span>
-            <Cpu className="w-4 h-4 text-emerald-600" />
-          </div>
-          <div className="text-2xl sm:text-3xl font-serif font-extrabold text-emerald-600">98.75%</div>
-          <p className="text-xs text-slate-500 mt-1 font-serif">CNN + Vision Transformer hybrid model</p>
-        </div>
-
-        <div className="bg-white border border-slate-200/90 rounded-xl p-5 shadow-xs hover:border-amber-400 transition-colors">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-mono uppercase text-slate-500 font-semibold">Script Evolution</span>
-            <Layers className="w-4 h-4 text-amber-600" />
-          </div>
-          <div className="text-2xl sm:text-3xl font-serif font-extrabold text-slate-900">10 Dynasties</div>
-          <p className="text-xs text-slate-500 mt-1 font-serif">Stone ➔ Halegannada ➔ Modern Kannada</p>
-        </div>
-      </section>
-
-      {/* ==========================================
-          SECTION 3: LIVE DECIPHERMENT PLAYGROUND
-      ========================================== */}
-      <LiveDeciphermentPlayground
-        inscriptions={inscriptions}
-        onSelectInscription={onSelectInscription}
-        onNavigateToAnalysis={onNavigateToAnalysis}
-      />
-
-      {/* ==========================================
-          SECTION 4: KARNATAKA TEMPLE ATLAS
-      ========================================== */}
-      <TempleAtlasSection
-        inscriptions={inscriptions}
-        onSelectInscription={onSelectInscription}
-        onNavigateToArchive={onNavigateToArchive}
-      />
-
-      {/* ==========================================
-          SECTION 5: UNESCO WORLD HERITAGE SPOTLIGHT
-      ========================================== */}
-      <UnescoHeritageSpotlight
-        inscriptions={inscriptions}
-        onSelectInscription={onSelectInscription}
-        onNavigateToArchive={onNavigateToArchive}
-      />
-
-      {/* ==========================================
-          SECTION 6: SCRIPT PALEOGRAPHY SHOWCASE
-      ========================================== */}
-      <ScriptPaleographyShowcase
-        onNavigateToScripts={onNavigateToScripts}
-      />
-
-      {/* ==========================================
-          SECTION 7: SCIENTIFIC ARCHITECTURE
-      ========================================== */}
-      <section className="space-y-6">
-        <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-mono uppercase tracking-wider text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-200 font-semibold">
-            Scientific & Paleographical Architecture
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-slate-900">
-            Engineered for Academic Epigraphists & Historians
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 font-serif">
-            A state-of-the-art computational system respecting historical orthography, ligature clusters, and phonological sound laws.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Card 1 */}
-          <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-xs hover:border-amber-400 hover:shadow-md transition-all space-y-3">
-            <div className="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center text-amber-700">
-              <SearchCode className="w-5 h-5" />
+      {/* =================================================================
+          2. FOUR FEATURE ACTION CARDS ROW (Exact match from screenshot)
+      ================================================================== */}
+      <section className="max-w-[1440px] mx-auto px-4 sm:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {/* Feature Card 1: Upload & Translate */}
+          <div
+            onClick={onNavigateToAnalysis}
+            className="p-5 bg-[#FAF7F2] border border-[#E8DEC8] rounded-xl hover:border-[#8B4823] hover:shadow-md transition-all cursor-pointer group flex items-center justify-between gap-4"
+          >
+            <div className="flex items-center gap-3.5">
+              <div className="w-12 h-12 rounded-lg bg-[#EFE5D2] border border-[#DFCBB0] flex items-center justify-center text-[#7C3517] shrink-0">
+                <FileText className="w-6 h-6" />
+              </div>
+              <div className="space-y-1">
+                <h3 className="font-serif font-bold text-sm text-[#1E120B] group-hover:text-[#7C3517] transition-colors">
+                  Upload &amp; Translate
+                </h3>
+                <p className="text-[11px] text-[#6C584C] font-serif leading-snug">
+                  Get Halegannada to Hosa Kannada translation with script analysis.
+                </p>
+              </div>
             </div>
-            <h3 className="font-serif font-bold text-lg text-slate-900">
-              1. YOLOv11 Character Segmentation
-            </h3>
-            <p className="text-xs text-slate-600 leading-relaxed font-serif">
-              Detects line and character bounding boxes across weathered, eroded stone steles, hero stones (ವೀರಗಲ್ಲು), and copper plates with sub-millimeter precision.
-            </p>
-            <div className="pt-2 text-xs font-mono text-amber-700 font-semibold flex items-center gap-1">
-              <span>Interactive Glyph Inspector</span>
+            <div className="w-7 h-7 rounded-full bg-[#7C3517] text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
               <ArrowRight className="w-3.5 h-3.5" />
             </div>
           </div>
 
-          {/* Card 2 */}
-          <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-xs hover:border-amber-400 hover:shadow-md transition-all space-y-3">
-            <div className="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-700">
-              <Layers className="w-5 h-5" />
+          {/* Feature Card 2: Browse by Dynasty */}
+          <div
+            onClick={() => {
+              const el = document.getElementById('dynasties-section');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="p-5 bg-[#FAF7F2] border border-[#E8DEC8] rounded-xl hover:border-[#8B4823] hover:shadow-md transition-all cursor-pointer group flex items-center justify-between gap-4"
+          >
+            <div className="flex items-center gap-3.5">
+              <div className="w-12 h-12 rounded-lg bg-[#EFE5D2] border border-[#DFCBB0] flex items-center justify-center text-[#7C3517] shrink-0">
+                <Landmark className="w-6 h-6" />
+              </div>
+              <div className="space-y-1">
+                <h3 className="font-serif font-bold text-sm text-[#1E120B] group-hover:text-[#7C3517] transition-colors">
+                  Browse by Dynasty
+                </h3>
+                <p className="text-[11px] text-[#6C584C] font-serif leading-snug">
+                  Explore inscriptions from Ashoka, Kadamba, Chalukya, Rashtrakuta, Hoysala and more.
+                </p>
+              </div>
             </div>
-            <h3 className="font-serif font-bold text-lg text-slate-900">
-              2. 4-Tier Decoupled Translation
-            </h3>
-            <p className="text-xs text-slate-600 leading-relaxed font-serif">
-              Enforces the epigraphical principle that Script Identity ≠ Language Identity. Translates ancient Halegannada grammar into modern Hosagannada with glossary mapping.
-            </p>
-            <div className="pt-2 text-xs font-mono text-emerald-700 font-semibold flex items-center gap-1">
-              <span>Metric Moraic Analysis</span>
-              <BookOpen className="w-3.5 h-3.5" />
+            <div className="w-7 h-7 rounded-full bg-[#7C3517] text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+              <ArrowRight className="w-3.5 h-3.5" />
             </div>
           </div>
 
-          {/* Card 3 */}
+          {/* Feature Card 3: Script Evolution */}
+          <div
+            onClick={onNavigateToScripts}
+            className="p-5 bg-[#FAF7F2] border border-[#E8DEC8] rounded-xl hover:border-[#8B4823] hover:shadow-md transition-all cursor-pointer group flex items-center justify-between gap-4"
+          >
+            <div className="flex items-center gap-3.5">
+              <div className="w-12 h-12 rounded-lg bg-[#EFE5D2] border border-[#DFCBB0] flex items-center justify-center text-[#7C3517] font-kannada font-bold text-xl shrink-0">
+                ಕ
+              </div>
+              <div className="space-y-1">
+                <h3 className="font-serif font-bold text-sm text-[#1E120B] group-hover:text-[#7C3517] transition-colors">
+                  Script Evolution
+                </h3>
+                <p className="text-[11px] text-[#6C584C] font-serif leading-snug">
+                  Learn the evolution of Kannada script from early forms to modern Kannada.
+                </p>
+              </div>
+            </div>
+            <div className="w-7 h-7 rounded-full bg-[#7C3517] text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+              <ArrowRight className="w-3.5 h-3.5" />
+            </div>
+          </div>
+
+          {/* Feature Card 4: Historical Context */}
           <div
             onClick={onNavigateToRules}
-            className="bg-white border border-slate-200 rounded-xl p-6 shadow-xs hover:border-amber-400 hover:shadow-md transition-all space-y-3 cursor-pointer group"
+            className="p-5 bg-[#FAF7F2] border border-[#E8DEC8] rounded-xl hover:border-[#8B4823] hover:shadow-md transition-all cursor-pointer group flex items-center justify-between gap-4"
           >
-            <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-700 group-hover:bg-amber-100 group-hover:text-amber-800 transition-colors">
-              <History className="w-5 h-5" />
+            <div className="flex items-center gap-3.5">
+              <div className="w-12 h-12 rounded-lg bg-[#EFE5D2] border border-[#DFCBB0] flex items-center justify-center text-[#7C3517] shrink-0">
+                <Compass className="w-6 h-6" />
+              </div>
+              <div className="space-y-1">
+                <h3 className="font-serif font-bold text-sm text-[#1E120B] group-hover:text-[#7C3517] transition-colors">
+                  Historical Context
+                </h3>
+                <p className="text-[11px] text-[#6C584C] font-serif leading-snug">
+                  Get information about period, location, language, material and significance.
+                </p>
+              </div>
             </div>
-            <h3 className="font-serif font-bold text-lg text-slate-900 group-hover:text-amber-800 transition-colors">
-              3. Epigraphia Rules & Phonology
-            </h3>
-            <p className="text-xs text-slate-600 leading-relaxed font-serif">
-              Deterministic computational rules tracking historical linguistic shifts (P ➔ H shift, archaic Sakata Repha ಱ, and liquid retroflex Kula L ೞ).
-            </p>
-            <div className="pt-2 text-xs font-mono text-blue-700 group-hover:text-amber-800 font-semibold flex items-center gap-1">
-              <span>Inspect Formal Grammar Rules</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            <div className="w-7 h-7 rounded-full bg-[#7C3517] text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+              <ArrowRight className="w-3.5 h-3.5" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ==========================================
-          SECTION 8: FEATURED BENCHMARK EPIGRAPHS
-      ========================================== */}
-      <section className="space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div>
-            <span className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold">
-              Canonical Inscriptions
+      {/* =================================================================
+          3. EXPLORE: MAJOR DYNASTIES OF KARNATAKA (Gallery Carousel)
+      ================================================================== */}
+      <section id="dynasties-section" className="max-w-[1440px] mx-auto px-4 sm:px-8 space-y-6">
+        {/* Header with line and View All Link */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <span className="text-[11px] font-mono uppercase tracking-[0.2em] font-semibold text-[#8B4823]">
+              EXPLORE
             </span>
-            <h2 className="text-2xl font-serif font-bold text-slate-900 mt-1">
-              Historic Steles Available in Archive
-            </h2>
+            <div className="flex items-center gap-4">
+              <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#1E120B]">
+                Major Dynasties of Karnataka
+              </h2>
+              <div className="hidden md:block w-32 h-px bg-[#DFCBB0]" />
+            </div>
           </div>
-          <Button
-            variant="outline"
-            size="sm"
-            icon={<ArrowRight className="w-3.5 h-3.5" />}
-            onClick={onNavigateToArchive}
-          >
-            View All Catalogued Inscriptions ({inscriptions.length})
-          </Button>
+
+          <div className="flex items-center gap-4 self-end sm:self-auto">
+            <button
+              onClick={onNavigateToArchive}
+              className="text-xs font-serif font-semibold text-[#7C3517] hover:text-[#5B230C] flex items-center gap-1 transition-colors"
+            >
+              <span>View all Dynasties</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+
+            {/* Carousel navigation buttons */}
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={() => handleScrollCarousel('left')}
+                className="w-8 h-8 rounded-full border border-[#D5C2A6] bg-[#FAF7F2] hover:bg-[#EFE5D2] flex items-center justify-center text-[#564337]"
+                aria-label="Previous Dynasties"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => handleScrollCarousel('right')}
+                className="w-8 h-8 rounded-full border border-[#D5C2A6] bg-[#FAF7F2] hover:bg-[#EFE5D2] flex items-center justify-center text-[#564337]"
+                aria-label="Next Dynasties"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {inscriptions.slice(0, 3).map((ins) => (
+        {/* Horizontal Carousel of Dynasty Cards */}
+        <div
+          ref={carouselRef}
+          className="flex items-center gap-4 overflow-x-auto pb-4 scrollbar-none scroll-smooth"
+        >
+          {MAJOR_DYNASTIES.map((dyn) => (
             <div
-              key={ins.id}
-              onClick={() => onSelectInscription(ins)}
-              className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-xs hover:shadow-md hover:border-amber-400 transition-all cursor-pointer group flex flex-col justify-between"
+              key={dyn.id}
+              onClick={() => handleSelectDynasty(dyn)}
+              className="w-56 sm:w-64 shrink-0 rounded-xl overflow-hidden bg-slate-900 border border-[#E0D3BE] shadow-xs hover:shadow-lg transition-all cursor-pointer group flex flex-col justify-end relative h-64"
             >
-              <div>
-                <div className="relative h-48 bg-slate-900 overflow-hidden">
-                  <img
-                    src={ins.imageUrl}
-                    alt={ins.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-3 left-3 flex gap-1.5">
-                    <Badge variant="script" size="sm">{ins.scriptClass.replace('_', ' ')}</Badge>
-                  </div>
-                  <div className="absolute bottom-2 right-3 font-mono text-[11px] text-white/90 bg-slate-950/70 px-2 py-0.5 rounded">
-                    {ins.historicalContext.century}
-                  </div>
-                </div>
+              {/* Real Temple Photo */}
+              <img
+                src={dyn.imageUrl}
+                alt={dyn.name}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85"
+                onError={(e) => {
+                  e.currentTarget.src = 'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&q=80&w=600';
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#140E0C] via-[#140E0C]/40 to-transparent" />
 
-                <div className="p-5 space-y-2">
-                  <h3 className="font-serif font-bold text-base text-slate-900 group-hover:text-amber-700 transition-colors line-clamp-1">
-                    {ins.title}
-                  </h3>
-                  <p className="font-kannada text-xs text-slate-500 line-clamp-1">
-                    {ins.kannadaTitle}
-                  </p>
-
-                  <div className="text-xs text-slate-600 pt-2 border-t border-slate-100 space-y-1">
-                    <div className="flex items-center gap-1.5">
-                      <Landmark className="w-3.5 h-3.5 text-slate-400" />
-                      <span className="truncate">{ins.historicalContext.dynasty}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <MapPin className="w-3.5 h-3.5 text-slate-400" />
-                      <span className="truncate">{ins.historicalContext.findSpot.village}, {ins.historicalContext.findSpot.district}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-[11px] font-mono text-slate-500">
-                  {ins.transcription.lines.length} lines transcribed
-                </span>
-                <span className="text-xs font-semibold text-amber-700 font-serif group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-1">
-                  <span>Examine</span>
-                  <ChevronRight className="w-3 h-3" />
-                </span>
+              {/* Dynasty Card Info */}
+              <div className="relative z-10 p-4 text-white space-y-0.5">
+                <h3 className="font-serif font-bold text-lg text-white group-hover:text-[#F2C58A] transition-colors leading-tight">
+                  {dyn.name}
+                </h3>
+                <p className="text-xs text-[#E8DEC8] font-mono">
+                  ({dyn.century})
+                </p>
+                <p className="font-kannada text-[11px] text-[#DFCBB0] opacity-90 pt-0.5">
+                  {dyn.kannadaPeriod}
+                </p>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ==========================================
-          SECTION 9: EPIGRAPHY DISCOVERY QUIZ
-      ========================================== */}
-      <EpigraphyQuizSection />
+      {/* =================================================================
+          4. BOTTOM DARK STONE QUOTE & MISSION BANNER (From screenshot)
+      ================================================================== */}
+      <footer className="w-full bg-[#18110D] text-[#FFF9F2] py-12 px-4 sm:px-8 border-t border-[#36251C]">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Left: Sculpted Relief Image + Quote */}
+          <div className="lg:col-span-8 flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
+            {/* Hoysala Royal Lion / Nandi Carving Thumbnail */}
+            <div className="w-24 h-24 rounded-xl overflow-hidden bg-slate-900 border border-[#483328] shrink-0 shadow-md">
+              <img
+                src="https://images.unsplash.com/photo-1600100397608-f010f443b745?auto=format&fit=crop&q=80&w=400"
+                alt="Stone relief carving"
+                className="w-full h-full object-cover filter contrast-125 sepia-50"
+              />
+            </div>
 
-      {/* ==========================================
-          SECTION 10: INVITATION CALL TO ACTION
-      ========================================== */}
-      <section className="rounded-2xl bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 p-8 sm:p-12 text-white text-center space-y-5 shadow-lg">
-        <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mx-auto text-amber-200">
-          <Sparkles className="w-6 h-6" />
+            {/* Majestic Quote */}
+            <div className="space-y-3">
+              <p className="font-serif italic text-lg sm:text-xl lg:text-2xl text-[#E8DEC8] leading-relaxed max-w-2xl">
+                “In stones, they wrote not just words, but the story of a people, a language and a civilization.”
+              </p>
+              <div className="w-24 h-0.5 bg-[#8B4823] mx-auto sm:mx-0" />
+            </div>
+          </div>
+
+          {/* Right: 4 Mission Pillars */}
+          <div className="lg:col-span-4 grid grid-cols-2 gap-4 text-xs font-serif text-[#DFCBB0]">
+            <div className="flex items-center gap-2.5">
+              <Feather className="w-4 h-4 text-[#C99052] shrink-0" />
+              <span>Preserve Heritage</span>
+            </div>
+
+            <div className="flex items-center gap-2.5">
+              <BookOpen className="w-4 h-4 text-[#C99052] shrink-0" />
+              <span>Make Knowledge Accessible</span>
+            </div>
+
+            <div className="flex items-center gap-2.5">
+              <Users className="w-4 h-4 text-[#C99052] shrink-0" />
+              <span>Enable Research</span>
+            </div>
+
+            <div className="flex items-center gap-2.5">
+              <Globe className="w-4 h-4 text-[#C99052] shrink-0" />
+              <span>For Future Generations</span>
+            </div>
+          </div>
         </div>
-        <h2 className="text-2xl sm:text-3xl font-serif font-extrabold tracking-tight">
-          Ready to Decipher Historical Steles & Rubbings?
-        </h2>
-        <p className="text-amber-100 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed font-serif">
-          Upload an inscription image or select from our verified archival register to run automated paleographical segmentation and 4-tier translation.
-        </p>
-        <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-          <button
-            onClick={onNavigateToAnalysis}
-            className="px-6 py-2.5 rounded-lg bg-white text-slate-900 hover:bg-amber-50 font-bold text-xs transition-colors shadow-sm inline-flex items-center gap-2"
-          >
-            <SearchCode className="w-4 h-4 text-amber-700" />
-            <span>Start New Inscription Analysis</span>
-          </button>
-          <button
-            onClick={onNavigateToArchive}
-            className="px-6 py-2.5 rounded-lg bg-amber-950/60 hover:bg-amber-950/80 border border-amber-400/40 text-white font-semibold text-xs transition-colors inline-flex items-center gap-2"
-          >
-            <Archive className="w-4 h-4" />
-            <span>Search Inscription Register</span>
-          </button>
-        </div>
-      </section>
+      </footer>
     </div>
   );
 };
