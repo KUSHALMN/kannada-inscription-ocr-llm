@@ -124,6 +124,7 @@ export const App: React.FC = () => {
             <ArchiveView
               inscriptions={inscriptions}
               onSelectInscription={handleSelectInscription}
+              onNavigateHome={() => setActiveTab('home')}
             />
           )}
 
