@@ -532,7 +532,7 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
       widthCm: 30,
       depthCm: 18
     },
-    imageUrl: 'https://images.unsplash.com/photo-1599732497206-8b9d031cce16?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Halmidi_inscription.jpg/800px-Halmidi_inscription.jpg',
     conditionRating: 'fair',
     reviewStatus: 'verified',
     lastUpdated: '14 Oct 2026',
@@ -627,7 +627,7 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
       widthCm: 95,
       depthCm: 45
     },
-    imageUrl: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Brahmagiri_ashoka_edict.jpg/800px-Brahmagiri_ashoka_edict.jpg',
     conditionRating: 'weathered',
     reviewStatus: 'verified',
     lastUpdated: '08 Oct 2026',
@@ -709,7 +709,7 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
       widthCm: 85,
       depthCm: 25
     },
-    imageUrl: 'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: 'https://images.unsplash.com/photo-1628082697850-d4fb7976e1a4?auto=format&fit=crop&q=80&w=1200',
     conditionRating: 'excellent',
     reviewStatus: 'in_review',
     lastUpdated: '12 Oct 2026',
@@ -804,7 +804,7 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
       widthCm: 110,
       depthCm: 32
     },
-    imageUrl: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: 'https://images.unsplash.com/photo-1600100397608-f010f443b745?auto=format&fit=crop&q=80&w=1200',
     conditionRating: 'excellent',
     reviewStatus: 'pending_verification',
     lastUpdated: '15 Oct 2026',
@@ -892,7 +892,7 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
       widthCm: 80,
       depthCm: 22
     },
-    imageUrl: 'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: 'https://images.unsplash.com/photo-1627916607164-7b20241db935?auto=format&fit=crop&q=80&w=1200',
     conditionRating: 'excellent',
     reviewStatus: 'verified',
     lastUpdated: '11 Oct 2026',
@@ -980,7 +980,7 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
       widthCm: 72,
       depthCm: 20
     },
-    imageUrl: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&q=80&w=1200',
     conditionRating: 'fair',
     reviewStatus: 'verified',
     lastUpdated: '09 Oct 2026',
@@ -1068,7 +1068,7 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
       widthCm: 88,
       depthCm: 30
     },
-    imageUrl: 'https://images.unsplash.com/photo-1599732497206-8b9d031cce16?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Stone_Chariot_Hampi.jpg/1280px-Stone_Chariot_Hampi.jpg',
     conditionRating: 'excellent',
     reviewStatus: 'verified',
     lastUpdated: '13 Oct 2026',
@@ -1156,7 +1156,7 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
       widthCm: 18,
       depthCm: 0.4
     },
-    imageUrl: 'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&q=80&w=1200',
     conditionRating: 'excellent',
     reviewStatus: 'verified',
     lastUpdated: '07 Oct 2026',
