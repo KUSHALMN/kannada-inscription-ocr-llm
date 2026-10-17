@@ -34,6 +34,31 @@ A fundamental challenge in epigraphy is that historical stone records interweave
 
 ---
 
+## 🏛️ Sacred Temples & Epigraphical Atlas of Karnataka
+
+The platform integrates an institutional photographic atlas featuring verified UNESCO World Heritage and state-protected archaeological monuments that cradle Karnataka's epigraphical heritage:
+
+- **Belur Chennakeshava Temple (1117 CE):** Ornate Hoysala chloritic schist plinths with Old Kannada consecration inscriptions and master sculptor signatures (Dasoja, Mallitamma).
+- **Halebidu Hoysaleswara Temple (1121 CE):** 35,000 soapstone sculptures and epigraphs recording mercantile guild grants in Dwarasamudra.
+- **Hampi Vittala & Virupaksha Temples (1509 CE):** Imperial Vijayanagara granite steles, the iconic Stone Chariot (ಗರುಡ ರಥ), and Emperor Krishnadevaraya's coronation decrees.
+- **Badami Cave Temples & Cliffside (c. 700 CE):** Early Chalukyan red sandstone caves and the world-renowned Kappe Arabhatta Tripadi metre poetic inscription.
+- **Pattadakal UNESCO Complex (7th–8th C. CE):** Coronation grounds of Chalukya emperors with royal victory prashastis honoring master architect Gundan Anivaritachari.
+- **Aihole Meguti Temple & Durga Temple (634 CE):** The landmark Aihole Prashasti by court poet Ravikirti recording Pulakeshin II's triumph over Emperor Harsha.
+- **Halmidi Stele (c. 450 CE):** The earliest confirmed stone inscription in classical Kannada prose chiseled in Kadamba box-headed script.
+- **Shravanabelagola Vindhyagiri (981 CE):** Western Ganga colossus of Bahubali with ancient Kannada rock inscriptions celebrating minister Chavundaraya.
+
+---
+
+## 🔬 Interactive Features on Landing Page
+
+1. **Live Archaeological Decipherment Sandbox:** Switch between natural stone, CLAHE high-contrast relief, and inverted ink rubbing modes with interactive YOLO character segmentation bounding boxes and audio recitation.
+2. **2,300-Year Script Paleography Viewer:** Dynamic character morphing engine tracking the anatomical evolution of characters (ಕ, ಅ, ಗ, ರ) across 10 historical dynasties.
+3. **Karnataka Temple & Epigraph Atlas:** Interactive dynasty filters, high-resolution photo galleries, architectural classifications, and instant dossier inspection.
+4. **UNESCO World Heritage Carousel:** Curated spotlight on Belur-Halebidu, Hampi, and Pattadakal with epigraph counts and canonical charters.
+5. **Epigraphical Discovery Quiz:** Interactive trivia with historical grammar insights (P-to-H shift, Sakata Repha ಱ, Halmidi 450 CE chronology).
+
+---
+
 ## 🛠️ Technology Stack (Phase 1 Frontend)
 
 - **Framework:** React 18 + Vite + TypeScript (Strict Type Checking)
