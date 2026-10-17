@@ -15,6 +15,8 @@ import {
   ChevronLeft,
   Landmark
 } from 'lucide-react';
+import heroBg from '../../assets/hero-bg.jpg';
+import sampleStele from '../../assets/sample-stele.jpg';
 
 interface LandingHomeViewProps {
   inscriptions: InscriptionRecord[];
@@ -138,31 +140,14 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
       {/* =================================================================
           1. HERO SECTION WITH TEMPLE BACKGROUND & LIVE TRANSLATION CARD
       ================================================================== */}
-      <section className="relative w-full min-h-[640px] lg:min-h-[700px] overflow-hidden bg-[#241B15] text-[#2B1B14] flex items-center">
-        {/* Background Image: Ancient Karnataka Temple with Pillars & Ruins */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&q=80&w=2000"
-            alt="Ancient Karnataka Temple"
-            className="w-full h-full object-cover object-center scale-105 filter brightness-95 contrast-105"
-            onError={(e) => {
-              e.currentTarget.src = 'https://images.unsplash.com/photo-1628082697850-d4fb7976e1a4?auto=format&fit=crop&q=80&w=2000';
-            }}
-          />
-          {/* Warm Golden Sunrise Overlay Gradient to match mockup */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#FBF8F2]/95 via-[#F8F3EA]/85 to-transparent sm:w-[65%] z-1" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#241B15]/80 via-transparent to-transparent z-1" />
-
-          {/* Right Pillar Chiseled Kannada Text (from screenshot) */}
-          <div className="absolute right-6 sm:right-16 top-1/2 -translate-y-1/2 text-right hidden md:block z-2 pointer-events-none select-none opacity-40 hover:opacity-75 transition-opacity">
-            <div className="font-kannada font-bold text-2xl sm:text-3xl lg:text-4xl text-amber-200/80 leading-relaxed tracking-wider drop-shadow-md">
-              <p>ಶಿಲೆಯಲ್ಲಿ</p>
-              <p>ನಮ್ಮ ಇತಿಹಾಸ</p>
-              <p>ನಮ್ಮ ಭಾಷೆ</p>
-              <p>ನಮ್ಮ ಜನರು</p>
-            </div>
-          </div>
-        </div>
+      <section
+        className="relative w-full min-h-[640px] lg:min-h-[720px] overflow-hidden bg-[#FAF6EE] text-[#2B1B14] flex items-center bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url(${heroBg})`,
+        }}
+      >
+        {/* Soft, delicate warm wash on the left so headline & typography are 100% crisp while keeping full temple scenery visible */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FAF6EE]/95 via-[#FAF6EE]/55 to-transparent sm:w-[50%] pointer-events-none z-1" />
 
         {/* Hero Content Container */}
         <div className="relative z-10 max-w-[1440px] w-full mx-auto px-4 sm:px-8 py-12 lg:py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -417,7 +402,7 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
                   {/* Left Thumbnail: Authentic Stone Inscription */}
                   <div className="col-span-4 h-28 rounded-lg overflow-hidden border border-[#D5C2A6] bg-slate-900 shadow-xs">
                     <img
-                      src="https://images.unsplash.com/photo-1600100397608-f010f443b745?auto=format&fit=crop&q=80&w=400"
+                      src={sampleStele}
                       alt="Hoysala Inscription"
                       className="w-full h-full object-cover"
                     />
@@ -675,7 +660,7 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
             {/* Hoysala Royal Lion / Nandi Carving Thumbnail */}
             <div className="w-24 h-24 rounded-xl overflow-hidden bg-slate-900 border border-[#483328] shrink-0 shadow-md">
               <img
-                src="https://images.unsplash.com/photo-1600100397608-f010f443b745?auto=format&fit=crop&q=80&w=400"
+                src={sampleStele}
                 alt="Stone relief carving"
                 className="w-full h-full object-cover filter contrast-125 sepia-50"
               />
