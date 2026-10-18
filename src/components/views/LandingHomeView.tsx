@@ -42,7 +42,7 @@ const MAJOR_DYNASTIES: DynastyCardItem[] = [
     name: 'Ashoka',
     century: '3rd Century BCE',
     kannadaPeriod: 'ಮೌರ್ಯ ಸಾಮ್ರಾಜ್ಯ',
-    imageUrl: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=600',
+    imageUrl: '/temples/ashoka.jpg',
     location: 'Maski & Brahmagiri'
   },
   {
@@ -50,7 +50,7 @@ const MAJOR_DYNASTIES: DynastyCardItem[] = [
     name: 'Kadamba',
     century: '4th–6th Century',
     kannadaPeriod: 'ಕದಂಬ ರಾಜವಂಶ',
-    imageUrl: 'https://images.unsplash.com/photo-1599732497206-8b9d031cce16?auto=format&fit=crop&q=80&w=600',
+    imageUrl: '/temples/kadamba.jpg',
     location: 'Halmidi & Banavasi'
   },
   {
@@ -58,7 +58,7 @@ const MAJOR_DYNASTIES: DynastyCardItem[] = [
     name: 'Chalukya',
     century: '6th–8th Century',
     kannadaPeriod: 'ಬಾದಾಮಿ ಚಾಲುಕ್ಯರು',
-    imageUrl: 'https://images.unsplash.com/photo-1627916607164-7b20241db935?auto=format&fit=crop&q=80&w=600',
+    imageUrl: '/temples/chalukya.jpg',
     location: 'Badami, Aihole, Pattadakal'
   },
   {
@@ -66,15 +66,15 @@ const MAJOR_DYNASTIES: DynastyCardItem[] = [
     name: 'Rashtrakuta',
     century: '8th–10th Century',
     kannadaPeriod: 'ರಾಷ್ಟ್ರಕೂಟ ಸಾಮ್ರಾಜ್ಯ',
-    imageUrl: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&q=80&w=600',
-    location: 'Manyakheta & Navalgund'
+    imageUrl: '/temples/rashtrakuta.jpg',
+    location: 'Manyakheta & Ellora'
   },
   {
     id: 'hoysala',
     name: 'Hoysala',
     century: '10th–14th Century',
     kannadaPeriod: 'ಹೊಯ್ಸಳ ಸಾಮ್ರಾಜ್ಯ',
-    imageUrl: 'https://images.unsplash.com/photo-1600100397608-f010f443b745?auto=format&fit=crop&q=80&w=600',
+    imageUrl: '/temples/hoysala.jpg',
     location: 'Belur & Halebidu'
   },
   {
@@ -82,7 +82,7 @@ const MAJOR_DYNASTIES: DynastyCardItem[] = [
     name: 'Vijayanagara',
     century: '14th–16th Century',
     kannadaPeriod: 'ವಿಜಯನಗರ ಸಾಮ್ರಾಜ್ಯ',
-    imageUrl: 'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&q=80&w=600',
+    imageUrl: '/temples/vijayanagara.jpg',
     location: 'Hampi & Hospet'
   },
   {
@@ -90,8 +90,16 @@ const MAJOR_DYNASTIES: DynastyCardItem[] = [
     name: 'Nayaka',
     century: '16th–18th Century',
     kannadaPeriod: 'ಕೆಳದಿ ನಾಯಕರು',
-    imageUrl: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&q=80&w=600',
+    imageUrl: '/temples/nayaka.jpg',
     location: 'Keladi, Ikkeri, Chitradurga'
+  },
+  {
+    id: 'ganga',
+    name: 'Western Ganga',
+    century: '4th–10th Century',
+    kannadaPeriod: 'ಪಶ್ಚಿಮ ಗಂಗರು',
+    imageUrl: '/temples/ganga.jpg',
+    location: 'Shravanabelagola & Talakadu'
   }
 ];
 
@@ -620,30 +628,43 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
             <div
               key={dyn.id}
               onClick={() => handleSelectDynasty(dyn)}
-              className="w-56 sm:w-64 shrink-0 rounded-xl overflow-hidden bg-slate-900 border border-[#E0D3BE] shadow-xs hover:shadow-lg transition-all cursor-pointer group flex flex-col justify-end relative h-64"
+              className="w-56 sm:w-64 shrink-0 rounded-xl overflow-hidden bg-[#1A120B] border border-[#DFCBB0]/60 shadow-xs hover:shadow-xl hover:border-[#B57C48] transition-all cursor-pointer group flex flex-col justify-between relative h-72"
             >
-              {/* Real Temple Photo */}
+              {/* Real Temple Heritage Photo */}
               <img
                 src={dyn.imageUrl}
                 alt={dyn.name}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85"
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 opacity-90"
                 onError={(e) => {
-                  e.currentTarget.src = 'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&q=80&w=600';
+                  e.currentTarget.src = '/temples/vijayanagara.jpg';
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#140E0C] via-[#140E0C]/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0F0A08] via-[#0F0A08]/50 to-black/20 group-hover:via-[#0F0A08]/40 transition-colors" />
+
+              {/* Top Location Badge */}
+              <div className="relative z-10 p-3 flex justify-end">
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-sans font-medium bg-black/55 backdrop-blur-xs text-[#EADDC9] border border-white/10">
+                  <MapPin className="w-2.5 h-2.5 text-[#E6AF65]" />
+                  <span className="truncate max-w-[140px]">{dyn.location}</span>
+                </span>
+              </div>
 
               {/* Dynasty Card Info */}
-              <div className="relative z-10 p-4 text-white space-y-0.5">
-                <h3 className="font-serif font-bold text-lg text-white group-hover:text-[#F2C58A] transition-colors leading-tight">
-                  {dyn.name}
-                </h3>
-                <p className="text-xs text-[#E8DEC8] font-mono">
-                  ({dyn.century})
+              <div className="relative z-10 p-4 text-white space-y-1">
+                <div className="flex items-baseline justify-between gap-1">
+                  <h3 className="font-serif font-bold text-lg text-white group-hover:text-[#F2C58A] transition-colors leading-tight drop-shadow-xs">
+                    {dyn.name}
+                  </h3>
+                </div>
+                <p className="text-xs text-[#F0E6D2] font-mono tracking-tight drop-shadow-xs">
+                  {dyn.century}
                 </p>
-                <p className="font-kannada text-[11px] text-[#DFCBB0] opacity-90 pt-0.5">
-                  {dyn.kannadaPeriod}
-                </p>
+                <div className="flex items-center justify-between pt-1 border-t border-white/15">
+                  <p className="font-kannada text-xs text-[#EADDC9] font-medium">
+                    {dyn.kannadaPeriod}
+                  </p>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#E6AF65] group-hover:translate-x-1 transition-transform" />
+                </div>
               </div>
             </div>
           ))}
