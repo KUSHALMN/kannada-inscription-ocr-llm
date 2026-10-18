@@ -44,8 +44,8 @@ const UNESCO_SITES: UnescoSite[] = [
     dynasty: 'Hoysala Empire',
     period: '12th Century CE (1117 – 1121 CE)',
     district: 'Hassan District, Karnataka',
-    imageUrl: 'https://images.unsplash.com/photo-1600100397608-f010f443b745?auto=format&fit=crop&q=80&w=1200',
-    secondaryImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Hoysaleswara_temple_in_Halebidu.jpg/1280px-Hoysaleswara_temple_in_Halebidu.jpg',
+    imageUrl: '/temples/hoysala.jpg',
+    secondaryImageUrl: '/temples/hoysala.jpg',
     quote: 'The soft chloritic schist allowed Hoysala epigraphists to engrave Kannada poetry with the precision of ivory carving and calligraphic fluidness.',
     epigraphHighlights: [
       'King Vishnuvardhana 1117 CE Talakadu victory consecration inscription',
@@ -64,8 +64,8 @@ const UNESCO_SITES: UnescoSite[] = [
     dynasty: 'Vijayanagara Empire',
     period: '14th – 16th Century CE',
     district: 'Vijayanagara District, Karnataka',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Stone_Chariot_Hampi.jpg/1280px-Stone_Chariot_Hampi.jpg',
-    secondaryImageUrl: 'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: '/temples/vijayanagara.jpg',
+    secondaryImageUrl: '/temples/vijayanagara.jpg',
     quote: 'The granite boulders of Tungabhadra cradle hundreds of royal decrees written in Nadugannada script documenting international trade and imperial endowments.',
     epigraphHighlights: [
       'Sri Krishnadevaraya 1509 CE coronation endowment slab in Virupaksha temple',
@@ -84,8 +84,8 @@ const UNESCO_SITES: UnescoSite[] = [
     dynasty: 'Badami Chalukyas',
     period: '7th – 8th Century CE',
     district: 'Bagalkote District, Karnataka',
-    imageUrl: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&q=80&w=1200',
-    secondaryImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Pattadakal_temple_complex.jpg/1280px-Pattadakal_temple_complex.jpg',
+    imageUrl: '/temples/chalukya.jpg',
+    secondaryImageUrl: '/temples/chalukya.jpg',
     quote: 'At Pattadakal, Northern Nagara and Southern Dravida architectural forms merged, consecrated by monumental Old Kannada royal prashastis.',
     epigraphHighlights: [
       'Queen Lokamahadevi victory inscription commemorating the capture of Kanchipuram',
