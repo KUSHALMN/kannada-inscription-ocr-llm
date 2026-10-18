@@ -206,6 +206,22 @@ export interface HistoricalRuleItem {
   exceptionsOrCaveats?: string;
   lastUpdated: string;
   isDraftPrototype: true;
+  confidenceScore?: number;
+  targetScriptLabel?: string;
+  periodLabel?: string;
+  reviewerName?: string;
+  reviewerTitle?: string;
+  reviewDate?: string;
+  ruleSummary?: string;
+  examplesList?: Array<{
+    title: string;
+    originalText: string;
+    iastText?: string;
+    modernText: string;
+    explanation: string;
+    tagType?: 'initial' | 'final' | 'medial';
+    snippetImg?: string;
+  }>;
 }
 
 /**
