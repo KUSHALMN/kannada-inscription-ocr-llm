@@ -41,7 +41,7 @@ const PLAYGROUND_SAMPLES: PlaygroundSample[] = [
     dynasty: 'Early Kadambas',
     century: 'c. 450 CE',
     site: 'Halmidi, Hassan District',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Halmidi_inscription.jpg/800px-Halmidi_inscription.jpg',
+    imageUrl: '/analysis-halmidi-stele.jpg',
     scriptEra: 'Kadamba Box-Headed Script',
     boundingBoxes: [
       { id: 'b1', top: 18, left: 22, width: 14, height: 10, char: 'ನ', iast: 'na' },
@@ -64,7 +64,7 @@ const PLAYGROUND_SAMPLES: PlaygroundSample[] = [
     dynasty: 'Badami Chalukyas',
     century: 'c. 700 CE',
     site: 'Badami Rock Cliff, Bagalkote',
-    imageUrl: 'https://images.unsplash.com/photo-1628082697850-d4fb7976e1a4?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: '/temples/chalukya.jpg',
     scriptEra: 'Badami Chalukya Script',
     boundingBoxes: [
       { id: 'b1', top: 25, left: 20, width: 20, height: 12, char: 'ಸಾಧುಗೆ', iast: 'sādhuge' },
@@ -85,7 +85,7 @@ const PLAYGROUND_SAMPLES: PlaygroundSample[] = [
     dynasty: 'Hoysala Empire',
     century: '1117 CE',
     site: 'Belur, Hassan District',
-    imageUrl: 'https://images.unsplash.com/photo-1600100397608-f010f443b745?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: '/temples/hoysala.jpg',
     scriptEra: 'Hoysala Calligraphic Script',
     boundingBoxes: [
       { id: 'b1', top: 20, left: 25, width: 24, height: 12, char: 'ಶ್ರೀಮತ್', iast: 'śrīmat' },
@@ -106,7 +106,7 @@ const PLAYGROUND_SAMPLES: PlaygroundSample[] = [
     dynasty: 'Vijayanagara Empire',
     century: '1509 CE',
     site: 'Hampi, Vijayanagara District',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Stone_Chariot_Hampi.jpg/1280px-Stone_Chariot_Hampi.jpg',
+    imageUrl: '/temples/vijayanagara.jpg',
     scriptEra: 'Vijayanagara Granite Script',
     boundingBoxes: [
       { id: 'b1', top: 22, left: 20, width: 24, height: 12, char: 'ಶುಭಮಸ್ತು', iast: 'śubhamastu' },
