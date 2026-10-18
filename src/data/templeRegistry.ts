@@ -44,10 +44,9 @@ export const KARNATAKA_TEMPLE_HERITAGE: TempleHeritageSite[] = [
       'Sculptor signature epigraphs of Dasoja of Balligavi and Mallitamma',
       'Ornate Hoysala Old Kannada inscriptions on star-shaped basement plinths'
     ],
-    imageUrl: 'https://images.unsplash.com/photo-1600100397608-f010f443b745?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: '/temples/hoysala.jpg',
     galleryImages: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Chennakeshava_Temple%2C_Belur.jpg/1280px-Chennakeshava_Temple%2C_Belur.jpg',
-      'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&q=80&w=1200'
+      '/temples/hoysala.jpg'
     ],
     unescoStatus: 'UNESCO World Heritage Site (Sacred Ensembles of the Hoysalas)',
     epigraphCount: 118,
@@ -75,10 +74,9 @@ export const KARNATAKA_TEMPLE_HERITAGE: TempleHeritageSite[] = [
       'Master carver labels: Kedaroja, Mallitamma, and Haripa',
       'Elaborate poetic epigraphs in Kanda and Vritta metres praising artists'
     ],
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Hoysaleswara_temple_in_Halebidu.jpg/1280px-Hoysaleswara_temple_in_Halebidu.jpg',
+    imageUrl: '/temples/hoysala.jpg',
     galleryImages: [
-      'https://images.unsplash.com/photo-1599732497206-8b9d031cce16?auto=format&fit=crop&q=80&w=1200',
-      'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=1200'
+      '/temples/hoysala.jpg'
     ],
     unescoStatus: 'UNESCO World Heritage Site (Sacred Ensembles of the Hoysalas)',
     epigraphCount: 94,
@@ -106,10 +104,9 @@ export const KARNATAKA_TEMPLE_HERITAGE: TempleHeritageSite[] = [
       'Bilingual Kannada and Telugu copper plate charters and granite pillars',
       'Endowments for the iconic Stone Chariot (ಗರುಡ ರಥ) and musical hall'
     ],
-    imageUrl: 'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: '/temples/vijayanagara.jpg',
     galleryImages: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Stone_Chariot_Hampi.jpg/1280px-Stone_Chariot_Hampi.jpg',
-      'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&q=80&w=1200'
+      '/temples/vijayanagara.jpg'
     ],
     unescoStatus: 'UNESCO World Heritage Site (Group of Monuments at Hampi)',
     epigraphCount: 520,
@@ -137,10 +134,9 @@ export const KARNATAKA_TEMPLE_HERITAGE: TempleHeritageSite[] = [
       'Mangalesha rock edict of 578 CE recording consecration of Vaishnava Cave 3',
       'Oldest cliffside epigraphical benchmarks in Karnataka in Chalukyan script'
     ],
-    imageUrl: 'https://images.unsplash.com/photo-1628082697850-d4fb7976e1a4?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: '/temples/chalukya.jpg',
     galleryImages: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Badami_cave_temple_1_front.jpg/1280px-Badami_cave_temple_1_front.jpg',
-      'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&q=80&w=1200'
+      '/temples/chalukya.jpg'
     ],
     unescoStatus: 'Tentative UNESCO World Heritage Site',
     epigraphCount: 85,
@@ -168,9 +164,9 @@ export const KARNATAKA_TEMPLE_HERITAGE: TempleHeritageSite[] = [
       'Architect recognition inscription honoring master builder Gundan Anivaritachari',
       'Bilingual Old Kannada and Sanskrit royal Prashastis'
     ],
-    imageUrl: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: '/temples/chalukya.jpg',
     galleryImages: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Pattadakal_temple_complex.jpg/1280px-Pattadakal_temple_complex.jpg'
+      '/temples/chalukya.jpg'
     ],
     unescoStatus: 'UNESCO World Heritage Site (1987)',
     epigraphCount: 42,
@@ -198,9 +194,9 @@ export const KARNATAKA_TEMPLE_HERITAGE: TempleHeritageSite[] = [
       'Historical record of Pulakeshin II defeating Emperor Harsha on Narmada River',
       'Earliest epigraphical cross-dating linking the Mahabharata war and Saka era'
     ],
-    imageUrl: 'https://images.unsplash.com/photo-1627916607164-7b20241db935?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: '/temples/chalukya.jpg',
     galleryImages: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Durga_Temple_Aihole.jpg/1280px-Durga_Temple_Aihole.jpg'
+      '/temples/chalukya.jpg'
     ],
     unescoStatus: 'Tentative UNESCO World Heritage Site',
     epigraphCount: 130,
@@ -228,9 +224,10 @@ export const KARNATAKA_TEMPLE_HERITAGE: TempleHeritageSite[] = [
       'Kadamba box-headed script (ಪೇಟಿಕಾ-ಶೀರ್ಷ ಲಿಪಿ)',
       '16 lines recording a battle honor grant by commanders Mrigesha and Nagendra'
     ],
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Halmidi_inscription.jpg/800px-Halmidi_inscription.jpg',
+    imageUrl: '/temples/kadamba.jpg',
     galleryImages: [
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Madhukeshwara_temple%2C_Banavasi.jpg/1280px-Madhukeshwara_temple%2C_Banavasi.jpg'
+      '/analysis-halmidi-stele.jpg',
+      '/temples/kadamba.jpg'
     ],
     epigraphCount: 6,
     description: 'The monumental cradle of the Kannada language. Discovered in 1936 by Dr. M. H. Krishna embedded in the village temple wall, this sandstone pillar proved that Kannada was an advanced administrative and literary tongue by the mid-5th century CE.',
@@ -257,13 +254,73 @@ export const KARNATAKA_TEMPLE_HERITAGE: TempleHeritageSite[] = [
       'Trilingual inscriptions in Old Kannada, Tamil, and early Marathi at Bahubali feet',
       'Over 800 Sallekhana memorial Nishidhi stone epigraphs across Chandragiri Hill'
     ],
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Gommateshwara_Statue%2C_Shravanabelagola.jpg/1280px-Gommateshwara_Statue%2C_Shravanabelagola.jpg',
+    imageUrl: '/temples/ganga.jpg',
     galleryImages: [
-      'https://images.unsplash.com/photo-1600100397608-f010f443b745?auto=format&fit=crop&q=80&w=1200'
+      '/temples/ganga.jpg'
     ],
     epigraphCount: 840,
     description: 'Home to the magnificent 57-foot granite monolith of Bahubali consecrated in 981 CE. The rocky slopes of Vindhyagiri and Chandragiri hills bear hundreds of poetic Kannada inscriptions tracing a millennium of Jain ascetic philosophy and statecraft.',
     kannadaDescription: 'ಕ್ರಿ.ಶ. ೯೮೧ರಲ್ಲಿ ಗಂಗರ ಮಹಾಮಂತ್ರಿ ಚಾವುಂಡರಾಯನಿಂದ ಪ್ರತಿಷ್ಠಾಪಿಸಲ್ಪಟ್ಟ ೫೭ ಅಡಿ ಎತ್ತರದ ಭವ್ಯ ಬಾಹುಬಲಿ ವಿಗ್ರಹ. ಪಾದಗಳ ಬಳಿ ಇರುವ "ಶ್ರೀ ಚಾವುಂಡರಾಜಂ ಮಾಡಿಸಿದಂ" ಎಂಬ ಹಳೆಗನ್ನಡ ಶಾಸನವು ಜಾಗತಿಕ ಇತಿಹಾಸದಲ್ಲಿ ಚಿರಪರಿಚಿತವಾಗಿದೆ.',
     sampleInscriptionId: 'ins-belur-004'
+  },
+  {
+    id: 'ashoka-maski-sannati',
+    name: 'Maski & Sannati Ashokan Edicts',
+    kannadaName: 'ಮಸ್ಕಿ ಮತ್ತು ಸನ್ನತಿ ಅಶೋಕ ಶಿಲಾಶಾಸನಗಳು',
+    dynasty: 'Maurya Empire (Karnataka)',
+    century: '3rd Century BCE (c. 250 BCE)',
+    location: {
+      village: 'Maski & Kanaganahalli',
+      taluk: 'Lingasugur / Chitapur',
+      district: 'Raichur & Kalaburagi',
+      state: 'Karnataka'
+    },
+    architecturalStyle: 'Mauryan Rock Inscriptions & Maha Stupa',
+    patronRuler: 'Emperor Ashoka the Great (Devanampriya)',
+    primaryDeityOrTheme: 'Dharma Edicts & Buddhist Architecture',
+    inscriptionHighlights: [
+      'Maski Minor Rock Edict explicitly naming Emperor Ashoka for the first time in history',
+      'Kanaganahalli Maha Stupa sculptural relief depicting "Rayo Asoko" (King Ashoka)',
+      'Ancient Brahmi script defining early epigraphical benchmarks in Karnataka'
+    ],
+    imageUrl: '/temples/ashoka.jpg',
+    galleryImages: [
+      '/temples/ashoka.jpg'
+    ],
+    unescoStatus: 'ASI Protected National Monument',
+    epigraphCount: 14,
+    description: 'The monumental cradle of historical epigraphy in South India. In 1915 at Maski, the inscription was discovered that confirmed "Devanampriya Priyadarsin" was Emperor Ashoka, forever altering world history.',
+    kannadaDescription: 'ಕರ್ನಾಟಕದಲ್ಲಿ ಪ್ರಾಚೀನ ಮೌರ್ಯ ಚಕ್ರವರ್ತಿ ಅಶೋಕನ ಅಸ್ತಿತ್ವವನ್ನು ಸಾಬೀತುಪಡಿಸಿದ ಐತಿಹಾಸಿಕ ಸ್ಥಳಗಳು. ಮಸ್ಕಿಯ ಬಂಡೆಯ ಮೇಲೆ "ದೇವಾನಾಂಪ್ರಿಯ ಅಶೋಕ" ಎಂದು ಕೆತ್ತಲಾದ ಬ್ರಾಹ್ಮೀ ಶಾಸನವು ವಿಶ್ವ ಇತಿಹಾಸದಲ್ಲೇ ಮಹತ್ವದ ಸ್ಥಾನ ಪಡೆದಿದೆ.',
+    sampleInscriptionId: 'ins-maski-002'
+  },
+  {
+    id: 'ikkeri-aghoreshwara-temple',
+    name: 'Ikkeri Aghoreshwara & Keladi Temples',
+    kannadaName: 'ಇಕ್ಕೇರಿ ಅಘೋರೇಶ್ವರ ಮತ್ತು ಕೆಳದಿ ರಾಮೇಶ್ವರ ದೇವಾಲಯ',
+    dynasty: 'Keladi Nayakas',
+    century: '16th Century CE',
+    location: {
+      village: 'Ikkeri',
+      taluk: 'Sagara',
+      district: 'Shivamogga',
+      state: 'Karnataka'
+    },
+    architecturalStyle: 'Nayaka Dravida (Dark Granite with Hoysala influences)',
+    patronRuler: 'Chaudappa Nayaka & Venkatappa Nayaka',
+    primaryDeityOrTheme: 'Lord Aghoreshwara & Parvati',
+    inscriptionHighlights: [
+      'Grants and architectural dedications by the Keladi rulers',
+      'Iconic stone-carved Nandi pavilion and soaring stepped shikhara',
+      'Granite steles detailing endowments to local artisans and scholars'
+    ],
+    imageUrl: '/temples/nayaka.jpg',
+    galleryImages: [
+      '/temples/nayaka.jpg'
+    ],
+    unescoStatus: 'ASI Protected National Monument',
+    epigraphCount: 28,
+    description: 'The principal royal temple of the Keladi Nayakas nestled in the Malenadu region. The vast dark granite temple boasts intricately carved pillars and inscriptions recording the independent Kannada kingdom that resisted Mughal expansion.',
+    kannadaDescription: 'ಮಲೆನಾಡಿನ ಮಡಿಲಿನಲ್ಲಿ ಕೆಳದಿ ನಾಯಕರು ನಿರ್ಮಿಸಿದ ಅದ್ಭುತ ಕಪ್ಪು ಗ್ರಾನೈಟ್ ದೇವಾಲಯ. ಇಲ್ಲಿನ ಬೃಹತ್ ನಂದಿ ಮಂಟಪ ಹಾಗೂ ಪ್ರಾಚೀನ ಕನ್ನಡ ಶಾಸನಗಳು ಕೆಳದಿ ಸಂಸ್ಥಾನದ ಸಾಂಸ್ಕೃತಿಕ ಗರಿಮೆಯನ್ನು ಸಾರುತ್ತವೆ.',
+    sampleInscriptionId: 'ins-mysuru-008'
   }
 ];
