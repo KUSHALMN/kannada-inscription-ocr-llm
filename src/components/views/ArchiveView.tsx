@@ -59,7 +59,7 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     material: 'Stone (Granite)',
     lineCount: 4,
     condition: 'Excellent',
-    imageUrl: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=600'
+    imageUrl: '/temples/ashoka.jpg'
   },
   {
     id: 'ins-aihole-005',
@@ -73,7 +73,7 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     material: 'Sandstone',
     lineCount: 3,
     condition: 'Excellent',
-    imageUrl: 'https://images.unsplash.com/photo-1627916607164-7b20241db935?auto=format&fit=crop&q=80&w=600'
+    imageUrl: '/temples/chalukya.jpg'
   },
   {
     id: 'ins-badami-003',
@@ -87,7 +87,7 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     material: 'Sandstone',
     lineCount: 3,
     condition: 'Excellent',
-    imageUrl: 'https://images.unsplash.com/photo-1628082697850-d4fb7976e1a4?auto=format&fit=crop&q=80&w=600'
+    imageUrl: '/temples/chalukya.jpg'
   },
   {
     id: 'ins-belur-004',
@@ -101,7 +101,7 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     material: 'Soapstone',
     lineCount: 5,
     condition: 'Good',
-    imageUrl: 'https://images.unsplash.com/photo-1600100397608-f010f443b745?auto=format&fit=crop&q=80&w=600'
+    imageUrl: '/temples/hoysala.jpg'
   },
   {
     id: 'ins-hampi-007',
@@ -115,7 +115,7 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     material: 'Granite',
     lineCount: 6,
     condition: 'Good',
-    imageUrl: 'https://images.unsplash.com/photo-1590076215667-875d4ef2d7ee?auto=format&fit=crop&q=80&w=600'
+    imageUrl: '/temples/vijayanagara.jpg'
   },
   {
     id: 'ins-mysuru-008',
@@ -129,7 +129,7 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     material: 'Granite',
     lineCount: 4,
     condition: 'Fair',
-    imageUrl: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&q=80&w=600'
+    imageUrl: '/temples/nayaka.jpg'
   },
   {
     id: 'ins-dharwad-006',
@@ -143,7 +143,7 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     material: 'Copper Plate',
     lineCount: 4,
     condition: 'Good',
-    imageUrl: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&q=80&w=600'
+    imageUrl: '/temples/rashtrakuta.jpg'
   },
   {
     id: 'ins-shravana-009',
@@ -157,7 +157,7 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     material: 'Granite',
     lineCount: 5,
     condition: 'Fair',
-    imageUrl: 'https://images.unsplash.com/photo-1599732497206-8b9d031cce16?auto=format&fit=crop&q=80&w=600'
+    imageUrl: '/temples/ganga.jpg'
   }
 ];
 
@@ -204,6 +204,15 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
         return false;
       }
 
+      if (selectedDynasties.length > 0) {
+        const itemText = (item.title + ' ' + item.periodBadge + ' ' + (item.rawInscriptionRecord?.historicalContext?.dynasty || '')).toLowerCase();
+        const matchesDyn = selectedDynasties.some((d) => {
+          const key = d.toLowerCase().split(' ')[0].replace(/[^a-z]/g, '');
+          return itemText.includes(key);
+        });
+        if (!matchesDyn) return false;
+      }
+
       if (selectedMaterials.length > 0 && !selectedMaterials.some((m) => item.material.includes(m))) {
         return false;
       }
@@ -214,7 +223,7 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
 
       return true;
     });
-  }, [fullCatalogue, searchQuery, selectedScripts, selectedMaterials, selectedConditions]);
+  }, [fullCatalogue, searchQuery, selectedScripts, selectedDynasties, selectedMaterials, selectedConditions]);
 
   const handleClearAll = () => {
     setSearchQuery('');
@@ -617,6 +626,45 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
                   <TableIcon className="w-4 h-4" />
                 </button>
               </div>
+            </div>
+
+            {/* Quick Dynasty Explorer Bar */}
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-[#8B4823] font-semibold shrink-0 pr-1">
+                Dynasty:
+              </span>
+              {[
+                { label: 'All Dynasties', key: '' },
+                { label: 'Ashoka', key: 'Ashoka' },
+                { label: 'Kadamba', key: 'Kadamba' },
+                { label: 'Chalukya', key: 'Chalukya' },
+                { label: 'Rashtrakuta', key: 'Rashtrakuta' },
+                { label: 'Hoysala', key: 'Hoysala' },
+                { label: 'Vijayanagara', key: 'Vijayanagara' },
+                { label: 'Nayaka', key: 'Nayaka' },
+                { label: 'Western Ganga', key: 'Ganga' },
+              ].map((dyn) => {
+                const isActive = dyn.key === '' ? selectedDynasties.length === 0 : selectedDynasties.includes(dyn.key);
+                return (
+                  <button
+                    key={dyn.label}
+                    onClick={() => {
+                      if (dyn.key === '') {
+                        setSelectedDynasties([]);
+                      } else {
+                        handleToggleFilter(selectedDynasties, setSelectedDynasties, dyn.key);
+                      }
+                    }}
+                    className={`shrink-0 px-2.5 py-1 rounded-full text-[11px] font-serif transition-colors border ${
+                      isActive
+                        ? 'bg-[#7C3517] text-white border-[#7C3517] font-semibold shadow-xs'
+                        : 'bg-[#FAF7F2] text-[#564337] border-[#DFCBB0] hover:border-[#7C3517] hover:text-[#1E120B]'
+                    }`}
+                  >
+                    {dyn.label}
+                  </button>
+                );
+              })}
             </div>
 
             {/* Quick Filter Status Strip */}

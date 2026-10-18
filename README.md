@@ -38,14 +38,17 @@ A fundamental challenge in epigraphy is that historical stone records interweave
 
 The platform integrates an institutional photographic atlas featuring verified UNESCO World Heritage and state-protected archaeological monuments that cradle Karnataka's epigraphical heritage:
 
-- **Belur Chennakeshava Temple (1117 CE):** Ornate Hoysala chloritic schist plinths with Old Kannada consecration inscriptions and master sculptor signatures (Dasoja, Mallitamma).
-- **Halebidu Hoysaleswara Temple (1121 CE):** 35,000 soapstone sculptures and epigraphs recording mercantile guild grants in Dwarasamudra.
-- **Hampi Vittala & Virupaksha Temples (1509 CE):** Imperial Vijayanagara granite steles, the iconic Stone Chariot (ಗರುಡ ರಥ), and Emperor Krishnadevaraya's coronation decrees.
-- **Badami Cave Temples & Cliffside (c. 700 CE):** Early Chalukyan red sandstone caves and the world-renowned Kappe Arabhatta Tripadi metre poetic inscription.
-- **Pattadakal UNESCO Complex (7th–8th C. CE):** Coronation grounds of Chalukya emperors with royal victory prashastis honoring master architect Gundan Anivaritachari.
-- **Aihole Meguti Temple & Durga Temple (634 CE):** The landmark Aihole Prashasti by court poet Ravikirti recording Pulakeshin II's triumph over Emperor Harsha.
-- **Halmidi Stele (c. 450 CE):** The earliest confirmed stone inscription in classical Kannada prose chiseled in Kadamba box-headed script.
-- **Shravanabelagola Vindhyagiri (981 CE):** Western Ganga colossus of Bahubali with ancient Kannada rock inscriptions celebrating minister Chavundaraya.
+- **Maski & Kanaganahalli Stupa (3rd C. BCE, Maurya Empire):** The historic discovery site where Emperor Ashoka was explicitly named by title (*Devanampriyasa Asoka*), featuring early Brahmi rock edicts.
+- **Halmidi & Banavasi Madhukeshwara Temple (c. 450 CE, Kadambas):** The earliest confirmed stone inscription in classical Kannada prose (*Halmidi Stele*) and stepped stone Kadamba shikhara architecture in the Western Ghats.
+- **Badami Cave Temples & Cliffside (c. 700 CE, Badami Chalukyas):** Early Chalukyan red sandstone caves chiseled into towering cliffs and the world-renowned Kappe Arabhatta Tripadi metre poetic inscription.
+- **Aihole Meguti Temple & Durga Temple (634 CE, Badami Chalukyas):** The landmark Aihole Prashasti by court poet Ravikirti recording Pulakeshin II's triumph over Emperor Harsha.
+- **Pattadakal UNESCO Complex (7th–8th C. CE, Badami Chalukyas):** Royal coronation grounds (*Kisuvolal*) synthesizing Nagara and Dravida styles, honoring master architect Gundan Anivaritachari.
+- **Kailasa Monolithic Temple & Manyakheta (8th–10th C. CE, Rashtrakuta Empire):** Monumental rock-cut monoliths with colossal elephant friezes, marking the golden era of *Kavirajamarga*.
+- **Belur Chennakeshava Temple (1117 CE, Hoysala Empire):** Ornate Hoysala chloritic schist plinths with Old Kannada consecration inscriptions and master sculptor signatures (Dasoja, Mallitamma).
+- **Halebidu Hoysaleswara Temple (1121 CE, Hoysala Empire):** 35,000 soapstone sculptures and epigraphs recording mercantile guild grants in Dwarasamudra.
+- **Shravanabelagola Vindhyagiri (981 CE, Western Ganga Dynasty):** 57-foot monolithic colossus of Bahubali Gommateshwara with ancient Kannada rock inscriptions celebrating minister Chavundaraya.
+- **Hampi Vittala & Virupaksha Temples (1509 CE, Vijayanagara Empire):** Imperial Vijayanagara granite steles, the iconic Stone Chariot (ಗರುಡ ರಥ), and Emperor Krishnadevaraya's coronation decrees.
+- **Ikkeri Aghoreshwara & Keladi Rameshwara (16th C. CE, Keladi Nayakas):** Dark granite Dravidian-Nayaka architecture with ornate pillared Nandi pavilions and royal Kannada grants.
 
 ---
 
