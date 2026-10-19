@@ -7,7 +7,6 @@ import { NewAnalysisView } from './components/views/NewAnalysisView';
 import { AnalysisResultsView } from './components/views/AnalysisResultsView';
 import { ArchiveView } from './components/views/ArchiveView';
 import { ScriptsLanguagesView } from './components/views/ScriptsLanguagesView';
-import { HistoricalRulesView } from './components/views/HistoricalRulesView';
 import { SettingsView } from './components/views/SettingsView';
 import { EmptyState } from './components/common/EmptyState';
 import { epigraphyService } from './services/epigraphyService';
@@ -75,7 +74,6 @@ export const App: React.FC = () => {
               onNavigateToAnalysis={() => setActiveTab('new_analysis')}
               onNavigateToArchive={() => setActiveTab('archive')}
               onNavigateToScripts={() => setActiveTab('scripts_languages')}
-              onNavigateToRules={() => setActiveTab('historical_rules')}
               onSelectInscription={handleSelectInscription}
             />
           )}
@@ -133,10 +131,6 @@ export const App: React.FC = () => {
               scripts={scripts}
               languages={languages}
             />
-          )}
-
-          {activeTab === 'historical_rules' && (
-            <HistoricalRulesView />
           )}
 
           {activeTab === 'settings' && (
