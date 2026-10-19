@@ -4,15 +4,13 @@ import {
   ScriptClassMetadata,
   SourceLanguageMetadata,
   InscriptionFilter,
-  AnalysisJobResult,
-  HistoricalRuleItem
+  AnalysisJobResult
 } from '../types';
 import {
   MOCK_INSCRIPTIONS,
   SCRIPT_CLASSES_METADATA,
   SOURCE_LANGUAGES_METADATA,
-  MOCK_RESEARCH_ACTIVITY,
-  MOCK_HISTORICAL_RULES
+  MOCK_RESEARCH_ACTIVITY
 } from '../data/mockInscriptions';
 
 /**
@@ -24,7 +22,6 @@ export class MockEpigraphyService implements IEpigraphyService {
   private inscriptions: InscriptionRecord[] = [...MOCK_INSCRIPTIONS];
   private scripts: ScriptClassMetadata[] = [...SCRIPT_CLASSES_METADATA];
   private languages: SourceLanguageMetadata[] = [...SOURCE_LANGUAGES_METADATA];
-  private rules: HistoricalRuleItem[] = [...MOCK_HISTORICAL_RULES];
 
   async getScriptClasses(): Promise<ScriptClassMetadata[]> {
     return Promise.resolve([...this.scripts]);
@@ -32,10 +29,6 @@ export class MockEpigraphyService implements IEpigraphyService {
 
   async getSourceLanguages(): Promise<SourceLanguageMetadata[]> {
     return Promise.resolve([...this.languages]);
-  }
-
-  async getHistoricalRules(): Promise<HistoricalRuleItem[]> {
-    return Promise.resolve([...this.rules]);
   }
 
   async getInscriptions(filter?: InscriptionFilter): Promise<InscriptionRecord[]> {
