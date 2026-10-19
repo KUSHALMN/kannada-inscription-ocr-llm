@@ -25,10 +25,9 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
   const navLinks = [
     { key: 'home' as NavItemKey, label: 'Home' },
     { key: 'archive' as NavItemKey, label: 'Inscriptions' },
-    { key: 'historical_rules' as NavItemKey, label: 'Rules Engine' },
     { key: 'dynasties' as any, label: 'Dynasties', isAnchor: true },
     { key: 'scripts_languages' as NavItemKey, label: 'Scripts & Language' },
-    { key: 'historical_rules' as NavItemKey, label: 'Research' },
+    { key: 'new_analysis' as NavItemKey, label: 'Analysis' },
     { key: 'overview' as NavItemKey, label: 'About' },
   ];
 
