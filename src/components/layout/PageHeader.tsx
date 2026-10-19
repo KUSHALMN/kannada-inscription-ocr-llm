@@ -18,26 +18,26 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`border-b border-slate-200 pb-6 mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4 relative ${className}`}>
-      <div className="space-y-1.5">
+    <div className={`border-b border-[#E8DEC8] pb-6 mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4 relative ${className}`}>
+      <div className="space-y-2">
         {categoryTag && (
           <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-            <span className="text-[11px] font-mono uppercase tracking-widest text-amber-700 font-semibold block">
+            <span className="w-2 h-2 rounded-full bg-[#E07A2B]"></span>
+            <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#8B4823] font-semibold block">
               {categoryTag}
             </span>
           </div>
         )}
-        <h1 className="text-2xl sm:text-3xl font-serif font-bold text-slate-900 tracking-tight flex items-center gap-3">
+        <h1 className="text-2xl sm:text-3xl font-serif font-bold text-[#1E120B] tracking-tight flex items-center gap-3">
           {title}
         </h1>
         {subtitle && (
-          <p className="text-xs sm:text-sm text-slate-600 font-serif leading-relaxed max-w-3xl">
+          <p className="text-xs sm:text-sm text-[#564337] font-serif leading-relaxed max-w-3xl">
             {subtitle}
           </p>
         )}
         {kannadaSubtitle && (
-          <p className="text-xs text-amber-800 font-kannada font-medium">
+          <p className="text-xs sm:text-sm text-[#8B4823] font-kannada font-semibold leading-relaxed">
             {kannadaSubtitle}
           </p>
         )}

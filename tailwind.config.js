@@ -64,7 +64,7 @@ export default {
       },
       fontFamily: {
         display: ['Cinzel', 'Cormorant Garamond', 'Georgia', 'serif'],
-        serif: ['Cinzel', 'Cormorant Garamond', 'Georgia', 'serif'],
+        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
         sans: ['"Plus Jakarta Sans"', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
         kannada: ['Noto Serif Kannada', 'Noto Sans Kannada', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'Menlo', 'monospace'],
