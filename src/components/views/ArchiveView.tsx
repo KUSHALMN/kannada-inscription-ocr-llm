@@ -62,12 +62,26 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     imageUrl: '/temples/ashoka.jpg'
   },
   {
+    id: 'ins-halmidi-001',
+    accessionNumber: 'KHA-EP-0450-HLM',
+    title: 'Halmidi Kadamba Stele Inscription',
+    kannadaTitle: 'ಹಲ್ಮಿಡಿ ಕದಂಬ ಶಿಲಾಶಾಸನ',
+    scriptBadge: 'Early Kannada',
+    periodBadge: '4th–6th Century CE',
+    status: 'verified',
+    location: 'Halmidi, Hassan',
+    material: 'Sandstone Stele',
+    lineCount: 16,
+    condition: 'Good',
+    imageUrl: '/temples/kadamba.jpg'
+  },
+  {
     id: 'ins-aihole-005',
     accessionNumber: 'KHA-EP-0634-AHL',
     title: 'Aihole Prashasti of Ravikirti (Pulakeshin II Victory Stele)',
     kannadaTitle: 'ಐಹೊಳೆ ರವಿಕೀರ್ತಿ ಪ್ರಶಸ್ತಿ',
     scriptBadge: 'Early Kannada',
-    periodBadge: '4th–6th Century CE',
+    periodBadge: '6th–8th Century CE',
     status: 'verified',
     location: 'Aihole (Aryapura), Bagalkote',
     material: 'Sandstone',
