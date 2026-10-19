@@ -23,7 +23,6 @@ interface LandingHomeViewProps {
   onNavigateToAnalysis: () => void;
   onNavigateToArchive: () => void;
   onNavigateToScripts: () => void;
-  onNavigateToRules: () => void;
   onSelectInscription: (inscription: InscriptionRecord) => void;
 }
 
@@ -108,7 +107,6 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
   onNavigateToAnalysis,
   onNavigateToArchive,
   onNavigateToScripts,
-  onNavigateToRules,
   onSelectInscription,
 }) => {
   // Live Demo Card Tab state
@@ -549,7 +547,7 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
 
           {/* Feature Card 4: Historical Context */}
           <div
-            onClick={onNavigateToRules}
+            onClick={onNavigateToArchive}
             className="p-5 bg-[#FAF7F2] border border-[#E8DEC8] rounded-xl hover:border-[#8B4823] hover:shadow-md transition-all cursor-pointer group flex items-center justify-between gap-4"
           >
             <div className="flex items-center gap-3.5">
