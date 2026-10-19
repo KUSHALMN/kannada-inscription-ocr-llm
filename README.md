@@ -160,7 +160,6 @@ kannada-inscription-ocr-llm/
     │       ├── AnalysisResultsView.tsx # 4-pillar results workspace with dynamic historical themes
     │       ├── ArchiveView.tsx    # Searchable archive register with grid and table modes
     │       ├── ScriptsLanguagesView.tsx # Paleographic explorer & script vs language decoupling
-    │       ├── HistoricalRulesView.tsx # Administrative rules engine with drawer & local editor
     │       └── SettingsView.tsx   # Institutional preferences, OCR thresholds, and model selection
     ├── App.tsx                    # Root application state & navigation router
     ├── index.css                  # Custom scrollbar, parchment tokens, typography rules
