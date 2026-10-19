@@ -234,7 +234,6 @@ export interface IEpigraphyService {
   getInscriptions(filter?: InscriptionFilter): Promise<InscriptionRecord[]>;
   getInscriptionById(id: string): Promise<InscriptionRecord | null>;
   getRecentActivity(): Promise<ResearchActivityItem[]>;
-  getHistoricalRules(): Promise<HistoricalRuleItem[]>;
   analyzeInscriptionImage(file: File | Blob): Promise<AnalysisJobResult>;
 }
 
