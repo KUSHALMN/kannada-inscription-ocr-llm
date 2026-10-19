@@ -273,11 +273,11 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
           }}
         >
           {/* Warm Parchment Gradient Wash on Left to match screenshot */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#FAF7F2] via-[#FAF7F2]/90 to-transparent sm:w-[65%] z-0" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#FAF7F2] via-[#FAF7F2]/95 to-transparent sm:w-[70%] z-0" />
 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             {/* Left Header Narrative */}
-            <div className="lg:col-span-8 space-y-3">
+            <div className="lg:col-span-8 space-y-3.5">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#E07A2B]" />
                 <span className="text-[11px] font-mono uppercase tracking-[0.2em] font-semibold text-[#8B4823]">
@@ -296,16 +296,16 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
               <p className="font-kannada text-xs sm:text-sm text-[#8B4823] font-semibold leading-relaxed">
                 ಕರ್ನಾಟಕದ ಪ್ರಾಚೀನ ಶಿಲಾಶಾಸನಗಳು ಮತ್ತು ತಾಮ್ರಪತ್ರಗಳ ದೃಢೀಕೃತ ಸಂಗ್ರಹ
               </p>
+
+              {/* Motto with authentic divider on readable parchment */}
+              <div className="pt-1 flex items-center gap-3 text-xs sm:text-sm font-serif text-[#6C584C] italic">
+                <span className="w-8 h-px bg-[#8B4823]/60" />
+                <span>“Stones that speak, Records that live.”</span>
+              </div>
             </div>
 
-            {/* Right Center Quote (from screenshot) */}
-            <div className="lg:col-span-4 hidden lg:flex flex-col items-center justify-center text-center p-4">
-              <p className="font-serif italic text-lg text-[#2B1B14] leading-snug drop-shadow-xs">
-                “Stones that speak, <br />
-                Records that live.”
-              </p>
-              <div className="w-16 h-0.5 bg-[#8B4823] mt-2" />
-            </div>
+            {/* Right side is kept clean so authentic carved stele background is completely unobstructed */}
+            <div className="lg:col-span-4 hidden lg:block" aria-hidden="true" />
           </div>
         </div>
       </div>
