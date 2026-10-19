@@ -5,7 +5,6 @@ import {
   SearchCode,
   Archive,
   Layers,
-  Scroll,
   Settings,
   ShieldCheck,
   X
@@ -17,7 +16,6 @@ export type NavItemKey =
   | 'new_analysis'
   | 'archive'
   | 'scripts_languages'
-  | 'historical_rules'
   | 'settings'
   | 'results';
 
@@ -64,12 +62,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
       label: 'Scripts & Languages',
       kannadaLabel: 'ಲಿಪಿ ಮತ್ತು ಭಾಷೆ',
       icon: <Layers className="w-4 h-4" />,
-    },
-    {
-      key: 'historical_rules',
-      label: 'Historical Rules',
-      kannadaLabel: 'ವ್ಯಾಕರಣ ಮತ್ತು ಛಂದಸ್ಸು',
-      icon: <Scroll className="w-4 h-4" />,
     },
     {
       key: 'settings',
