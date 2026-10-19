@@ -173,57 +173,6 @@ export interface InscriptionRecord {
   currentLocation: string; // e.g. "Government Museum, Bengaluru"
 }
 
-export type RuleType =
-  | 'phonological'
-  | 'morphological'
-  | 'orthographical'
-  | 'metric_poetic'
-  | 'paleographical';
-
-export type RuleReviewStatus =
-  | 'verified_epigraphist'
-  | 'preliminary_draft'
-  | 'needs_peer_review'
-  | 'deprecated';
-
-export interface HistoricalRuleItem {
-  id: string;
-  ruleCode: string;
-  ruleType: RuleType;
-  title: string;
-  kannadaTitle: string;
-  associatedScript: ScriptClassId | 'all';
-  associatedLanguage: SourceLanguageId | 'all';
-  ruleVersion: string;
-  evidenceSource: string;
-  reviewStatus: RuleReviewStatus;
-  applicability: string;
-  expertReviewRequired: boolean;
-  description: string;
-  modernKannadaRule: string;
-  inscriptionalExample: string;
-  modernEquivalent: string;
-  exceptionsOrCaveats?: string;
-  lastUpdated: string;
-  isDraftPrototype: true;
-  confidenceScore?: number;
-  targetScriptLabel?: string;
-  periodLabel?: string;
-  reviewerName?: string;
-  reviewerTitle?: string;
-  reviewDate?: string;
-  ruleSummary?: string;
-  examplesList?: Array<{
-    title: string;
-    originalText: string;
-    iastText?: string;
-    modernText: string;
-    explanation: string;
-    tagType?: 'initial' | 'final' | 'medial';
-    snippetImg?: string;
-  }>;
-}
-
 /**
  * Replaceable Service Adapter Contract
  * Used to decouple UI from backend, seamlessly swappable for FastAPI client.
