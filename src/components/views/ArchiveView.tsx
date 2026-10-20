@@ -19,7 +19,9 @@ import {
   Home,
   ChevronRight,
   BarChart3,
-  X
+  X,
+  Check,
+  Filter
 } from 'lucide-react';
 import heroBg from '../../assets/hero-bg.jpg';
 import sampleStele from '../../assets/sample-stele.jpg';
@@ -36,6 +38,7 @@ interface InscriptionArchiveCardItem {
   title: string;
   kannadaTitle: string;
   scriptBadge: string;
+  language: string;
   periodBadge: string;
   status: 'verified' | 'under_review' | 'provisional';
   location: string;
@@ -53,6 +56,7 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     title: 'Ashokan Pillar Inscription at Maski',
     kannadaTitle: 'ಮಸ್ಕಿ ಅಶೋಕ ಶಿಲಾಶಾಸನ',
     scriptBadge: 'Brahmi',
+    language: 'Prakrit',
     periodBadge: '3rd Century BCE',
     status: 'verified',
     location: 'Maski, Raichur',
@@ -67,6 +71,7 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     title: 'Halmidi Kadamba Stele Inscription',
     kannadaTitle: 'ಹಲ್ಮಿಡಿ ಕದಂಬ ಶಿಲಾಶಾಸನ',
     scriptBadge: 'Early Kannada',
+    language: 'Kannada',
     periodBadge: '4th–6th Century CE',
     status: 'verified',
     location: 'Halmidi, Hassan',
@@ -81,6 +86,7 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     title: 'Aihole Prashasti of Ravikirti (Pulakeshin II Victory Stele)',
     kannadaTitle: 'ಐಹೊಳೆ ರವಿಕೀರ್ತಿ ಪ್ರಶಸ್ತಿ',
     scriptBadge: 'Early Kannada',
+    language: 'Sanskrit',
     periodBadge: '6th–8th Century CE',
     status: 'verified',
     location: 'Aihole (Aryapura), Bagalkote',
@@ -95,6 +101,7 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     title: 'Kappe Arabhatta Inscription of Badami (Tripadi Metre)',
     kannadaTitle: 'ಬಾದಾಮಿ ಕಪ್ಪೆ ಅರಭಟ್ಟ ಶಿಲಾಶಾಸನ',
     scriptBadge: 'Early Kannada',
+    language: 'Kannada',
     periodBadge: '6th–8th Century CE',
     status: 'verified',
     location: 'Badami (Vatapi), Bagalkote',
@@ -109,6 +116,7 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     title: 'Belur Chennakeshava Temple Consecration Epigraph',
     kannadaTitle: 'ಬೇಲೂರು ಚೆನ್ನಕೇಶವ ದೇವಾಲಯ ಪ್ರತಿಷ್ಠಾಪನಾ ಶಾಸನ',
     scriptBadge: 'Halegannada',
+    language: 'Kannada',
     periodBadge: '10th–14th Century CE',
     status: 'verified',
     location: 'Belur, Hassan',
@@ -123,6 +131,7 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     title: 'Vijayanagara Royal Grant Inscription',
     kannadaTitle: 'ವಿಜಯನಗರ ರಾಜಶಾಸನ',
     scriptBadge: 'Halegannada',
+    language: 'Kannada',
     periodBadge: '14th–16th Century CE',
     status: 'verified',
     location: 'Hampi, Vijayanagara',
@@ -137,6 +146,7 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     title: 'Nayaka Period Temple Inscription',
     kannadaTitle: 'ನಾಯಕ ಕಾಲದ ದೇವಾಲಯ ಶಿಲಾಶಾಸನ',
     scriptBadge: 'Halegannada',
+    language: 'Kannada',
     periodBadge: '16th–18th Century CE',
     status: 'under_review',
     location: 'Srirangapatna, Mandya',
@@ -151,6 +161,7 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     title: 'Dharwad Hero Stone of Amoghavarsha Nrupatunga',
     kannadaTitle: 'ಅಮೋಘವರ್ಷ ನೃಪತುಂಗನ ಧಾರವಾಡ ವೀರಶಿಲಾಶಾಸನ',
     scriptBadge: 'Sanskrit',
+    language: 'Sanskrit',
     periodBadge: '8th–10th Century CE',
     status: 'verified',
     location: 'Dharwad, Dharwad',
@@ -165,6 +176,7 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     title: 'Shravanabelagola Jain Inscription',
     kannadaTitle: 'ಶ್ರವಣಬೆಳಗೊಳ ಜೈನ ಶಿಲಾಶಾಸನ',
     scriptBadge: 'Halegannada',
+    language: 'Kannada',
     periodBadge: '12th–13th Century CE',
     status: 'provisional',
     location: 'Shravanabelagola, Hassan',
@@ -181,11 +193,22 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
   onNavigateHome,
 }) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [selectedScripts, setSelectedScripts] = useState<string[]>([]);
-  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
-  const [selectedDynasties, setSelectedDynasties] = useState<string[]>([]);
-  const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
-  const [selectedConditions, setSelectedConditions] = useState<string[]>([]);
+  
+  // Applied filters that determine active query results
+  const [appliedScripts, setAppliedScripts] = useState<string[]>([]);
+  const [appliedLanguages, setAppliedLanguages] = useState<string[]>([]);
+  const [appliedDynasties, setAppliedDynasties] = useState<string[]>([]);
+  const [appliedMaterials, setAppliedMaterials] = useState<string[]>([]);
+  const [appliedConditions, setAppliedConditions] = useState<string[]>([]);
+
+  // Draft filters pending user clicking "Apply"
+  const [draftScripts, setDraftScripts] = useState<string[]>([]);
+  const [draftLanguages, setDraftLanguages] = useState<string[]>([]);
+  const [draftDynasties, setDraftDynasties] = useState<string[]>([]);
+  const [draftMaterials, setDraftMaterials] = useState<string[]>([]);
+  const [draftConditions, setDraftConditions] = useState<string[]>([]);
+
+  const [justApplied, setJustApplied] = useState<boolean>(false);
   const [sortBy, setSortBy] = useState<string>('chronological_asc');
   const [viewMode, setViewMode] = useState<'grid' | 'list' | 'table'>('grid');
 
@@ -202,7 +225,53 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
     });
   }, [inscriptions]);
 
+  // Actual filtered items (driven by applied filters)
   const filteredItems = useMemo(() => {
+    return fullCatalogue.filter((item) => {
+      if (searchQuery.trim() !== '') {
+        const q = searchQuery.toLowerCase().trim();
+        const matchesQuery =
+          item.title.toLowerCase().includes(q) ||
+          item.kannadaTitle.toLowerCase().includes(q) ||
+          item.accessionNumber.toLowerCase().includes(q) ||
+          item.location.toLowerCase().includes(q) ||
+          item.scriptBadge.toLowerCase().includes(q) ||
+          item.language.toLowerCase().includes(q) ||
+          item.material.toLowerCase().includes(q);
+        if (!matchesQuery) return false;
+      }
+
+      if (appliedScripts.length > 0 && !appliedScripts.includes(item.scriptBadge)) {
+        return false;
+      }
+
+      if (appliedLanguages.length > 0 && !appliedLanguages.includes(item.language)) {
+        return false;
+      }
+
+      if (appliedDynasties.length > 0) {
+        const itemText = (item.title + ' ' + item.periodBadge + ' ' + (item.rawInscriptionRecord?.historicalContext?.dynasty || '')).toLowerCase();
+        const matchesDyn = appliedDynasties.some((d) => {
+          const key = d.toLowerCase().split(' ')[0].replace(/[^a-z]/g, '');
+          return itemText.includes(key);
+        });
+        if (!matchesDyn) return false;
+      }
+
+      if (appliedMaterials.length > 0 && !appliedMaterials.some((m) => item.material.toLowerCase().includes(m.toLowerCase()))) {
+        return false;
+      }
+
+      if (appliedConditions.length > 0 && !appliedConditions.includes(item.condition)) {
+        return false;
+      }
+
+      return true;
+    });
+  }, [fullCatalogue, searchQuery, appliedScripts, appliedLanguages, appliedDynasties, appliedMaterials, appliedConditions]);
+
+  // Preview count matching the current draft checkboxes (for dynamic button feedback)
+  const previewDraftCount = useMemo(() => {
     return fullCatalogue.filter((item) => {
       if (searchQuery.trim() !== '') {
         const q = searchQuery.toLowerCase().trim();
@@ -213,46 +282,109 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
           item.location.toLowerCase().includes(q);
         if (!matchesQuery) return false;
       }
-
-      if (selectedScripts.length > 0 && !selectedScripts.includes(item.scriptBadge)) {
-        return false;
-      }
-
-      if (selectedDynasties.length > 0) {
+      if (draftScripts.length > 0 && !draftScripts.includes(item.scriptBadge)) return false;
+      if (draftLanguages.length > 0 && !draftLanguages.includes(item.language)) return false;
+      if (draftDynasties.length > 0) {
         const itemText = (item.title + ' ' + item.periodBadge + ' ' + (item.rawInscriptionRecord?.historicalContext?.dynasty || '')).toLowerCase();
-        const matchesDyn = selectedDynasties.some((d) => {
+        const matchesDyn = draftDynasties.some((d) => {
           const key = d.toLowerCase().split(' ')[0].replace(/[^a-z]/g, '');
           return itemText.includes(key);
         });
         if (!matchesDyn) return false;
       }
-
-      if (selectedMaterials.length > 0 && !selectedMaterials.some((m) => item.material.includes(m))) {
-        return false;
-      }
-
-      if (selectedConditions.length > 0 && !selectedConditions.includes(item.condition)) {
-        return false;
-      }
-
+      if (draftMaterials.length > 0 && !draftMaterials.some((m) => item.material.toLowerCase().includes(m.toLowerCase()))) return false;
+      if (draftConditions.length > 0 && !draftConditions.includes(item.condition)) return false;
       return true;
-    });
-  }, [fullCatalogue, searchQuery, selectedScripts, selectedDynasties, selectedMaterials, selectedConditions]);
+    }).length;
+  }, [fullCatalogue, searchQuery, draftScripts, draftLanguages, draftDynasties, draftMaterials, draftConditions]);
+
+  const draftCount = draftScripts.length + draftLanguages.length + draftDynasties.length + draftMaterials.length + draftConditions.length;
+  const appliedCount = appliedScripts.length + appliedLanguages.length + appliedDynasties.length + appliedMaterials.length + appliedConditions.length;
+
+  const hasPendingChanges = useMemo(() => {
+    const isDifferent = (a: string[], b: string[]) => {
+      if (a.length !== b.length) return true;
+      const sortedA = [...a].sort();
+      const sortedB = [...b].sort();
+      return sortedA.some((val, idx) => val !== sortedB[idx]);
+    };
+    return (
+      isDifferent(draftScripts, appliedScripts) ||
+      isDifferent(draftLanguages, appliedLanguages) ||
+      isDifferent(draftDynasties, appliedDynasties) ||
+      isDifferent(draftMaterials, appliedMaterials) ||
+      isDifferent(draftConditions, appliedConditions)
+    );
+  }, [draftScripts, appliedScripts, draftLanguages, appliedLanguages, draftDynasties, appliedDynasties, draftMaterials, appliedMaterials, draftConditions, appliedConditions]);
+
+  const handleApplyFilters = () => {
+    setAppliedScripts([...draftScripts]);
+    setAppliedLanguages([...draftLanguages]);
+    setAppliedDynasties([...draftDynasties]);
+    setAppliedMaterials([...draftMaterials]);
+    setAppliedConditions([...draftConditions]);
+    setJustApplied(true);
+    setTimeout(() => {
+      setJustApplied(false);
+    }, 1800);
+  };
 
   const handleClearAll = () => {
     setSearchQuery('');
-    setSelectedScripts([]);
-    setSelectedLanguages([]);
-    setSelectedDynasties([]);
-    setSelectedMaterials([]);
-    setSelectedConditions([]);
+    setDraftScripts([]);
+    setAppliedScripts([]);
+    setDraftLanguages([]);
+    setAppliedLanguages([]);
+    setDraftDynasties([]);
+    setAppliedDynasties([]);
+    setDraftMaterials([]);
+    setAppliedMaterials([]);
+    setDraftConditions([]);
+    setAppliedConditions([]);
   };
 
-  const handleToggleFilter = (list: string[], setList: React.Dispatch<React.SetStateAction<string[]>>, val: string) => {
+  const handleToggleDraftFilter = (list: string[], setList: React.Dispatch<React.SetStateAction<string[]>>, val: string) => {
     if (list.includes(val)) {
       setList(list.filter((x) => x !== val));
     } else {
       setList([...list, val]);
+    }
+  };
+
+  const handleRemoveAppliedFilter = (type: 'script' | 'language' | 'dynasty' | 'material' | 'condition', val: string) => {
+    if (type === 'script') {
+      const next = appliedScripts.filter((x) => x !== val);
+      setAppliedScripts(next);
+      setDraftScripts(next);
+    } else if (type === 'language') {
+      const next = appliedLanguages.filter((x) => x !== val);
+      setAppliedLanguages(next);
+      setDraftLanguages(next);
+    } else if (type === 'dynasty') {
+      const next = appliedDynasties.filter((x) => x !== val);
+      setAppliedDynasties(next);
+      setDraftDynasties(next);
+    } else if (type === 'material') {
+      const next = appliedMaterials.filter((x) => x !== val);
+      setAppliedMaterials(next);
+      setDraftMaterials(next);
+    } else if (type === 'condition') {
+      const next = appliedConditions.filter((x) => x !== val);
+      setAppliedConditions(next);
+      setDraftConditions(next);
+    }
+  };
+
+  const handleQuickDynastyClick = (dynKey: string) => {
+    if (dynKey === '') {
+      setDraftDynasties([]);
+      setAppliedDynasties([]);
+    } else {
+      const next = appliedDynasties.includes(dynKey)
+        ? appliedDynasties.filter((x) => x !== dynKey)
+        : [...appliedDynasties, dynKey];
+      setDraftDynasties(next);
+      setAppliedDynasties(next);
     }
   };
 
@@ -407,16 +539,57 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* ==================== LEFT FILTERS SIDEBAR ==================== */}
           <aside className="lg:col-span-3 bg-[#FAF7F2] border border-[#E8DEC8] rounded-xl p-5 space-y-6 shadow-xs">
+            {/* Sidebar Header with prominent Apply Button */}
             <div className="flex items-center justify-between border-b border-[#E8DEC8] pb-3">
-              <h2 className="font-serif font-bold text-sm tracking-wider uppercase text-[#1E120B]">
-                FILTERS
-              </h2>
-              <button
-                onClick={handleClearAll}
-                className="text-xs font-serif text-[#7C3517] hover:underline font-semibold"
-              >
-                Clear All
-              </button>
+              <div className="flex items-center gap-2">
+                <h2 className="font-cinzel font-bold text-sm tracking-wider uppercase text-[#1E120B]">
+                  FILTERS
+                </h2>
+                {appliedCount > 0 && (
+                  <span className="w-5 h-5 rounded-full bg-[#8C3B18] text-white text-[10px] font-cinzel font-bold flex items-center justify-center">
+                    {appliedCount}
+                  </span>
+                )}
+              </div>
+              <div className="flex items-center gap-2">
+                {(appliedCount > 0 || draftCount > 0) && (
+                  <button
+                    onClick={handleClearAll}
+                    className="text-xs font-serif text-[#7C3517] hover:underline font-semibold"
+                  >
+                    Clear All
+                  </button>
+                )}
+                <button
+                  id="apply-filters-button-top"
+                  onClick={handleApplyFilters}
+                  className={`px-3.5 py-1.5 rounded-md text-xs font-cinzel font-bold flex items-center gap-1.5 transition-all shadow-xs cursor-pointer ${
+                    justApplied
+                      ? 'bg-emerald-700 text-white'
+                      : hasPendingChanges
+                      ? 'bg-[#8C3B18] hover:bg-[#722F13] text-white ring-2 ring-amber-400/60 shadow-sm'
+                      : 'bg-[#8C3B18] hover:bg-[#722F13] text-white'
+                  }`}
+                  title="Apply selected filters"
+                >
+                  {justApplied ? (
+                    <>
+                      <Check className="w-3.5 h-3.5" />
+                      <span>Applied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Filter className="w-3.5 h-3.5" />
+                      <span>Apply</span>
+                      {hasPendingChanges && (
+                        <span className="w-4 h-4 rounded-full bg-white text-[#8C3B18] text-[9px] font-bold flex items-center justify-center">
+                          {draftCount}
+                        </span>
+                      )}
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
 
             {/* Accordion 1: Script (Historical Era) */}
@@ -427,17 +600,16 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
               </div>
               <div className="space-y-1.5 pl-0.5">
                 {[
-                  { label: 'Brahmi', count: 3 },
-                  { label: 'Early Kannada', count: 2 },
-                  { label: 'Halegannada', count: 5 },
-                  { label: 'Sanskrit', count: 2 },
-                  { label: 'Grantha', count: 1 },
+                  { label: 'Brahmi', count: 1 },
+                  { label: 'Early Kannada', count: 3 },
+                  { label: 'Halegannada', count: 4 },
+                  { label: 'Sanskrit', count: 1 },
                 ].map((s) => (
                   <label key={s.label} className="flex items-center gap-2 cursor-pointer hover:text-[#1E120B]">
                     <input
                       type="checkbox"
-                      checked={selectedScripts.includes(s.label)}
-                      onChange={() => handleToggleFilter(selectedScripts, setSelectedScripts, s.label)}
+                      checked={draftScripts.includes(s.label)}
+                      onChange={() => handleToggleDraftFilter(draftScripts, setDraftScripts, s.label)}
                       className="rounded border-[#DFCBB0] text-[#7C3517] focus:ring-[#7C3517]"
                     />
                     <span>{s.label} ({s.count})</span>
@@ -454,16 +626,15 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
               </div>
               <div className="space-y-1.5 pl-0.5">
                 {[
-                  { label: 'Kannada', count: 4 },
+                  { label: 'Kannada', count: 6 },
                   { label: 'Sanskrit', count: 2 },
                   { label: 'Prakrit', count: 1 },
-                  { label: 'Tamil', count: 1 },
                 ].map((l) => (
                   <label key={l.label} className="flex items-center gap-2 cursor-pointer hover:text-[#1E120B]">
                     <input
                       type="checkbox"
-                      checked={selectedLanguages.includes(l.label)}
-                      onChange={() => handleToggleFilter(selectedLanguages, setSelectedLanguages, l.label)}
+                      checked={draftLanguages.includes(l.label)}
+                      onChange={() => handleToggleDraftFilter(draftLanguages, setDraftLanguages, l.label)}
                       className="rounded border-[#DFCBB0] text-[#7C3517] focus:ring-[#7C3517]"
                     />
                     <span>{l.label} ({l.count})</span>
@@ -481,26 +652,24 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
               <div className="space-y-1.5 pl-0.5">
                 {[
                   { label: 'Ashoka', count: 1 },
-                  { label: 'Kadamba', count: 2 },
-                  { label: 'Chalukya', count: 1 },
+                  { label: 'Kadamba', count: 1 },
+                  { label: 'Chalukya', count: 2 },
                   { label: 'Rashtrakuta', count: 1 },
                   { label: 'Hoysala', count: 1 },
                   { label: 'Vijayanagara', count: 1 },
                   { label: 'Nayaka', count: 1 },
+                  { label: 'Ganga', count: 1 },
                 ].map((d) => (
                   <label key={d.label} className="flex items-center gap-2 cursor-pointer hover:text-[#1E120B]">
                     <input
                       type="checkbox"
-                      checked={selectedDynasties.includes(d.label)}
-                      onChange={() => handleToggleFilter(selectedDynasties, setSelectedDynasties, d.label)}
+                      checked={draftDynasties.includes(d.label)}
+                      onChange={() => handleToggleDraftFilter(draftDynasties, setDraftDynasties, d.label)}
                       className="rounded border-[#DFCBB0] text-[#7C3517] focus:ring-[#7C3517]"
                     />
                     <span>{d.label} ({d.count})</span>
                   </label>
                 ))}
-                <button className="text-[11px] text-[#7C3517] font-semibold hover:underline block pt-1">
-                  Show more
-                </button>
               </div>
             </div>
 
@@ -533,14 +702,14 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
               </div>
               <div className="space-y-1.5 pl-0.5">
                 {[
-                  { label: 'Stone', count: 6 },
-                  { label: 'Copper Plate', count: 2 },
+                  { label: 'Stone', count: 8 },
+                  { label: 'Copper Plate', count: 1 },
                 ].map((m) => (
                   <label key={m.label} className="flex items-center gap-2 cursor-pointer hover:text-[#1E120B]">
                     <input
                       type="checkbox"
-                      checked={selectedMaterials.includes(m.label)}
-                      onChange={() => handleToggleFilter(selectedMaterials, setSelectedMaterials, m.label)}
+                      checked={draftMaterials.includes(m.label)}
+                      onChange={() => handleToggleDraftFilter(draftMaterials, setDraftMaterials, m.label)}
                       className="rounded border-[#DFCBB0] text-[#7C3517] focus:ring-[#7C3517]"
                     />
                     <span>{m.label} ({m.count})</span>
@@ -557,20 +726,58 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
               </div>
               <div className="space-y-1.5 pl-0.5">
                 {[
-                  { label: 'Excellent', count: 4 },
-                  { label: 'Good', count: 3 },
-                  { label: 'Fair', count: 1 },
+                  { label: 'Excellent', count: 3 },
+                  { label: 'Good', count: 4 },
+                  { label: 'Fair', count: 2 },
                 ].map((c) => (
                   <label key={c.label} className="flex items-center gap-2 cursor-pointer hover:text-[#1E120B]">
                     <input
                       type="checkbox"
-                      checked={selectedConditions.includes(c.label)}
-                      onChange={() => handleToggleFilter(selectedConditions, setSelectedConditions, c.label)}
+                      checked={draftConditions.includes(c.label)}
+                      onChange={() => handleToggleDraftFilter(draftConditions, setDraftConditions, c.label)}
                       className="rounded border-[#DFCBB0] text-[#7C3517] focus:ring-[#7C3517]"
                     />
                     <span>{c.label} ({c.count})</span>
                   </label>
                 ))}
+              </div>
+            </div>
+
+            {/* Bottom Apply & Summary Action Bar */}
+            <div className="pt-4 border-t border-[#E8DEC8] space-y-2.5">
+              <button
+                id="apply-filters-button-bottom"
+                onClick={handleApplyFilters}
+                className={`w-full py-2.5 px-4 text-white font-cinzel font-bold text-xs rounded-lg shadow-sm hover:shadow transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98] ${
+                  justApplied
+                    ? 'bg-emerald-700'
+                    : hasPendingChanges
+                    ? 'bg-[#8C3B18] hover:bg-[#722F13] ring-2 ring-amber-400/60'
+                    : 'bg-[#8C3B18] hover:bg-[#722F13]'
+                }`}
+              >
+                {justApplied ? (
+                  <>
+                    <Check className="w-4 h-4" />
+                    <span>Filters Applied Successfully!</span>
+                  </>
+                ) : (
+                  <>
+                    <Check className="w-4 h-4" />
+                    <span>Apply Filters {draftCount > 0 ? `(${draftCount})` : ''}</span>
+                  </>
+                )}
+              </button>
+              <div className="flex items-center justify-between text-xs text-[#7C695C] px-1 font-serif">
+                <span>{previewDraftCount} matching inscription{previewDraftCount !== 1 ? 's' : ''}</span>
+                {(appliedCount > 0 || draftCount > 0) && (
+                  <button
+                    onClick={handleClearAll}
+                    className="text-[#8C3B18] hover:underline font-semibold"
+                  >
+                    Clear All
+                  </button>
+                )}
               </div>
             </div>
           </aside>
@@ -644,7 +851,7 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
 
             {/* Quick Dynasty Explorer Bar */}
             <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
-              <span className="text-[11px] font-mono uppercase tracking-wider text-[#8B4823] font-semibold shrink-0 pr-1">
+              <span className="text-xs font-cinzel font-bold text-[#8C3B18] shrink-0 pr-1 tracking-wider uppercase">
                 Dynasty:
               </span>
               {[
@@ -658,17 +865,11 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
                 { label: 'Nayaka', key: 'Nayaka' },
                 { label: 'Western Ganga', key: 'Ganga' },
               ].map((dyn) => {
-                const isActive = dyn.key === '' ? selectedDynasties.length === 0 : selectedDynasties.includes(dyn.key);
+                const isActive = dyn.key === '' ? appliedDynasties.length === 0 : appliedDynasties.includes(dyn.key);
                 return (
                   <button
                     key={dyn.label}
-                    onClick={() => {
-                      if (dyn.key === '') {
-                        setSelectedDynasties([]);
-                      } else {
-                        handleToggleFilter(selectedDynasties, setSelectedDynasties, dyn.key);
-                      }
-                    }}
+                    onClick={() => handleQuickDynastyClick(dyn.key)}
                     className={`shrink-0 px-2.5 py-1 rounded-full text-[11px] font-serif transition-colors border ${
                       isActive
                         ? 'bg-[#7C3517] text-white border-[#7C3517] font-semibold shadow-xs'
@@ -681,22 +882,91 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
               })}
             </div>
 
-            {/* Quick Filter Status Strip */}
+            {/* Quick Filter Status Strip & Active Dynamic Chips */}
             <div className="flex flex-wrap items-center gap-2 text-xs font-serif pt-1">
               <span className="font-bold text-[#1E120B]">
-                {filteredItems.length} Inscriptions Found
+                {filteredItems.length} Inscription{filteredItems.length !== 1 ? 's' : ''} Found
               </span>
 
-              {/* Filter Chips matching screenshot */}
-              {['All Scripts', 'All Languages', 'All Periods', 'All Dynasties', 'All Status'].map((chip) => (
+              {appliedCount === 0 && (
+                <span className="text-[11px] text-[#7C695C] italic">
+                  (Showing complete archival corpus)
+                </span>
+              )}
+
+              {appliedScripts.map((s) => (
                 <span
-                  key={chip}
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#FAF7F2] border border-[#DFCBB0] text-[11px] text-[#564337] shadow-xs"
+                  key={s}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#FAF7F2] border border-[#8C3B18]/40 text-[11px] text-[#8C3B18] font-medium shadow-xs"
                 >
-                  <span>{chip}</span>
-                  <X className="w-3 h-3 text-[#A8988B] hover:text-[#7C3517] cursor-pointer" />
+                  <span>Script: {s}</span>
+                  <X
+                    onClick={() => handleRemoveAppliedFilter('script', s)}
+                    className="w-3 h-3 text-[#8C3B18] hover:scale-110 cursor-pointer"
+                  />
                 </span>
               ))}
+
+              {appliedLanguages.map((l) => (
+                <span
+                  key={l}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#FAF7F2] border border-[#8C3B18]/40 text-[11px] text-[#8C3B18] font-medium shadow-xs"
+                >
+                  <span>Lang: {l}</span>
+                  <X
+                    onClick={() => handleRemoveAppliedFilter('language', l)}
+                    className="w-3 h-3 text-[#8C3B18] hover:scale-110 cursor-pointer"
+                  />
+                </span>
+              ))}
+
+              {appliedDynasties.map((d) => (
+                <span
+                  key={d}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#FAF7F2] border border-[#8C3B18]/40 text-[11px] text-[#8C3B18] font-medium shadow-xs"
+                >
+                  <span>Dynasty: {d}</span>
+                  <X
+                    onClick={() => handleRemoveAppliedFilter('dynasty', d)}
+                    className="w-3 h-3 text-[#8C3B18] hover:scale-110 cursor-pointer"
+                  />
+                </span>
+              ))}
+
+              {appliedMaterials.map((m) => (
+                <span
+                  key={m}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#FAF7F2] border border-[#8C3B18]/40 text-[11px] text-[#8C3B18] font-medium shadow-xs"
+                >
+                  <span>Material: {m}</span>
+                  <X
+                    onClick={() => handleRemoveAppliedFilter('material', m)}
+                    className="w-3 h-3 text-[#8C3B18] hover:scale-110 cursor-pointer"
+                  />
+                </span>
+              ))}
+
+              {appliedConditions.map((c) => (
+                <span
+                  key={c}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#FAF7F2] border border-[#8C3B18]/40 text-[11px] text-[#8C3B18] font-medium shadow-xs"
+                >
+                  <span>Condition: {c}</span>
+                  <X
+                    onClick={() => handleRemoveAppliedFilter('condition', c)}
+                    className="w-3 h-3 text-[#8C3B18] hover:scale-110 cursor-pointer"
+                  />
+                </span>
+              ))}
+
+              {appliedCount > 0 && (
+                <button
+                  onClick={handleClearAll}
+                  className="text-[11px] text-[#8C3B18] hover:underline font-semibold ml-1 cursor-pointer"
+                >
+                  Clear all ({appliedCount})
+                </button>
+              )}
             </div>
 
             {/* Inscription Cards Grid (4 columns x 2 rows = 8 cards) */}
