@@ -15,16 +15,16 @@ export const HeroBannerSection: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-[#FAF6EE] via-transparent to-transparent lg:hidden" />
       </div>
 
-      {/* Floating Quote Box on top right */}
-      <div className="hidden lg:block absolute top-7 right-8 z-10 max-w-xs">
-        <div className="bg-black/45 backdrop-blur-md border border-white/20 p-5 rounded-2xl text-white shadow-xl space-y-2">
-          <span className="text-[#F59E0B] font-serif text-4xl leading-none select-none block">
+      {/* Epigraphical Quotation Badge - Positioned in the golden sky to avoid overlapping the stone stele */}
+      <div className="hidden lg:block absolute top-6 xl:top-8 right-[270px] lg:right-[300px] xl:right-[360px] z-10 max-w-[220px]">
+        <div className="bg-[#FAF6EE]/90 backdrop-blur-xs border border-[#EADBCA] p-3.5 rounded-xl shadow-2xs space-y-1.5 transition-transform hover:-translate-y-0.5">
+          <span className="text-[#C05621] font-serif text-2xl leading-none select-none block">
             “
           </span>
-          <p className="font-serif italic text-sm text-stone-100 leading-snug">
+          <p className="font-serif italic text-xs text-[#24150E] leading-snug font-semibold">
             Stones are not silent; they speak in a language of time.
           </p>
-          <div className="pt-1 text-[11px] font-mono tracking-wider text-amber-200/90 font-medium">
+          <div className="pt-0.5 text-[10px] font-serif text-[#7C695C] font-bold">
             — Epigraphical Research Initiative
           </div>
         </div>
