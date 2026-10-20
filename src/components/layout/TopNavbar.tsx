@@ -56,15 +56,19 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#EADBCA] shadow-2xs">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 py-3 flex items-center justify-between gap-4">
+    <header className="sticky top-0 z-50 bg-white/65 backdrop-blur-2xl backdrop-saturate-200 border-b border-white/60 shadow-[inset_0_1px_1.5px_0_rgba(255,255,255,0.9),0_10px_35px_-5px_rgba(43,23,17,0.06),0_1px_3px_0_rgba(43,23,17,0.03)] transition-all relative overflow-hidden">
+      {/* Specular prismatic liquid glass refraction sheen */}
+      <div className="absolute inset-x-0 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white to-transparent pointer-events-none opacity-90" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/35 via-white/10 to-transparent pointer-events-none" />
+
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 py-3 flex items-center justify-between gap-4 relative z-10">
         {/* Left Branding */}
         <div
           onClick={() => onNavigate('overview')}
           className="flex items-center gap-3.5 cursor-pointer group shrink-0"
         >
-          {/* Temple Icon Badge */}
-          <div className="w-10 h-10 rounded-xl bg-[#EFE4D2] border border-[#DFCBB0] flex items-center justify-center text-[#8C3B18] shadow-xs group-hover:scale-105 transition-transform">
+          {/* Temple Icon Badge with liquid glass refraction */}
+          <div className="w-10 h-10 rounded-xl bg-white/70 backdrop-blur-md border border-white/80 flex items-center justify-center text-[#8C3B18] shadow-[inset_0_1px_2px_rgba(255,255,255,0.95),0_2px_8px_rgba(140,59,24,0.08)] group-hover:scale-105 group-hover:bg-white/90 group-hover:shadow-[inset_0_1px_2px_rgba(255,255,255,1),0_4px_14px_rgba(140,59,24,0.14)] transition-all">
             <Landmark className="w-5 h-5" />
           </div>
 
@@ -78,7 +82,7 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
           </div>
 
           {/* Divider & Two-Line Stacked Subtitle */}
-          <div className="h-8 w-px bg-[#DFCBB0] mx-2 hidden xl:block" />
+          <div className="h-8 w-px bg-white/80 border-r border-[#E2D2BC]/60 mx-2 hidden xl:block" />
           <div className="hidden xl:flex flex-col text-[9.5px] font-mono tracking-widest text-[#7C695C] uppercase font-semibold leading-tight">
             <span>EPIGRAPHICAL RESEARCH &amp;</span>
             <span>TRANSLATION PLATFORM</span>
@@ -106,8 +110,8 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
                 {isActive && (
                   /* Signature active ornament: horizontal bar with center accent dot */
                   <div className="absolute -bottom-1.5 left-0 right-0 flex items-center justify-center">
-                    <div className="h-[1.5px] w-full bg-[#A84A1C]/70 relative">
-                      <div className="absolute left-1/2 -top-[2px] -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#A84A1C]" />
+                    <div className="h-[1.5px] w-full bg-[#A84A1C]/70 relative shadow-[0_1px_4px_rgba(168,74,28,0.3)]">
+                      <div className="absolute left-1/2 -top-[2px] -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#A84A1C] shadow-[0_0_6px_rgba(168,74,28,0.6)]" />
                     </div>
                   </div>
                 )}
@@ -118,36 +122,36 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
 
         {/* Right Actions */}
         <div className="flex items-center gap-3 shrink-0">
-          {/* Search Icon */}
+          {/* Search Icon with Liquid Glass treatment */}
           <button
             onClick={() => {
               if (onOpenSearch) onOpenSearch();
               else onNavigate('archive');
             }}
-            className="p-2 rounded-lg text-[#6C584C] hover:text-[#2B1711] hover:bg-[#EFE5D2] transition-colors"
+            className="p-2.5 rounded-xl text-[#6C584C] hover:text-[#2B1711] bg-white/45 hover:bg-white/80 backdrop-blur-md border border-white/70 shadow-[inset_0_1px_1px_rgba(255,255,255,0.7),0_2px_6px_rgba(40,24,18,0.04)] transition-all cursor-pointer"
             title="Search Inscription Registers"
           >
             <Search className="w-4 h-4" />
           </button>
 
-          {/* Primary Translate Inscription Button */}
+          {/* Primary Translate Inscription Button with Liquid Gloss Sheen */}
           <button
             onClick={() => onNavigate('new_analysis')}
-            className="px-4 py-2 bg-[#7D3418] hover:bg-[#682810] text-[#FFF9F2] rounded-lg text-xs font-semibold flex items-center gap-2 shadow-sm transition-all hover:shadow-md cursor-pointer group"
+            className="px-4 py-2 bg-gradient-to-r from-[#8C3B18] via-[#9B421C] to-[#7A3215] hover:from-[#7C3315] hover:to-[#6A2810] text-[#FFF9F2] rounded-xl text-xs font-semibold flex items-center gap-2 shadow-[inset_0_1px_1px_rgba(255,255,255,0.35),0_6px_20px_rgba(140,59,24,0.25)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.45),0_8px_25px_rgba(140,59,24,0.35)] transition-all cursor-pointer group hover:scale-[1.02]"
           >
             <Feather className="w-3.5 h-3.5 text-[#F5C78E] group-hover:rotate-12 transition-transform" />
             <span>Translate Inscription</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#F5C78E] group-hover:translate-x-0.5 transition-transform" />
           </button>
 
-          {/* User Profile Chip - Kushal MN */}
+          {/* User Profile Chip - Kushal MN with Liquid Glass Pill */}
           <div className="relative">
             <button
               onClick={() => setUserMenuOpen(!userMenuOpen)}
-              className="flex items-center gap-2 pl-1 pr-2 py-1 rounded-full border border-[#E4D5BF] hover:border-[#DFC5A6] hover:bg-[#EFE5D2]/70 transition-all cursor-pointer"
+              className="flex items-center gap-2 pl-1 pr-2.5 py-1 rounded-full bg-white/70 backdrop-blur-md border border-white/80 shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.9),0_2px_8px_rgba(40,24,18,0.04)] hover:bg-white/90 hover:shadow-[inset_0_1px_1.5px_rgba(255,255,255,1),0_4px_14px_rgba(40,24,18,0.08)] transition-all cursor-pointer"
               title="Researcher Account"
             >
-              <div className="w-7 h-7 rounded-full bg-[#EED6BF] text-[#7A3418] font-serif font-black text-xs flex items-center justify-center shadow-2xs">
+              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#F5E2CF] to-[#E5C7AB] text-[#7A3418] font-serif font-black text-xs flex items-center justify-center shadow-xs border border-white/50">
                 K
               </div>
               <span className="text-xs font-serif font-semibold text-[#2B1711] hidden sm:inline">
@@ -156,9 +160,9 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
               <ChevronDown className="w-3.5 h-3.5 text-[#7C695C]" />
             </button>
 
-            {/* User Dropdown Menu */}
+            {/* User Dropdown Menu with Liquid Frosted Refraction */}
             {userMenuOpen && (
-              <div className="absolute right-0 mt-2 w-72 bg-[#FFFDF9] border border-[#E2D2BC] rounded-xl shadow-xl p-3 z-50 animate-fadeIn text-xs text-[#2B1711]">
+              <div className="absolute right-0 mt-2.5 w-72 bg-white/85 backdrop-blur-2xl border border-white/90 rounded-2xl shadow-[0_20px_50px_rgba(40,24,18,0.12),inset_0_1px_1.5px_rgba(255,255,255,0.95)] p-3.5 z-50 animate-fadeIn text-xs text-[#2B1711]">
                 <div className="flex items-center gap-3 pb-3 border-b border-[#EEDBCA]">
                   <div className="w-10 h-10 rounded-full bg-[#EED6BF] text-[#7A3418] font-serif font-bold text-base flex items-center justify-center">
                     K
