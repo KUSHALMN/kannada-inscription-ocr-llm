@@ -17,6 +17,38 @@ A fundamental challenge in epigraphy is that historical stone records interweave
 
 ---
 
+## 🎨 Karnataka Epigraphical Heritage Redesign System
+
+The platform features an institutional redesign celebrating the epigraphical wealth of Karnataka:
+
+### 1. Hero Panorama & Heritage Typography
+- **Golden-Hour Stele Backdrop:** Panoramic depiction of iconic Karnataka Dravidian and Hoysala temples (Hampi, Pattadakal, Belur) paired with an authentic chiseled stone stele containing archaic Brahmi-Kannada inscriptions.
+- **Bilingual Typographic Harmony:** High-contrast serif headlines alongside classical Kannada script ("*ಕಲ್ಲುಗಳಲ್ಲಿ ಕೆತ್ತಿದ ಇತಿಹಾಸವನ್ನು, ತಂತ್ರಜ್ಞಾನದಿಂದ ಜನರಿಗೆ ತಲುಪಿಸುವ ಪ್ರಯತ್ನ*").
+- **Scholarly Quotation Card:** Translucent frosted-glass quote card (*"Stones are not silent; they speak in a language of time" — Epigraphical Research Initiative*).
+
+### 2. Epigraphical Telemetry Capsules
+- **10,248+ Inscriptions:** Locally catalogued and verified epigraphs across 31 districts.
+- **12+ Major Dynasties:** Mauryan, Kadamba, Ganga, Badami Chalukya, Rashtrakuta, Kalyana Chalukya, Hoysala, Vijayanagara, and Nayaka periods.
+- **100+ Historical Sites:** Surveyed temple complexes, rock shelters, hero stone shrines, and archaeological digs.
+- **10 Diagnostic Script Types:** 2,300 years of paleographical evolution chiseled on stone and copper plates.
+
+### 3. Four-Pillar Purpose Framework
+- **Preserve (Apricot/Peach):** Digital archiving and high-fidelity photogrammetry of endangered steles.
+- **Decode (Mint/Sage):** Machine learning paleography for historical ligature and character recognition.
+- **Translate (Azure/Sky Blue):** Transliteration into modern Kannada (*Hosagannada*) and scholarly English.
+- **Enable Research (Lilac/Lavender):** Verified datasets and open-access tools for historians and epigraphists.
+
+### 4. Chronological Journey & Visual Heritage Route
+- **4-Stage Timeline:** Ancient Roots (2,300+ yrs) → High-Resolution Digitization → AI Script Recognition → Universal Open Access.
+- **Illustrated Route Roadmap:** Interactive milestones tracing the translation lifecycle from raw field inscriptions to public educational access.
+
+### 5. Institutional Impact & Collaborative Network
+- **2x2 Impact Grid:** Cultural Preservation, Research Advancement, Education & Awareness, and Global Accessibility.
+- **Institutional Partnerships:** Cross-disciplinary collaboration connecting academic researchers, AI engineers, and cultural archives.
+- **Verified Researcher Profile:** Interactive account menu recognizing lead maintainer **Kushal M N** and epigraphical contributions.
+
+---
+
 ## ⏳ The 10 Chronological Script Epochs (2,300 Years of Evolution)
 
 | # | Script Class | Historical Era | Substrate Medium | Diagnostic Paleographical Signature |
