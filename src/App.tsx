@@ -9,6 +9,7 @@ import { ArchiveView } from './components/views/ArchiveView';
 import { ScriptsLanguagesView } from './components/views/ScriptsLanguagesView';
 import { SettingsView } from './components/views/SettingsView';
 import { EmptyState } from './components/common/EmptyState';
+import { PageSkeletonLoader } from './components/common/PageSkeletonLoader';
 import { epigraphyService } from './services/epigraphyService';
 import { InscriptionRecord, ScriptClassMetadata, SourceLanguageMetadata, ResearchActivityItem } from './types';
 
@@ -62,10 +63,7 @@ export const App: React.FC = () => {
   return (
     <MainLayout activeTab={activeTab} onNavigate={setActiveTab}>
       {isLoading ? (
-        <div className="py-28 text-center space-y-3">
-          <div className="inline-block w-8 h-8 border-2 border-slate-300 border-t-amber-600 rounded-full animate-spin"></div>
-          <p className="text-xs font-serif text-slate-500">Accessing Inscription Archive Registers...</p>
-        </div>
+        <PageSkeletonLoader />
       ) : (
         <>
           {activeTab === 'home' && (
