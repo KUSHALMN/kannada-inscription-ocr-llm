@@ -179,7 +179,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               </span>
               <span>Epigraphy Adapter</span>
             </span>
-            <span className="text-amber-800 font-mono text-[10px] bg-amber-100 px-1.5 py-0.5 rounded border border-amber-200 font-semibold">Phase 1-3</span>
+            <span className="text-[#8C3B18] font-cinzel text-[10px] font-semibold tracking-wider">Phase I–III</span>
           </div>
           <div className="flex items-center gap-1.5 text-[10px] font-serif italic text-slate-500">
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />

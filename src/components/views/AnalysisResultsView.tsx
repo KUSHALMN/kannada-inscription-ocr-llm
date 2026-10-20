@@ -741,7 +741,7 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                             <span className="text-xs font-bold text-slate-900">
                               {isPlayingAudio ? 'Reciting Halegannada Epigraph...' : 'Ancient Metrical Audio Synthesizer'}
                             </span>
-                            <span className="px-1.5 py-0.5 rounded text-[9px] font-mono uppercase bg-amber-100 text-amber-800 border border-amber-300 font-semibold">
+                            <span className="text-[10px] font-cinzel font-semibold text-[#8C3B18] uppercase tracking-wider">
                               Kanda Metre
                             </span>
                           </div>
@@ -755,13 +755,13 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
 
                       {/* Animated Soundwave Equalizer */}
                       {isPlayingAudio && (
-                        <div className="flex items-center gap-1 h-5 px-3 py-1 bg-amber-100/80 rounded border border-amber-300">
-                          <span className="w-1 bg-amber-600 rounded-full animate-bounce h-2" style={{ animationDelay: '0ms' }} />
-                          <span className="w-1 bg-amber-600 rounded-full animate-bounce h-4" style={{ animationDelay: '150ms' }} />
-                          <span className="w-1 bg-amber-600 rounded-full animate-bounce h-5" style={{ animationDelay: '300ms' }} />
-                          <span className="w-1 bg-amber-600 rounded-full animate-bounce h-3" style={{ animationDelay: '450ms' }} />
-                          <span className="w-1 bg-amber-600 rounded-full animate-bounce h-4" style={{ animationDelay: '200ms' }} />
-                          <span className="text-[10px] font-mono text-amber-800 ml-1 font-bold">44.1 kHz</span>
+                        <div className="flex items-center gap-1 h-5 px-2.5 py-1 bg-amber-50 rounded border border-amber-200/80">
+                          <span className="w-1 bg-[#8C3B18] rounded-full animate-bounce h-2" style={{ animationDelay: '0ms' }} />
+                          <span className="w-1 bg-[#8C3B18] rounded-full animate-bounce h-4" style={{ animationDelay: '150ms' }} />
+                          <span className="w-1 bg-[#8C3B18] rounded-full animate-bounce h-5" style={{ animationDelay: '300ms' }} />
+                          <span className="w-1 bg-[#8C3B18] rounded-full animate-bounce h-3" style={{ animationDelay: '450ms' }} />
+                          <span className="w-1 bg-[#8C3B18] rounded-full animate-bounce h-4" style={{ animationDelay: '200ms' }} />
+                          <span className="text-[10px] font-cinzel text-[#8C3B18] ml-1 font-bold">44.1 kHz</span>
                         </div>
                       )}
                     </div>

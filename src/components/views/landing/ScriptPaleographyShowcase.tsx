@@ -181,7 +181,7 @@ export const ScriptPaleographyShowcase: React.FC<ScriptPaleographyShowcaseProps>
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div className="space-y-2 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 text-xs font-semibold">
+          <div className="text-xs font-cinzel font-bold text-[#8C3B18] tracking-[0.2em] uppercase flex items-center gap-2">
             <Layers className="w-3.5 h-3.5 text-amber-700" />
             <span>Paleographical Morphology Engine</span>
           </div>
@@ -244,7 +244,7 @@ export const ScriptPaleographyShowcase: React.FC<ScriptPaleographyShowcaseProps>
         <div className="lg:col-span-7 bg-white rounded-xl border border-slate-200 p-6 shadow-xs flex flex-col justify-between space-y-4">
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-amber-100 text-amber-900 border border-amber-300">
+              <span className="px-2.5 py-1 rounded-lg text-xs font-cinzel font-bold bg-[#F8EFE4] text-[#8C3B18] border border-[#DFCBB0]">
                 Epoch {selectedEra.epoch} • {selectedEra.dynasty}
               </span>
               <span className="text-xs font-mono text-slate-500 flex items-center gap-1">

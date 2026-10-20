@@ -21,11 +21,8 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
     <div className={`border-b border-[#E8DEC8] pb-6 mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4 relative ${className}`}>
       <div className="space-y-2">
         {categoryTag && (
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#E07A2B]"></span>
-            <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#8B4823] font-semibold block">
-              {categoryTag}
-            </span>
+          <div className="text-[11px] font-cinzel font-bold uppercase tracking-[0.2em] text-[#8B4823] block">
+            {categoryTag}
           </div>
         )}
         <h1 className="text-2xl sm:text-3xl font-serif font-bold text-[#1E120B] tracking-tight flex items-center gap-3">

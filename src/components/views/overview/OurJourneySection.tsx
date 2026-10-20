@@ -1,5 +1,4 @@
 import React from 'react';
-import { Landmark, Cpu, Languages, Globe } from 'lucide-react';
 
 interface OurJourneySectionProps {
   onNavigateToArchive: () => void;
@@ -75,73 +74,85 @@ export const OurJourneySection: React.FC<OurJourneySectionProps> = ({
           </div>
         </div>
 
-        {/* Right Subcolumn (Span 6): Visual Heritage Route with milestones & temple silhouettes */}
-        <div className="md:col-span-6 relative flex flex-col items-center justify-between min-h-[260px] bg-[#FAF5EC]/70 rounded-xl p-4 border border-[#EEDBCA] overflow-hidden">
-          {/* Etched temple background artwork */}
-          <div className="absolute inset-0 opacity-15 pointer-events-none flex items-center justify-center">
-            <svg viewBox="0 0 300 200" className="w-full h-full text-[#8C3B18]" fill="none" stroke="currentColor" strokeWidth="1">
-              <path d="M 50 180 L 50 120 L 75 70 L 100 120 L 100 180 Z" />
-              <path d="M 120 180 L 120 90 L 150 40 L 180 90 L 180 180 Z" />
-              <path d="M 200 180 L 200 110 L 225 60 L 250 110 L 250 180 Z" />
-              <line x1="20" y1="180" x2="280" y2="180" />
-            </svg>
+        {/* Right Subcolumn (Span 6): Scholarly Epigraphical Pipeline */}
+        <div className="md:col-span-6 flex flex-col justify-between gap-3 bg-[#FAF5EC]/80 rounded-xl p-4 sm:p-5 border border-[#EEDBCA]">
+          <div className="text-[11px] font-cinzel font-bold text-[#8C3B18] tracking-wider uppercase border-b border-[#DFCBB0] pb-2 flex items-center justify-between">
+            <span>Epigraphical Processing Pipeline</span>
+            <span className="text-[10px] text-[#7C695C] font-serif font-normal italic">End-to-End Workflow</span>
           </div>
 
-          {/* Decorative winding road SVG connecting the 4 milestones */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 240 240" fill="none">
-            <path
-              d="M 50 200 C 130 180 70 140 140 120 C 190 105 130 60 170 40"
-              stroke="#DFCBB0"
-              strokeWidth="32"
-              strokeLinecap="round"
-            />
-            <path
-              d="M 50 200 C 130 180 70 140 140 120 C 190 105 130 60 170 40"
-              stroke="#CBB394"
-              strokeWidth="2"
-              strokeDasharray="4 4"
-              strokeLinecap="round"
-            />
-          </svg>
-
-          {/* Milestone 1: Inscriptions */}
-          <div className="relative z-10 self-start ml-2 flex items-center gap-2 group cursor-pointer" onClick={onNavigateToArchive}>
-            <div className="w-8 h-8 rounded-full bg-[#FAF3E8] border border-[#CFA985] text-[#8C3B18] flex items-center justify-center shadow-xs group-hover:scale-110 transition-transform">
-              <Landmark className="w-4 h-4" />
+          <div className="space-y-2.5">
+            {/* Step 1 */}
+            <div
+              onClick={onNavigateToArchive}
+              className="flex items-center gap-3 p-2.5 rounded-xl bg-white/80 hover:bg-white border border-[#E8DFC8] shadow-2xs hover:shadow-xs transition-all cursor-pointer group"
+            >
+              <div className="w-8 h-8 rounded-lg bg-[#F5EADB] text-[#8C3B18] flex items-center justify-center font-cinzel font-bold text-xs shrink-0 group-hover:scale-105 transition-transform">
+                01
+              </div>
+              <div className="min-w-0">
+                <div className="font-serif font-bold text-xs text-[#24150E] group-hover:text-[#8C3B18] transition-colors truncate">
+                  Archival Epigraph Ingestion
+                </div>
+                <div className="text-[10px] text-[#7C695C] font-serif truncate">
+                  High-resolution stone squeeze &amp; monument photography
+                </div>
+              </div>
             </div>
-            <span className="text-[11px] font-serif font-bold text-[#24150E] bg-white/90 px-2 py-0.5 rounded-full border border-[#EADBCA] shadow-2xs">
-              Inscriptions
-            </span>
-          </div>
 
-          {/* Milestone 2: AI Analysis */}
-          <div className="relative z-10 self-end mr-4 flex items-center gap-2 group cursor-pointer" onClick={onNavigateToAnalysis}>
-            <div className="w-8 h-8 rounded-full bg-[#FAF3E8] border border-[#CFA985] text-[#8C3B18] flex items-center justify-center shadow-xs group-hover:scale-110 transition-transform">
-              <Cpu className="w-4 h-4" />
+            {/* Step 2 */}
+            <div
+              onClick={onNavigateToAnalysis}
+              className="flex items-center gap-3 p-2.5 rounded-xl bg-white/80 hover:bg-white border border-[#E8DFC8] shadow-2xs hover:shadow-xs transition-all cursor-pointer group"
+            >
+              <div className="w-8 h-8 rounded-lg bg-[#EBF4EE] text-[#1D6C44] flex items-center justify-center font-cinzel font-bold text-xs shrink-0 group-hover:scale-105 transition-transform">
+                02
+              </div>
+              <div className="min-w-0">
+                <div className="font-serif font-bold text-xs text-[#24150E] group-hover:text-[#1D6C44] transition-colors truncate">
+                  Paleographical Ligature Analysis
+                </div>
+                <div className="text-[10px] text-[#7C695C] font-serif truncate">
+                  Deep script epoch classification across 10 historical dynasties
+                </div>
+              </div>
             </div>
-            <span className="text-[11px] font-serif font-bold text-[#24150E] bg-white/90 px-2 py-0.5 rounded-full border border-[#EADBCA] shadow-2xs">
-              AI Analysis
-            </span>
-          </div>
 
-          {/* Milestone 3: Translations */}
-          <div className="relative z-10 self-start ml-8 flex items-center gap-2 group cursor-pointer" onClick={onNavigateToAnalysis}>
-            <div className="w-8 h-8 rounded-full bg-[#FAF3E8] border border-[#CFA985] text-[#8C3B18] flex items-center justify-center shadow-xs group-hover:scale-110 transition-transform">
-              <Languages className="w-4 h-4" />
+            {/* Step 3 */}
+            <div
+              onClick={onNavigateToAnalysis}
+              className="flex items-center gap-3 p-2.5 rounded-xl bg-white/80 hover:bg-white border border-[#E8DFC8] shadow-2xs hover:shadow-xs transition-all cursor-pointer group"
+            >
+              <div className="w-8 h-8 rounded-lg bg-[#EBF2F8] text-[#1E5D8F] flex items-center justify-center font-cinzel font-bold text-xs shrink-0 group-hover:scale-105 transition-transform">
+                03
+              </div>
+              <div className="min-w-0">
+                <div className="font-serif font-bold text-xs text-[#24150E] group-hover:text-[#1E5D8F] transition-colors truncate">
+                  Bilingual Textual Decipherment
+                </div>
+                <div className="text-[10px] text-[#7C695C] font-serif truncate">
+                  IAST transliteration into Hosagannada &amp; scholarly English
+                </div>
+              </div>
             </div>
-            <span className="text-[11px] font-serif font-bold text-[#24150E] bg-white/90 px-2 py-0.5 rounded-full border border-[#EADBCA] shadow-2xs">
-              Translations
-            </span>
-          </div>
 
-          {/* Milestone 4: Public Access */}
-          <div className="relative z-10 self-end mr-2 flex items-center gap-2 group cursor-pointer" onClick={onNavigateToArchive}>
-            <div className="w-8 h-8 rounded-full bg-[#FAF3E8] border border-[#CFA985] text-[#8C3B18] flex items-center justify-center shadow-xs group-hover:scale-110 transition-transform">
-              <Globe className="w-4 h-4" />
+            {/* Step 4 */}
+            <div
+              onClick={onNavigateToArchive}
+              className="flex items-center gap-3 p-2.5 rounded-xl bg-white/80 hover:bg-white border border-[#E8DFC8] shadow-2xs hover:shadow-xs transition-all cursor-pointer group"
+            >
+              <div className="w-8 h-8 rounded-lg bg-[#F3EEF9] text-[#5E2F8D] flex items-center justify-center font-cinzel font-bold text-xs shrink-0 group-hover:scale-105 transition-transform">
+                04
+              </div>
+              <div className="min-w-0">
+                <div className="font-serif font-bold text-xs text-[#24150E] group-hover:text-[#5E2F8D] transition-colors truncate">
+                  Open Cultural Preservation Corpus
+                </div>
+                <div className="text-[10px] text-[#7C695C] font-serif truncate">
+                  Open access repository for scholars, universities &amp; public
+                </div>
+              </div>
             </div>
-            <span className="text-[11px] font-serif font-bold text-[#24150E] bg-white/90 px-2 py-0.5 rounded-full border border-[#EADBCA] shadow-2xs">
-              Public Access
-            </span>
           </div>
         </div>
       </div>

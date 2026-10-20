@@ -15,22 +15,22 @@ export const Badge: React.FC<BadgeProps> = ({
   className = '',
   size = 'md',
 }) => {
-  const baseStyles = 'inline-flex items-center font-medium border rounded-md uppercase tracking-wider select-none font-mono';
+  const baseStyles = 'inline-flex items-center font-serif font-semibold border rounded-lg select-none tracking-wide';
   
   const sizeStyles = {
-    sm: 'text-[10px] px-2 py-0.5 leading-tight',
-    md: 'text-xs px-2.5 py-0.5 leading-normal',
+    sm: 'text-[11px] px-2 py-0.5 leading-tight',
+    md: 'text-xs px-2.5 py-1 leading-normal',
   };
 
   const variantStyles: Record<BadgeVariant, string> = {
-    default: 'bg-slate-100 text-slate-700 border-slate-200',
-    script: 'bg-amber-50 text-amber-800 border-amber-200 shadow-xs font-semibold',
-    language: 'bg-sky-50 text-sky-800 border-sky-200 font-semibold',
-    period: 'bg-slate-100 text-slate-700 border-slate-200 font-mono text-[11px]',
-    substrate: 'bg-stone-100 text-stone-700 border-stone-200',
-    warning: 'bg-amber-100 text-amber-900 border-amber-300 font-semibold',
-    status: 'bg-emerald-50 text-emerald-800 border-emerald-200 font-semibold',
-    rule_type: 'bg-purple-50 text-purple-800 border-purple-200 font-mono font-semibold',
+    default: 'bg-[#F2ECE1] text-[#443831] border-[#DFCBB0]',
+    script: 'bg-[#F8EFE4] text-[#8C3B18] border-[#DFCBB0] shadow-2xs',
+    language: 'bg-[#EDF4FA] text-[#1E5D8F] border-[#CDE0EE]',
+    period: 'bg-[#F4EFE6] text-[#635147] border-[#DFCBB0] font-cinzel text-[10px]',
+    substrate: 'bg-[#F1EFEA] text-[#554C46] border-[#D6CFC7]',
+    warning: 'bg-[#FDF3E7] text-[#9A4A1C] border-[#F0D5BE]',
+    status: 'bg-[#EBF5EE] text-[#1D6C44] border-[#CCE5D4]',
+    rule_type: 'bg-[#F3EEF9] text-[#5D2E8B] border-[#DDD0EE]',
   };
 
   return (

@@ -27,30 +27,30 @@ export const ScriptsLanguagesView: React.FC<ScriptsLanguagesViewProps> = ({
           <div className="flex border border-slate-200 bg-white p-0.5 rounded-lg text-xs shadow-xs">
             <button
               onClick={() => setActiveSubTab('scripts')}
-              className={`px-3 py-1.5 rounded-md transition-all font-semibold ${
+              className={`px-3 py-1.5 rounded-md transition-all font-serif text-xs ${
                 activeSubTab === 'scripts'
-                  ? 'bg-amber-100 text-amber-900 border border-amber-300 shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-[#8C3B18] text-white shadow-xs font-semibold'
+                  : 'text-slate-600 hover:text-slate-900 font-medium'
               }`}
             >
               10 Script Eras (ಲಿಪಿ ವಿಕಾಸ)
             </button>
             <button
               onClick={() => setActiveSubTab('languages')}
-              className={`px-3 py-1.5 rounded-md transition-all font-semibold ${
+              className={`px-3 py-1.5 rounded-md transition-all font-serif text-xs ${
                 activeSubTab === 'languages'
-                  ? 'bg-amber-100 text-amber-900 border border-amber-300 shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-[#8C3B18] text-white shadow-xs font-semibold'
+                  : 'text-slate-600 hover:text-slate-900 font-medium'
               }`}
             >
               Source Languages (ಮೂಲ ಭಾಷೆಗಳು)
             </button>
             <button
               onClick={() => setActiveSubTab('decoupling')}
-              className={`px-3 py-1.5 rounded-md transition-all font-semibold ${
+              className={`px-3 py-1.5 rounded-md transition-all font-serif text-xs ${
                 activeSubTab === 'decoupling'
-                  ? 'bg-amber-100 text-amber-900 border border-amber-300 shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-[#8C3B18] text-white shadow-xs font-semibold'
+                  : 'text-slate-600 hover:text-slate-900 font-medium'
               }`}
             >
               Script vs Language (ಪ್ರತ್ಯೇಕತೆ)

@@ -75,9 +75,9 @@ export const TempleAtlasSection: React.FC<TempleAtlasSectionProps> = ({
       {/* Header & Controls */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div className="space-y-2 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100/90 border border-amber-300 text-amber-900 text-xs font-semibold">
+          <div className="text-xs font-cinzel font-bold text-[#8C3B18] tracking-[0.2em] uppercase flex items-center gap-2">
             <Landmark className="w-3.5 h-3.5 text-amber-700" />
-            <span>Karnataka Epigraphical & Temple Heritage Atlas</span>
+            <span>Karnataka Epigraphical &amp; Temple Heritage Atlas</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-serif font-extrabold text-slate-900 tracking-tight">
             Sacred Temples & Stone Inscriptions of Karnataka

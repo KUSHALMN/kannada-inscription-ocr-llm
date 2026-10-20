@@ -122,7 +122,7 @@ export const EpigraphyQuizSection: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-amber-200/60 pb-4">
         <div className="space-y-1">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-semibold">
+          <div className="text-xs font-cinzel font-bold text-[#8C3B18] tracking-[0.2em] uppercase flex items-center gap-2">
             <HelpCircle className="w-3.5 h-3.5 text-amber-700" />
             <span>Epigraphical Knowledge Challenge</span>
           </div>
@@ -148,7 +148,7 @@ export const EpigraphyQuizSection: React.FC = () => {
         <div className="space-y-5">
           {/* Question Text */}
           <div className="space-y-2">
-            <span className="text-[10px] font-mono uppercase bg-amber-200/70 text-amber-950 px-2 py-0.5 rounded font-semibold">
+            <span className="text-[11px] font-cinzel font-bold text-amber-900 tracking-wider">
               Period Context: {currentQ.century}
             </span>
             <h3 className="font-serif font-bold text-base sm:text-lg text-slate-900 leading-snug">

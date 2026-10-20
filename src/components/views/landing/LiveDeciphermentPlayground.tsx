@@ -170,9 +170,9 @@ export const LiveDeciphermentPlayground: React.FC<LiveDeciphermentPlaygroundProp
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div className="space-y-2 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs font-semibold">
+          <div className="text-xs font-cinzel font-bold text-emerald-900 tracking-[0.2em] uppercase flex items-center gap-2">
             <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
-            <span>Interactive Neural Decipherment Sandbox</span>
+            <span>Interactive Epigraphical Decipherment Sandbox</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-serif font-extrabold text-slate-900 tracking-tight">
             Live Archaeological Decipherment: Test the 4-Tier Engine

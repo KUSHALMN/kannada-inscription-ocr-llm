@@ -161,7 +161,7 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
           <div className="lg:col-span-7 space-y-6">
             {/* Category Breadcrumb Tag */}
             <div className="inline-block">
-              <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.2em] font-semibold text-[#8B4823]">
+              <span className="text-xs font-cinzel font-bold tracking-[0.25em] text-[#8C3B18] uppercase">
                 INSCRIPTIONS • HISTORY • PEOPLE • KARNATAKA'S LEGACY
               </span>
             </div>
@@ -266,12 +266,12 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
             <div className="bg-[#FAF7F2] rounded-2xl border border-[#E4D7C2] shadow-2xl p-5 sm:p-6 space-y-4">
               {/* Card Header */}
               <div className="flex items-center justify-between pb-1">
-                <span className="text-xs font-mono uppercase tracking-wider font-bold text-[#3E2D24]">
+                <span className="text-xs font-cinzel font-bold tracking-wider text-[#3E2D24]">
                   TRY A TRANSLATION
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#E5F4E9] border border-[#BDE5C7] text-[#1B6331] text-[11px] font-mono font-semibold">
-                  <span className="w-2 h-2 rounded-full bg-[#27A844] animate-pulse" />
-                  <span>Live Demo</span>
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded border border-emerald-600/20 bg-emerald-50 text-emerald-800 text-[10px] font-serif font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+                  <span>Live Sandbox</span>
                 </span>
               </div>
 
@@ -577,7 +577,7 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
         {/* Header with line and View All Link */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="space-y-1">
-            <span className="text-[11px] font-mono uppercase tracking-[0.2em] font-semibold text-[#8B4823]">
+            <span className="text-xs font-cinzel font-bold tracking-[0.25em] text-[#8C3B18] uppercase">
               EXPLORE
             </span>
             <div className="flex items-center gap-4">

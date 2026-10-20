@@ -32,9 +32,8 @@ export const HeroBannerSection: React.FC = () => {
 
       {/* Hero Left Content */}
       <div className="relative z-10 p-6 sm:p-10 lg:p-12 max-w-2xl space-y-6">
-        {/* Pill Tag */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F3E7D3] border border-[#DFCBB0] text-[10.5px] font-mono uppercase tracking-widest text-[#8C3B18] font-bold">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#8C3B18]" />
+        {/* Dignified Inscriptional Overline */}
+        <div className="text-xs font-cinzel font-bold text-[#8C3B18] tracking-[0.2em] uppercase">
           ABOUT KANNADA HERITAGE
         </div>
 

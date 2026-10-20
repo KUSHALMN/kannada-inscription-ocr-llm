@@ -185,7 +185,7 @@ export const ScriptTimeline: React.FC<ScriptTimelineProps> = ({ scripts, onSelec
                 <h4 className="font-serif font-bold text-slate-900 text-sm">
                   Paleographic Relationships & Evolutionary Lineage
                 </h4>
-                <span className="font-mono text-[10px] uppercase text-amber-800 bg-amber-100 border border-amber-300 px-2 py-0.5 rounded font-semibold ml-auto">
+                <span className="text-xs font-serif italic text-amber-900 font-medium ml-auto">
                   {selectedScript.relationships.branchName}
                 </span>
               </div>
