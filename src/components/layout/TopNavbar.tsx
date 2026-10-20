@@ -56,12 +56,11 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/65 backdrop-blur-2xl backdrop-saturate-200 border-b border-white/60 shadow-[inset_0_1px_1.5px_0_rgba(255,255,255,0.9),0_10px_35px_-5px_rgba(43,23,17,0.06),0_1px_3px_0_rgba(43,23,17,0.03)] transition-all relative overflow-hidden">
-      {/* Specular prismatic liquid glass refraction sheen */}
-      <div className="absolute inset-x-0 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white to-transparent pointer-events-none opacity-90" />
-      <div className="absolute inset-0 bg-gradient-to-b from-white/35 via-white/10 to-transparent pointer-events-none" />
-
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 py-3 flex items-center justify-between gap-4 relative z-10">
+    <header className="sticky top-2 sm:top-3 z-50 px-3 sm:px-6 transition-all pointer-events-none">
+      <div className="pointer-events-auto max-w-[1440px] mx-auto rounded-2xl sm:rounded-full bg-white/30 backdrop-blur-3xl backdrop-saturate-200 border border-white/80 shadow-[0_12px_40px_rgba(43,23,17,0.08),inset_0_1.5px_2px_0_rgba(255,255,255,0.95)] px-4 sm:px-8 py-2.5 flex items-center justify-between gap-4 relative overflow-hidden transition-all">
+        {/* Specular prismatic liquid glass refraction sheen */}
+        <div className="absolute inset-x-8 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white to-transparent pointer-events-none opacity-95" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/5 to-transparent pointer-events-none" />
         {/* Left Branding */}
         <div
           onClick={() => onNavigate('overview')}
@@ -227,14 +226,14 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer Menu with Liquid Glass */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#FAF7F2] border-t border-[#EADBCA] px-4 py-4 space-y-2">
+        <div className="pointer-events-auto lg:hidden mt-2 max-w-[1440px] mx-auto rounded-2xl bg-white/80 backdrop-blur-3xl border border-white/90 px-4 py-4 space-y-2 shadow-2xl">
           {navLinks.map((link) => (
             <button
               key={link.label}
               onClick={() => handleNavClick(link)}
-              className="w-full text-left py-2 px-3 rounded-lg text-sm font-serif font-medium text-[#2B1711] hover:bg-[#EFE5D2]"
+              className="w-full text-left py-2 px-3 rounded-xl text-sm font-serif font-medium text-[#2B1711] hover:bg-white/60 transition-colors"
             >
               {link.label}
             </button>
