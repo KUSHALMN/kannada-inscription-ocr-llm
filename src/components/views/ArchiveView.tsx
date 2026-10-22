@@ -30,6 +30,7 @@ interface ArchiveViewProps {
   inscriptions: InscriptionRecord[];
   onSelectInscription: (inscription: InscriptionRecord) => void;
   onNavigateHome?: () => void;
+  initialDynastyFilter?: string | null;
 }
 
 interface InscriptionArchiveCardItem {
@@ -191,22 +192,35 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
   inscriptions,
   onSelectInscription,
   onNavigateHome,
+  initialDynastyFilter,
 }) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   
   // Applied filters that determine active query results
   const [appliedScripts, setAppliedScripts] = useState<string[]>([]);
   const [appliedLanguages, setAppliedLanguages] = useState<string[]>([]);
-  const [appliedDynasties, setAppliedDynasties] = useState<string[]>([]);
+  const [appliedDynasties, setAppliedDynasties] = useState<string[]>(() =>
+    initialDynastyFilter ? [initialDynastyFilter] : []
+  );
   const [appliedMaterials, setAppliedMaterials] = useState<string[]>([]);
   const [appliedConditions, setAppliedConditions] = useState<string[]>([]);
 
   // Draft filters pending user clicking "Apply"
   const [draftScripts, setDraftScripts] = useState<string[]>([]);
   const [draftLanguages, setDraftLanguages] = useState<string[]>([]);
-  const [draftDynasties, setDraftDynasties] = useState<string[]>([]);
+  const [draftDynasties, setDraftDynasties] = useState<string[]>(() =>
+    initialDynastyFilter ? [initialDynastyFilter] : []
+  );
   const [draftMaterials, setDraftMaterials] = useState<string[]>([]);
   const [draftConditions, setDraftConditions] = useState<string[]>([]);
+
+  // Synchronize when initialDynastyFilter changes
+  React.useEffect(() => {
+    if (initialDynastyFilter) {
+      setAppliedDynasties([initialDynastyFilter]);
+      setDraftDynasties([initialDynastyFilter]);
+    }
+  }, [initialDynastyFilter]);
 
   const [justApplied, setJustApplied] = useState<boolean>(false);
   const [sortBy, setSortBy] = useState<string>('chronological_asc');

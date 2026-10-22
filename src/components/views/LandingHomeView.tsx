@@ -21,7 +21,7 @@ import sampleStele from '../../assets/sample-stele.jpg';
 interface LandingHomeViewProps {
   inscriptions: InscriptionRecord[];
   onNavigateToAnalysis: () => void;
-  onNavigateToArchive: () => void;
+  onNavigateToArchive: (dynastyFilter?: string) => void;
   onNavigateToScripts: () => void;
   onSelectInscription: (inscription: InscriptionRecord) => void;
 }
@@ -137,7 +137,7 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
     if (matched) {
       onSelectInscription(matched);
     } else {
-      onNavigateToArchive();
+      onNavigateToArchive(dynasty.name);
     }
   };
 
@@ -189,7 +189,7 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
               </button>
 
               <button
-                onClick={onNavigateToArchive}
+                onClick={() => onNavigateToArchive()}
                 className="px-6 py-3 bg-[#FAF6F0]/90 hover:bg-[#FAF6F0] text-[#2B1B14] border border-[#DFCBB0] rounded-lg text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-xs transition-all"
               >
                 <BookOpen className="w-4 h-4 text-[#8B4823]" />
@@ -547,7 +547,7 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
 
           {/* Feature Card 4: Historical Context */}
           <div
-            onClick={onNavigateToArchive}
+            onClick={() => onNavigateToArchive()}
             className="p-5 bg-[#FAF7F2] border border-[#E8DEC8] rounded-xl hover:border-[#8B4823] hover:shadow-md transition-all cursor-pointer group flex items-center justify-between gap-4"
           >
             <div className="flex items-center gap-3.5">
@@ -590,7 +590,7 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
 
           <div className="flex items-center gap-4 self-end sm:self-auto">
             <button
-              onClick={onNavigateToArchive}
+              onClick={() => onNavigateToArchive()}
               className="text-xs font-serif font-semibold text-[#7C3517] hover:text-[#5B230C] flex items-center gap-1 transition-colors"
             >
               <span>View all Dynasties</span>

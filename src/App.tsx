@@ -20,6 +20,7 @@ export const App: React.FC = () => {
   const [languages, setLanguages] = useState<SourceLanguageMetadata[]>([]);
   const [recentActivity, setRecentActivity] = useState<ResearchActivityItem[]>([]);
   const [activeResult, setActiveResult] = useState<InscriptionRecord | null>(null);
+  const [selectedDynastyFilter, setSelectedDynastyFilter] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // Load initial epigraphical data from decoupled service adapter
@@ -60,6 +61,12 @@ export const App: React.FC = () => {
     setActiveTab('results');
   };
 
+  const handleNavigateToArchive = (dynastyFilter?: string) => {
+    setSelectedDynastyFilter(dynastyFilter || null);
+    setActiveTab('archive');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <MainLayout activeTab={activeTab} onNavigate={setActiveTab}>
       {isLoading ? (
@@ -70,7 +77,7 @@ export const App: React.FC = () => {
             <LandingHomeView
               inscriptions={inscriptions}
               onNavigateToAnalysis={() => setActiveTab('new_analysis')}
-              onNavigateToArchive={() => setActiveTab('archive')}
+              onNavigateToArchive={handleNavigateToArchive}
               onNavigateToScripts={() => setActiveTab('scripts_languages')}
               onSelectInscription={handleSelectInscription}
             />
@@ -81,7 +88,7 @@ export const App: React.FC = () => {
               inscriptions={inscriptions}
               recentActivity={recentActivity}
               onNavigateToAnalysis={() => setActiveTab('new_analysis')}
-              onNavigateToArchive={() => setActiveTab('archive')}
+              onNavigateToArchive={() => handleNavigateToArchive()}
               onNavigateToScripts={() => setActiveTab('scripts_languages')}
               onSelectInscription={handleSelectInscription}
             />
@@ -121,6 +128,7 @@ export const App: React.FC = () => {
               inscriptions={inscriptions}
               onSelectInscription={handleSelectInscription}
               onNavigateHome={() => setActiveTab('home')}
+              initialDynastyFilter={selectedDynastyFilter}
             />
           )}
 
