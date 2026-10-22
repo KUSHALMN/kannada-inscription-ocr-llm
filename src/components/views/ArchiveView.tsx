@@ -1006,8 +1006,131 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
               )}
             </div>
 
-            {/* Inscription Cards Grid (4 columns x 2 rows = 8 cards) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 pt-2">
+            {filteredItems.length === 0 ? (
+              <div className="p-12 text-center bg-[#FAF7F2] border border-[#E8DEC8] rounded-2xl space-y-3">
+                <Landmark className="w-10 h-10 text-[#8C3B18]/60 mx-auto" />
+                <h4 className="font-serif font-bold text-base text-[#1E120B]">
+                  No Inscriptions Match Selected Criteria
+                </h4>
+                <p className="text-xs text-[#6C584C] font-serif max-w-md mx-auto">
+                  Try clearing some filter tags or search terms to inspect other epigraphs from the corpus register.
+                </p>
+                <button
+                  onClick={handleClearAll}
+                  className="px-4 py-2 bg-[#7C3517] text-white rounded-lg text-xs font-serif font-semibold hover:bg-[#682A10] transition-colors shadow-xs cursor-pointer"
+                >
+                  Reset All Filters
+                </button>
+              </div>
+            ) : viewMode === 'list' ? (
+              /* Inscription Cards List View */
+              <div className="space-y-3.5 pt-2">
+                {filteredItems.map((item) => (
+                  <div
+                    key={item.id}
+                    onClick={() => onSelectInscription(item.rawInscriptionRecord || inscriptions[0])}
+                    className="bg-[#FAF7F2] border border-[#E8DEC8] rounded-xl overflow-hidden shadow-xs hover:shadow-md hover:border-[#8B4823] transition-all cursor-pointer group flex flex-col sm:flex-row items-stretch"
+                  >
+                    {/* Stele Image Thumbnail */}
+                    <div className="relative w-full sm:w-56 h-48 sm:h-auto bg-slate-900 shrink-0 overflow-hidden">
+                      <img
+                        src={item.imageUrl}
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        onError={(e) => {
+                          e.currentTarget.src = sampleStele;
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent sm:bg-gradient-to-r sm:from-transparent sm:to-black/20" />
+                      <div className="absolute top-2.5 left-2.5">
+                        {item.status === 'verified' && (
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-[#E5F4E9]/95 text-[#1B6331] border border-[#BDE5C7] flex items-center gap-1 shadow-xs">
+                            <CheckCircle2 className="w-3 h-3 text-[#27A844]" />
+                            <span>Verified</span>
+                          </span>
+                        )}
+                        {item.status === 'under_review' && (
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-[#FFF4E5]/95 text-[#975A16] border border-[#F6D2A2] flex items-center gap-1 shadow-xs">
+                            <Clock className="w-3 h-3 text-[#D68227]" />
+                            <span>Under Review</span>
+                          </span>
+                        )}
+                        {item.status === 'provisional' && (
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-[#F5EBE1]/95 text-[#8B4823] border border-[#DFCBB0] flex items-center gap-1 shadow-xs">
+                            <AlertCircle className="w-3 h-3 text-[#8B4823]" />
+                            <span>Provisional</span>
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Content Section */}
+                    <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between gap-3">
+                      <div className="space-y-2">
+                        {/* Badges & Accession */}
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                          <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-mono">
+                            <span className="px-2 py-0.5 rounded bg-[#EBF2F7] text-[#245C80] font-semibold border border-[#CDE0ED]">
+                              {item.scriptBadge}
+                            </span>
+                            <span className="px-2 py-0.5 rounded bg-[#FAF1DF] text-[#7C5A17] font-semibold border border-[#EEDCBA]">
+                              {item.periodBadge}
+                            </span>
+                            <span className="px-2 py-0.5 rounded bg-[#F4EDE0] text-[#6C584C] font-semibold border border-[#DFCBB0]">
+                              {item.language}
+                            </span>
+                          </div>
+                          <span className="text-[10px] font-mono text-[#857268]">
+                            {item.accessionNumber}
+                          </span>
+                        </div>
+
+                        {/* Title & Kannada Title */}
+                        <div>
+                          <h3 className="font-serif font-bold text-base sm:text-lg text-[#1E120B] group-hover:text-[#7C3517] transition-colors leading-snug">
+                            {item.title}
+                          </h3>
+                          <p className="font-kannada text-xs sm:text-sm text-[#8B4823] font-medium pt-0.5">
+                            {item.kannadaTitle}
+                          </p>
+                        </div>
+
+                        {/* Metadata grid */}
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-serif text-[#564337] pt-2 border-t border-[#E8DEC8]/80">
+                          <div className="flex items-center gap-1.5 truncate">
+                            <MapPin className="w-3.5 h-3.5 text-[#8B4823] shrink-0" />
+                            <span className="truncate">{item.location}</span>
+                          </div>
+                          <div className="flex items-center gap-1.5 truncate">
+                            <FileText className="w-3.5 h-3.5 text-[#8B4823] shrink-0" />
+                            <span className="truncate">{item.material}</span>
+                          </div>
+                          <div className="flex items-center gap-1.5 truncate text-[#6C584C] font-mono text-[11px]">
+                            <span>{item.lineCount} lines • {item.condition}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Footer Actions */}
+                      <div className="pt-2 flex items-center justify-end border-t border-[#E8DEC8]/40">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectInscription(item.rawInscriptionRecord || inscriptions[0]);
+                          }}
+                          className="px-4 py-1.5 bg-[#7C3517] hover:bg-[#682A10] text-white rounded-lg text-xs font-serif font-semibold flex items-center gap-1.5 shadow-xs transition-colors cursor-pointer"
+                        >
+                          <span>Examine Epigraph</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              /* Inscription Cards Grid (4 columns x 2 rows = 8 cards) */
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 pt-2">
               {filteredItems.map((item) => (
                 <div
                   key={item.id}
@@ -1119,6 +1242,7 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
                 </div>
               ))}
             </div>
+            )}
           </div>
         </div>
       </div>
