@@ -573,7 +573,7 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
       {/* =================================================================
           3. EXPLORE: MAJOR DYNASTIES OF KARNATAKA (Gallery Carousel)
       ================================================================== */}
-      <section id="dynasties-section" className="max-w-[1440px] mx-auto px-4 sm:px-8 space-y-6">
+      <section id="dynasties-section" className="max-w-[1440px] mx-auto px-4 sm:px-8 space-y-6 scroll-mt-24">
         {/* Header with line and View All Link */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="space-y-1">

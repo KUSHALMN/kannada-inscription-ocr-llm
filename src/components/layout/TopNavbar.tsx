@@ -37,19 +37,62 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
     { key: 'overview' as NavItemKey, label: 'About' },
   ];
 
+  const [dynastiesActive, setDynastiesActive] = useState(false);
+
+  // Monitor when dynasties section is in viewport on home page
+  React.useEffect(() => {
+    if (activeTab !== 'home') {
+      setDynastiesActive(false);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setDynastiesActive(true);
+          } else {
+            const el = document.getElementById('dynasties-section');
+            if (el && el.getBoundingClientRect().top > 150) {
+              setDynastiesActive(false);
+            }
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '-80px 0px -40% 0px' }
+    );
+
+    const el = document.getElementById('dynasties-section');
+    if (el) observer.observe(el);
+
+    return () => observer.disconnect();
+  }, [activeTab]);
+
   const handleNavClick = (link: typeof navLinks[0]) => {
-    if (link.isAnchor) {
-      if (activeTab !== 'overview' && activeTab !== 'home') {
-        onNavigate('overview');
-        setTimeout(() => {
-          const el = document.getElementById('dynasties-section');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }, 120);
-      } else {
+    if (link.isAnchor && link.key === 'dynasties') {
+      const scrollToDynasties = (attempts = 0) => {
         const el = document.getElementById('dynasties-section');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        if (el) {
+          const navOffset = 90;
+          const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: elementPosition - navOffset,
+            behavior: 'smooth'
+          });
+          setDynastiesActive(true);
+        } else if (attempts < 12) {
+          setTimeout(() => scrollToDynasties(attempts + 1), 50);
+        }
+      };
+
+      if (activeTab !== 'home') {
+        onNavigate('home');
+        setTimeout(() => scrollToDynasties(), 80);
+      } else {
+        scrollToDynasties();
       }
     } else {
+      setDynastiesActive(false);
       onNavigate(link.key);
     }
     setMobileMenuOpen(false);
@@ -92,8 +135,12 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
         <nav className="hidden lg:flex items-center gap-8 text-[13px] font-serif font-medium">
           {navLinks.map((link) => {
             const isActive =
-              (activeTab === link.key && !link.isAnchor) ||
-              (link.key === 'overview' && (activeTab === 'overview' || activeTab === 'home'));
+              link.key === 'dynasties'
+                ? dynastiesActive && activeTab === 'home'
+                : link.key === 'overview'
+                ? activeTab === 'overview'
+                : activeTab === link.key ||
+                  (link.key === 'new_analysis' && activeTab === 'results');
 
             return (
               <button
