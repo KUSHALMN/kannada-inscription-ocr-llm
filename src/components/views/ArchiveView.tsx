@@ -845,31 +845,40 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
               </div>
 
               {/* View Switch Buttons */}
-              <div className="flex items-center border border-[#E8DEC8] rounded-lg p-0.5 bg-[#FAF7F2]">
+              <div className="flex items-center border border-[#E8DEC8] rounded-xl p-1 bg-[#FAF7F2] shadow-2xs gap-0.5">
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`p-1.5 rounded transition-colors ${
-                    viewMode === 'grid' ? 'bg-[#7C3517] text-white' : 'text-[#857268] hover:text-[#1E120B]'
+                  className={`p-1.5 rounded-lg transition-all cursor-pointer ${
+                    viewMode === 'grid'
+                      ? 'bg-[#7C3517] text-white shadow-xs'
+                      : 'text-[#857268] hover:text-[#1E120B] hover:bg-[#EFE5D2]/70'
                   }`}
-                  title="Grid View"
+                  title="Grid View (ಚಿತ್ರ ಸಂಪುಟ)"
+                  aria-label="Grid View"
                 >
                   <LayoutGrid className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
-                  className={`p-1.5 rounded transition-colors ${
-                    viewMode === 'list' ? 'bg-[#7C3517] text-white' : 'text-[#857268] hover:text-[#1E120B]'
+                  className={`p-1.5 rounded-lg transition-all cursor-pointer ${
+                    viewMode === 'list'
+                      ? 'bg-[#7C3517] text-white shadow-xs'
+                      : 'text-[#857268] hover:text-[#1E120B] hover:bg-[#EFE5D2]/70'
                   }`}
-                  title="List View"
+                  title="List View (ವಿವರ ಪಟ್ಟಿ)"
+                  aria-label="List View"
                 >
                   <List className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setViewMode('table')}
-                  className={`p-1.5 rounded transition-colors ${
-                    viewMode === 'table' ? 'bg-[#7C3517] text-white' : 'text-[#857268] hover:text-[#1E120B]'
+                  className={`p-1.5 rounded-lg transition-all cursor-pointer ${
+                    viewMode === 'table'
+                      ? 'bg-[#7C3517] text-white shadow-xs'
+                      : 'text-[#857268] hover:text-[#1E120B] hover:bg-[#EFE5D2]/70'
                   }`}
-                  title="Table View"
+                  title="Table View (ದಾಖಲಾತಿ ಕೋಷ್ಟಕ)"
+                  aria-label="Table View"
                 >
                   <TableIcon className="w-4 h-4" />
                 </button>

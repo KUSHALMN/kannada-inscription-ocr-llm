@@ -10,7 +10,8 @@ import {
   ChevronDown,
   CheckCircle2,
   BookOpen,
-  Sparkles
+  Sparkles,
+  Settings
 } from 'lucide-react';
 
 interface TopNavbarProps {
@@ -265,7 +266,7 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
                       setUserMenuOpen(false);
                       onNavigate('archive');
                     }}
-                    className="w-full text-left px-2.5 py-1.5 rounded-md hover:bg-[#F2E5D2] text-[#2B1711] flex items-center justify-between font-serif font-medium"
+                    className="w-full text-left px-2.5 py-1.5 rounded-md hover:bg-[#F2E5D2] text-[#2B1711] flex items-center justify-between font-serif font-medium cursor-pointer transition-colors"
                   >
                     <span>My Inscription Catalogue</span>
                     <BookOpen className="w-3.5 h-3.5 text-[#8C3B18]" />
@@ -275,10 +276,20 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
                       setUserMenuOpen(false);
                       onNavigate('new_analysis');
                     }}
-                    className="w-full text-left px-2.5 py-1.5 rounded-md hover:bg-[#F2E5D2] text-[#2B1711] flex items-center justify-between font-serif font-medium"
+                    className="w-full text-left px-2.5 py-1.5 rounded-md hover:bg-[#F2E5D2] text-[#2B1711] flex items-center justify-between font-serif font-medium cursor-pointer transition-colors"
                   >
                     <span>Rubbing Analysis Studio</span>
                     <Sparkles className="w-3.5 h-3.5 text-[#8C3B18]" />
+                  </button>
+                  <button
+                    onClick={() => {
+                      setUserMenuOpen(false);
+                      onNavigate('settings');
+                    }}
+                    className="w-full text-left px-2.5 py-1.5 rounded-md hover:bg-[#F2E5D2] text-[#2B1711] flex items-center justify-between font-serif font-medium cursor-pointer transition-colors"
+                  >
+                    <span>Corpus Settings</span>
+                    <Settings className="w-3.5 h-3.5 text-[#8C3B18]" />
                   </button>
                 </div>
               </div>
