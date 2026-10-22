@@ -37,10 +37,10 @@ const METRICS: TelemetryMetric[] = [
 
 export const CorpusTelemetryCapsules: React.FC = () => {
   return (
-    <div className="bg-white/45 hover:bg-white/55 backdrop-blur-md border border-white/60 rounded-2xl p-4 sm:p-5 shadow-xs grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 transition-all">
+    <div className="bg-white/60 hover:bg-white/75 backdrop-blur-md border border-white/80 rounded-2xl p-4 sm:p-5 shadow-[0_4px_20px_rgba(40,24,18,0.04)] grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 transition-all">
       {METRICS.map((metric) => (
-        <div key={metric.id} className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[#F6EADB]/80 text-[#8C3B18] flex items-center justify-center shrink-0 shadow-2xs">
+        <div key={metric.id} className="flex items-center gap-3 group">
+          <div className="w-10 h-10 rounded-xl bg-[#F6EADB]/90 text-[#8C3B18] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform">
             {metric.icon}
           </div>
           <div>

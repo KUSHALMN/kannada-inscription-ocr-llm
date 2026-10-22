@@ -17,14 +17,17 @@ export const HeroBannerSection: React.FC = () => {
 
       {/* Hero Left Content - Spacious layout now that floating overlay is removed */}
       <div className="relative z-10 p-6 sm:p-10 lg:p-12 max-w-xl lg:max-w-2xl space-y-6">
-        {/* Dignified Inscriptional Overline */}
-        <div className="text-xs font-cinzel font-bold text-[#8C3B18] tracking-[0.2em] uppercase">
-          ABOUT KANNADA HERITAGE
+        {/* Dignified Inscriptional Overline with Accent Rule */}
+        <div className="flex items-center gap-3">
+          <span className="text-xs font-cinzel font-bold text-[#8C3B18] tracking-[0.25em] uppercase">
+            ABOUT KANNADA HERITAGE
+          </span>
+          <div className="w-16 h-px bg-[#DFCBB0]" />
         </div>
 
         {/* Heading */}
         <div className="space-y-1">
-          <h1 className="font-serif font-black text-3xl sm:text-4xl lg:text-[44px] text-[#24150E] leading-[1.12] tracking-tight">
+          <h1 className="font-serif font-black text-3xl sm:text-4xl lg:text-[46px] text-[#24150E] leading-[1.12] tracking-tight">
             Preserving{' '}
             <span className="text-[#C05621] font-serif">Karnataka’s</span>
             <br />
