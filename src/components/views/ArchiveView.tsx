@@ -239,6 +239,19 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
     });
   }, [inscriptions]);
 
+  const dynastyCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    const dynKeys = ['Ashoka', 'Kadamba', 'Chalukya', 'Rashtrakuta', 'Hoysala', 'Vijayanagara', 'Nayaka', 'Ganga'];
+    dynKeys.forEach((key) => {
+      const needle = key.toLowerCase();
+      counts[key] = fullCatalogue.filter((item) => {
+        const itemText = (item.title + ' ' + item.periodBadge + ' ' + (item.rawInscriptionRecord?.historicalContext?.dynasty || '')).toLowerCase();
+        return itemText.includes(needle);
+      }).length;
+    });
+    return counts;
+  }, [fullCatalogue]);
+
   // Actual filtered items (driven by applied filters)
   const filteredItems = useMemo(() => {
     return fullCatalogue.filter((item) => {
@@ -880,17 +893,27 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
                 { label: 'Western Ganga', key: 'Ganga' },
               ].map((dyn) => {
                 const isActive = dyn.key === '' ? appliedDynasties.length === 0 : appliedDynasties.includes(dyn.key);
+                const count = dyn.key !== '' ? (dynastyCounts[dyn.key] ?? 0) : fullCatalogue.length;
                 return (
                   <button
                     key={dyn.label}
                     onClick={() => handleQuickDynastyClick(dyn.key)}
-                    className={`shrink-0 px-2.5 py-1 rounded-full text-[11px] font-serif transition-colors border ${
+                    className={`shrink-0 px-2.5 py-1 rounded-full text-[11px] font-serif transition-colors border flex items-center gap-1.5 ${
                       isActive
                         ? 'bg-[#7C3517] text-white border-[#7C3517] font-semibold shadow-xs'
                         : 'bg-[#FAF7F2] text-[#564337] border-[#DFCBB0] hover:border-[#7C3517] hover:text-[#1E120B]'
                     }`}
                   >
-                    {dyn.label}
+                    <span>{dyn.label}</span>
+                    <span
+                      className={`text-[9.5px] px-1.5 py-0.2 rounded-full font-mono ${
+                        isActive
+                          ? 'bg-white/25 text-white'
+                          : 'bg-[#EFE5D2] text-[#7C3517]'
+                      }`}
+                    >
+                      {count}
+                    </span>
                   </button>
                 );
               })}
