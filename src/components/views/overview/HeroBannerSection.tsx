@@ -7,16 +7,16 @@ export const HeroBannerSection: React.FC = () => {
     <section className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-[#EADBCA] bg-[#FAF6EE] shadow-sm">
       {/* Background panoramic stele image on right */}
       <div
-        className="absolute inset-y-0 right-0 w-full lg:w-3/5 bg-cover bg-right bg-no-repeat pointer-events-none opacity-90 lg:opacity-100"
+        className="absolute inset-y-0 right-0 w-full lg:w-[60%] bg-cover bg-[center_right] bg-no-repeat pointer-events-none opacity-95 lg:opacity-100"
         style={{ backgroundImage: `url(${heroPanorama})` }}
       >
-        {/* Subtle, highly transparent gradient blend overlay so temple scenery remains crisp & visible */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#FAF6EE] via-[#FAF6EE]/40 to-transparent lg:w-[48%]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#FAF6EE] via-transparent to-transparent lg:hidden" />
+        {/* Crisp gradient blend so temple scenery remains vivid while text stays legible */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FAF6EE] via-[#FAF6EE]/50 via-25% to-transparent lg:w-[42%]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#FAF6EE] via-[#FAF6EE]/20 to-transparent lg:hidden" />
       </div>
 
-      {/* Hero Left Content */}
-      <div className="relative z-10 p-6 sm:p-10 lg:p-12 max-w-lg xl:max-w-xl space-y-6">
+      {/* Hero Left Content - Spacious layout now that floating overlay is removed */}
+      <div className="relative z-10 p-6 sm:p-10 lg:p-12 max-w-xl lg:max-w-2xl space-y-6">
         {/* Dignified Inscriptional Overline */}
         <div className="text-xs font-cinzel font-bold text-[#8C3B18] tracking-[0.2em] uppercase">
           ABOUT KANNADA HERITAGE
