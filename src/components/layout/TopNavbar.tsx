@@ -98,12 +98,31 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
     setMobileMenuOpen(false);
   };
 
+  const userMenuRef = React.useRef<HTMLDivElement>(null);
+
+  // Close user profile dropdown on click outside
+  React.useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
+        setUserMenuOpen(false);
+      }
+    };
+    if (userMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [userMenuOpen]);
+
   return (
     <header className="sticky top-2 sm:top-3 z-50 px-3 sm:px-6 transition-all pointer-events-none">
-      <div className="pointer-events-auto max-w-[1440px] mx-auto rounded-2xl sm:rounded-full bg-white/30 backdrop-blur-3xl backdrop-saturate-200 border border-white/80 shadow-[0_12px_40px_rgba(43,23,17,0.08),inset_0_1.5px_2px_0_rgba(255,255,255,0.95)] px-4 sm:px-8 py-2.5 flex items-center justify-between gap-4 relative overflow-hidden transition-all">
-        {/* Specular prismatic liquid glass refraction sheen */}
-        <div className="absolute inset-x-8 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white to-transparent pointer-events-none opacity-95" />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/5 to-transparent pointer-events-none" />
+      <div className="pointer-events-auto max-w-[1440px] mx-auto rounded-2xl sm:rounded-full bg-white/30 backdrop-blur-3xl backdrop-saturate-200 border border-white/80 shadow-[0_12px_40px_rgba(43,23,17,0.08),inset_0_1.5px_2px_0_rgba(255,255,255,0.95)] px-4 sm:px-8 py-2.5 flex items-center justify-between gap-4 relative transition-all">
+        {/* Specular prismatic liquid glass refraction sheen clipped to rounded pill */}
+        <div className="absolute inset-0 rounded-2xl sm:rounded-full overflow-hidden pointer-events-none">
+          <div className="absolute inset-x-8 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white to-transparent opacity-95" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/5 to-transparent" />
+        </div>
         {/* Left Branding */}
         <div
           onClick={() => {
@@ -194,7 +213,7 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
           </button>
 
           {/* User Profile Chip - Kushal MN with Liquid Glass Pill */}
-          <div className="relative">
+          <div className="relative" ref={userMenuRef}>
             <button
               onClick={() => setUserMenuOpen(!userMenuOpen)}
               className="flex items-center gap-2 pl-1 pr-2.5 py-1 rounded-full bg-white/70 backdrop-blur-md border border-white/80 shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.9),0_2px_8px_rgba(40,24,18,0.04)] hover:bg-white/90 hover:shadow-[inset_0_1px_1.5px_rgba(255,255,255,1),0_4px_14px_rgba(40,24,18,0.08)] transition-all cursor-pointer"
@@ -206,7 +225,7 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
               <span className="text-xs font-serif font-semibold text-[#2B1711] hidden sm:inline">
                 Kushal MN
               </span>
-              <ChevronDown className="w-3.5 h-3.5 text-[#7C695C]" />
+              <ChevronDown className={`w-3.5 h-3.5 text-[#7C695C] transition-transform duration-200 ${userMenuOpen ? 'rotate-180' : ''}`} />
             </button>
 
             {/* User Dropdown Menu with Liquid Frosted Refraction */}
