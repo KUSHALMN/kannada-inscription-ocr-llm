@@ -1128,6 +1128,133 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
                   </div>
                 ))}
               </div>
+            ) : viewMode === 'table' ? (
+              /* Institutional Tabular Epigraphical Register */
+              <div className="bg-[#FAF7F2] border border-[#E8DEC8] rounded-xl overflow-hidden shadow-xs pt-1">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-xs font-serif border-collapse">
+                    <thead>
+                      <tr className="bg-[#EFE5D2] border-b border-[#DFCBB0] text-[11px] font-cinzel font-bold text-[#7C3517] tracking-wider uppercase">
+                        <th className="py-3 px-3.5">Stele &amp; Accession</th>
+                        <th className="py-3 px-3.5">Inscription Title</th>
+                        <th className="py-3 px-3">Script</th>
+                        <th className="py-3 px-3">Language</th>
+                        <th className="py-3 px-3">Period &amp; Dynasty</th>
+                        <th className="py-3 px-3.5">Site Location</th>
+                        <th className="py-3 px-3">Material</th>
+                        <th className="py-3 px-3">Status</th>
+                        <th className="py-3 px-3.5 text-right">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#EEDBCA]/80">
+                      {filteredItems.map((item) => (
+                        <tr
+                          key={item.id}
+                          onClick={() => onSelectInscription(item.rawInscriptionRecord || inscriptions[0])}
+                          className="hover:bg-[#F5EADB]/50 transition-colors cursor-pointer group"
+                        >
+                          {/* Stele Thumbnail & Accession */}
+                          <td className="py-3 px-3.5 whitespace-nowrap">
+                            <div className="flex items-center gap-2.5">
+                              <div className="w-10 h-10 rounded-lg overflow-hidden bg-slate-900 shrink-0 border border-[#DFCBB0] shadow-2xs">
+                                <img
+                                  src={item.imageUrl}
+                                  alt={item.title}
+                                  className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                                  onError={(e) => {
+                                    e.currentTarget.src = sampleStele;
+                                  }}
+                                />
+                              </div>
+                              <span className="font-mono text-[10.5px] font-semibold text-[#857268]">
+                                {item.accessionNumber}
+                              </span>
+                            </div>
+                          </td>
+
+                          {/* Inscription Title & Kannada Title */}
+                          <td className="py-3 px-3.5 min-w-[200px]">
+                            <div className="font-serif font-bold text-xs text-[#1E120B] group-hover:text-[#7C3517] transition-colors line-clamp-1">
+                              {item.title}
+                            </div>
+                            <div className="font-kannada text-[11px] text-[#8C3B18] line-clamp-1">
+                              {item.kannadaTitle}
+                            </div>
+                          </td>
+
+                          {/* Script */}
+                          <td className="py-3 px-3 whitespace-nowrap">
+                            <span className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#EBF2F7] text-[#245C80] border border-[#CDE0ED]">
+                              {item.scriptBadge}
+                            </span>
+                          </td>
+
+                          {/* Language */}
+                          <td className="py-3 px-3 whitespace-nowrap text-[#564337] text-[11px]">
+                            {item.language}
+                          </td>
+
+                          {/* Period */}
+                          <td className="py-3 px-3 whitespace-nowrap">
+                            <span className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#FAF1DF] text-[#7C5A17] border border-[#EEDCBA]">
+                              {item.periodBadge}
+                            </span>
+                          </td>
+
+                          {/* Location */}
+                          <td className="py-3 px-3.5 text-[#564337] text-[11px] whitespace-nowrap">
+                            <div className="flex items-center gap-1.5">
+                              <MapPin className="w-3 h-3 text-[#8C3B18] shrink-0" />
+                              <span className="truncate max-w-[150px]">{item.location}</span>
+                            </div>
+                          </td>
+
+                          {/* Material */}
+                          <td className="py-3 px-3 text-[#564337] text-[11px] whitespace-nowrap">
+                            <span className="truncate max-w-[130px] block">{item.material}</span>
+                          </td>
+
+                          {/* Status */}
+                          <td className="py-3 px-3 whitespace-nowrap">
+                            {item.status === 'verified' && (
+                              <span className="px-2 py-0.5 rounded-full text-[9.5px] font-mono font-semibold bg-[#E5F4E9] text-[#1B6331] border border-[#BDE5C7] inline-flex items-center gap-1">
+                                <CheckCircle2 className="w-2.5 h-2.5 text-[#27A844]" />
+                                <span>Verified</span>
+                              </span>
+                            )}
+                            {item.status === 'under_review' && (
+                              <span className="px-2 py-0.5 rounded-full text-[9.5px] font-mono font-semibold bg-[#FFF4E5] text-[#975A16] border border-[#F6D2A2] inline-flex items-center gap-1">
+                                <Clock className="w-2.5 h-2.5 text-[#D68227]" />
+                                <span>Review</span>
+                              </span>
+                            )}
+                            {item.status === 'provisional' && (
+                              <span className="px-2 py-0.5 rounded-full text-[9.5px] font-mono font-semibold bg-[#F5EBE1] text-[#8B4823] border border-[#DFCBB0] inline-flex items-center gap-1">
+                                <AlertCircle className="w-2.5 h-2.5 text-[#8B4823]" />
+                                <span>Provisional</span>
+                              </span>
+                            )}
+                          </td>
+
+                          {/* Action */}
+                          <td className="py-3 px-3.5 text-right whitespace-nowrap">
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                onSelectInscription(item.rawInscriptionRecord || inscriptions[0]);
+                              }}
+                              className="px-2.5 py-1 bg-[#7C3517] hover:bg-[#682A10] text-white rounded text-[11px] font-serif font-semibold inline-flex items-center gap-1 shadow-xs transition-colors cursor-pointer"
+                            >
+                              <span>Examine</span>
+                              <ArrowRight className="w-3 h-3" />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             ) : (
               /* Inscription Cards Grid (4 columns x 2 rows = 8 cards) */
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 pt-2">
