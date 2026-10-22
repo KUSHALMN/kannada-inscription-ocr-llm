@@ -14,7 +14,7 @@ import { epigraphyService } from './services/epigraphyService';
 import { InscriptionRecord, ScriptClassMetadata, SourceLanguageMetadata, ResearchActivityItem } from './types';
 
 export const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<NavItemKey>('overview');
+  const [activeTab, setActiveTab] = useState<NavItemKey>('home');
   const [inscriptions, setInscriptions] = useState<InscriptionRecord[]>([]);
   const [scripts, setScripts] = useState<ScriptClassMetadata[]>([]);
   const [languages, setLanguages] = useState<SourceLanguageMetadata[]>([]);

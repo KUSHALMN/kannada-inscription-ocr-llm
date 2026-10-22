@@ -106,7 +106,10 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
         <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/5 to-transparent pointer-events-none" />
         {/* Left Branding */}
         <div
-          onClick={() => onNavigate('overview')}
+          onClick={() => {
+            onNavigate('home');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
           className="flex items-center gap-3.5 cursor-pointer group shrink-0"
         >
           {/* Temple Icon Badge with liquid glass refraction */}
