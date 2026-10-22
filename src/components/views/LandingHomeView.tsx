@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import heroBg from '../../assets/hero-bg.jpg';
 import sampleStele from '../../assets/sample-stele.jpg';
+import { TempleAtlasSection } from './landing/TempleAtlasSection';
 
 interface LandingHomeViewProps {
   inscriptions: InscriptionRecord[];
@@ -667,6 +668,17 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
             </div>
           ))}
         </div>
+      </section>
+
+      {/* =================================================================
+          3B. KARNATAKA TEMPLE & MONUMENT DYNASTY ATLAS
+      ================================================================== */}
+      <section className="max-w-[1440px] mx-auto px-4 sm:px-8">
+        <TempleAtlasSection
+          inscriptions={inscriptions}
+          onSelectInscription={onSelectInscription}
+          onNavigateToArchive={() => onNavigateToArchive()}
+        />
       </section>
 
       {/* =================================================================
