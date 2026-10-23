@@ -44,3 +44,5 @@ __pycache__/
 .venv
 env/
 venv/
+backend/uploads/*
+!backend/uploads/.gitkeep
