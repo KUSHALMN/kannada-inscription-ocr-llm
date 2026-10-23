@@ -55,7 +55,14 @@ def test_get_inscriptions_and_filters(client):
     response = client.get("/api/v1/inscriptions")
     assert response.status_code == 200
     all_inscriptions = response.json()
-    assert len(all_inscriptions) >= 8
+    assert len(all_inscriptions) == 6
+    seeded_ids = [ins["id"] for ins in all_inscriptions]
+    assert "ins-halmidi-001" in seeded_ids
+    assert "ins-talagunda-002" in seeded_ids
+    assert "ins-badami-003" in seeded_ids
+    assert "ins-shravanabelagola-004" in seeded_ids
+    assert "ins-belur-005" in seeded_ids
+    assert "ins-hampi-006" in seeded_ids
 
     # Filter by scriptClass
     kadamba_resp = client.get("/api/v1/inscriptions?scriptClass=kadamba")
@@ -136,3 +143,18 @@ def test_analyze_unsupported_file_type(client):
     response = client.post("/api/v1/analyze", files=files)
     assert response.status_code == 415
     assert response.json()["error"]["code"] == "HTTP_415"
+
+
+def test_root_level_endpoints(client):
+    """Test that /scripts, /languages, /activity?limit=10 work directly as well as /api/v1/."""
+    scripts_resp = client.get("/scripts")
+    assert scripts_resp.status_code == 200
+    assert len(scripts_resp.json()) == 10
+
+    langs_resp = client.get("/languages")
+    assert langs_resp.status_code == 200
+    assert len(langs_resp.json()) == 6
+
+    act_resp = client.get("/activity?limit=10")
+    assert act_resp.status_code == 200
+    assert len(act_resp.json()) <= 10

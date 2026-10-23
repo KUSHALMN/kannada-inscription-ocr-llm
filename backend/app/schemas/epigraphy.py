@@ -150,6 +150,8 @@ class ScriptClassMetadata(CamelModel):
     name: str = Field(..., description="English script name")
     kannada_name: str = Field(..., description="Kannada script name")
     approximate_period: str = Field(..., description="Historical chronological span")
+    order_index: Optional[int] = Field(None, description="Chronological sequence index 0-9")
+    century_range: Optional[str] = Field(None, description="Standardized century range")
     diagnostic_features: List[str] = Field(default_factory=list, description="Diagnostic visual features")
     characteristic_substrate: List[SubstrateMaterial] = Field(default_factory=list, description="Common media")
     historical_dynasty: str = Field(..., description="Associated historical dynasty")
@@ -165,6 +167,7 @@ class SourceLanguageMetadata(CamelModel):
     kannada_name: str = Field(..., description="Kannada name")
     century_range: str = Field(..., description="Chronological span of attestation")
     linguistic_features: str = Field(..., description="Key morphological and phonological hallmarks")
+    description: Optional[str] = Field(None, description="Detailed linguistic and epigraphical description")
 
 
 class AnalysisJobResult(CamelModel):

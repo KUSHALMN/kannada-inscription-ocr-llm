@@ -60,8 +60,9 @@ def create_application() -> FastAPI:
     if os.path.exists(settings.UPLOAD_DIR):
         app.mount("/uploads", StaticFiles(directory=settings.UPLOAD_DIR), name="uploads")
 
-    # 4. Include API v1 Router with prefix
+    # 4. Include API v1 Router with prefix and root convenience
     app.include_router(api_v1_router, prefix="/api/v1")
+    app.include_router(api_v1_router)
 
     return app
 
