@@ -6,6 +6,7 @@ from backend.app.schemas.enums import (
     ReviewStatus,
     ConditionRating,
     ActivityType,
+    SortBy,
 )
 from backend.app.schemas.epigraphy import (
     Dimensions,
@@ -24,6 +25,7 @@ from backend.app.schemas.epigraphy import (
     SourceLanguageMetadata,
     AnalysisJobResult,
     InscriptionFilter,
+    InscriptionUpdate,
     TranscriptionUpdateRequest,
     TranslationUpdateRequest,
     ReviewStatusUpdateRequest,
@@ -37,6 +39,7 @@ __all__ = [
     "ReviewStatus",
     "ConditionRating",
     "ActivityType",
+    "SortBy",
     "Dimensions",
     "BoundingBox",
     "SegmentedLine",
@@ -53,6 +56,7 @@ __all__ = [
     "SourceLanguageMetadata",
     "AnalysisJobResult",
     "InscriptionFilter",
+    "InscriptionUpdate",
     "TranscriptionUpdateRequest",
     "TranslationUpdateRequest",
     "ReviewStatusUpdateRequest",

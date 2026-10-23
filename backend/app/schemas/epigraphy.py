@@ -1,4 +1,4 @@
-from typing import Optional, List, Tuple, Literal
+from typing import Optional, List, Tuple, Literal, Union
 from pydantic import Field
 from backend.app.schemas.base import CamelModel
 from backend.app.schemas.enums import (
@@ -8,6 +8,7 @@ from backend.app.schemas.enums import (
     ReviewStatus,
     ConditionRating,
     ActivityType,
+    SortBy,
 )
 
 
@@ -186,14 +187,37 @@ class AnalysisJobResult(CamelModel):
 # Request / Filter Schemas
 class InscriptionFilter(CamelModel):
     """Search and filter parameters for inscriptions query."""
-    script_class: Optional[str] = None
-    source_language: Optional[str] = None
-    substrate: Optional[str] = None
-    review_status: Optional[str] = None
+    script_class: Optional[Union[ScriptClassId, Literal["all"]]] = None
+    source_language: Optional[Union[SourceLanguageId, Literal["all"]]] = None
+    substrate: Optional[Union[SubstrateMaterial, Literal["all"]]] = None
+    review_status: Optional[Union[ReviewStatus, Literal["all"]]] = None
     historical_period: Optional[str] = None
     search_query: Optional[str] = None
-    century: Optional[str] = None
-    sort_by: Optional[str] = None
+    sort_by: Optional[SortBy] = None
+
+
+class InscriptionUpdate(CamelModel):
+    """
+    Model for partial update of an InscriptionRecord.
+    Changes to immutable fields 'id' and 'accessionNumber' are rejected.
+    """
+    id: Optional[str] = Field(None, description="Immutable identifier. Changes will be rejected.")
+    accession_number: Optional[str] = Field(None, description="Immutable catalog number. Changes will be rejected.")
+    title: Optional[str] = None
+    kannada_title: Optional[str] = None
+    script_class: Optional[ScriptClassId] = None
+    source_language: Optional[SourceLanguageId] = None
+    substrate: Optional[SubstrateMaterial] = None
+    dimensions: Optional[Dimensions] = None
+    image_url: Optional[str] = None
+    thumbnail_url: Optional[str] = None
+    condition_rating: Optional[ConditionRating] = None
+    review_status: Optional[ReviewStatus] = None
+    historical_context: Optional[HistoricalContext] = None
+    transcription: Optional[TranscriptionResult] = None
+    translation: Optional[TranslationResult] = None
+    provenance: Optional[str] = None
+    current_location: Optional[str] = None
 
 
 class TranscriptionUpdateRequest(CamelModel):

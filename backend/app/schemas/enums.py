@@ -71,3 +71,14 @@ class ActivityType(str, Enum):
     TRANSLATION_UPDATED = "translation_updated"
     RUBBING_CATALOGUED = "rubbing_catalogued"
     LEXICON_ADDED = "lexicon_added"
+
+
+class SortBy(str, Enum):
+    """
+    Sorting criteria for inscription queries.
+    """
+    DATE_ASC = "date_asc"
+    DATE_DESC = "date_desc"
+    TITLE = "title"
+    CONFIDENCE = "confidence"
+    RECENTLY_UPDATED = "recently_updated"

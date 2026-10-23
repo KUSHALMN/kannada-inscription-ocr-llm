@@ -2,6 +2,8 @@ import os
 import json
 import uuid
 import asyncio
+import re
+from datetime import datetime
 from typing import List, Optional
 from backend.app.config import settings
 from backend.app.core.logging import logger
@@ -68,6 +70,65 @@ class JsonFileInscriptionRepository(InscriptionRepository):
         os.replace(temp_file, self.file_path)
         logger.debug("Atomically persisted %d inscription records to %s", len(self._inscriptions), self.file_path)
 
+    @staticmethod
+    def _extract_year(rec: InscriptionRecord) -> float:
+        """Extracts approximate chronological year for sorting steles."""
+        text = f"{rec.historical_context.approximate_date} {rec.historical_context.century} {rec.historical_context.regnal_period}"
+        is_bce = "BCE" in text.upper() or "BC" in text.upper()
+        numbers = re.findall(r"\d+", text)
+        if not numbers:
+            return 0.0
+        val = float(numbers[0])
+        # If single-digit century number like 5 in '5th Century'
+        if val <= 30 and ("CENTURY" in text.upper() or "C." in text.upper()) and len(numbers) == 1:
+            val = (val - 1) * 100 + 50
+        return -val if is_bce else val
+
+    @staticmethod
+    def _parse_last_updated(date_str: str) -> float:
+        """Parses human date string or ISO timestamp into timestamp float."""
+        try:
+            return datetime.strptime(date_str, "%d %b %Y").timestamp()
+        except Exception:
+            try:
+                return datetime.fromisoformat(date_str).timestamp()
+            except Exception:
+                return 0.0
+
+    @staticmethod
+    def _matches_search(rec: InscriptionRecord, query: str) -> bool:
+        """
+        Case-insensitive search across title, kannadaTitle, dynasty, ruler,
+        village, recognizedText, and glossary terms.
+        """
+        q = query.lower().strip()
+        if not q:
+            return True
+
+        if q in rec.title.lower():
+            return True
+        if q in rec.kannada_title.lower():
+            return True
+        if q in rec.historical_context.dynasty.lower():
+            return True
+        if q in rec.historical_context.ruler.lower():
+            return True
+        if q in rec.historical_context.find_spot.village.lower():
+            return True
+        if q in rec.transcription.recognized_text.lower():
+            return True
+
+        for item in rec.translation.glossary:
+            if (
+                q in item.term.lower()
+                or q in item.iast.lower()
+                or q in item.modern_kannada_equivalent.lower()
+                or q in item.english_definition.lower()
+            ):
+                return True
+
+        return False
+
     async def list(self, filter_params: Optional[InscriptionFilter] = None) -> List[InscriptionRecord]:
         async with self._lock:
             result = list(self._inscriptions)
@@ -76,48 +137,45 @@ class JsonFileInscriptionRepository(InscriptionRepository):
             return result
 
         if filter_params.script_class and filter_params.script_class != "all":
-            result = [x for x in result if x.script_class.value == filter_params.script_class]
+            val = filter_params.script_class.value if hasattr(filter_params.script_class, "value") else str(filter_params.script_class)
+            result = [x for x in result if x.script_class.value == val]
 
         if filter_params.source_language and filter_params.source_language != "all":
-            result = [x for x in result if x.source_language.value == filter_params.source_language]
+            val = filter_params.source_language.value if hasattr(filter_params.source_language, "value") else str(filter_params.source_language)
+            result = [x for x in result if x.source_language.value == val]
 
         if filter_params.substrate and filter_params.substrate != "all":
-            result = [x for x in result if x.substrate.value == filter_params.substrate]
+            val = filter_params.substrate.value if hasattr(filter_params.substrate, "value") else str(filter_params.substrate)
+            result = [x for x in result if x.substrate.value == val]
 
         if filter_params.review_status and filter_params.review_status != "all":
-            result = [x for x in result if x.review_status.value == filter_params.review_status]
+            val = filter_params.review_status.value if hasattr(filter_params.review_status, "value") else str(filter_params.review_status)
+            result = [x for x in result if x.review_status.value == val]
 
         if filter_params.historical_period and filter_params.historical_period != "all":
-            hp = filter_params.historical_period.lower()
+            hp = filter_params.historical_period.lower().strip()
             result = [
                 x for x in result
-                if hp in x.historical_context.century.lower() or hp in x.historical_context.approximate_date.lower()
+                if hp in x.historical_context.century.lower()
+                or hp in x.historical_context.approximate_date.lower()
+                or hp in x.historical_context.regnal_period.lower()
             ]
 
         if filter_params.search_query and filter_params.search_query.strip():
-            q = filter_params.search_query.lower().strip()
-            result = [
-                x for x in result
-                if q in x.title.lower()
-                or q in x.kannada_title.lower()
-                or q in x.accession_number.lower()
-                or q in x.historical_context.dynasty.lower()
-                or q in x.historical_context.ruler.lower()
-                or q in x.historical_context.find_spot.village.lower()
-                or q in x.historical_context.find_spot.district.lower()
-            ]
+            result = [x for x in result if self._matches_search(x, filter_params.search_query)]
 
         if filter_params.sort_by:
-            if filter_params.sort_by == "title_asc":
+            sort_val = filter_params.sort_by.value if hasattr(filter_params.sort_by, "value") else str(filter_params.sort_by)
+            if sort_val == "date_asc":
+                result.sort(key=self._extract_year)
+            elif sort_val == "date_desc":
+                result.sort(key=self._extract_year, reverse=True)
+            elif sort_val == "title":
                 result.sort(key=lambda x: x.title.lower())
-            elif filter_params.sort_by == "title_desc":
-                result.sort(key=lambda x: x.title.lower(), reverse=True)
-            elif filter_params.sort_by == "recently_updated":
-                result.sort(key=lambda x: x.last_updated, reverse=True)
-            elif filter_params.sort_by == "chronological_asc":
-                result.sort(key=lambda x: x.id)
-            elif filter_params.sort_by == "chronological_desc":
-                result.sort(key=lambda x: x.id, reverse=True)
+            elif sort_val == "confidence":
+                result.sort(key=lambda x: x.transcription.script_confidence, reverse=True)
+            elif sort_val == "recently_updated":
+                result.sort(key=lambda x: self._parse_last_updated(x.last_updated), reverse=True)
 
         return result
 
