@@ -56,7 +56,8 @@ async def http_exception_handler(request: Request, exc: StarletteHTTPException) 
     code = code_map.get(exc.status_code, f"HTTP_{exc.status_code}")
     return JSONResponse(
         status_code=exc.status_code,
-        content={"error": {"code": code, "message": str(exc.detail)}}
+        content={"error": {"code": code, "message": str(exc.detail)}},
+        headers=getattr(exc, "headers", None),
     )
 
 

@@ -30,6 +30,8 @@ from backend.app.api.deps import (
 )
 from backend.app.core.logging import logger
 
+from backend.app.core.rate_limit import check_analyze_rate_limit
+
 router = APIRouter(prefix="/analyze", tags=["Analysis"])
 
 MAX_FILE_SIZE = 25 * 1024 * 1024  # 25 MB
@@ -47,6 +49,7 @@ EXT_MAP = {
     "",
     response_model=Union[AnalysisJobResult, AsyncJobAccepted],
     summary="Analyze Inscription Rubbing or Stele Photograph",
+    dependencies=[Depends(check_analyze_rate_limit)],
 )
 async def analyze_inscription(
     file: UploadFile = File(..., description="Rubbing image (JPEG, PNG, WEBP, TIFF up to 25MB)"),

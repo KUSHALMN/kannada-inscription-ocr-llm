@@ -205,6 +205,24 @@ class JobStatusResponse(CamelModel):
     updated_at: Optional[str] = Field(None, description="Timestamp of last progress update")
 
 
+class HealthResponse(CamelModel):
+    """System health, GPU telemetry, and loaded model diagnostics."""
+    status: str = Field("healthy", description="Service status")
+    app_name: str = Field(..., description="Service name")
+    version: str = Field(..., description="Semantic API version")
+    timestamp: str = Field(..., description="ISO 8601 current timestamp")
+    environment: str = Field(..., description="Deployment environment")
+    adapter_mode: str = Field("mock", description="Active paleographical ML adapter mode (mock or local)")
+    torch_available: bool = Field(False, description="Whether PyTorch is installed")
+    gpu_available: bool = Field(False, description="Whether CUDA GPU acceleration is available")
+    device_name: str = Field("CPU", description="Inference device name (e.g. NVIDIA RTX or CPU)")
+    device_count: int = Field(0, description="Available GPU devices count")
+    vram_allocated_mb: Optional[float] = Field(None, description="Currently allocated VRAM in megabytes")
+    vram_total_mb: Optional[float] = Field(None, description="Total VRAM available in megabytes")
+    model_loaded_flags: dict[str, bool] = Field(..., description="Readiness status of the 6 pipeline ML adapters")
+
+
+
 
 # Request / Filter Schemas
 class InscriptionFilter(CamelModel):

@@ -1,16 +1,17 @@
 import { IEpigraphyService } from '../types';
 import { MockEpigraphyService } from './mockEpigraphyService';
+import { FastApiEpigraphyService, fastApiEpigraphyService } from './fastapiEpigraphyService';
 
 /**
  * Service Adapter Factory
  * Allows seamless switching between local mock demonstration data
- * and future FastAPI remote endpoints without altering any UI components.
+ * and FastAPI remote endpoints without altering any UI components.
  */
 class ServiceRegistry {
   private activeService: IEpigraphyService;
 
   constructor() {
-    // Phase 1 defaults to MockEpigraphyService with strictly typed mock data
+    // Defaults to MockEpigraphyService; can be toggled to fastApiEpigraphyService
     this.activeService = new MockEpigraphyService();
   }
 
@@ -21,7 +22,17 @@ class ServiceRegistry {
   public setService(service: IEpigraphyService): void {
     this.activeService = service;
   }
+
+  public useFastApi(): void {
+    this.activeService = fastApiEpigraphyService;
+  }
+
+  public useMock(): void {
+    this.activeService = new MockEpigraphyService();
+  }
 }
 
 export const serviceRegistry = new ServiceRegistry();
 export const epigraphyService = serviceRegistry.getService();
+export { FastApiEpigraphyService, fastApiEpigraphyService };
+

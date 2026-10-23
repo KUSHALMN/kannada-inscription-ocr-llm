@@ -17,6 +17,7 @@ from backend.app.core.exceptions import (
 )
 from backend.app.api.v1.router import api_v1_router
 from backend.app.services.job_manager import job_manager
+from backend.app.core.middleware import RequestIdMiddleware
 
 
 @asynccontextmanager
@@ -47,16 +48,20 @@ def create_application() -> FastAPI:
         lifespan=lifespan,
     )
 
-    # 1. Configure CORS
+    # 1. Configure Request-ID Correlation Middleware
+    app.add_middleware(RequestIdMiddleware)
+
+    # 2. Configure CORS
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.CORS_ORIGINS,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
+        expose_headers=["X-Request-ID"],
     )
 
-    # 2. Register Global Exception Handlers
+    # 3. Register Global Exception Handlers
     app.add_exception_handler(EpigraphyException, epigraphy_exception_handler)
     app.add_exception_handler(RequestValidationError, validation_exception_handler)
     app.add_exception_handler(StarletteHTTPException, http_exception_handler)

@@ -43,6 +43,9 @@ class Settings(BaseSettings):
     ADAPTER_MODE: str = "mock"  # "mock" or "local"
     JOB_CONCURRENCY: int = 1    # Single-worker asyncio queue by default (GPU jobs must not run concurrently)
     JOB_TTL_SECONDS: int = 3600 # 1 hour in-memory retention before eviction
+    RATE_LIMIT_ANALYZE_PER_MINUTE: int = 60  # Maximum analysis uploads allowed per minute per IP
+    UPLOAD_RETENTION_DAYS: int = 7           # Automatic deletion retention period for raw uploads
+
 
     @field_validator("CORS_ORIGINS", mode="before")
     @classmethod
