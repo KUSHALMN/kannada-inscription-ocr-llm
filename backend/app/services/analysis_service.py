@@ -1,6 +1,6 @@
 import time
 import uuid
-from typing import Optional, Dict, Any, List
+from typing import Optional, Dict, Any, List, Callable, Awaitable
 import numpy as np
 from PIL import Image
 from starlette.concurrency import run_in_threadpool
@@ -103,6 +103,7 @@ class AnalysisService:
         known_script: Optional[str] = None,
         known_language: Optional[str] = None,
         researcher_notes: Optional[str] = None,
+        on_step_progress: Optional[Callable[[str, int], Awaitable[None]]] = None,
     ) -> AnalysisJobResult:
         """
         Runs the full analysis pipeline asynchronously via threadpool.
@@ -126,6 +127,8 @@ class AnalysisService:
         # -----------------------------------------------------------------
         # Step 1: Preprocessing
         # -----------------------------------------------------------------
+        if on_step_progress:
+            await on_step_progress("preprocessing", 15)
         try:
             t0 = time.perf_counter()
             preprocessed_arr = await run_in_threadpool(self.preprocessor.process, image)
@@ -141,6 +144,8 @@ class AnalysisService:
         # -----------------------------------------------------------------
         # Step 2: Line & Character Segmentation
         # -----------------------------------------------------------------
+        if on_step_progress:
+            await on_step_progress("segmentation", 35)
         try:
             t0 = time.perf_counter()
             line_boxes = await run_in_threadpool(self.segmenter.segment, preprocessed_arr)
@@ -155,6 +160,8 @@ class AnalysisService:
         # -----------------------------------------------------------------
         # Step 3: Script Epoch Inference
         # -----------------------------------------------------------------
+        if on_step_progress:
+            await on_step_progress("classification", 50)
         try:
             t0 = time.perf_counter()
             crops: List[np.ndarray] = []  # In real model: cropped glyph boxes from preprocessed_arr
@@ -198,6 +205,8 @@ class AnalysisService:
         # -----------------------------------------------------------------
         # Step 4 & 5: Character Recognition & Transliteration
         # -----------------------------------------------------------------
+        if on_step_progress:
+            await on_step_progress("recognition_transliteration", 70)
         segmented_lines: List[SegmentedLine] = []
         try:
             t0 = time.perf_counter()
@@ -253,6 +262,8 @@ class AnalysisService:
         # -----------------------------------------------------------------
         # Step 6: Translation Synthesis & Glossary Extraction
         # -----------------------------------------------------------------
+        if on_step_progress:
+            await on_step_progress("translation", 85)
         try:
             t0 = time.perf_counter()
             recognized_input = transcription.recognized_text if transcription else "ನಮಃ"
@@ -282,6 +293,8 @@ class AnalysisService:
         # -----------------------------------------------------------------
         # Step 7: Historical Context Synthesis
         # -----------------------------------------------------------------
+        if on_step_progress:
+            await on_step_progress("context_synthesis", 95)
         try:
             t0 = time.perf_counter()
             village = location.split(",")[0].strip() if location and "," in location else (location or "Halmidi vicinity")

@@ -58,3 +58,13 @@ def get_analysis_service():
     from backend.app.services.analysis_service import analysis_service
     return analysis_service
 
+
+def get_job_manager():
+    """
+    Dependency provider for JobQueueManager.
+    Can be overridden in tests to inspect job queues or inject isolated managers.
+    """
+    from backend.app.services.job_manager import job_manager
+    return job_manager
+
+

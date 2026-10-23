@@ -187,6 +187,25 @@ class AnalysisJobResult(CamelModel):
     per_class_probs: Optional[dict[str, float]] = Field(None, description="Posterior probability distribution across 10 script eras")
 
 
+class AsyncJobAccepted(CamelModel):
+    """Immediate response payload when job is queued asynchronously."""
+    job_id: str = Field(..., description="Unique job identifier")
+    status: Literal['queued'] = Field('queued', description="Initial job queue status")
+
+
+class JobStatusResponse(CamelModel):
+    """Polling status and completed result payload for analysis jobs."""
+    job_id: str = Field(..., description="Unique job identifier")
+    status: Literal['queued', 'running', 'completed', 'failed', 'partial'] = Field(..., description="Current job status")
+    progress: int = Field(0, ge=0, le=100, description="Completion percentage 0-100")
+    current_step: Optional[str] = Field(None, description="Currently active computational step")
+    result: Optional[AnalysisJobResult] = Field(None, description="Decipherment payload when job completes or fails partially")
+    error_message: Optional[str] = Field(None, description="Error message if execution failed")
+    created_at: Optional[str] = Field(None, description="Timestamp when job was submitted")
+    updated_at: Optional[str] = Field(None, description="Timestamp of last progress update")
+
+
+
 # Request / Filter Schemas
 class InscriptionFilter(CamelModel):
     """Search and filter parameters for inscriptions query."""

@@ -16,6 +16,7 @@ from backend.app.core.exceptions import (
     global_exception_handler,
 )
 from backend.app.api.v1.router import api_v1_router
+from backend.app.services.job_manager import job_manager
 
 
 @asynccontextmanager
@@ -25,8 +26,13 @@ async def lifespan(app: FastAPI):
     logger.info("Initializing %s (v%s)", settings.APP_NAME, settings.APP_VERSION)
     logger.info("CORS Allowed Origins: %s", settings.CORS_ORIGINS)
     os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
+    os.makedirs(settings.STORAGE_UPLOADS_DIR, exist_ok=True)
+    os.makedirs(settings.STORAGE_JOBS_DIR, exist_ok=True)
+    await job_manager.start()
     yield
+    await job_manager.stop()
     logger.info("Shutting down %s", settings.APP_NAME)
+
 
 
 def create_application() -> FastAPI:

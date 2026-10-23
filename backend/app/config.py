@@ -36,10 +36,13 @@ class Settings(BaseSettings):
     DATA_DIR: str = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data")
     UPLOAD_DIR: str = os.path.join(os.path.dirname(os.path.dirname(__file__)), "uploads")
     STORAGE_UPLOADS_DIR: str = os.path.join(os.path.dirname(os.path.dirname(__file__)), "storage", "uploads")
+    STORAGE_JOBS_DIR: str = os.path.join(os.path.dirname(os.path.dirname(__file__)), "storage", "jobs")
 
     INFERENCE_DEVICE: str = "cpu"
     MOCK_INFERENCE: bool = False
     ADAPTER_MODE: str = "mock"  # "mock" or "local"
+    JOB_CONCURRENCY: int = 1    # Single-worker asyncio queue by default (GPU jobs must not run concurrently)
+    JOB_TTL_SECONDS: int = 3600 # 1 hour in-memory retention before eviction
 
     @field_validator("CORS_ORIGINS", mode="before")
     @classmethod

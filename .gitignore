@@ -48,3 +48,6 @@ backend/uploads/*
 !backend/uploads/.gitkeep
 backend/storage/uploads/*
 !backend/storage/uploads/.gitkeep
+backend/storage/jobs/*
+!backend/storage/jobs/.gitkeep
+
