@@ -1,0 +1,583 @@
+[
+  {
+    "id": "ashoka",
+    "name": "Ashokan Brahmi",
+    "kannadaName": "ಅಶೋಕನ ಬ್ರಾಹ್ಮೀ",
+    "approximatePeriod": "3rd Century BCE (c. 273 – 232 BCE)",
+    "diagnosticFeatures": [
+      "Strictly rectilinear and geometric strokes",
+      "Total absence of top headmark (Talakattu)",
+      "Basic geometric circle, cross, and vertical bar foundations",
+      "Uniform stroke width without calligraphic modulation"
+    ],
+    "characteristicSubstrate": [
+      "granite",
+      "sandstone"
+    ],
+    "historicalDynasty": "Mauryan Empire",
+    "significance": "First attested written records in Karnataka, marking the foundational root of Indian epigraphy.",
+    "relationships": {
+      "ancestorScripts": [
+        "Early Indigenous Indian Brahmi tradition"
+      ],
+      "descendantScripts": [
+        "Satavahana Brahmi",
+        "Bhattiprolu Script",
+        "Northern Brahmi (Gupta)"
+      ],
+      "parallelScripts": [
+        "Ashokan Kharosthi (Northwest)",
+        "Tamil-Brahmi (Southern Dravidian)"
+      ],
+      "branchName": "Pan-Indian Mauryan Imperial Epigraphy"
+    },
+    "sampleGlyphs": [
+      {
+        "id": "ash-01",
+        "label": "Foundation Vowel",
+        "kannadaChar": "ಅ",
+        "iast": "a",
+        "imagePath": "/glyphs/ashoka/1.png",
+        "morphologicalNote": "Rectilinear glyph formed by a vertical spine and two leftward angled arms."
+      },
+      {
+        "id": "ash-02",
+        "label": "Unaspirated Velar Plosive",
+        "kannadaChar": "ಕ",
+        "iast": "ka",
+        "imagePath": "/glyphs/ashoka/2.png",
+        "morphologicalNote": "Symmetrical orthogonal cross (+) chiseled deeply into coarse granite."
+      },
+      {
+        "id": "ash-03",
+        "label": "Voiced Velar Plosive",
+        "kannadaChar": "ಗ",
+        "iast": "ga",
+        "imagePath": "/glyphs/ashoka/3.png",
+        "morphologicalNote": "Inverted chevron (^) representing voiced stop without horizontal base closure."
+      }
+    ]
+  },
+  {
+    "id": "satavahana",
+    "name": "Satavahana Brahmi",
+    "kannadaName": "ಶಾತವಾಹನ ಬ್ರಾಹ್ಮೀ",
+    "approximatePeriod": "1st Century BCE – 3rd Century CE",
+    "diagnosticFeatures": [
+      "Emergence of base curvatures on vertical stems",
+      "Incipient triangular thickening or serif at stem tops",
+      "Curved horizontal vowel diacritics (Matras)",
+      "Modulated chisel pressure visible on limestone"
+    ],
+    "characteristicSubstrate": [
+      "limestone",
+      "granite"
+    ],
+    "historicalDynasty": "Satavahana Dynasty / Chutus of Banavasi",
+    "significance": "Bridge between North Indian Mauryan Brahmi and regional Dravidian epigraphical traditions.",
+    "relationships": {
+      "ancestorScripts": [
+        "Ashokan Brahmi"
+      ],
+      "descendantScripts": [
+        "Kadamba (Proto-Kannada)",
+        "Ikshvaku Script",
+        "Salankayana Script"
+      ],
+      "parallelScripts": [
+        "Kushana Brahmi (North)",
+        "Early Pallava Grantha (Southeast)"
+      ],
+      "branchName": "Deccan Regional Brahmi"
+    },
+    "sampleGlyphs": [
+      {
+        "id": "sat-01",
+        "label": "Initial Vowel",
+        "kannadaChar": "ಅ",
+        "iast": "a",
+        "imagePath": "/glyphs/satavahana/1.png",
+        "morphologicalNote": "Beginnings of curvature on lower left hook with upper serif thickening."
+      },
+      {
+        "id": "sat-02",
+        "label": "Velar Consonant",
+        "kannadaChar": "ಕ",
+        "iast": "ka",
+        "imagePath": "/glyphs/satavahana/2.png",
+        "morphologicalNote": "Crossbar exhibits slight curve with terminal chisel indentation."
+      },
+      {
+        "id": "sat-03",
+        "label": "Voiced Velar",
+        "kannadaChar": "ಗ",
+        "iast": "ga",
+        "imagePath": "/glyphs/satavahana/3.png",
+        "morphologicalNote": "Rounded arch replacing the sharp angle of Mauryan Brahmi."
+      }
+    ]
+  },
+  {
+    "id": "kadamba",
+    "name": "Kadamba (Proto-Kannada)",
+    "kannadaName": "ಕದಂಬ ಲಿಪಿ",
+    "approximatePeriod": "4th – 6th Century CE (c. 345 – 525 CE)",
+    "diagnosticFeatures": [
+      "Diagnostic box-headed top bar (Petika-shirsha)",
+      "Curving loops at base of consonants like ka, ra, and ma",
+      "Early formal separation of Kannada-Telugu branch",
+      "Emergence of archaic phonemes: Sakata Repha (ಱ) and Kula Repha (ೞ)"
+    ],
+    "characteristicSubstrate": [
+      "sandstone",
+      "copper_plate",
+      "chlorite_schist"
+    ],
+    "historicalDynasty": "Kadambas of Banavasi",
+    "significance": "Birth of formal Kannada epigraphy, marked by the iconic Halmidi inscription (c. 450 CE).",
+    "relationships": {
+      "ancestorScripts": [
+        "Satavahana Brahmi"
+      ],
+      "descendantScripts": [
+        "Badami Chalukya Script",
+        "Eastern Chalukya (Vengi) Script"
+      ],
+      "parallelScripts": [
+        "Pallava Grantha",
+        "Vakataka Box-Headed Script"
+      ],
+      "branchName": "Proto-Kannada-Telugu Lineage"
+    },
+    "sampleGlyphs": [
+      {
+        "id": "kad-01",
+        "label": "Box-Headed Vowel",
+        "kannadaChar": "ಅ",
+        "iast": "a",
+        "imagePath": "/glyphs/kadamba/1.png",
+        "morphologicalNote": "Distinct square hollow box (Petika-shirsha) crowning the central stem."
+      },
+      {
+        "id": "kad-02",
+        "label": "Proto-Kannada Consonant",
+        "kannadaChar": "ಕ",
+        "iast": "ka",
+        "imagePath": "/glyphs/kadamba/2.png",
+        "morphologicalNote": "Looping base curve with square box-head incision at top."
+      },
+      {
+        "id": "kad-03",
+        "label": "Curved Base Plosive",
+        "kannadaChar": "ಗ",
+        "iast": "ga",
+        "imagePath": "/glyphs/kadamba/3.png",
+        "morphologicalNote": "U-shaped rounded horseshoe arch with square terminal caps."
+      }
+    ]
+  },
+  {
+    "id": "badami_chalukya",
+    "name": "Badami Chalukya",
+    "kannadaName": "ಬಾದಾಮಿ ಚಾಲುಕ್ಯ ಲಿಪಿ",
+    "approximatePeriod": "6th – 8th Century CE (c. 543 – 753 CE)",
+    "diagnosticFeatures": [
+      "Morphing of box-head into a hooked horizontal bar",
+      "Pronounced inner loops in ba, bha, ya, and ma",
+      "Upward sweeping arched vowel canopies",
+      "Bilateral symmetry with elegant vertical tails"
+    ],
+    "characteristicSubstrate": [
+      "sandstone",
+      "granite",
+      "copper_plate"
+    ],
+    "historicalDynasty": "Early Western Chalukyas of Vatapi",
+    "significance": "Golden age of monumental cliff epigraphs (Aihole, Badami, Mahakuta).",
+    "relationships": {
+      "ancestorScripts": [
+        "Kadamba (Proto-Kannada)"
+      ],
+      "descendantScripts": [
+        "Rashtrakuta Script",
+        "Old Telugu Script"
+      ],
+      "parallelScripts": [
+        "Nalanda / Harsha Brahmi (North)",
+        "Early Chola Grantha (South)"
+      ],
+      "branchName": "Early Western Chalukya Epigraphical Standard"
+    },
+    "sampleGlyphs": [
+      {
+        "id": "bad-01",
+        "label": "Early Old Kannada Vowel",
+        "kannadaChar": "ಅ",
+        "iast": "a",
+        "imagePath": "/glyphs/badami_chalukya/1.png",
+        "morphologicalNote": "Hooked horizontal bar replacing the box-head with sweeping side arcs."
+      },
+      {
+        "id": "bad-02",
+        "label": "Looped Consonant",
+        "kannadaChar": "ಕ",
+        "iast": "ka",
+        "imagePath": "/glyphs/badami_chalukya/2.png",
+        "morphologicalNote": "Full loop formation at the bottom with open hooked crown."
+      },
+      {
+        "id": "bad-03",
+        "label": "Curved Velar",
+        "kannadaChar": "ಗ",
+        "iast": "ga",
+        "imagePath": "/glyphs/badami_chalukya/3.png",
+        "morphologicalNote": "Balanced bilateral arch with subtle terminal flourish."
+      }
+    ]
+  },
+  {
+    "id": "rashtrakuta",
+    "name": "Rashtrakuta",
+    "kannadaName": "ರಾಷ್ಟ್ರಕೂಟ ಲಿಪಿ",
+    "approximatePeriod": "8th – 10th Century CE (c. 753 – 982 CE)",
+    "diagnosticFeatures": [
+      "Horizontally broadened and vertically compressed glyph proportion",
+      "Stabilization of curved top hook into a mature proto-talakattu",
+      "Clear vertical stacking of subjoined consonants (Vattakshara)",
+      "Standardized copper-plate charter script form"
+    ],
+    "characteristicSubstrate": [
+      "granite",
+      "copper_plate"
+    ],
+    "historicalDynasty": "Imperial Rashtrakutas of Manyakheta",
+    "significance": "Era of Kavirajamarga (c. 850 CE); definitive flourishing of Classical Old Kannada (Halegannada).",
+    "relationships": {
+      "ancestorScripts": [
+        "Badami Chalukya"
+      ],
+      "descendantScripts": [
+        "Kalyana Chalukya Script",
+        "Ganga Script (Southern Karnataka)"
+      ],
+      "parallelScripts": [
+        "Gurjara-Pratihara Kutila (North)",
+        "Imperial Chola Tamil (South)"
+      ],
+      "branchName": "Imperial Manyakheta Classical Horizon"
+    },
+    "sampleGlyphs": [
+      {
+        "id": "ras-01",
+        "label": "Classical Old Kannada Vowel",
+        "kannadaChar": "ಅ",
+        "iast": "a",
+        "imagePath": "/glyphs/rashtrakuta/1.png",
+        "morphologicalNote": "Horizontally compressed proportions with pronounced proto-talakattu."
+      },
+      {
+        "id": "ras-02",
+        "label": "Broadened Consonant",
+        "kannadaChar": "ಕ",
+        "iast": "ka",
+        "imagePath": "/glyphs/rashtrakuta/2.png",
+        "morphologicalNote": "Flared side arms and structured lower loop."
+      },
+      {
+        "id": "ras-03",
+        "label": "Standardized Arch",
+        "kannadaChar": "ಗ",
+        "iast": "ga",
+        "imagePath": "/glyphs/rashtrakuta/3.png",
+        "morphologicalNote": "Arched glyph with stabilized top incision and flat base balance."
+      }
+    ]
+  },
+  {
+    "id": "kalyana_chalukya",
+    "name": "Kalyana Chalukya",
+    "kannadaName": "ಕಲ್ಯಾಣ ಚಾಲುಕ್ಯ ಲಿಪಿ",
+    "approximatePeriod": "10th – 12th Century CE (c. 973 – 1198 CE)",
+    "diagnosticFeatures": [
+      "Exquisite circular calligraphic contours enabled by chloritic schist",
+      "Flared terminal strokes and intricate circular vowel loops",
+      "Arched notch headmarks",
+      "Refined geometric balance across 50 characters"
+    ],
+    "characteristicSubstrate": [
+      "chlorite_schist",
+      "copper_plate"
+    ],
+    "historicalDynasty": "Western Chalukyas of Kalyana",
+    "significance": "Introduction of fine-grained soapstone carving created the most circular phase of Kannada script.",
+    "relationships": {
+      "ancestorScripts": [
+        "Rashtrakuta"
+      ],
+      "descendantScripts": [
+        "Hoysala Script",
+        "Seuna / Yadava Script"
+      ],
+      "parallelScripts": [
+        "Nagari (Sanskrit texts)",
+        "Chalukya-Chola Grantha"
+      ],
+      "branchName": "Middle Classical Western Chalukya"
+    },
+    "sampleGlyphs": [
+      {
+        "id": "kal-01",
+        "label": "Soapstone Circular Vowel",
+        "kannadaChar": "ಅ",
+        "iast": "a",
+        "imagePath": "/glyphs/kalyana_chalukya/1.png",
+        "morphologicalNote": "High circularity with delicate curved vowel loops chiseled in schist."
+      },
+      {
+        "id": "kal-02",
+        "label": "Swirling Consonant",
+        "kannadaChar": "ಕ",
+        "iast": "ka",
+        "imagePath": "/glyphs/kalyana_chalukya/2.png",
+        "morphologicalNote": "Spiral inner contours and distinct notched headmark."
+      },
+      {
+        "id": "kal-03",
+        "label": "Curved Plosive",
+        "kannadaChar": "ಗ",
+        "iast": "ga",
+        "imagePath": "/glyphs/kalyana_chalukya/3.png",
+        "morphologicalNote": "Circular arc with refined terminal serif."
+      }
+    ]
+  },
+  {
+    "id": "hoysala",
+    "name": "Hoysala",
+    "kannadaName": "ಹೊಯ್ಸಳ ಲಿಪಿ",
+    "approximatePeriod": "11th – 14th Century CE (c. 1026 – 1343 CE)",
+    "diagnosticFeatures": [
+      "Maximum artistic floridity with double-loops and cursive finials",
+      "Standardized check-mark / V-shaped downward Talakattu",
+      "Multi-tier stacked consonant ligatures with decorative curls",
+      "Dense inscriptional layout with micro-sculpted relief"
+    ],
+    "characteristicSubstrate": [
+      "chlorite_schist"
+    ],
+    "historicalDynasty": "Hoysala Empire (Belur, Halebidu)",
+    "significance": "Considered the peak artistic achievement of South Indian stone calligraphy.",
+    "relationships": {
+      "ancestorScripts": [
+        "Kalyana Chalukya"
+      ],
+      "descendantScripts": [
+        "Vijayanagara Script"
+      ],
+      "parallelScripts": [
+        "Kakatiya Telugu",
+        "Later Pandya Tamil-Grantha"
+      ],
+      "branchName": "Dwarasamudra High Ornamental Calligraphy"
+    },
+    "sampleGlyphs": [
+      {
+        "id": "hoy-01",
+        "label": "Ornate Florid Vowel",
+        "kannadaChar": "ಅ",
+        "iast": "a",
+        "imagePath": "/glyphs/hoysala/1.png",
+        "morphologicalNote": "Double curls and decorative tail terminating in calligraphic flourish."
+      },
+      {
+        "id": "hoy-02",
+        "label": "Sculpted Consonant",
+        "kannadaChar": "ಕ",
+        "iast": "ka",
+        "imagePath": "/glyphs/hoysala/2.png",
+        "morphologicalNote": "Intricate loop-in-loop structure with pronounced V-shaped Talakattu."
+      },
+      {
+        "id": "hoy-03",
+        "label": "Flowing Arch",
+        "kannadaChar": "ಗ",
+        "iast": "ga",
+        "imagePath": "/glyphs/hoysala/3.png",
+        "morphologicalNote": "Curving arch adorned with upper notch and downward ligature cusp."
+      }
+    ]
+  },
+  {
+    "id": "vijayanagara",
+    "name": "Vijayanagara",
+    "kannadaName": "ವಿಜಯನಗರ ಲಿಪಿ",
+    "approximatePeriod": "14th – 16th Century CE (c. 1336 – 1646 CE)",
+    "diagnosticFeatures": [
+      "Functional simplification adapted to hard granite substrates",
+      "Definitive morphological divergence between Kannada and Telugu scripts",
+      "Standardized uniform kerning with isolated glyph bodies",
+      "Clear, bold stroke architecture with pronounced T-bar"
+    ],
+    "characteristicSubstrate": [
+      "granite",
+      "copper_plate"
+    ],
+    "historicalDynasty": "Vijayanagara Empire (Hampi)",
+    "significance": "Pre-modern administrative script spanning monumental temple steles across South India.",
+    "relationships": {
+      "ancestorScripts": [
+        "Hoysala Script"
+      ],
+      "descendantScripts": [
+        "Mysuru Wodeyar Script",
+        "Nayaka Script",
+        "Keladi Script"
+      ],
+      "parallelScripts": [
+        "Nandi-Nagari (Sanskrit grants)",
+        "Vijayanagara Telugu"
+      ],
+      "branchName": "Hampi Imperial Epigraphical Horizon"
+    },
+    "sampleGlyphs": [
+      {
+        "id": "vij-01",
+        "label": "Granite-Carved Vowel",
+        "kannadaChar": "ಅ",
+        "iast": "a",
+        "imagePath": "/glyphs/vijayanagara/1.png",
+        "morphologicalNote": "Bold, robust circular loop designed to endure hard granite chiseling."
+      },
+      {
+        "id": "vij-02",
+        "label": "Standardized Consonant",
+        "kannadaChar": "ಕ",
+        "iast": "ka",
+        "imagePath": "/glyphs/vijayanagara/2.png",
+        "morphologicalNote": "Isolated glyph body with clear horizontal T-bar and rounded base."
+      },
+      {
+        "id": "vij-03",
+        "label": "Open Horseshoe Arch",
+        "kannadaChar": "ಗ",
+        "iast": "ga",
+        "imagePath": "/glyphs/vijayanagara/3.png",
+        "morphologicalNote": "Even-thickness arch resembling modern Kannada letter architecture."
+      }
+    ]
+  },
+  {
+    "id": "mysuru",
+    "name": "Mysuru Wodeyar",
+    "kannadaName": "ಮೈಸೂರು ಒಡೆಯರ್ ಲಿಪಿ",
+    "approximatePeriod": "16th – 19th Century CE",
+    "diagnosticFeatures": [
+      "Fluid cursive arcs influenced by iron-stylus palm leaf writing",
+      "Modern open-circle body shapes for ka, ra, la, da",
+      "Systematic detached lower subscript conjuncts",
+      "Direct prototype for 19th-century metal type typography"
+    ],
+    "characteristicSubstrate": [
+      "palm_leaf",
+      "paper",
+      "copper_plate"
+    ],
+    "historicalDynasty": "Kingdom of Mysore (Wodeyars)",
+    "significance": "Crucial transitional bridge from manuscript traditions to modern print culture.",
+    "relationships": {
+      "ancestorScripts": [
+        "Vijayanagara Script"
+      ],
+      "descendantScripts": [
+        "Present Kannada (Modern Varnamale)"
+      ],
+      "parallelScripts": [
+        "Modi Script (Administrative Marathi)",
+        "Tigalari Script (Coastal Karnataka)"
+      ],
+      "branchName": "Mysore Manuscript & Royal Chancellery"
+    },
+    "sampleGlyphs": [
+      {
+        "id": "mys-01",
+        "label": "Manuscript Cursive Vowel",
+        "kannadaChar": "ಅ",
+        "iast": "a",
+        "imagePath": "/glyphs/mysuru/1.png",
+        "morphologicalNote": "Smooth circular sweep designed not to tear dried palm leaves."
+      },
+      {
+        "id": "mys-02",
+        "label": "Pre-Print Consonant",
+        "kannadaChar": "ಕ",
+        "iast": "ka",
+        "imagePath": "/glyphs/mysuru/2.png",
+        "morphologicalNote": "Direct precursor to 19th-century Basel Mission metal type."
+      },
+      {
+        "id": "mys-03",
+        "label": "Modern-Contour Arch",
+        "kannadaChar": "ಗ",
+        "iast": "ga",
+        "imagePath": "/glyphs/mysuru/3.png",
+        "morphologicalNote": "Near-identical geometry to contemporary Kannada letter forms."
+      }
+    ]
+  },
+  {
+    "id": "present_kannada",
+    "name": "Present Kannada",
+    "kannadaName": "ಪ್ರಸ್ತುತ ಕನ್ನಡ ಲಿಪಿ",
+    "approximatePeriod": "19th Century – Present Day",
+    "diagnosticFeatures": [
+      "Standardized 49-53 character Varnamale",
+      "Consistent open check-mark Talakattu (✓)",
+      "Standard typographic grid with normalized kerning and baselines",
+      "Unicode standard encoding (U+0C80 to U+0CFF)"
+    ],
+    "characteristicSubstrate": [
+      "paper"
+    ],
+    "historicalDynasty": "Modern Democratic Era / Karnataka",
+    "significance": "Standardized modern literary and administrative script of Karnataka.",
+    "relationships": {
+      "ancestorScripts": [
+        "Mysuru Wodeyar Script"
+      ],
+      "descendantScripts": [
+        "Contemporary Digital Typography & OpenType Fonts"
+      ],
+      "parallelScripts": [
+        "Modern Telugu Script",
+        "Devanagari"
+      ],
+      "branchName": "Standard Literary & Administrative Varnamale"
+    },
+    "sampleGlyphs": [
+      {
+        "id": "pre-01",
+        "label": "Standardized Unicode Vowel",
+        "kannadaChar": "ಅ",
+        "iast": "a",
+        "imagePath": "/glyphs/present_kannada/1.png",
+        "morphologicalNote": "Normalized baseline, uniform stroke modulation, standard open loop."
+      },
+      {
+        "id": "pre-02",
+        "label": "Standard Typographic Consonant",
+        "kannadaChar": "ಕ",
+        "iast": "ka",
+        "imagePath": "/glyphs/present_kannada/2.png",
+        "morphologicalNote": "Standard check-mark talakattu (✓) with calibrated inner kerning."
+      },
+      {
+        "id": "pre-03",
+        "label": "Standard Typographic Arch",
+        "kannadaChar": "ಗ",
+        "iast": "ga",
+        "imagePath": "/glyphs/present_kannada/3.png",
+        "morphologicalNote": "Balanced arch with standard open top talakattu mark."
+      }
+    ]
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "act-01",
+    "timestamp": "2 hours ago",
+    "type": "transcription_verified",
+    "title": "Epigraphical Reading Confirmed",
+    "description": "Line 3 of the Halmidi Stele was verified against high-resolution rubbing photographs.",
+    "scholar": "Dr. M. R. Seshadri (Epigraphist)",
+    "inscriptionId": "ins-halmidi-001",
+    "inscriptionTitle": "Halmidi Inscription (c. 450 CE)"
+  },
+  {
+    "id": "act-02",
+    "timestamp": "Yesterday at 16:45",
+    "type": "lexicon_added",
+    "title": "Archaic Vocabulary Cross-Referenced",
+    "description": "Added morphological note on \"Bāgaḷchu\" (hero endowment) to the Purvada Halegannada lexicon.",
+    "scholar": "Prof. K. N. Gowda (Linguistics)",
+    "inscriptionId": "ins-halmidi-001",
+    "inscriptionTitle": "Halmidi Inscription (c. 450 CE)"
+  },
+  {
+    "id": "act-03",
+    "timestamp": "12 Oct 2026",
+    "type": "translation_updated",
+    "title": "Tripadi Metrical Structure Analyzed",
+    "description": "Updated modern Kannada translation of Badami cliff inscription to preserve 3-line lyrical cadence.",
+    "scholar": "Epigraphical Review Board",
+    "inscriptionId": "ins-badami-003",
+    "inscriptionTitle": "Kappe Arabhatta Inscription of Badami"
+  },
+  {
+    "id": "act-04",
+    "timestamp": "08 Oct 2026",
+    "type": "rubbing_catalogued",
+    "title": "New Archival Rubbing Ingested",
+    "description": "Registered high-contrast paper squeeze of the Maski Minor Rock Edict from the ASI Mysore register.",
+    "scholar": "Archival Cataloging Team",
+    "inscriptionId": "ins-maski-002",
+    "inscriptionTitle": "Maski Minor Rock Edict of Ashoka"
+  }
+]

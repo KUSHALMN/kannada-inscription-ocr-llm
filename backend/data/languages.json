@@ -1,0 +1,44 @@
+[
+  {
+    "id": "prakrit",
+    "name": "Prakrit (Southern Epigraphical)",
+    "kannadaName": "ಪ್ರಾಕೃತ",
+    "centuryRange": "3rd Century BCE – 3rd Century CE",
+    "linguisticFeatures": "Middle Indo-Aryan dialect used in Ashokan and Satavahana administrative records prior to the formal emergence of literary Kannada."
+  },
+  {
+    "id": "sanskrit",
+    "name": "Epigraphical Sanskrit",
+    "kannadaName": "ಸಂಸ್ಕೃತ",
+    "centuryRange": "4th Century CE – 18th Century CE",
+    "linguisticFeatures": "Used extensively for royal genealogy (Prashasti), invocations to deities, and formal land-grant sanctions in Karnataka inscriptions."
+  },
+  {
+    "id": "purvada_halegannada",
+    "name": "Purvada Halegannada (Early Proto-Old Kannada)",
+    "kannadaName": "ಪೂರ್ವದ ಹಳೆಗನ್ನಡ",
+    "centuryRange": "4th – 8th Century CE",
+    "linguisticFeatures": "Archaic Dravidian grammatical markers, prominent preservation of Sakata Repha (ಱ) and Kula Repha (ೞ), heavy consonant clusters, and early nominal case inflections."
+  },
+  {
+    "id": "halegannada",
+    "name": "Classical Halegannada (Old Kannada)",
+    "kannadaName": "ಹಳೆಗನ್ನಡ",
+    "centuryRange": "8th – 12th Century CE",
+    "linguisticFeatures": "Classical literary Kannada defined by Kavirajamarga, Ranna, and Pampa. Strict adherence to Champu metre, grammatical Sandhi rules, and rich lexical vocabulary."
+  },
+  {
+    "id": "nadugannada",
+    "name": "Nadugannada (Middle Kannada)",
+    "kannadaName": "ನಡುಗನ್ನಡ",
+    "centuryRange": "12th – 18th Century CE",
+    "linguisticFeatures": "Simplification of consonant clusters, weakening and eventual loss of the ೞ (zha) phoneme, introduction of Vachana and Shatpadi meters, and everyday colloquial morphology."
+  },
+  {
+    "id": "hosagannada",
+    "name": "Hosagannada (Modern Kannada)",
+    "kannadaName": "ಹೊಸಗನ್ನಡ",
+    "centuryRange": "19th Century – Present",
+    "linguisticFeatures": "Standard modern syntax, phonetic spelling, loanword assimilation, and standardized contemporary case suffixes."
+  }
+]

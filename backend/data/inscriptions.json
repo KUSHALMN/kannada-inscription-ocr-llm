@@ -1,0 +1,714 @@
+[
+  {
+    "id": "ins-halmidi-001",
+    "accessionNumber": "KHA-EP-0450-HLM",
+    "title": "Halmidi Inscription (The Earliest Kannada Epigraph)",
+    "kannadaTitle": "ಹಲ್ಮಿಡಿ ಶಾಸನ (ಕನ್ನಡದ ಮೊಟ್ಟಮೊದಲ ಶಿಲಾಶಾಸನ)",
+    "scriptClass": "kadamba",
+    "sourceLanguage": "purvada_halegannada",
+    "substrate": "sandstone",
+    "dimensions": {
+      "heightCm": 122,
+      "widthCm": 30,
+      "depthCm": 18
+    },
+    "imageUrl": "/analysis-halmidi-stele.jpg",
+    "conditionRating": "fair",
+    "reviewStatus": "verified",
+    "lastUpdated": "14 Oct 2026",
+    "historicalContext": {
+      "dynasty": "Kadambas of Banavasi",
+      "ruler": "King Kakusthavarma",
+      "regnalPeriod": "c. 435 – 455 CE",
+      "approximateDate": "c. 450 CE",
+      "century": "5th Century CE",
+      "findSpot": {
+        "village": "Halmidi",
+        "taluk": "Belur",
+        "district": "Hassan",
+        "state": "Karnataka"
+      },
+      "epigraphiaReference": "Epigraphia Carnatica Vol. XV, BL 58",
+      "historicalSummary": "Records the military valor of Vijaya Arasa, a feudatory chieftain of the Kadambas, who bravely fought against the Pallavas and the Sendrakas. In recognition of his bravery, the sovereign granted the tax-exempt status (Balgachu / hero endowment) of Palmadi and Mulivalli villages.",
+      "linguisticSignificance": "Universally recognized as the oldest recorded stone inscription in the Kannada language. Features 16 lines demonstrating the transitional Purvada Halegannada syntax, combining Sanskrit invocations with native Dravidian verbal morphology and archaic letters like Sakata Repha (ಱ)."
+    },
+    "transcription": {
+      "scriptClass": "kadamba",
+      "scriptConfidence": 0.985,
+      "recognizedText": "ನಮಃ ಶ್ರೀಮತ್ ಕದಂಬಪನ್ ಕಾಗುಸ್ಥಭಟ್ಟೋರನ್ ಆಳೆ ನರಿದಾವಿಱೆಯುಳ್ ನಾಡೊಳ್ ಮೃಗೇಶನಾಗೇಂದ್ರಾಭಿಲರ್ ಭಟಹರಪ್ಪೋರ್ ಶ್ರೀಮೃಗೇಶ ನಾಗಾಹ್ವಯರ್ ಇರ್ವ್ವರಾ ಬಟಹರೊಳ್ ಅಳಿದ ಪಶುಪತಿಯ ಪೆಗ್ಗಡೆಯ ಮಗನ್ ವಿಜಾಯರಸಂಗೆ ಬಾಗಳ್ಚು ಕೊಟ್ಟಾರ್...",
+      "iastTransliteration": "namaḥ śrīmat kadambapan kāgustha-bhaṭṭōran āḷe naridāviṟeyuḷ nāḍoḷ mr̥gēśa-nāgēndrābhilar bhaṭaharappōr śrī-mr̥gēśa nāgāhvayar irvvarā baṭaharoḷ aḷida paśupatiya peggaḍeya magan vijāyarasange bāgaḷchu koṭṭār...",
+      "lines": [
+        {
+          "lineNumber": 1,
+          "originalText": "ನಮಃ ಶ್ರೀಮತ್ ಕದಂಬಪನ್ ಕಾಗುಸ್ಥಭಟ್ಟೋರನ್ ಆಳೆ",
+          "iastText": "namaḥ śrīmat kadambapan kāgustha-bhaṭṭōran āḷe",
+          "modernKannadaLine": "ನಮಸ್ಕಾರ, ಶ್ರೀಮಂತ ಕದಂಬ ವಂಶದ ಕಾಕುಸ್ಥಭಟ್ಟಾರಕನು ರಾಜ್ಯವಾಳುತ್ತಿದ್ದಾಗ,"
+        },
+        {
+          "lineNumber": 2,
+          "originalText": "ನರಿದಾವಿಱೆಯುಳ್ ನಾಡೊಳ್ ಮೃಗೇಶನಾಗೇಂದ್ರಾಭಿಲರ್",
+          "iastText": "naridāviṟeyuḷ nāḍoḷ mr̥gēśa-nāgēndrābhilar",
+          "modernKannadaLine": "ನರಿದಾವಿಳೆ ನಾಡಿನಲ್ಲಿ ಮೃಗೇಶ ಮತ್ತು ನಾಗೇಂದ್ರ ಎಂಬ ಉಗ್ರ ಯೋಧರು,"
+        },
+        {
+          "lineNumber": 3,
+          "originalText": "ವಿಜಾಯರಸಂಗೆ ಬಾಗಳ್ಚು ಕೊಟ್ಟಾರ್ ಪಾೞ್ಮಡಿಯುಂ ಮುಳಿವಳ್ಳಿಯುಂ",
+          "iastText": "vijāyarasange bāgaḷchu koṭṭār pāḻmaḍiyuṁ muḷivaḷḷiyuṁ",
+          "modernKannadaLine": "ವಿಜಯರಸನಿಗೆ ಬಾಳ್ಗಚ್ಚು (ವೀರ ಉಂಬಳಿ) ಆಗಿ ಪಾಲ್ಮಡಿ ಮತ್ತು ಮುಳಿವಳ್ಳಿ ಗ್ರಾಮಗಳನ್ನು ನೀಡಿದರು."
+        }
+      ],
+      "detectedGlyphsCount": 46,
+      "isMockData": true
+    },
+    "translation": {
+      "sourceLanguage": "purvada_halegannada",
+      "languageConfidence": 0.978,
+      "modernKannada": "ಶ್ರೀಮತ್ ಕದಂಬ ವಂಶದ ರಾಜ ಕಾಕುಸ್ಥಭಟ್ಟಾರಕನು ರಾಜ್ಯಭಾರ ಮಾಡುತ್ತಿದ್ದಾಗ, ನರಿದಾವಿಳೆ ನಾಡಿನ ಮೃಗೇಶ ಮತ್ತು ನಾಗೇಂದ್ರ ಎಂಬ ಸೇನಾಪತಿಗಳು ಪಲ್ಲವರ ಮೇಲೆ ಆಕ್ರಮಣ ಮಾಡಿದರು. ಆ ಘೋರ ಯುದ್ಧದಲ್ಲಿ ಹೋರಾಡಿ ವೀರಮರಣವನ್ನಪ್ಪಿದ ಪಶುಪತಿ ಹೆಗ್ಗಡೆಯ ಮಗನಾದ ವಿಜಯರಸನ ತ್ಯಾಗವನ್ನು ಸ್ಮರಿಸಿ, ಆತನಿಗೆ ವೀರಗೌರವವಾಗಿ ಪಾಲ್ಮಡಿ (ಹಲ್ಮಿಡಿ) ಮತ್ತು ಮುಳಿವಳ್ಳಿ ಗ್ರಾಮಗಳನ್ನು ತೆರಿಗೆ ಮುಕ್ತ ಬಾಳ್ಗಚ್ಚು (ವೀರ ಉಂಬಳಿ) ಭೂಮಿಯಾಗಿ ಶಾಶ್ವತವಾಗಿ ದಾನವಾಗಿ ನೀಡಲಾಯಿತು.",
+      "englishTranslation": "Salutations. While the illustrious King Kakusthabhattara of the Kadamba dynasty was ruling, during the battle against the Sendrakas and Pallavas in Naridavile country, the commanders Mrigesha and Nagendra engaged the enemy forces. Commemorating Vijaya Arasa, the valiant son of Pashupati Heggade who laid down his life in that ferocious battle, the sovereign bestowed the villages of Palmadi (Halmidi) and Mulivalli as a tax-free heroic endowment (Balgachu).",
+      "glossary": [
+        {
+          "term": "ಬಾಗಳ್ಚು (ಬಾಳ್ಗಚ್ಚು)",
+          "iast": "bāgaḷchu / bāḷgaccu",
+          "modernKannadaEquivalent": "ವೀರ ಉಂಬಳಿ (ಯುದ್ಧದಲ್ಲಿ ಮಡಿದ ಯೋಧನ ಕುಟುಂಬಕ್ಕೆ ನೀಡುವ ತೆರಿಗೆ ಮುಕ್ತ ಭೂಮಿ)",
+          "englishDefinition": "A tax-free land grant awarded to the family of a hero who fell in battle (lit. sword-washing honor).",
+          "grammaticalCategory": "Old Kannada Compound Noun"
+        },
+        {
+          "term": "ಅಳಿದ",
+          "iast": "aḷida",
+          "modernKannadaEquivalent": "ಮಡಿದ / ಮರಣಹೊಂದಿದ",
+          "englishDefinition": "Perished or sacrificed one's life in service.",
+          "grammaticalCategory": "Past Relative Participle"
+        },
+        {
+          "term": "ಪೆಗ್ಗಡೆ",
+          "iast": "peggaḍe",
+          "modernKannadaEquivalent": "ಹೆಗ್ಗಡೆ / ಪ್ರಧಾನ ಅಧಿಕಾರಿ",
+          "englishDefinition": "Senior administrative superintendent or prime chieftain (precursor to Heggade).",
+          "grammaticalCategory": "Administrative Title"
+        }
+      ],
+      "stylisticNotes": "Exhibits the classic 5th-century Sanskrit invocation followed immediately by Old Kannada prose syntax with early case markers (-oḷ, -aŋge).",
+      "isMockData": true
+    },
+    "provenance": "Discovered embedded in the village temple wall at Halmidi, Belur Taluk, Hassan District in 1936 by Dr. M. H. Krishna.",
+    "currentLocation": "Directorate of Archaeology and Museums, Government Museum, Bengaluru"
+  },
+  {
+    "id": "ins-maski-002",
+    "accessionNumber": "KHA-EP-0250-MSK",
+    "title": "Maski Minor Rock Edict of Ashoka",
+    "kannadaTitle": "ಮಸ್ಕಿಯ ಅಶೋಕನ ಶಿಲಾಶಾಸನ",
+    "scriptClass": "ashoka",
+    "sourceLanguage": "prakrit",
+    "substrate": "granite",
+    "dimensions": {
+      "heightCm": 180,
+      "widthCm": 95,
+      "depthCm": 45
+    },
+    "imageUrl": "/temples/ashoka.jpg",
+    "conditionRating": "weathered",
+    "reviewStatus": "verified",
+    "lastUpdated": "08 Oct 2026",
+    "historicalContext": {
+      "dynasty": "Mauryan Empire",
+      "ruler": "Emperor Ashoka Maurya",
+      "regnalPeriod": "c. 268 – 232 BCE",
+      "approximateDate": "c. 250 BCE",
+      "century": "3rd Century BCE",
+      "findSpot": {
+        "village": "Maski",
+        "taluk": "Maski",
+        "district": "Raichur",
+        "state": "Karnataka"
+      },
+      "epigraphiaReference": "Corpus Inscriptionum Indicarum Vol. I",
+      "historicalSummary": "One of the most consequential discoveries in world epigraphy. Until C. Beadon discovered this rock edict in 1915, all known Ashokan edicts referred to the monarch merely by his honorific title \"Devanampriya Priyadarsi\". Maski explicitly proclaimed \"Devanampriyasa Asokasa\", conclusively proving to global historians that the legendary Buddhist emperor was Ashoka Maurya.",
+      "linguisticSignificance": "Written in early Southern Brahmi script and Prakrit language, representing the earliest deciphered writing system found on Karnataka soil."
+    },
+    "transcription": {
+      "scriptClass": "ashoka",
+      "scriptConfidence": 0.982,
+      "recognizedText": "ದೇವಾನಂಪಿಯಸ ಅಸೋಕಸ... ಅಧಿಕಾನಿ ಅಢಾತೀಯಾನಿ ವಸಾನಿ ಯಂ ಅಮ್ ಸುಮಿ ಬುಧಸಕೆ...",
+      "iastTransliteration": "devānaṁpiyasa asōkasa... adhikāni aḍhātīyāni vasāni yaṁ am sumi budhasake...",
+      "lines": [
+        {
+          "lineNumber": 1,
+          "originalText": "ದೇವಾನಂಪಿಯಸ ಅಸೋಕಸ",
+          "iastText": "devānaṁpiyasa asōkasa",
+          "modernKannadaLine": "ದೇವತೆಗಳಿಗೆ ಪ್ರಿಯನಾದ ಅಶೋಕನ ಆಜ್ಞೆ"
+        },
+        {
+          "lineNumber": 2,
+          "originalText": "ಅಧಿಕಾನಿ ಅಢಾತೀಯಾನಿ ವಸಾನಿ ಯಂ ಅಮ್ ಸುಮಿ ಬುಧಸಕೆ",
+          "iastText": "adhikāni aḍhātīyāni vasāni yaṁ am sumi budhasake",
+          "modernKannadaLine": "ನಾನು ಬುದ್ಧ ಶಾಕ್ಯನಾಗಿ (ಉಪಾಸಕನಾಗಿ) ಎರಡೂವರೆ ವರ್ಷಗಳಿಗೂ ಹೆಚ್ಚು ಕಾಲವಾಯಿತು."
+        }
+      ],
+      "detectedGlyphsCount": 41,
+      "isMockData": true
+    },
+    "translation": {
+      "sourceLanguage": "prakrit",
+      "languageConfidence": 0.988,
+      "modernKannada": "ದೇವತೆಗಳಿಗೆ ಪ್ರಿಯನಾದ ಅಶೋಕನ (ದೇವಾನಾಂಪ್ರಿಯ ಅಶೋಕ) ಸಂದೇಶ: ನಾನು ಬುದ್ಧನ ಧರ್ಮದ ಉಪಾಸಕನಾಗಿ (ಶ್ರಾವಕನಾಗಿ) ಎರಡೂವರೆ ವರ್ಷಗಳಿಗಿಂತಲೂ ಅಧಿಕ ಸಮಯ ಕಳೆಯಿತು. ಮೊದಲ ಒಂದು ವರ್ಷ ನಾನು ಹೆಚ್ಚು ಶ್ರದ್ಧೆ ತೋರಿಸಿರಲಿಲ್ಲ. ಆದರೆ ಸಂಘವನ್ನು ಭೇಟಿ ಮಾಡಿ ನಿಕಟ ಸಂಪರ್ಕ ಹೊಂದಿದ ನಂತರ ಅತ್ಯಂತ ದೃಢತೆಯಿಂದ ಧರ್ಮ ಪ್ರಚಾರ ಹಾಗೂ ಜನಕಲ್ಯಾಣ ಕಾರ್ಯಗಳಲ್ಲಿ ತೊಡಗಿಕೊಂಡಿದ್ದೇನೆ.",
+      "englishTranslation": "A proclamation of Devanampriya Asoka: For more than two and a half years I have been an ardent lay follower of the Buddha. For more than a year I did not exert myself vigorously; but since I have visited the Sangha and drawn close to the community of monks, I have exerted myself with supreme devotion for the welfare of all beings.",
+      "glossary": [
+        {
+          "term": "ದೇವಾನಂಪಿಯಸ (ದೇವಾನಾಂಪ್ರಿಯಸ್ಯ)",
+          "iast": "devānaṁpiyasa",
+          "modernKannadaEquivalent": "ದೇವತೆಗಳಿಗೆ ಪ್ರಿಯನಾದವನು (ಅಶೋಕನ ಬಿರುದು)",
+          "englishDefinition": "Beloved of the Gods (royal epithet of Emperor Ashoka).",
+          "grammaticalCategory": "Prakrit Genitive Noun"
+        },
+        {
+          "term": "ಬುಧಸಕೆ (ಬುದ್ಧಶಾಕ್ಯ)",
+          "iast": "budhasake",
+          "modernKannadaEquivalent": "ಬುದ್ಧನ ಅನುಯಾಯಿ / ಬೌದ್ಧ ಉಪಾಸಕ",
+          "englishDefinition": "A follower of the Shakya sage (Buddha), a Buddhist lay disciple.",
+          "grammaticalCategory": "Religious Title"
+        }
+      ],
+      "stylisticNotes": "Pure Mauryan Prakrit written in Southern Brahmi; simple subject-object-verb arrangement with absence of retroflex conjuncts.",
+      "isMockData": true
+    },
+    "provenance": "Discovered in a natural rock cavern at Maski town in Raichur district by mining engineer C. Beadon in 1915.",
+    "currentLocation": "In situ protected monument, Archaeological Survey of India (ASI), Maski, Raichur"
+  },
+  {
+    "id": "ins-badami-003",
+    "accessionNumber": "KHA-EP-0700-BDM",
+    "title": "Kappe Arabhatta Inscription of Badami (Tripadi Metre)",
+    "kannadaTitle": "ಕಪ್ಪೆ ಅರಭಟ್ಟನ ಬಾದಾಮಿ ಶಿಲಾಶಾಸನ (ತ್ರಿಪದಿ ಛಂದಸ್ಸು)",
+    "scriptClass": "badami_chalukya",
+    "sourceLanguage": "halegannada",
+    "substrate": "sandstone",
+    "dimensions": {
+      "heightCm": 110,
+      "widthCm": 85,
+      "depthCm": 25
+    },
+    "imageUrl": "/temples/chalukya.jpg",
+    "conditionRating": "excellent",
+    "reviewStatus": "in_review",
+    "lastUpdated": "12 Oct 2026",
+    "historicalContext": {
+      "dynasty": "Badami Chalukyas",
+      "ruler": "Chalukya Chieftain Kappe Arabhatta",
+      "regnalPeriod": "c. 700 CE",
+      "approximateDate": "c. 700 CE",
+      "century": "7th–8th Century CE",
+      "findSpot": {
+        "village": "Badami (Vatapi)",
+        "taluk": "Badami",
+        "district": "Bagalkote",
+        "state": "Karnataka"
+      },
+      "epigraphiaReference": "Indian Antiquary Vol. X, p. 61",
+      "historicalSummary": "Engraved on a sandstone cliff overlooking the serene Agastya lake in Badami. Eulogizes the chivalric character of the warrior Kappe Arabhatta, describing his fearless benevolence towards the gentle and fierce destruction towards adversaries.",
+      "linguisticSignificance": "Celebrated in Kannada literary history as containing the earliest extant poetic verse composed in the native Kannada \"Tripadi\" (three-line) metre."
+    },
+    "transcription": {
+      "scriptClass": "badami_chalukya",
+      "scriptConfidence": 0.984,
+      "recognizedText": "ಸಾಧುಗೆ ಸಾಧು ಮಾಧುರ್ಯಂಗೆ ಮಾಧುರ್ಯಂ ಬಾದಿಪ್ಪ ಕಲಿಗೆ ಕಲಿಯುಗ ವಿಪರೀತನ್ ಮಾಧವನ್ ಇತ್ತನ್ ಪೆರನಲ್ಲನ್...",
+      "iastTransliteration": "sādhuge sādhu mādhuryange mādhuryam bādippa kalige kaliyuga viparītan mādhavan ittan peranallan...",
+      "lines": [
+        {
+          "lineNumber": 1,
+          "originalText": "ಸಾಧುಗೆ ಸಾಧು ಮಾಧುರ್ಯಂಗೆ ಮಾಧುರ್ಯಂ",
+          "iastText": "sādhuge sādhu mādhuryange mādhuryam",
+          "modernKannadaLine": "ಒಳ್ಳೆಯವರಿಗೆ ಒಳ್ಳೆಯವನು, ಮೃದು ಸ್ವಭಾವದವರಿಗೆ ಪರಮ ಮಧುರನು,"
+        },
+        {
+          "lineNumber": 2,
+          "originalText": "ಬಾದಿಪ್ಪ ಕಲಿಗೆ ಕಲಿಯುಗ ವಿಪರೀತನ್",
+          "iastText": "bādippa kalige kaliyuga viparītan",
+          "modernKannadaLine": "ಹಿಂಸಿಸುವ ಶತ್ರು ಯೋಧರಿಗೆ ಕಲಿಯುಗದ ಯಮನಂತೆ ವಿಪರೀತನಾದವನು,"
+        },
+        {
+          "lineNumber": 3,
+          "originalText": "ಮಾಧವನ್ ಇತ್ತನ್ ಪೆರನಲ್ಲನ್",
+          "iastText": "mādhavan ittan peranallan",
+          "modernKannadaLine": "ಇವನು ಸಾಕ್ಷಾತ್ ಮಾಧವನೇ (ವಿಷ್ಣುವೇ) ಹೊರತು ಬೇರೆ ಯಾರೂ ಅಲ್ಲ."
+        }
+      ],
+      "detectedGlyphsCount": 46,
+      "isMockData": true
+    },
+    "translation": {
+      "sourceLanguage": "halegannada",
+      "languageConfidence": 0.982,
+      "modernKannada": "ಕಪ್ಪೆ ಅರಭಟ್ಟನು ಸಾಧು ಜನರಿಗೆ ಸಾಧುವಾಗಿಯೂ, ಪ್ರೀತಿಯಿಂದ ನಡೆದುಕೊಳ್ಳುವವರಿಗೆ ಅತಿ ಮಧುರವಾಗಿಯೂ ಇರುವವನು. ಆದರೆ ತನ್ನನ್ನು ಬಾಧಿಸುವ ದುಷ್ಟರಿಗೆ ಮತ್ತು ಯುದ್ಧ ಮಾಡುವ ಶತ್ರುಗಳಿಗೆ ಕಲಿಯುಗದ ವಿಪರೀತ ಯಮನಂತಿರುವವನು. ಈ ವೀರನು ಕರುಣೆಯಲ್ಲಿಯೂ ಶೌರ್ಯದಲ್ಲಿಯೂ ಸಾಕ್ಷಾತ್ ನಾರಾಯಣನಾದ ಮಾಧವನಂತಿರುವವನೇ ಹೊರತು ಸಾಮಾನ್ಯ ವ್ಯಕ್ತಿಯಲ್ಲ.",
+      "englishTranslation": "To the virtuous and gentle, he is gentleness incarnate; to the sweet, he is sweetness itself. But to the hostile warrior who dares torment him, he is an unrelenting nemesis—a living catastrophe of the Kali age. He is truly Madhava (Lord Vishnu) himself walked among men, none other.",
+      "glossary": [
+        {
+          "term": "ಸಾಧುಗೆ",
+          "iast": "sādhuge",
+          "modernKannadaEquivalent": "ಸಜ್ಜನರಿಗೆ / ಒಳ್ಳೆಯವರಿಗೆ",
+          "englishDefinition": "To the righteous, noble, or gentle person.",
+          "grammaticalCategory": "Dative Case Noun"
+        },
+        {
+          "term": "ಬಾದಿಪ್ಪ",
+          "iast": "bādippa",
+          "modernKannadaEquivalent": "ಹಿಂಸಿಸುವ / ಪೀಡಿಸುವ",
+          "englishDefinition": "One who torments, troubles, or challenges.",
+          "grammaticalCategory": "Present Participle"
+        },
+        {
+          "term": "ಕಲಿ",
+          "iast": "kali",
+          "modernKannadaEquivalent": "ಶೂರ / ಯೋಧ",
+          "englishDefinition": "A fearless champion or hero in combat.",
+          "grammaticalCategory": "Old Kannada Noun"
+        }
+      ],
+      "stylisticNotes": "Earliest archeological inscription written in lyrical Tripadi metre, proving advanced poetic development in 7th-century Karnataka.",
+      "isMockData": true
+    },
+    "provenance": "Carved on the northern cliff face behind the Bhutanatha Temple, overlooking the sacred Agastya Lake at Badami.",
+    "currentLocation": "In situ cliff monument, Badami, Bagalkote District"
+  },
+  {
+    "id": "ins-belur-004",
+    "accessionNumber": "KHA-EP-1117-BLR",
+    "title": "Belur Chennakeshava Temple Consecration Epigraph",
+    "kannadaTitle": "ಬೇಲೂರು ಚೆನ್ನಕೇಶವ ದೇವಾಲಯ ಪ್ರತಿಷ್ಠಾಪನಾ ಶಾಸನ",
+    "scriptClass": "hoysala",
+    "sourceLanguage": "halegannada",
+    "substrate": "chlorite_schist",
+    "dimensions": {
+      "heightCm": 210,
+      "widthCm": 110,
+      "depthCm": 32
+    },
+    "imageUrl": "/temples/hoysala.jpg",
+    "conditionRating": "excellent",
+    "reviewStatus": "pending_verification",
+    "lastUpdated": "15 Oct 2026",
+    "historicalContext": {
+      "dynasty": "Hoysala Empire",
+      "ruler": "Mahamandaleshvara King Vishnuvardhana (Bittideva)",
+      "regnalPeriod": "c. 1108 – 1152 CE",
+      "approximateDate": "c. 1117 CE",
+      "century": "12th Century CE",
+      "findSpot": {
+        "village": "Belur",
+        "taluk": "Belur",
+        "district": "Hassan",
+        "state": "Karnataka"
+      },
+      "epigraphiaReference": "Epigraphia Carnatica Vol. V, Bl 58 & 71",
+      "historicalSummary": "Commemorates King Vishnuvardhana's triumphant military conquest of Talakadu over the Imperial Cholas (earning the imperial title \"Talakadugonda\") and the glorious consecration of the Vijayanarayana (Chennakeshava) temple at Belur.",
+      "linguisticSignificance": "Written in magnificent High Medieval Halegannada prose and verse carved onto soft chloritic schist, exhibiting the pinnacle of decorative Hoysala epigraphical art."
+    },
+    "transcription": {
+      "scriptClass": "hoysala",
+      "scriptConfidence": 0.992,
+      "recognizedText": "ಶ್ರೀಮನ್ ಮಹಾಮಂಡಲೇಶ್ವರನ್ ತಳಕಾಡುಗೊಂಡ ಭುಜಬಲ ವೀರ ಗಂಗ ವಿಷ್ಣುವರ್ಧನ ದೇವರ್ ವಿಜಯನಾರಾಯಣ ದೇವರಂ ಪ್ರತಿಷ್ಠೆ ಮಾಡಿ...",
+      "iastTransliteration": "śrīman mahāmaṇḍalēśvaran taḷakāḍugoṇḍa bhujabala vīra gaṅga viṣṇuvardhana dēvar vijayanārāyaṇa dēvaraṁ pratiṣṭhe māḍi...",
+      "lines": [
+        {
+          "lineNumber": 1,
+          "originalText": "ಶ್ರೀಮನ್ ಮಹಾಮಂಡಲೇಶ್ವರನ್ ತಳಕಾಡುಗೊಂಡ",
+          "iastText": "śrīman mahāmaṇḍalēśvaran taḷakāḍugoṇḍa",
+          "modernKannadaLine": "ಶ್ರೀಮಂತ ಮಹಾಮಂಡಲೇಶ್ವರನೂ, ತಲಕಾಡನ್ನು ಜಯಿಸಿದವನೂ,"
+        },
+        {
+          "lineNumber": 2,
+          "originalText": "ಭುಜಬಲ ವೀರ ಗಂಗ ವಿಷ್ಣುವರ್ಧನ ದೇವರ್",
+          "iastText": "bhujabala vīra gaṅga viṣṇuvardhana dēvar",
+          "modernKannadaLine": "ತನ್ನ ಬಾಹುಬಲದಿಂದ ವೀರಗಂಗನೆನಿಸಿದ ವಿಷ್ಣುವರ್ಧನ ದೇವನು"
+        },
+        {
+          "lineNumber": 3,
+          "originalText": "ವಿಜಯನಾರಾಯಣ ದೇವರಂ ಪ್ರತಿಷ್ಠೆ ಮಾಡಿ",
+          "iastText": "vijayanārāyaṇa dēvaraṁ pratiṣṭhe māḍi",
+          "modernKannadaLine": "ವಿಜಯನಾರಾಯಣ (ಚೆನ್ನಕೇಶವ) ದೇವರನ್ನು ಭಕ್ತಿಯಿಂದ ಪ್ರತಿಷ್ಠಾಪಿಸಿ"
+        }
+      ],
+      "detectedGlyphsCount": 49,
+      "isMockData": true
+    },
+    "translation": {
+      "sourceLanguage": "halegannada",
+      "languageConfidence": 0.985,
+      "modernKannada": "ಶ್ರೀಮಂತ ಮಹಾಮಂಡಲೇಶ್ವರನೂ, ಚೋಳರಿಂದ ತಲಕಾಡನ್ನು ವಿಜಯಶಾಲಿಯಾಗಿ ಗೆದ್ದು \"ತಳಕಾಡುಗೊಂಡ\" ಎಂಬ ಬಿರುದಾಂಕಿತನಾದವನೂ, ಅದ್ಭುತ ಬಾಹುಬಲದಿಂದ ಶೋಭಿಸುವ ವೀರಗಂಗ ವಿಷ್ಣುವರ್ಧನ ದೇವನು ತನ್ನ ಪ್ರಸಿದ್ಧ ವಿಜಯಗಳ ನೆನಪಿಗಾಗಿ ಶ್ರೀ ವಿಜಯನಾರಾಯಣ (ಚೆನ್ನಕೇಶವ) ದೇವರ ಭವ್ಯ ದೇಗುಲವನ್ನು ನಿರ್ಮಿಸಿ ಮೂರ್ತಿಯನ್ನು ಶಾಸ್ತ್ರೋಕ್ತವಾಗಿ ಪ್ರತಿಷ್ಠಾಪಿಸಿದನು. ಈ ಮಹಾಕಾರ್ಯಕ್ಕಾಗಿ ಹಲವು ಫಲವತ್ತಾದ ಅಗ್ರಹಾರಗಳನ್ನು ಹಾಗೂ ತೆರಿಗೆ ಆದಾಯಗಳನ್ನು ದೇವತಾ ಕೈಂಕರ್ಯಕ್ಕೆ ಶಾಶ್ವತವಾಗಿ ಸಮರ್ಪಿಸಿದನು.",
+      "englishTranslation": "The illustrious Mahamandaleshvara, conqueror of Talakadu (Talakadugonda), possessed of valorous arm-strength, Veera Ganga Vishnuvardhana Deva, having vanquished the adversary forces and liberated the realm, consecrated the sanctum of Lord Vijayanarayana (Chennakeshava). For the perpetual conduct of temple rituals and educational endowments, the monarch granted vast tracts of fertile land in perpetuity.",
+      "glossary": [
+        {
+          "term": "ತಳಕಾಡುಗೊಂಡ",
+          "iast": "taḷakāḍugoṇḍa",
+          "modernKannadaEquivalent": "ತಲಕಾಡನ್ನು ಗೆದ್ದವನು (ವಿಷ್ಣುವರ್ಧನನ ಬಿರುದು)",
+          "englishDefinition": "Conqueror of Talakadu (celebrating the historic expulsion of Chola forces from Gangavadi in 1116 CE).",
+          "grammaticalCategory": "Historical Epithet"
+        },
+        {
+          "term": "ಪ್ರತಿಷ್ಠೆ ಮಾಡಿ",
+          "iast": "pratiṣṭhe māḍi",
+          "modernKannadaEquivalent": "ಶಾಸ್ತ್ರೋಕ್ತವಾಗಿ ಸ್ಥಾಪಿಸಿ",
+          "englishDefinition": "Consecrated ritualistically in accordance with Agama traditions.",
+          "grammaticalCategory": "Verbal Phrase"
+        }
+      ],
+      "stylisticNotes": "Carved on chloritic schist with florid spirals, decorative floral flourishes, and deep undercuts demonstrating the acme of Hoysala stone craft.",
+      "isMockData": true
+    },
+    "provenance": "Installed inside the inner courtyard corridor of the Chennakeshava Temple Complex at Belur, Hassan District.",
+    "currentLocation": "In situ stele, Chennakeshava Temple, Belur"
+  },
+  {
+    "id": "ins-aihole-005",
+    "accessionNumber": "KHA-EP-0634-AHL",
+    "title": "Aihole Prashasti of Ravikirti (Pulakeshin II Victory Stele)",
+    "kannadaTitle": "ರವಿಕೀರ್ತಿಯ ಐಹೊಳೆ ಪ್ರಶಸ್ತಿ ಶಾಸನ (ಇಮ್ಮಡಿ ಪುಲಕೇಶಿಯ ವಿಜಯ ಪ್ರಶಸ್ತಿ)",
+    "scriptClass": "badami_chalukya",
+    "sourceLanguage": "sanskrit",
+    "substrate": "sandstone",
+    "dimensions": {
+      "heightCm": 145,
+      "widthCm": 80,
+      "depthCm": 22
+    },
+    "imageUrl": "/temples/chalukya.jpg",
+    "conditionRating": "excellent",
+    "reviewStatus": "verified",
+    "lastUpdated": "11 Oct 2026",
+    "historicalContext": {
+      "dynasty": "Badami Chalukyas",
+      "ruler": "Emperor Pulakeshin II",
+      "regnalPeriod": "c. 610 – 642 CE",
+      "approximateDate": "634 CE (Saka 556)",
+      "century": "7th Century CE",
+      "findSpot": {
+        "village": "Aihole (Aryapura)",
+        "taluk": "Hungund",
+        "district": "Bagalkote",
+        "state": "Karnataka"
+      },
+      "epigraphiaReference": "Epigraphia Indica Vol. VI, pp. 1-12",
+      "historicalSummary": "Composed by the court poet and Jain scholar Ravikirti. Celebrates Pulakeshin II’s historic victory on the banks of the Narmada River against Harshavardhana of Kannauj, cementing the Chalukyan hegemony over peninsular India. Ravikirti famously compares his poetic genius to Kalidasa and Bharavi.",
+      "linguisticSignificance": "Masterpiece of classical Sanskrit Kavya engraved in the Badami Chalukyan script with archaic hook headmarks, rhythmic meter, and elegant vertical flourishes."
+    },
+    "transcription": {
+      "scriptClass": "badami_chalukya",
+      "scriptConfidence": 0.991,
+      "recognizedText": "ಜಯತಿ ಭಗವಾನ್ ಜಿನೇಂದ್ರೋ ಜನ್ಮ-ಜರಾ-ವಿಪ್ರಮುಕ್ತ-ಪರಮ-ಪದಃ | ಯಸ್ಯ ಜ್ಞಾನಾರ್ಣವ-ಸಂಭೃತ-ಭುವನತ್ರಯ-ರೂಪ-ಸಂಪನ್ನಃ || ಸ ಜಯತಿ ಪುಲಕೇಶೀ ವಲ್ಲಭಃ ಸತ್ಯಾಶ್ರಯಃ...",
+      "iastTransliteration": "jayati bhagavān jinēndrō janma-jarā-vipramukta-parama-padaḥ | yasya jñānārṇava-sambhṛta-bhuvanatraya-rūpa-sampannaḥ || sa jayati pulakēśī vallabhaḥ satyāśrayaḥ...",
+      "lines": [
+        {
+          "lineNumber": 1,
+          "originalText": "ಜಯತಿ ಭಗವಾನ್ ಜಿನೇಂದ್ರೋ ಜನ್ಮ-ಜರಾ-ವಿಪ್ರಮುಕ್ತ-ಪರಮ-ಪದಃ",
+          "iastText": "jayati bhagavān jinēndrō janma-jarā-vipramukta-parama-padaḥ",
+          "modernKannadaLine": "ಜನನ ಮತ್ತು ಮುಪ್ಪುಗಳಿಂದ ಮುಕ್ತವಾಗಿ ಪರಮಪದವನ್ನು ಹೊಂದಿದ ಭಗವಾನ್ ಜಿನೇಂದ್ರನಿಗೆ ಜಯವಾಗಲಿ,"
+        },
+        {
+          "lineNumber": 2,
+          "originalText": "ಯಸ್ಯ ಜ್ಞಾನಾರ್ಣವ-ಸಂಭೃತ-ಭುವನತ್ರಯ-ರೂಪ-ಸಂಪನ್ನಃ",
+          "iastText": "yasya jñānārṇava-sambhṛta-bhuvanatraya-rūpa-sampannaḥ",
+          "modernKannadaLine": "ಯಾರ ಜ್ಞಾನವೆಂಬ ಸಾಗರದಲ್ಲಿ ಮೂರು ಲೋಕಗಳ ಸಮಗ್ರ ಸ್ವರೂಪವೂ ತುಂಬಿಕೊಂಡಿದೆಯೋ,"
+        },
+        {
+          "lineNumber": 3,
+          "originalText": "ಸ ಜಯತಿ ಪುಲಕೇಶೀ ವಲ್ಲಭಃ ಸತ್ಯಾಶ್ರಯಃ ಪರಮೇಶ್ವರಃ",
+          "iastText": "sa jayati pulakēśī vallabhaḥ satyāśrayaḥ paramēśvaraḥ",
+          "modernKannadaLine": "ಆ ಸತ್ಯಾಶ್ರಯ, ಪರಮೇಶ್ವರ ಇಮ್ಮಡಿ ಪುಲಕೇಶಿ ವಲ್ಲಭ ಮಹಾರಾಜನು ಚಿರಕಾಲ ವಿಜಯಶಾಲಿಯಾಗಿ ಬಾಳಲಿ."
+        }
+      ],
+      "detectedGlyphsCount": 52,
+      "isMockData": true
+    },
+    "translation": {
+      "sourceLanguage": "sanskrit",
+      "languageConfidence": 0.988,
+      "modernKannada": "ಜನನ ಮರಣಗಳ ಚಕ್ರದಿಂದ ಮುಕ್ತನಾಗಿ ಪರಮ ಮುಕ್ತಿಪದವನ್ನು ಪಡೆದಿರುವ ಭಗವಾನ್ ಜಿನೇಂದ್ರನಿಗೆ ಜಯವಾಗಲಿ. ಆತನ ಅಪಾರ ಕೇವಲಜ್ಞಾನವೆಂಬ ಮಹಾಸಾಗರದಲ್ಲಿ ಸಮಸ್ತ ತ್ರಿಭುವನಗಳ ಸತ್ಯವೂ ಪ್ರಕಾಶಿಸುತ್ತದೆ. ಉತ್ತರ ಪಥೇಶ್ವರನಾದ ಹರ್ಷವರ್ಧನನನ್ನು ನರ್ಮದಾ ನದಿಯ ತೀರದಲ್ಲಿ ಹಿಮ್ಮೆಟ್ಟಿಸಿ ದಕ್ಷಿಣಾಪಥದ ಸಾರ್ವಭೌಮನಾದ, ಸತ್ಯಾಶ್ರಯ ಬಿರುದಾಂಕಿತ ಇಮ್ಮಡಿ ಪುಲಕೇಶಿ ಚಕ್ರವರ್ತಿಯು ಪ್ರಖ್ಯಾತ ವಿಜಯಿಯಾಗಿ ರಾರಾಜಿಸುತ್ತಿದ್ದಾನೆ.",
+      "englishTranslation": "Victorious is Lord Jinendra, who has transcended birth and decay to attain the supreme abode, whose ocean of omniscience mirrors the entire threefold universe. Victorious too is Emperor Pulakeshin II (Satyashraya), who repelled the northern emperor Harshavardhana on the banks of the Narmada and established supreme sovereignty over peninsular India.",
+      "glossary": [
+        {
+          "term": "ಸತ್ಯಾಶ್ರಯಃ",
+          "iast": "satyāśrayaḥ",
+          "modernKannadaEquivalent": "ಸತ್ಯಕ್ಕೆ ಆಶ್ರಯನಾದವನು (ಪುಲಕೇಶಿಯ ಬಿರುದು)",
+          "englishDefinition": "Refuge of Truth (canonical dynastic title of the Western Chalukya monarchs).",
+          "grammaticalCategory": "Bahuvrihi Compound"
+        },
+        {
+          "term": "ರವಿಕೀರ್ತಿ",
+          "iast": "ravikīrti",
+          "modernKannadaEquivalent": "ಆಸ್ಥಾನ ಮಹಾಕವಿ ರವಿಕೀರ್ತಿ",
+          "englishDefinition": "The celebrated court poet who composed this 37-verse eulogy in Saka 556 (634 CE).",
+          "grammaticalCategory": "Proper Noun"
+        }
+      ],
+      "stylisticNotes": "Composed on fine-grained red sandstone slab fitted into the eastern wall of the Meguti Jain temple at Aihole.",
+      "isMockData": true
+    },
+    "provenance": "Eastern exterior wall of Meguti Jain Temple at Aihole hilltop, Bagalkote District.",
+    "currentLocation": "In situ stele, Meguti Temple, Aihole"
+  },
+  {
+    "id": "ins-dharwad-006",
+    "accessionNumber": "KHA-EP-0850-DHW",
+    "title": "Dharwad Hero Stone of Amoghavarsha Nrupatunga",
+    "kannadaTitle": "ಅಮೋಘವರ್ಷ ನೃಪತುಂಗನ ಧಾರವಾಡ ವೀರಗಲ್ಲು ಶಾಸನ",
+    "scriptClass": "rashtrakuta",
+    "sourceLanguage": "halegannada",
+    "substrate": "granite",
+    "dimensions": {
+      "heightCm": 135,
+      "widthCm": 72,
+      "depthCm": 20
+    },
+    "imageUrl": "/temples/rashtrakuta.jpg",
+    "conditionRating": "fair",
+    "reviewStatus": "verified",
+    "lastUpdated": "09 Oct 2026",
+    "historicalContext": {
+      "dynasty": "Imperial Rashtrakutas",
+      "ruler": "Emperor Amoghavarsha I Nrupatunga",
+      "regnalPeriod": "c. 814 – 878 CE",
+      "approximateDate": "c. 850 CE",
+      "century": "9th Century CE",
+      "findSpot": {
+        "village": "Navalgund",
+        "taluk": "Navalgund",
+        "district": "Dharwad",
+        "state": "Karnataka"
+      },
+      "epigraphiaReference": "South Indian Inscriptions Vol. XI, Part I, No. 12",
+      "historicalSummary": "Erected during the reign of the peace-loving scholar-emperor Amoghavarsha I Nrupatunga. Records the sacrifice of an officer who defended cattle wealth and village boundaries during a border skirmish, granting tax concessions to his bereaved family.",
+      "linguisticSignificance": "Contemporary with the seminal literary work Kavirajamarga. Demonstrates the mature Classical Old Kannada (Halegannada) case inflections and broad Rashtrakuta glyph kerning."
+    },
+    "transcription": {
+      "scriptClass": "rashtrakuta",
+      "scriptConfidence": 0.978,
+      "recognizedText": "ಸ್ವಸ್ತಿ ಶ್ರೀ ನೃಪತುಂಗದೇವ ರಾಜ್ಯವರ್ಧಮಾನೊಳ್ ನಾಡಾಳ್ವ ಬಂಕೆಯನ ಮಗನ್ ಊರೊಳ್ ತೂಱುವಂ ಕಾದು ಬಟಹರೊಳ್ ಅಳಿದಂಗೆ ನೆತ್ತರುಪಟ್ಟಿ ಕೊಟ್ಟಾರ್...",
+      "iastTransliteration": "svasti śrī nr̥patuṅgadēva rājyavardhamānoḷ nāḍāḷva baṅkeyana magan ūroḷ tūṟuvaṁ kādu baṭaharoḷ aḷidange nettarupaṭṭi koṭṭār...",
+      "lines": [
+        {
+          "lineNumber": 1,
+          "originalText": "ಸ್ವಸ್ತಿ ಶ್ರೀ ನೃಪತುಂಗದೇವ ರಾಜ್ಯವರ್ಧಮಾನೊಳ್",
+          "iastText": "svasti śrī nr̥patuṅgadēva rājyavardhamānoḷ",
+          "modernKannadaLine": "ಶುಭವಾಗಲಿ, ಶ್ರೀ ನೃಪತುಂಗದೇವನ ರಾಜ್ಯವು ಅಭಿವೃದ್ಧಿ ಹೊಂದುತ್ತಿರುವಾಗ,"
+        },
+        {
+          "lineNumber": 2,
+          "originalText": "ನಾಡಾಳ್ವ ಬಂಕೆಯನ ಮಗನ್ ಊರೊಳ್ ತೂಱುವಂ ಕಾದು",
+          "iastText": "nāḍāḷva baṅkeyana magan ūroḷ tūṟuvaṁ kādu",
+          "modernKannadaLine": "ನಾಡನ್ನು ಆಳುತ್ತಿದ್ದ ಬಂಕೆಯನ ಪುತ್ರನು ಗ್ರಾಮದಲ್ಲಿ ಗೋಸಂಪತ್ತನ್ನು ರಕ್ಷಿಸಿ,"
+        },
+        {
+          "lineNumber": 3,
+          "originalText": "ಬಟಹರೊಳ್ ಅಳಿದಂಗೆ ನೆತ್ತರುಪಟ್ಟಿ ಕೊಟ್ಟಾರ್",
+          "iastText": "baṭaharoḷ aḷidange nettarupaṭṭi koṭṭār",
+          "modernKannadaLine": "ಕದನದಲ್ಲಿ ವೀರಸ್ವರ್ಗ ಪಡೆದ ವೀರನಿಗೆ ಗೌರವಾರ್ಥವಾಗಿ ರಕ್ತಮಾನ್ಯ (ನೆತ್ತರುಪಟ್ಟಿ) ಭೂಮಿಯನ್ನು ನೀಡಿದರು."
+        }
+      ],
+      "detectedGlyphsCount": 44,
+      "isMockData": true
+    },
+    "translation": {
+      "sourceLanguage": "halegannada",
+      "languageConfidence": 0.981,
+      "modernKannada": "ಶ್ರೀಮಂತ ರಾಷ್ಟ್ರಕೂಟ ಚಕ್ರವರ್ತಿ ನೃಪತುಂಗದೇವನ ಶಾಂತಿಯುತ ಆಳ್ವಿಕೆಯ ಕಾಲದಲ್ಲಿ, ಪ್ರಾಂತ್ಯವನ್ನು ಆಳುತ್ತಿದ್ದ ಸೇನಾನಿ ಬಂಕೆಯನ ಪುತ್ರನು ಊರಿನ ಮೇಲೆ ದಾಳಿ ಮಾಡಿದ ವೈರಿಗಳಿಂದ ಗೋವುಗಳನ್ನು ಮತ್ತು ಪ್ರಜೆಗಳನ್ನು ರಕ್ಷಿಸುವ ಹೋರಾಟದಲ್ಲಿ ವೀರಮರಣ ಹೊಂದಿದನು. ಆತನ ಅಪ್ರತಿಮ ತ್ಯಾಗವನ್ನು ಸ್ಮರಿಸಿ ಆತನ ಕುಟುಂಬಕ್ಕೆ ಶಾಶ್ವತ ನೆತ್ತರುಪಟ್ಟಿ (ವೀರಭೂಮಿ) ದಾನವನ್ನು ನೀಡಲಾಯಿತು.",
+      "englishTranslation": "During the prosperous reign of the Rashtrakuta emperor Nrupatunga Deva, the son of the provincial governor Bankeya fought valiantly against cattle-raiders to defend the township. Having attained martyrdom on the battlefield, the administration conferred a perpetual tax-free blood-grant (Nettarupatti) to his kin.",
+      "glossary": [
+        {
+          "term": "ನೆತ್ತರುಪಟ್ಟಿ",
+          "iast": "nettarupaṭṭi",
+          "modernKannadaEquivalent": "ವೀರಮರಣ ಹೊಂದಿದ ಯೋಧನ ಕುಟುಂಬಕ್ಕೆ ನೀಡುವ ತೆರಿಗೆ ರಹಿತ ಭೂಮಿ",
+          "englishDefinition": "Blood-grant endowment granted to the lineage of a fallen hero.",
+          "grammaticalCategory": "Compound Noun"
+        },
+        {
+          "term": "ತೂಱು",
+          "iast": "tūṟu",
+          "modernKannadaEquivalent": "ಗೋವುಗಳು / ಹಸುಗಳ ಹಿಂಡು",
+          "englishDefinition": "Kine / Cattle herd being rustled by adversaries.",
+          "grammaticalCategory": "Dravidian Archaic Noun"
+        }
+      ],
+      "stylisticNotes": "Features typical 9th-century horizontally broadened characters with horizontal bar talakattus chiseled on hard grey granite.",
+      "isMockData": true
+    },
+    "provenance": "Relocated from Navalgund fields; documented in Dharwad District Archaeological Survey.",
+    "currentLocation": "Kannada Research Institute (KRI) Museum, Karnatak University, Dharwad"
+  },
+  {
+    "id": "ins-hampi-007",
+    "accessionNumber": "KHA-EP-1509-HMP",
+    "title": "Hampi Virupaksha Stele of Krishnadevaraya (Coronation Endowment)",
+    "kannadaTitle": "ಕೃಷ್ಣದೇವರಾಯನ ಹಂಪಿಯ ವಿರೂಪಾಕ್ಷ ಮಹಾದೇಗುಲ ಶಾಸನ (ಪಟ್ಟಾಭಿಷೇಕ ದಾನ)",
+    "scriptClass": "vijayanagara",
+    "sourceLanguage": "nadugannada",
+    "substrate": "granite",
+    "dimensions": {
+      "heightCm": 195,
+      "widthCm": 88,
+      "depthCm": 30
+    },
+    "imageUrl": "/temples/vijayanagara.jpg",
+    "conditionRating": "excellent",
+    "reviewStatus": "verified",
+    "lastUpdated": "13 Oct 2026",
+    "historicalContext": {
+      "dynasty": "Vijayanagara Empire (Tuluva)",
+      "ruler": "Emperor Sri Krishnadevaraya",
+      "regnalPeriod": "c. 1509 – 1529 CE",
+      "approximateDate": "1509 CE (Saka 1431)",
+      "century": "16th Century CE",
+      "findSpot": {
+        "village": "Hampi (Vijayanagara)",
+        "taluk": "Hosapete",
+        "district": "Vijayanagara",
+        "state": "Karnataka"
+      },
+      "epigraphiaReference": "South Indian Inscriptions Vol. IV, No. 258",
+      "historicalSummary": "Installed on the occasion of Sri Krishnadevaraya’s imperial coronation (Pattabhisheka). Records the construction of the large entrance Gopuram, the 100-pillared Ranga Mandapa in front of the sanctum, and generous grants of gold and villages to Lord Virupaksha.",
+      "linguisticSignificance": "Classic Vijayanagara-era Nadugannada administrative prose with extensive Sanskrit titles and direct vernacular clarity."
+    },
+    "transcription": {
+      "scriptClass": "vijayanagara",
+      "scriptConfidence": 0.992,
+      "recognizedText": "ಶುಭಮಸ್ತು | ಶಕವರುಷ ೧೪೩೧ನೆಯ ಶುಕ್ಲ ಸಂವತ್ಸರದ ಮಾಘ ಶುದ್ಧ ೧೪ ಯಲ್ಲೂ ಶ್ರೀಮನ್ಮಹಾರಾಜಾಧಿರಾಜ ರಾಜಪರಮೇಶ್ವರ ಶ್ರೀವೀರಪ್ರತಾಪ ಶ್ರೀಕೃಷ್ಣದೇವರಾಯ ಮಹಾರಾಯರು ಪಟ್ಟಾಭಿಷಿಕ್ತರಾದ ಶುಭ ಮುಹೂರ್ತದಲ್ಲಿ...",
+      "iastTransliteration": "śubhamastu | śakavaruṣa 1431neya śukla saṁvatsarada māgha śuddha 14 yallū śrīmanmahārājādhirāja rājaparamēśvara śrīvīrapratāpa śrīkr̥ṣṇadēvarāya mahārāyaru paṭṭābhiṣiktarāda śubha muhūrtadallī...",
+      "lines": [
+        {
+          "lineNumber": 1,
+          "originalText": "ಶುಭಮಸ್ತು | ಶಕವರುಷ ೧೪೩೧ನೆಯ ಶುಕ್ಲ ಸಂವತ್ಸರದ",
+          "iastText": "śubhamastu | śakavaruṣa 1431neya śukla saṁvatsarada",
+          "modernKannadaLine": "ಶುಭವಾಗಲಿ, ಶಕ ವರ್ಷ ೧೪೩೧ನೆಯ ಶುಕ್ಲ ಸಂವತ್ಸರದ,"
+        },
+        {
+          "lineNumber": 2,
+          "originalText": "ಮಾಘ ಶುದ್ಧ ೧೪ ಯಲ್ಲೂ ಶ್ರೀಮನ್ಮಹಾರಾಜಾಧಿರಾಜ ರಾಜಪರಮೇಶ್ವರ",
+          "iastText": "māgha śuddha 14 yallū śrīmanmahārājādhirāja rājaparamēśvara",
+          "modernKannadaLine": "ಮಾಘ ಶುದ್ಧ ಚತುರ್ದಶಿಯಂದು, ಶ್ರೀಮನ್ ಮಹಾರಾಜಾಧಿರಾಜ ರಾಜಪರಮೇಶ್ವರ,"
+        },
+        {
+          "lineNumber": 3,
+          "originalText": "ಶ್ರೀವೀರಪ್ರತಾಪ ಶ್ರೀಕೃಷ್ಣದೇವರಾಯ ಮಹಾರಾಯರು ಪಟ್ಟಾಭಿಷಿಕ್ತರಾದ ಶುಭ ಮುಹೂರ್ತದಲ್ಲಿ",
+          "iastText": "śrīvīrapratāpa śrīkr̥ṣṇadēvarāya mahārāyaru paṭṭābhiṣiktarāda śubha muhūrtadallī",
+          "modernKannadaLine": "ಶ್ರೀ ವೀರಪ್ರತಾಪ ಶ್ರೀ ಕೃಷ್ಣದೇವರಾಯ ಮಹಾರಾಯರು ವಿಜಯನಗರದ ಸಿಂಹಾಸನದಲ್ಲಿ ಪಟ್ಟಾಭಿಷಿಕ್ತರಾದ ಸಂದರ್ಭದಲ್ಲಿ..."
+        }
+      ],
+      "detectedGlyphsCount": 56,
+      "isMockData": true
+    },
+    "translation": {
+      "sourceLanguage": "nadugannada",
+      "languageConfidence": 0.994,
+      "modernKannada": "ಮಂಗಳವಾಗಲಿ. ಶಕ ವರ್ಷ ೧೪೩೧ರ ಶುಕ್ಲ ಸಂವತ್ಸರದ ಮಾಘ ಶುದ್ಧ ಚತುರ್ದಶಿಯ ಶುಭ ಮುಹೂರ್ತದಲ್ಲಿ ವಿಜಯನಗರದ ಸಿಂಹಾಸನಾರೋಹಣ ಮಾಡಿದ ಶ್ರೀ ಕೃಷ್ಣದೇವರಾಯ ಮಹಾರಾಯರು ಪಂಪಾಪತಿ ಶ್ರೀ ವಿರೂಪಾಕ್ಷ ದೇವರಿಗೆ ಶೋಭಾಯಮಾನವಾದ ರಂಗಮಂಟಪವನ್ನು ಮತ್ತು ಭವ್ಯ ರಾಯಗೋಪುರವನ್ನು ನಿರ್ಮಿಸಿಕೊಟ್ಟರು. ಜೊತೆಗೆ ರತ್ನಖಚಿತ ಸುವರ್ಣ ಕಿರೀಟವನ್ನು ಸಮರ್ಪಿಸಿ ನಿತ್ಯ ಅನ್ನದಾನಕ್ಕೆ ಗ್ರಾಮಗಳನ್ನು ಉಂಬಳಿಯಾಗಿ ನೀಡಿದರು.",
+      "englishTranslation": "May auspiciousness prevail. On the sacred date of Magha Shuddha Chaturdashi in Saka year 1431 (1509 CE), marking his coronation upon the imperial throne of Vijayanagara, Emperor Sri Krishnadevaraya caused the grand pillared Ranga Mandapa and majestic entrance Gopuram to be erected for Lord Virupaksha, dedicating endowed villages for perennial temple maintenance.",
+      "glossary": [
+        {
+          "term": "ಪಟ್ಟಾಭಿಷಿಕ್ತರಾದ",
+          "iast": "paṭṭābhiṣiktarāda",
+          "modernKannadaEquivalent": "ರಾಜಮುಕುಟ ಧರಿಸಿ ಸಿಂಹಾಸನಾರೋಹಣ ಮಾಡಿದ",
+          "englishDefinition": "Ritually anointed and crowned as the sovereign emperor.",
+          "grammaticalCategory": "Adjectival Participle"
+        },
+        {
+          "term": "ರಂಗಮಂಟಪ",
+          "iast": "raṅgamaṇṭapa",
+          "modernKannadaEquivalent": "ದೇವಸ್ಥಾನದ ಮುಂಭಾಗದ ವಿಶಾಲ ಸಭಾ ಮಂಟಪ",
+          "englishDefinition": "Grand ceremonial pavilion in front of the sanctum.",
+          "grammaticalCategory": "Architecture Compound"
+        }
+      ],
+      "stylisticNotes": "Deeply engraved in grey crystalline granite with bold, decoupled glyph forms and isolated consonant bodies typical of the 16th century.",
+      "isMockData": true
+    },
+    "provenance": "Erected in the pillared cloister of Sri Virupaksha Temple, Hampi.",
+    "currentLocation": "In situ stele, Virupaksha Temple Courtyard, Hampi"
+  },
+  {
+    "id": "ins-mysuru-008",
+    "accessionNumber": "KHA-EP-1650-MYS",
+    "title": "Srirangapatna Royal Charter of Kanthirava Narasaraja Wodeyar",
+    "kannadaTitle": "ರಣಧೀರ ಕಂಠೀರವ ನರಸರಾಜ ಒಡೆಯರ ಶ್ರೀರಂಗಪಟ್ಟಣ ತಾಮ್ರಶಾಸನ",
+    "scriptClass": "mysuru",
+    "sourceLanguage": "nadugannada",
+    "substrate": "copper_plate",
+    "dimensions": {
+      "heightCm": 28,
+      "widthCm": 18,
+      "depthCm": 0.4
+    },
+    "imageUrl": "/temples/nayaka.jpg",
+    "conditionRating": "excellent",
+    "reviewStatus": "verified",
+    "lastUpdated": "07 Oct 2026",
+    "historicalContext": {
+      "dynasty": "Kingdom of Mysore (Wodeyars)",
+      "ruler": "Ranadheera Kanthirava Narasaraja I",
+      "regnalPeriod": "c. 1638 – 1659 CE",
+      "approximateDate": "c. 1650 CE",
+      "century": "17th Century CE",
+      "findSpot": {
+        "village": "Srirangapatna",
+        "taluk": "Srirangapatna",
+        "district": "Mandya",
+        "state": "Karnataka"
+      },
+      "epigraphiaReference": "Epigraphia Carnatica Vol. III, Sr. 14",
+      "historicalSummary": "Issued by Ranadheera Kanthirava Narasaraja Wodeyar, the first Mysore monarch to mint sovereign gold coins (Kanthirava Pagodas/Hana). Records royal endowments for Vedic scholars, irrigational canals along the Cauvery River, and temple provisions.",
+      "linguisticSignificance": "Features the distinctive Mysore Wodeyar script with cursive arcs and circular loops adapted from palm-leaf stylus writing, representing the immediate precursor to modern print Kannada."
+    },
+    "transcription": {
+      "scriptClass": "mysuru",
+      "scriptConfidence": 0.995,
+      "recognizedText": "ಶ್ರೀ ವರಾಹಸ್ವಾಮಿ ಪ್ರಸನ್ನ | ಶ್ರೀರಂಗಪಟ್ಟಣದ ರಾಜಧಾನಿಯಲ್ಲಿ ಶ್ರೀಮನ್ಮಹೀಶೂರ ಕಂಠೀರವ ನರಸರಾಜ ವೊಡೆಯರಯ್ಯನವರು ಕಾವೇರಿ ತೀರದ ಫಲವತ್ತಾದ ಕೃಷಿಭೂಮಿಯನ್ನು ಅಗ್ರಹಾರದ ಬ್ರಾಹ್ಮಣರಿಗೆ ಸರ್ವಮಾನ್ಯವಾಗಿ ದಯಪಾಲಿಸಿದ ಧರ್ಮಶಾಸನ...",
+      "iastTransliteration": "śrī varāhasvāmī prasanna | śrīraṅgapaṭṭaṇada rājadhāniyallī śrīmanmahīśūra kaṇṭhīrava narasarāja voḍeyarayyanavaru kāvēri tīrada phalavattāda kr̥ṣibhūmiyanu agrahārada brāhmaṇarige sarvamānyavāgi dayapālisida dharmaśāsana...",
+      "lines": [
+        {
+          "lineNumber": 1,
+          "originalText": "ಶ್ರೀ ವರಾಹಸ್ವಾಮಿ ಪ್ರಸನ್ನ | ಶ್ರೀರಂಗಪಟ್ಟಣದ ರಾಜಧಾನಿಯಲ್ಲಿ",
+          "iastText": "śrī varāhasvāmī prasanna | śrīraṅgapaṭṭaṇada rājadhāniyallī",
+          "modernKannadaLine": "ಶ್ರೀ ವರಾಹಸ್ವಾಮಿಯು ಪ್ರಸನ್ನನಾಗಲಿ | ಶ್ರೀರಂಗಪಟ್ಟಣದ ರಾಜಧಾನಿಯಲ್ಲಿ,"
+        },
+        {
+          "lineNumber": 2,
+          "originalText": "ಶ್ರೀಮನ್ಮಹೀಶೂರ ಕಂಠೀರವ ನರಸರಾಜ ವೊಡೆಯರಯ್ಯನವರು",
+          "iastText": "śrīmanmahīśūra kaṇṭhīrava narasarāja voḍeyarayyanavaru",
+          "modernKannadaLine": "ಶ್ರೀಮಂತ ಮೈಸೂರಿನ ಕಂಠೀರವ ನರಸರಾಜ ಒಡೆಯರವರು,"
+        },
+        {
+          "lineNumber": 3,
+          "originalText": "ಕಾವೇರಿ ತೀರದ ಫಲವತ್ತಾದ ಕೃಷಿಭೂಮಿಯನ್ನು ಸರ್ವಮಾನ್ಯವಾಗಿ ದಯಪಾಲಿಸಿದ ಶಾಸನ",
+          "iastText": "kāvēri tīrada phalavattāda kr̥ṣibhūmiyanu sarvamānyavāgi dayapālisida śāsana",
+          "modernKannadaLine": "ಕಾವೇರಿ ನದಿ ತೀರದ ಫಲವತ್ತಾದ ಕೃಷಿ ಭೂಮಿಯನ್ನು ತೆರಿಗೆ ರಹಿತವಾಗಿ ದಾನ ನೀಡಿದ ಶಾಸನ."
+        }
+      ],
+      "detectedGlyphsCount": 48,
+      "isMockData": true
+    },
+    "translation": {
+      "sourceLanguage": "nadugannada",
+      "languageConfidence": 0.991,
+      "modernKannada": "ಶ್ರೀ ವರಾಹಸ್ವಾಮಿಯ ಕೃಪೆಯು ಸದಾ ರಕ್ಷಿಸಲಿ. ರಾಜಧಾನಿ ಶ್ರೀರಂಗಪಟ್ಟಣದಿಂದ ಆಳ್ವಿಕೆ ನಡೆಸುತ್ತಿದ್ದ ಮೈಸೂರಿನ ಅಧಿಪತಿ ಶ್ರೀ ಕಂಠೀರವ ನರಸರಾಜ ಒಡೆಯರವರು ಕಾವೇರಿ ನದಿಯ ನೀರಾವರಿ ನಾಲೆಗಳಿಂದ ಸಮೃದ್ಧವಾದ ಕೃಷಿ ಭೂಮಿಯನ್ನು ಸರ್ವಮಾನ್ಯವಾಗಿ ಅಗ್ರಹಾರಕ್ಕೆ ದಾನವಾಗಿ ನೀಡಿ ಧರ್ಮಶಾಶ್ವತತೆಯನ್ನು ಸ್ಥಾಪಿಸಿದರು.",
+      "englishTranslation": "By the grace of Sri Varahaswamy. Sovereign ruler of Mysore, Sri Kanthirava Narasaraja Wodeyar, reigning from the island fortress capital of Srirangapatna, granted fertile agricultural land irrigated by Cauvery canal networks to scholarly preceptors as a tax-exempt charitable endowment in perpetuity.",
+      "glossary": [
+        {
+          "term": "ಸರ್ವಮಾನ್ಯ",
+          "iast": "sarvamānya",
+          "modernKannadaEquivalent": "ಎಲ್ಲಾ ಬಗೆಯ ಕಂದಾಯ ಮತ್ತು ತೆರಿಗೆಗಳಿಂದ ಮುಕ್ತವಾದ ದಾನ",
+          "englishDefinition": "Land granted totally free of all government levies and royal imposts.",
+          "grammaticalCategory": "Administrative Legal Term"
+        },
+        {
+          "term": "ಕಂಠೀರವ",
+          "iast": "kaṇṭhīrava",
+          "modernKannadaEquivalent": "ಸಿಂಹದಂತಹ ಗರ್ಜನೆ ಮತ್ತು ಶೌರ್ಯವುಳ್ಳವನು (ಸಿಂಹ)",
+          "englishDefinition": "Lion-voiced / lion-hearted (royal epithet of Narasaraja I).",
+          "grammaticalCategory": "Sanskrit Tatshama Epithet"
+        }
+      ],
+      "stylisticNotes": "Engraved on a set of 3 copper plates linked by a bronze ring bearing the royal Varaha (Boar) seal of the Mysore Wodeyars.",
+      "isMockData": true
+    },
+    "provenance": "Discovered in Srirangapatna palace chancellery archives; documented by Mysore Epigraphical Survey.",
+    "currentLocation": "Palace Museum & Archives, Mysore Palace, Mysuru"
+  }
+]
