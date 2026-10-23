@@ -48,3 +48,13 @@ def get_language_repository() -> LanguageRepository:
     Returns singleton JsonFileLanguageRepository.
     """
     return JsonFileLanguageRepository()
+
+
+def get_analysis_service():
+    """
+    Dependency provider for AnalysisService.
+    Can be overridden in tests to simulate adapter failure modes or alternative ML backends.
+    """
+    from backend.app.services.analysis_service import analysis_service
+    return analysis_service
+

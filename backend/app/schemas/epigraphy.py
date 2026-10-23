@@ -174,14 +174,17 @@ class SourceLanguageMetadata(CamelModel):
 class AnalysisJobResult(CamelModel):
     """Response payload for automated epigraphical analysis job."""
     job_id: str = Field(..., description="Unique analysis job UUID")
-    status: Literal['completed', 'processing', 'failed'] = Field(..., description="Job status")
+    status: Literal['completed', 'processing', 'failed', 'partial'] = Field(..., description="Job status")
     inferred_script: ScriptClassId = Field(..., description="Inferred script epoch")
     inferred_language: SourceLanguageId = Field(..., description="Inferred source language")
-    transcription: TranscriptionResult = Field(..., description="Deciphered transcription")
-    translation: TranslationResult = Field(..., description="Synthesized translation")
-    historical_context: HistoricalContext = Field(..., description="Deduced historical context")
+    transcription: Optional[TranscriptionResult] = Field(None, description="Deciphered transcription")
+    translation: Optional[TranslationResult] = Field(None, description="Synthesized translation")
+    historical_context: Optional[HistoricalContext] = Field(None, description="Deduced historical context")
     is_demonstration_only: bool = Field(False, description="Flag for demonstration vs live inference")
     adapter_source: Literal['mock_local', 'fastapi_remote'] = Field('fastapi_remote', description="Source adapter")
+    timings: Optional[dict[str, float]] = Field(None, description="Per-step execution timing in milliseconds")
+    error_message: Optional[str] = Field(None, description="Error message if pipeline step failed partially")
+    per_class_probs: Optional[dict[str, float]] = Field(None, description="Posterior probability distribution across 10 script eras")
 
 
 # Request / Filter Schemas

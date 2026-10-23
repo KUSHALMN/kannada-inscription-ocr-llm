@@ -35,9 +35,11 @@ class Settings(BaseSettings):
 
     DATA_DIR: str = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data")
     UPLOAD_DIR: str = os.path.join(os.path.dirname(os.path.dirname(__file__)), "uploads")
+    STORAGE_UPLOADS_DIR: str = os.path.join(os.path.dirname(os.path.dirname(__file__)), "storage", "uploads")
 
     INFERENCE_DEVICE: str = "cpu"
     MOCK_INFERENCE: bool = False
+    ADAPTER_MODE: str = "mock"  # "mock" or "local"
 
     @field_validator("CORS_ORIGINS", mode="before")
     @classmethod
