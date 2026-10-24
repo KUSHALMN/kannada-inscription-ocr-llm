@@ -10,7 +10,7 @@ import { ScriptsLanguagesView } from './components/views/ScriptsLanguagesView';
 import { SettingsView } from './components/views/SettingsView';
 import { EmptyState } from './components/common/EmptyState';
 import { PageSkeletonLoader } from './components/common/PageSkeletonLoader';
-import { epigraphyService } from './services/epigraphyService';
+import { epigraphyService, serviceRegistry } from './services/epigraphyService';
 import { InscriptionRecord, ScriptClassMetadata, SourceLanguageMetadata, ResearchActivityItem } from './types';
 
 export const App: React.FC = () => {
@@ -23,7 +23,7 @@ export const App: React.FC = () => {
   const [selectedDynastyFilter, setSelectedDynastyFilter] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  // Load initial epigraphical data from decoupled service adapter
+  // Load initial epigraphical data from decoupled service adapter with fallback
   useEffect(() => {
     async function loadCorpusData() {
       setIsLoading(true);
@@ -42,13 +42,38 @@ export const App: React.FC = () => {
           setActiveResult(loadedInscriptions[0]);
         }
       } catch (err) {
-        console.error('Failed to load epigraphical data:', err);
+        console.warn('Backend unavailable, falling back to mock dataset:', err);
+        // Switch to mock demonstrator and retry so the UI never displays empty state
+        serviceRegistry.useMock();
+        try {
+          const [loadedScripts, loadedLanguages, loadedInscriptions, loadedActivity] = await Promise.all([
+            epigraphyService.getScriptClasses(),
+            epigraphyService.getSourceLanguages(),
+            epigraphyService.getInscriptions(),
+            epigraphyService.getRecentActivity(),
+          ]);
+          setScripts(loadedScripts);
+          setLanguages(loadedLanguages);
+          setInscriptions(loadedInscriptions);
+          setRecentActivity(loadedActivity);
+          if (loadedInscriptions.length > 0 && !activeResult) {
+            setActiveResult(loadedInscriptions[0]);
+          }
+        } catch (mockErr) {
+          console.error('Failed to load even mock epigraphical data:', mockErr);
+        }
       } finally {
         setIsLoading(false);
       }
     }
 
     loadCorpusData();
+
+    // Subscribe to runtime adapter mode changes from SettingsView
+    const unsubscribe = serviceRegistry.subscribe(() => {
+      loadCorpusData();
+    });
+    return unsubscribe;
   }, []);
 
   const handleSelectInscription = (inscription: InscriptionRecord) => {
@@ -57,8 +82,12 @@ export const App: React.FC = () => {
   };
 
   const handleAnalysisComplete = (result: InscriptionRecord) => {
+    // Prepend newly analyzed record to the active corpus
+    setInscriptions((prev) => [result, ...prev.filter((ins) => ins.id !== result.id)]);
     setActiveResult(result);
     setActiveTab('results');
+    // Refresh activity feed in background
+    epigraphyService.getRecentActivity().then(setRecentActivity).catch(() => {});
   };
 
   const handleNavigateToArchive = (dynastyFilter?: string) => {
