@@ -267,54 +267,38 @@ The user interface uses a **centralized Theme Registry** (`src/theme/themeRegist
 
 ---
 
-## 🔌 FastAPI Future Backend Integration Interface
+## 🔌 FastAPI Epigraphical Backend Integration
 
-The frontend architecture strictly enforces the **Adapter Pattern** via `IEpigraphyService` (`src/types/epigraphy.ts`). Currently, `MockEpigraphyService` satisfies this contract. In future phases, a remote HTTP client adapter (`FastAPIEpigraphyService`) will be registered in `serviceRegistry` without changing a single React view:
+The frontend architecture implements the **Adapter Pattern** via `IEpigraphyService` (`src/types/epigraphy.ts`) with a dynamic runtime proxy in `src/services/epigraphyService.ts`:
 
-```typescript
-export interface IEpigraphyService {
-  /** Retrieve metadata for the 10 historical script epochs */
-  getScriptClasses(): Promise<ScriptClassMetadata[]>;
+- **FastApiEpigraphyService:** Production HTTP client connecting to `/api/v1` for live inference, repository queries, and dossier updates.
+- **MockEpigraphyService:** Offline demonstration fallback ensuring zero UI downtime if the Python service is offline.
+- **ServiceRegistry:** Reactive runtime switcher with live connection telemetry and ping diagnostics in `SettingsView`.
 
-  /** Retrieve classification for the historical source languages */
-  getSourceLanguages(): Promise<SourceLanguageMetadata[]>;
+### Live FastAPI Endpoint Mapping
+- `GET /api/v1/health` -> `checkHealth()` (live latency, GPU telemetry, and torch runtime status)
+- `GET /api/v1/scripts` -> `getScriptClasses()` (10 chronological script epochs)
+- `GET /api/v1/languages` -> `getSourceLanguages()` (6 historical linguistic dialects)
+- `GET /api/v1/inscriptions` -> `getInscriptions(filter)` (catalog search, multi-tier filtering, and sorting)
+- `GET /api/v1/inscriptions/{id}` -> `getInscriptionById(id)` (complete epigraphical dossier)
+- `PUT /api/v1/inscriptions/{id}` -> `updateInscription(id, updates)` (persisting scholarly verifications)
+- `POST /api/v1/analyze` (multipart/form-data) -> `analyzeInscriptionImage(file, options)` (stone rubbing analysis & auto-cataloging)
+- `GET /uploads/{filename}` -> Static high-resolution stone rubbing image serving
 
-  /** Query the catalogued inscriptional archive with multi-tier filters */
-  getInscriptions(filter?: InscriptionFilter): Promise<InscriptionRecord[]>;
+### 🚀 Running Frontend and Backend Together
 
-  /** Retrieve full details and annotations for a specific accession ID */
-  getInscriptionById(id: string): Promise<InscriptionRecord | null>;
+1. **Launch the FastAPI Epigraphy Backend:**
+   ```bash
+   cd backend
+   py -3.14 -m uvicorn backend.app.main:app --reload --host 127.0.0.1 --port 8000
+   ```
+   Interactive Swagger API docs: `http://localhost:8000/docs`
 
-  /** Stream recent scholarly activities and epigraphical verifications */
-  getRecentActivity(): Promise<ResearchActivityItem[]>;
-
-  /** Query the historical grammar and paleographic rules registry */
-  getHistoricalRules(): Promise<HistoricalRuleItem[]>;
-
-  /**
-   * Submit an inscription rubbing for analysis
-   * Future endpoint: POST /api/v1/inscriptions/analyze
-   */
-  analyzeInscriptionImage(file: File | Blob): Promise<AnalysisJobResult>;
-}
-```
-
-### Future FastAPI Endpoint Mapping
-- `GET /api/v1/scripts` -> `getScriptClasses()`
-- `GET /api/v1/languages` -> `getSourceLanguages()`
-- `GET /api/v1/inscriptions` -> `getInscriptions(filter)`
-- `GET /api/v1/inscriptions/{id}` -> `getInscriptionById(id)`
-- `GET /api/v1/rules` -> `getHistoricalRules()`
-- `POST /api/v1/inscriptions/analyze` (multipart/form-data) -> `analyzeInscriptionImage(file)`
-
----
-
-## ⚠️ Current Prototype & Mock-Data Limitations
-
-1. **No Live Model Inference:** Analysis uploads run in-browser simulated inference using verified canonical epigraphical records (e.g. Halmidi Stele). All outputs carry explicit `isMockData: true` flags.
-2. **In-Memory Local Session Edits:** Edits made to transcription readings, translations, or historical rules update local prototype state only. No persistent backend database (PostgreSQL/SQLite) is connected.
-3. **Curated Inscription Corpus:** The archive contains 8 curated, historically authenticated inscriptions representing canonical epigraphs rather than a complete digitized epigraphia corpus.
-4. **Selective Glyph Previews:** Genuine glyph images are rendered from `public/glyphs/` for curated samples (`1.png`, `2.png`, `3.png`) present in the project repository.
+2. **Launch the Vite Frontend (Port 3000):**
+   ```bash
+   npm run dev
+   ```
+   Open `http://localhost:3000` in your browser. All requests to `/api` and `/uploads` automatically reverse-proxy to the FastAPI backend!
 
 ---
 
