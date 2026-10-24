@@ -54,6 +54,7 @@ EXT_MAP = {
 async def analyze_inscription(
     file: UploadFile = File(..., description="Rubbing image (JPEG, PNG, WEBP, TIFF up to 25MB)"),
     is_async: bool = Query(False, alias="async", description="If true, enqueues the job and returns {jobId, status: 'queued'}"),
+    auto_save: bool = Query(False, alias="autoSave", description="If true, automatically saves to catalog and returns recordId"),
     title: Optional[str] = Form(None, description="Optional inscription title or identifier"),
     location: Optional[str] = Form(None, description="Optional discovery location (e.g. Belur, Hassan)"),
     dynasty: Optional[str] = Form(None, description="Optional dynastic attribution hint"),
@@ -62,6 +63,7 @@ async def analyze_inscription(
     known_language: Optional[str] = Form(None, alias="knownLanguage", description="Optional language hint or 'uncertain'"),
     researcher_notes: Optional[str] = Form(None, alias="researcherNotes", description="Optional field notes"),
     act_repo: ActivityRepository = Depends(get_activity_repository),
+    ins_repo: InscriptionRepository = Depends(get_inscription_repository),
     analysis_svc: AnalysisService = Depends(get_analysis_service),
     job_mgr: JobQueueManager = Depends(get_job_manager),
 ):
@@ -158,18 +160,66 @@ async def analyze_inscription(
         researcher_notes=researcher_notes,
     )
 
-    # 6. Record activity in activity repository
-    activity = ResearchActivityItem(
-        id=f"act-{uuid.uuid4().hex[:8]}",
-        timestamp=datetime.now().strftime("%d %b %Y, %H:%M"),
-        type=ActivityType.RUBBING_CATALOGUED,
-        title=f"Rubbing Analyzed ({result.status.title()}): {title or file.filename}",
-        description=f"5-stage inference completed with status '{result.status}'. Inferred script: {result.inferred_script.value}.",
-        scholar="Automated Computational Paleography Pipeline",
-        inscription_id=job_id,
-        inscription_title=title or "Newly Ingested Epigraphical Record",
-    )
-    await act_repo.add(activity)
+    image_url = f"/uploads/{job_id}{ext}"
+    result.image_url = image_url
+
+    if auto_save:
+        # Automatically persist completed analysis into InscriptionRepository
+        rec_id = f"ins-{uuid.uuid4().hex[:8]}"
+        accession_no = f"ASI-{datetime.now().year}-{uuid.uuid4().hex[:4].upper()}"
+
+        kannada_title = (
+            result.translation.modern_kannada.split(".")[0][:60]
+            if result.translation and result.translation.modern_kannada
+            else f"ಅಭಿಲೇಖ {job_id}"
+        )
+
+        new_record = InscriptionRecord(
+            id=rec_id,
+            accession_number=accession_no,
+            title=title or f"{result.inferred_script.value.replace('_', ' ').title()} Epigraph ({job_id})",
+            kannada_title=kannada_title,
+            image_url=image_url,
+            script_class=result.inferred_script,
+            source_language=result.inferred_language,
+            substrate=SubstrateMaterial.GRANITE,
+            condition_rating=ConditionRating.FAIR,
+            review_status=ReviewStatus.PENDING_VERIFICATION,
+            last_updated=datetime.now().strftime("%Y-%m-%d"),
+            historical_context=result.historical_context,
+            transcription=result.transcription,
+            translation=result.translation,
+            provenance=f"Catalogued from epigraphical analysis job {job_id}",
+            current_location="State Archaeological Survey Repository",
+        )
+        await ins_repo.create(new_record)
+        result.record_id = rec_id
+
+        # Record activity in activity repository
+        activity = ResearchActivityItem(
+            id=f"act-{uuid.uuid4().hex[:8]}",
+            timestamp=datetime.now().strftime("%d %b %Y, %H:%M"),
+            type=ActivityType.RUBBING_CATALOGUED,
+            title=f"Rubbing Analyzed ({result.status.title()}): {title or file.filename}",
+            description=f"5-stage inference completed with status '{result.status}'. Inferred script: {result.inferred_script.value}.",
+            scholar="Automated Computational Paleography Pipeline",
+            inscription_id=rec_id,
+            inscription_title=new_record.title,
+        )
+        await act_repo.add(activity)
+    else:
+        # 6. Record activity in activity repository for ephemeral analysis job
+        activity = ResearchActivityItem(
+            id=f"act-{uuid.uuid4().hex[:8]}",
+            timestamp=datetime.now().strftime("%d %b %Y, %H:%M"),
+            type=ActivityType.RUBBING_CATALOGUED,
+            title=f"Rubbing Analyzed ({result.status.title()}): {title or file.filename}",
+            description=f"5-stage inference completed with status '{result.status}'. Inferred script: {result.inferred_script.value}.",
+            scholar="Automated Computational Paleography Pipeline",
+            inscription_id=job_id,
+            inscription_title=title or "Newly Ingested Epigraphical Record",
+        )
+        await act_repo.add(activity)
 
     return result
 
@@ -236,7 +286,7 @@ async def save_analyzed_job_to_catalog(
         source_language=result.inferred_language,
         substrate=SubstrateMaterial.GRANITE,
         dimensions=None,
-        image_url=f"/storage/uploads/{job_id}.jpg",
+        image_url=result.image_url or f"/uploads/{job_id}.jpg",
         thumbnail_url=None,
         condition_rating=ConditionRating.FAIR,
         review_status=ReviewStatus.PENDING_VERIFICATION,
