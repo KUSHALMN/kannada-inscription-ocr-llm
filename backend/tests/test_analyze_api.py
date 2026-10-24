@@ -271,3 +271,40 @@ def test_analyze_partial_failure_on_segmentation_step(client):
             os.remove(path)
     finally:
         app.dependency_overrides.pop(get_analysis_service, None)
+
+
+def test_analyze_image_url_and_auto_save_catalog(client):
+    """
+    Verifies that /analyze returns accessible imageUrl and when autoSave=true,
+    persists an InscriptionRecord retrievable via /inscriptions/{id}.
+    """
+    jpeg_bytes = create_test_image(img_format="JPEG", size=(64, 64))
+    files = {"file": ("temple_stele.jpg", jpeg_bytes, "image/jpeg")}
+    data_form = {"title": "Aihole Inscription Stele", "autoSave": "true"}
+
+    response = client.post("/api/v1/analyze?autoSave=true", files=files, data=data_form)
+    assert response.status_code == 200
+    res = response.json()
+
+    assert "imageUrl" in res
+    assert res["imageUrl"].startswith("/uploads/")
+    assert "recordId" in res
+    assert res["recordId"] is not None
+
+    record_id = res["recordId"]
+    try:
+        # Verify inscription is persisted in catalog
+        get_resp = client.get(f"/api/v1/inscriptions/{record_id}")
+        assert get_resp.status_code == 200
+        saved_record = get_resp.json()
+        assert saved_record["id"] == record_id
+        assert saved_record["imageUrl"] == res["imageUrl"]
+        assert saved_record["reviewStatus"] == "pending_verification"
+    finally:
+        # Clean up record to preserve test isolation
+        from backend.app.api.deps import get_inscription_repository
+        if get_inscription_repository in app.dependency_overrides:
+            repo = app.dependency_overrides[get_inscription_repository]()
+            repo._inscriptions = [r for r in repo._inscriptions if r.id != record_id]
+            import asyncio
+            asyncio.run(repo._write_atomic())
