@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { InscriptionRecord, ScriptClassId, SourceLanguageId } from '../../types';
 import { getEpigraphThemeVariables, SCRIPT_THEMES, LANGUAGE_THEMES } from '../../theme/themeRegistry';
+import { epigraphyService } from '../../services/epigraphyService';
 import { Button } from '../common/Button';
 import { Badge } from '../common/Badge';
 import { StatusIndicator } from '../common/StatusIndicator';
@@ -101,35 +102,57 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
     setTimeout(() => setHasCopiedTranslation(false), 2000);
   };
 
-  const handleApproveResult = () => {
+  const handleApproveResult = async () => {
     setInscription((prev) => ({ ...prev, reviewStatus: 'verified' }));
-    setReviewBannerNotice('Inscription result approved and marked as verified in local session state.');
+    try {
+      await epigraphyService.updateInscription(inscription.id, { reviewStatus: 'verified' });
+      setReviewBannerNotice('Inscription result approved and marked as verified in repository.');
+    } catch {
+      setReviewBannerNotice('Inscription result approved and marked as verified in session.');
+    }
     setTimeout(() => setReviewBannerNotice(null), 4000);
   };
 
-  const handleMarkForReview = () => {
+  const handleMarkForReview = async () => {
     setInscription((prev) => ({ ...prev, reviewStatus: 'in_review' }));
-    setReviewBannerNotice('Inscription flagged for epigraphical peer review in local session state.');
+    try {
+      await epigraphyService.updateInscription(inscription.id, { reviewStatus: 'in_review' });
+      setReviewBannerNotice('Inscription flagged for epigraphical peer review in repository.');
+    } catch {
+      setReviewBannerNotice('Inscription flagged for epigraphical peer review in session.');
+    }
     setTimeout(() => setReviewBannerNotice(null), 4000);
   };
 
-  const handleSaveTranscriptionEdit = () => {
+  const handleSaveTranscriptionEdit = async () => {
+    const updatedTranscription = { ...inscription.transcription, recognizedText: editedText };
     setInscription((prev) => ({
       ...prev,
-      transcription: { ...prev.transcription, recognizedText: editedText },
+      transcription: updatedTranscription,
     }));
     setIsEditingTranscription(false);
-    setReviewBannerNotice('Transcribed text updated in local prototype state.');
+    try {
+      await epigraphyService.updateInscription(inscription.id, { transcription: updatedTranscription });
+      setReviewBannerNotice('Transcribed text updated and synchronized to repository.');
+    } catch {
+      setReviewBannerNotice('Transcribed text updated in local state.');
+    }
     setTimeout(() => setReviewBannerNotice(null), 3000);
   };
 
-  const handleSaveTranslationEdit = () => {
+  const handleSaveTranslationEdit = async () => {
+    const updatedTranslation = { ...inscription.translation, modernKannada: editedTranslation };
     setInscription((prev) => ({
       ...prev,
-      translation: { ...prev.translation, modernKannada: editedTranslation },
+      translation: updatedTranslation,
     }));
     setIsEditingTranslation(false);
-    setReviewBannerNotice('Modern Kannada translation updated in local prototype state.');
+    try {
+      await epigraphyService.updateInscription(inscription.id, { translation: updatedTranslation });
+      setReviewBannerNotice('Modern Kannada translation updated and synchronized to repository.');
+    } catch {
+      setReviewBannerNotice('Modern Kannada translation updated in local state.');
+    }
     setTimeout(() => setReviewBannerNotice(null), 3000);
   };
 
