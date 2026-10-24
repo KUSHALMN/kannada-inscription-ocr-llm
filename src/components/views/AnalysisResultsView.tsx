@@ -42,6 +42,15 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
   const [currentScriptClass, setCurrentScriptClass] = useState<ScriptClassId>(initialInscription.scriptClass);
   const [currentSourceLanguage, setCurrentSourceLanguage] = useState<SourceLanguageId>(initialInscription.sourceLanguage);
 
+  // Synchronize state when initialInscription prop changes from parent
+  React.useEffect(() => {
+    setInscription({ ...initialInscription });
+    setCurrentScriptClass(initialInscription.scriptClass);
+    setCurrentSourceLanguage(initialInscription.sourceLanguage);
+    setEditedText(initialInscription.transcription.recognizedText);
+    setEditedTranslation(initialInscription.translation.modernKannada);
+  }, [initialInscription]);
+
   // Dynamic Theme CSS variables
   const themeVars = getEpigraphThemeVariables(currentScriptClass, currentSourceLanguage);
 
@@ -447,10 +456,16 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                   alt={inscription.title}
                   className="max-h-[500px] w-auto object-contain rounded-xs shadow-2xl border border-stone-800"
                   draggable={false}
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.src.includes('sample-stele')) {
+                      target.src = '/src/assets/sample-stele.jpg';
+                    }
+                  }}
                 />
 
                 {/* Ground-Truth Inscription Line Overlays (When coords exist) */}
-                {showBoundingBoxes && inscription.transcription.lines.map((line, idx) => (
+                {showBoundingBoxes && inscription.transcription?.lines?.map((line, idx) => (
                   <div
                     key={line.lineNumber}
                     onClick={() => setSelectedGlyphIndex(idx)}
