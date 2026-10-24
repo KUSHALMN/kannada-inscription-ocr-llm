@@ -185,6 +185,8 @@ class AnalysisJobResult(CamelModel):
     timings: Optional[dict[str, float]] = Field(None, description="Per-step execution timing in milliseconds")
     error_message: Optional[str] = Field(None, description="Error message if pipeline step failed partially")
     per_class_probs: Optional[dict[str, float]] = Field(None, description="Posterior probability distribution across 10 script eras")
+    image_url: Optional[str] = Field(None, description="Static accessible URL for uploaded image")
+    record_id: Optional[str] = Field(None, description="Catalog inscription record ID if persisted")
 
 
 class AsyncJobAccepted(CamelModel):

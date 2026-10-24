@@ -68,8 +68,9 @@ def create_application() -> FastAPI:
     app.add_exception_handler(Exception, global_exception_handler)
 
     # 3. Mount Static Uploads
-    if os.path.exists(settings.UPLOAD_DIR):
-        app.mount("/uploads", StaticFiles(directory=settings.UPLOAD_DIR), name="uploads")
+    os.makedirs(settings.STORAGE_UPLOADS_DIR, exist_ok=True)
+    os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
+    app.mount("/uploads", StaticFiles(directory=settings.STORAGE_UPLOADS_DIR), name="uploads")
 
     # 4. Include API v1 Router with prefix and root convenience
     app.include_router(api_v1_router, prefix="/api/v1")

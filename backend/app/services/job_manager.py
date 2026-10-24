@@ -268,9 +268,10 @@ class JobQueueManager:
                 approximate_date=record.approximate_date,
                 known_script=record.known_script,
                 known_language=record.known_language,
-                researcher_notes=record.researcher_notes,
-                on_step_progress=step_callback,
             )
+            if record.image_path:
+                ext = os.path.splitext(record.image_path)[1]
+                result.image_url = f"/uploads/{job_id}{ext}"
 
             record.status = result.status
             record.progress = 100
