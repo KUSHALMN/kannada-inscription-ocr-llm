@@ -709,7 +709,7 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
       widthCm: 85,
       depthCm: 25
     },
-    imageUrl: '/temples/chalukya.jpg',
+    imageUrl: '/temples/badami.jpg',
     conditionRating: 'excellent',
     reviewStatus: 'in_review',
     lastUpdated: '12 Oct 2026',
@@ -892,7 +892,7 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
       widthCm: 80,
       depthCm: 22
     },
-    imageUrl: '/temples/chalukya.jpg',
+    imageUrl: '/temples/aihole.jpg',
     conditionRating: 'excellent',
     reviewStatus: 'verified',
     lastUpdated: '11 Oct 2026',

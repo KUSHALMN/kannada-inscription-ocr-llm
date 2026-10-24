@@ -194,9 +194,9 @@ export const KARNATAKA_TEMPLE_HERITAGE: TempleHeritageSite[] = [
       'Historical record of Pulakeshin II defeating Emperor Harsha on Narmada River',
       'Earliest epigraphical cross-dating linking the Mahabharata war and Saka era'
     ],
-    imageUrl: '/temples/chalukya.jpg',
+    imageUrl: '/temples/aihole.jpg',
     galleryImages: [
-      '/temples/chalukya.jpg'
+      '/temples/aihole.jpg'
     ],
     unescoStatus: 'Tentative UNESCO World Heritage Site',
     epigraphCount: 130,

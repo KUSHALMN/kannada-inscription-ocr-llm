@@ -94,7 +94,7 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     material: 'Sandstone',
     lineCount: 3,
     condition: 'Excellent',
-    imageUrl: '/temples/chalukya.jpg'
+    imageUrl: '/temples/aihole.jpg'
   },
   {
     id: 'ins-badami-003',
@@ -109,7 +109,7 @@ const CANONICAL_CATALOGUE: InscriptionArchiveCardItem[] = [
     material: 'Sandstone',
     lineCount: 3,
     condition: 'Excellent',
-    imageUrl: '/temples/chalukya.jpg'
+    imageUrl: '/temples/badami.jpg'
   },
   {
     id: 'ins-belur-004',
