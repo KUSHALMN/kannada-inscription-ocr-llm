@@ -95,15 +95,24 @@ export class MockEpigraphyService implements IEpigraphyService {
     return Promise.resolve(found || null);
   }
 
-  async getRecentActivity(): Promise<import('../types').ResearchActivityItem[]> {
+  async getRecentActivity(_limit?: number): Promise<import('../types').ResearchActivityItem[]> {
     return Promise.resolve([...MOCK_RESEARCH_ACTIVITY]);
+  }
+
+  async updateInscription(id: string, updates: Partial<InscriptionRecord>): Promise<InscriptionRecord> {
+    const idx = this.inscriptions.findIndex(ins => ins.id === id);
+    if (idx !== -1) {
+      this.inscriptions[idx] = { ...this.inscriptions[idx], ...updates };
+      return Promise.resolve(this.inscriptions[idx]);
+    }
+    throw new Error(`Inscription with id ${id} not found in mock store`);
   }
 
   /**
    * Demonstration analysis adapter for uploaded rubbings/images.
    * Explicitly flagged as demonstration mock data to prevent false claims.
    */
-  async analyzeInscriptionImage(_file: File | Blob): Promise<AnalysisJobResult> {
+  async analyzeInscriptionImage(_file: File | Blob, _options?: any): Promise<AnalysisJobResult> {
     const canonical = this.inscriptions[0];
 
     return Promise.resolve({
@@ -115,7 +124,8 @@ export class MockEpigraphyService implements IEpigraphyService {
       translation: canonical.translation,
       historicalContext: canonical.historicalContext,
       isDemonstrationOnly: true,
-      adapterSource: 'mock_local'
+      adapterSource: 'mock_local',
+      imageUrl: canonical.imageUrl,
     });
   }
 }

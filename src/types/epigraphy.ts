@@ -122,7 +122,7 @@ export interface TranscriptionResult {
   iastTransliteration: string;
   lines: SegmentedLine[];
   detectedGlyphsCount: number;
-  isMockData: true; // explicit requirement: no fake AI claiming to be real inference
+  isMockData?: boolean;
 }
 
 export interface TranslationResult {
@@ -132,7 +132,7 @@ export interface TranslationResult {
   englishTranslation: string;
   glossary: ArchaicGlossaryItem[];
   stylisticNotes: string;
-  isMockData: true;
+  isMockData?: boolean;
 }
 
 export type ReviewStatus = 'verified' | 'in_review' | 'pending_verification' | 'archived';
@@ -182,8 +182,9 @@ export interface IEpigraphyService {
   getSourceLanguages(): Promise<SourceLanguageMetadata[]>;
   getInscriptions(filter?: InscriptionFilter): Promise<InscriptionRecord[]>;
   getInscriptionById(id: string): Promise<InscriptionRecord | null>;
-  getRecentActivity(): Promise<ResearchActivityItem[]>;
-  analyzeInscriptionImage(file: File | Blob): Promise<AnalysisJobResult>;
+  getRecentActivity(limit?: number): Promise<ResearchActivityItem[]>;
+  analyzeInscriptionImage(file: File | Blob, options?: any): Promise<AnalysisJobResult>;
+  updateInscription(id: string, updates: Partial<InscriptionRecord>): Promise<InscriptionRecord>;
 }
 
 export interface InscriptionFilter {
@@ -199,12 +200,15 @@ export interface InscriptionFilter {
 
 export interface AnalysisJobResult {
   jobId: string;
-  status: 'completed' | 'processing' | 'failed';
+  status: 'completed' | 'processing' | 'failed' | 'partial';
   inferredScript: ScriptClassId;
   inferredLanguage: SourceLanguageId;
-  transcription: TranscriptionResult;
-  translation: TranslationResult;
-  historicalContext: HistoricalContext;
-  isDemonstrationOnly: true;
+  transcription?: TranscriptionResult;
+  translation?: TranslationResult;
+  historicalContext?: HistoricalContext;
+  isDemonstrationOnly?: boolean;
   adapterSource: 'mock_local' | 'fastapi_remote';
+  imageUrl?: string;
+  recordId?: string;
+  errorMessage?: string;
 }

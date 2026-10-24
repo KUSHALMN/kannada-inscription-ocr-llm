@@ -22,6 +22,7 @@ export interface AnalyzeRubbingOptions {
   knownScript?: ScriptClassId | 'uncertain';
   knownLanguage?: SourceLanguageId | 'uncertain';
   researcherNotes?: string;
+  autoSave?: boolean;
 }
 
 export interface JobStatusResponse {
@@ -77,6 +78,25 @@ export class FastApiEpigraphyService implements IEpigraphyService {
     // Defaults to VITE_API_URL or local FastAPI dev port
     const envUrl = typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_URL;
     this.baseUrl = (baseUrl || envUrl || 'http://localhost:8000/api/v1').replace(/\/+$/, '');
+  }
+
+  public getBaseUrl(): string {
+    return this.baseUrl;
+  }
+
+  public setBaseUrl(url: string): void {
+    this.baseUrl = url.replace(/\/+$/, '');
+  }
+
+  public async checkHealth(): Promise<{ healthy: boolean; latencyMs: number; details?: HealthResponse }> {
+    const start = performance.now();
+    try {
+      const data = await this.request<HealthResponse>('/health');
+      const latencyMs = Math.round(performance.now() - start);
+      return { healthy: data.status === 'healthy' || data.status === 'degraded', latencyMs, details: data };
+    } catch {
+      return { healthy: false, latencyMs: Math.round(performance.now() - start) };
+    }
   }
 
   /**
@@ -232,7 +252,8 @@ export class FastApiEpigraphyService implements IEpigraphyService {
       if (options.researcherNotes) formData.append('researcherNotes', options.researcherNotes);
     }
 
-    return this.request<AnalysisJobResult>('/analyze', {
+    const autoSaveParam = options?.autoSave !== false ? '?autoSave=true' : '';
+    return this.request<AnalysisJobResult>(`/analyze${autoSaveParam}`, {
       method: 'POST',
       body: formData,
     });
