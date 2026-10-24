@@ -12,6 +12,8 @@ import {
   ShieldCheck
 } from 'lucide-react';
 
+import { epigraphyService } from '../../services/epigraphyService';
+
 interface NewAnalysisViewProps {
   inscriptions: InscriptionRecord[];
   onAnalysisComplete: (result: InscriptionRecord) => void;
@@ -139,145 +141,119 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
     });
   };
 
-  // Run the 5-stage processing pipeline demonstration
-  const handleStartAnalysis = () => {
+  // Run the 5-stage processing pipeline via active service adapter
+  const handleStartAnalysis = async () => {
     if (!uploadedFile) {
       setFileError('Please upload an inscription rubbing or photograph before initiating analysis.');
       return;
     }
 
+    setFileError(null);
     setIsProcessing(true);
     setProcessingStep(0);
 
+    // Smooth progress stage ticker while network analysis runs
     const stepInterval = setInterval(() => {
       setProcessingStep((prev) => {
-        if (prev < processingStages.length - 1) {
+        if (prev < processingStages.length - 2) {
           return prev + 1;
-        } else {
-          clearInterval(stepInterval);
-          setTimeout(() => {
-            setIsProcessing(false);
-            // Create a rich analytical record synthesizing user inputs and model predictions
-            const matchedScript = metadata.knownScript !== 'uncertain' ? metadata.knownScript : 'kadamba';
-            const matchedLanguage = metadata.knownLanguage !== 'uncertain' ? metadata.knownLanguage : 'purvada_halegannada';
-
-            const syntheticResult: InscriptionRecord = {
-              id: `analysis-${Date.now()}`,
-              accessionNumber: `NEW-ANA-${new Date().getFullYear()}-${Math.floor(100 + Math.random() * 900)}`,
-              title: metadata.title || 'Newly Ingested Epigraphical Record',
-              kannadaTitle: 'ಹೊಸದಾಗಿ ದಾಖಲಿಸಲಾದ ಪ್ರಾಚೀನ ಶಿಲಾಶಾಸನ ಪಾಠ',
-              imageUrl: uploadedFile.previewUrl,
-              scriptClass: matchedScript,
-              sourceLanguage: matchedLanguage,
-              substrate: 'granite',
-              conditionRating: 'fair',
-              historicalContext: {
-                approximateDate: metadata.approximateDate || 'c. 5th–6th Century CE',
-                century: '5th Century CE',
-                dynasty: metadata.dynasty || 'Early Kadamba Dynasty',
-                ruler: 'King Kakusthavarma (or contemporary feudatory)',
-                regnalPeriod: 'c. 450 CE',
-                findSpot: {
-                  village: metadata.location ? metadata.location.split(',')[0].trim() : 'Halmidi vicinity',
-                  taluk: 'Belur Taluk',
-                  district: metadata.location && metadata.location.includes(',') ? metadata.location.split(',')[1].trim() : 'Hassan',
-                  state: 'Karnataka',
-                },
-                historicalSummary: metadata.researcherNotes || 'Chiseled memorial grant inscription recording royal land donation and battle tax exemption.',
-                linguisticSignificance: 'Earliest known epigraphical record exhibiting Purvada Halegannada morphology.',
-                epigraphiaReference: metadata.collectionSource || 'State Archaeological Survey Register (Field Ingestion 2026)',
-              },
-              transcription: {
-                scriptClass: matchedScript,
-                scriptConfidence: 0.9875,
-                recognizedText: 'ನಮಃ ಶ್ರೀಮತ್ ಕದಂಬ ಪಣ್ ಮಹಾ ಕದಂಬನ ಪಲಕಾಲಮನ್ ಪಶುಪತಿ ನಾಮಧೇಯ ಕೀರ್ತನ್...',
-                iastTransliteration: 'namaḥ śrīmat kadamba paṇ mahā kadambana palakālaman paśupati nāmadhēya kīrtan...',
-                detectedGlyphsCount: 148,
-                isMockData: true,
-                lines: [
-                  {
-                    lineNumber: 1,
-                    originalText: 'ನಮಃ ಶ್ರೀಮತ್ ಕದಂಬ ಪಣ್',
-                    iastText: 'namaḥ śrīmat kadamba paṇ',
-                    modernKannadaLine: 'ಮಂಗಳಕರವಾದ ಕದಂಬ ವಂಶಕ್ಕೆ ನಮಸ್ಕಾರಗಳು',
-                    boundingBox: {
-                      id: 'box-1',
-                      x: 10,
-                      y: 18,
-                      width: 80,
-                      height: 15,
-                      label: 'Line 1',
-                      confidence: 0.99,
-                    },
-                  },
-                  {
-                    lineNumber: 2,
-                    originalText: 'ಮಹಾ ಕದಂಬನ ಪಲಕಾಲಮನ್',
-                    iastText: 'mahā kadambana palakālaman',
-                    modernKannadaLine: 'ಮಹಾ ಕದಂಬ ರಾಜರ ಬಹುಕಾಲದ ಆಳ್ವಿಕೆಯಲ್ಲಿ',
-                    boundingBox: {
-                      id: 'box-2',
-                      x: 10,
-                      y: 38,
-                      width: 80,
-                      height: 15,
-                      label: 'Line 2',
-                      confidence: 0.98,
-                    },
-                  },
-                  {
-                    lineNumber: 3,
-                    originalText: 'ಪಶುಪತಿ ನಾಮಧೇಯ ಕೀರ್ತನ್',
-                    iastText: 'paśupati nāmadhēya kīrtan',
-                    modernKannadaLine: 'ಪಶುಪತಿ ಎಂಬ ಹೆಸರಿನ ಕೀರ್ತಿವಂತ ಸೇನಾನಿ',
-                    boundingBox: {
-                      id: 'box-3',
-                      x: 10,
-                      y: 58,
-                      width: 80,
-                      height: 15,
-                      label: 'Line 3',
-                      confidence: 0.97,
-                    },
-                  },
-                ],
-              },
-              translation: {
-                sourceLanguage: matchedLanguage,
-                languageConfidence: 0.962,
-                modernKannada: 'ಶ್ರೀಮತ್ ಕದಂಬ ರಾಜವಂಶದ ಆಳ್ವಿಕೆಯಲ್ಲಿ ಶತ್ರುಗಳನ್ನು ಸೋಲಿಸಿದ ಕದಂಬ ವೀರ ಯೋಧರಿಗೆ ಪ್ರದಾನ ಮಾಡಲಾದ ಶಾಶ್ವತ ಭೂದಾನ ಹಾಗೂ ಕಂದಾಯ ವಿನಾಯಿತಿ ಘೋಷಣೆ.',
-                englishTranslation: 'Salutations to the auspicious Kadamba royal lineage; recording an enduring land grant and battle tax exemption bestowed upon valiant soldiers.',
-                stylisticNotes: 'Exhibits archaic Halegannada phonological markers including primitive box-headed ductus and pre-consonantal liquid retainers.',
-                isMockData: true,
-                glossary: [
-                  {
-                    term: 'ಶ್ರೀಮತ್ (Śrīmat)',
-                    iast: 'śrīmat',
-                    grammaticalCategory: 'Honorific Epithet',
-                    modernKannadaEquivalent: 'ಮಂಗಳಕರವಾದ / ಶ್ರೇಷ್ಠವಾದ',
-                    englishDefinition: 'Auspicious, revered or glorious.',
-                  },
-                  {
-                    term: 'ಪಲಕಾಲಮನ್ (Palakālaman)',
-                    iast: 'palakālaman',
-                    grammaticalCategory: 'Accusative Compound',
-                    modernKannadaEquivalent: 'ಬಹು ಕಾಲದವರೆಗೆ',
-                    englishDefinition: 'For a long period / through enduring time.',
-                  },
-                ],
-              },
-              provenance: metadata.collectionSource || 'Ingested via local research workbench upload session',
-              currentLocation: 'Institutional Digital Research Repository',
-              lastUpdated: 'Just now',
-              reviewStatus: 'in_review',
-            };
-
-            onAnalysisComplete(syntheticResult);
-          }, 600);
-          return prev;
         }
+        return prev;
       });
-    }, 850);
+    }, 400);
+
+    try {
+      let fileToSend = uploadedFile.file;
+      // If loaded from benchmark template, ensure a valid non-empty File blob is sent
+      if (fileToSend.size === 0 && uploadedFile.previewUrl) {
+        try {
+          const resp = await fetch(uploadedFile.previewUrl);
+          const blob = await resp.blob();
+          fileToSend = new File([blob], uploadedFile.name, { type: blob.type || 'image/jpeg' });
+        } catch (fetchErr) {
+          console.warn('Could not read sample file preview, using original File handle:', fetchErr);
+        }
+      }
+
+      // Execute live pipeline via epigraphyService (FastAPI or Mock)
+      const jobResult = await epigraphyService.analyzeInscriptionImage(fileToSend, {
+        title: metadata.title,
+        location: metadata.location,
+        dynasty: metadata.dynasty,
+        approximateDate: metadata.approximateDate,
+        knownScript: metadata.knownScript,
+        knownLanguage: metadata.knownLanguage,
+        researcherNotes: metadata.researcherNotes,
+        autoSave: true,
+      });
+
+      clearInterval(stepInterval);
+      setProcessingStep(processingStages.length - 1);
+
+      setTimeout(() => {
+        setIsProcessing(false);
+
+        const village = metadata.location ? metadata.location.split(',')[0].trim() : (jobResult.historicalContext?.findSpot?.village || 'Halmidi vicinity');
+        const district = metadata.location && metadata.location.includes(',') ? metadata.location.split(',')[1].trim() : (jobResult.historicalContext?.findSpot?.district || 'Hassan');
+
+        const recordId = jobResult.recordId || jobResult.jobId;
+        const resolvedResult: InscriptionRecord = {
+          id: recordId,
+          accessionNumber: `ASI-${new Date().getFullYear()}-${recordId.slice(-4).toUpperCase()}`,
+          title: metadata.title || (jobResult.historicalContext?.epigraphiaReference ? jobResult.historicalContext.epigraphiaReference : `${jobResult.inferredScript.replace('_', ' ').toUpperCase()} Epigraph`),
+          kannadaTitle: jobResult.translation?.modernKannada?.split('.')[0]?.slice(0, 60) || 'ಹೊಸದಾಗಿ ದಾಖಲಿಸಲಾದ ಪ್ರಾಚೀನ ಶಿಲಾಶಾಸನ ಪಾಠ',
+          imageUrl: jobResult.imageUrl || uploadedFile.previewUrl,
+          scriptClass: jobResult.inferredScript,
+          sourceLanguage: jobResult.inferredLanguage,
+          substrate: 'granite',
+          conditionRating: 'fair',
+          historicalContext: jobResult.historicalContext || {
+            approximateDate: metadata.approximateDate || 'c. 5th–6th Century CE',
+            century: '5th Century CE',
+            dynasty: metadata.dynasty || 'Kadambas of Banavasi',
+            ruler: 'King Kakusthavarma',
+            regnalPeriod: 'c. 450 CE',
+            findSpot: {
+              village,
+              taluk: 'Belur Taluk',
+              district,
+              state: 'Karnataka',
+            },
+            historicalSummary: metadata.researcherNotes || 'Chiseled memorial grant inscription.',
+            linguisticSignificance: 'Earliest known epigraphical record exhibiting Purvada Halegannada morphology.',
+            epigraphiaReference: metadata.collectionSource || 'State Archaeological Survey Register',
+          },
+          transcription: jobResult.transcription || {
+            scriptClass: jobResult.inferredScript,
+            scriptConfidence: 0.9875,
+            recognizedText: '',
+            iastTransliteration: '',
+            detectedGlyphsCount: 0,
+            lines: [],
+          },
+          translation: jobResult.translation || {
+            sourceLanguage: jobResult.inferredLanguage,
+            languageConfidence: 0.962,
+            modernKannada: '',
+            englishTranslation: '',
+            stylisticNotes: '',
+            glossary: [],
+          },
+          provenance: metadata.collectionSource || 'Ingested via computational epigraphical pipeline',
+          currentLocation: 'Institutional Digital Research Repository',
+          lastUpdated: 'Just now',
+          reviewStatus: 'in_review',
+        };
+
+        onAnalysisComplete(resolvedResult);
+      }, 400);
+    } catch (err) {
+      clearInterval(stepInterval);
+      setIsProcessing(false);
+      const msg = err instanceof Error ? err.message : 'Analysis failed. Please check backend connection.';
+      setFileError(msg);
+      console.error('Epigraphical analysis error:', err);
+    }
   };
 
   const handleLoadSample = (sample: InscriptionRecord) => {
