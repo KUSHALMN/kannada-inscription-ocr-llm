@@ -1,7 +1,7 @@
 import os
 import json
 import threading
-from typing import List, Optional
+from typing import List, Optional, Dict
 from datetime import datetime
 from backend.app.config import settings
 from backend.app.core.logging import logger
@@ -22,6 +22,7 @@ class EpigraphyRepository:
     """
     In-memory, persistent file-backed repository for epigraphical records,
     historical scripts, source languages, research activities, and archaic lexicon.
+    Features O(1) indexed hash lookups for instant dossier retrieval.
     """
     def __init__(self, data_dir: Optional[str] = None):
         self.data_dir = data_dir or settings.DATA_DIR
@@ -29,6 +30,7 @@ class EpigraphyRepository:
         self._scripts: List[ScriptClassMetadata] = []
         self._languages: List[SourceLanguageMetadata] = []
         self._inscriptions: List[InscriptionRecord] = []
+        self._inscription_map: Dict[str, InscriptionRecord] = {}
         self._activity: List[ResearchActivityItem] = []
         self._lexicon: List[ArchaicGlossaryItem] = []
         self._load_all()
@@ -54,7 +56,8 @@ class EpigraphyRepository:
                 with open(ins_path, "r", encoding="utf-8") as f:
                     raw = json.load(f)
                     self._inscriptions = [InscriptionRecord.model_validate(x) for x in raw]
-                logger.info("Loaded %d inscriptions from %s", len(self._inscriptions), ins_path)
+                    self._inscription_map = {x.id: x for x in self._inscriptions}
+                logger.info("Loaded %d inscriptions into memory and index map from %s", len(self._inscriptions), ins_path)
 
             act_path = os.path.join(self.data_dir, "activity.json")
             if os.path.exists(act_path):
@@ -154,25 +157,29 @@ class EpigraphyRepository:
 
     def get_inscription_by_id(self, inscription_id: str) -> InscriptionRecord:
         with self._lock:
-            for ins in self._inscriptions:
-                if ins.id == inscription_id:
-                    return ins
+            record = self._inscription_map.get(inscription_id)
+            if record:
+                return record
             raise ResourceNotFoundException(f"Inscription with ID '{inscription_id}' not found.")
 
     def create_inscription(self, record: InscriptionRecord) -> InscriptionRecord:
         with self._lock:
             self._inscriptions.insert(0, record)
+            self._inscription_map[record.id] = record
             logger.info("Created new inscription record: %s (%s)", record.id, record.accession_number)
             return record
 
     def update_inscription(self, inscription_id: str, updated_record: InscriptionRecord) -> InscriptionRecord:
         with self._lock:
+            if inscription_id not in self._inscription_map:
+                raise ResourceNotFoundException(f"Inscription '{inscription_id}' not found for update.")
             for idx, ins in enumerate(self._inscriptions):
                 if ins.id == inscription_id:
                     self._inscriptions[idx] = updated_record
-                    logger.info("Updated inscription record: %s", inscription_id)
-                    return updated_record
-            raise ResourceNotFoundException(f"Inscription '{inscription_id}' not found for update.")
+                    break
+            self._inscription_map[inscription_id] = updated_record
+            logger.info("Updated inscription record in repository and index: %s", inscription_id)
+            return updated_record
 
     def get_recent_activity(self, limit: int = 10) -> List[ResearchActivityItem]:
         with self._lock:
