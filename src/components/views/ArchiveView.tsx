@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import heroBg from '../../assets/hero-bg.jpg';
 import sampleStele from '../../assets/sample-stele.jpg';
+import { LazyImage } from '../common/LazyImage';
 
 interface ArchiveViewProps {
   inscriptions: InscriptionRecord[];
@@ -1042,10 +1043,11 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
                   >
                     {/* Stele Image Thumbnail */}
                     <div className="relative w-full sm:w-56 h-48 sm:h-auto bg-slate-900 shrink-0 overflow-hidden">
-                      <img
+                      <LazyImage
                         src={item.imageUrl}
                         alt={item.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        wrapperClassName="w-full h-full"
                         onError={(e) => {
                           e.currentTarget.src = sampleStele;
                         }}
@@ -1166,10 +1168,11 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
                           <td className="py-3 px-3.5 whitespace-nowrap">
                             <div className="flex items-center gap-2.5">
                               <div className="w-10 h-10 rounded-lg overflow-hidden bg-slate-900 shrink-0 border border-[#DFCBB0] shadow-2xs">
-                                <img
+                                <LazyImage
                                   src={item.imageUrl}
                                   alt={item.title}
                                   className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                                  wrapperClassName="w-full h-full"
                                   onError={(e) => {
                                     e.currentTarget.src = sampleStele;
                                   }}
@@ -1276,10 +1279,11 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
                   <div>
                     {/* Stele Image with Badges */}
                     <div className="relative h-44 bg-slate-900 overflow-hidden">
-                      <img
+                      <LazyImage
                         src={item.imageUrl}
                         alt={item.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        wrapperClassName="w-full h-full"
                         onError={(e) => {
                           e.currentTarget.src = sampleStele;
                         }}
