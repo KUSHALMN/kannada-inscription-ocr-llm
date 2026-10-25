@@ -2,6 +2,7 @@ import os
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
@@ -51,7 +52,10 @@ def create_application() -> FastAPI:
     # 1. Configure Request-ID Correlation Middleware
     app.add_middleware(RequestIdMiddleware)
 
-    # 2. Configure CORS
+    # 2. Configure GZip Response Compression (compresses large JSON payloads by up to 80%)
+    app.add_middleware(GZipMiddleware, minimum_size=1000)
+
+    # 3. Configure CORS
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.CORS_ORIGINS,
