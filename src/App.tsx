@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { MainLayout } from './components/layout/MainLayout';
 import { NavItemKey } from './components/layout/Sidebar';
-import { LandingHomeView } from './components/views/LandingHomeView';
-import { OverviewView } from './components/views/OverviewView';
-import { NewAnalysisView } from './components/views/NewAnalysisView';
-import { AnalysisResultsView } from './components/views/AnalysisResultsView';
-import { ArchiveView } from './components/views/ArchiveView';
-import { ScriptsLanguagesView } from './components/views/ScriptsLanguagesView';
-import { SettingsView } from './components/views/SettingsView';
 import { EmptyState } from './components/common/EmptyState';
 import { PageSkeletonLoader } from './components/common/PageSkeletonLoader';
 import { epigraphyService, serviceRegistry } from './services/epigraphyService';
 import { InscriptionRecord, ScriptClassMetadata, SourceLanguageMetadata, ResearchActivityItem } from './types';
+
+// Lazy-loaded view components for optimal bundle splitting and fast initial page load
+const LandingHomeView = lazy(() => import('./components/views/LandingHomeView').then(m => ({ default: m.LandingHomeView })));
+const OverviewView = lazy(() => import('./components/views/OverviewView').then(m => ({ default: m.OverviewView })));
+const NewAnalysisView = lazy(() => import('./components/views/NewAnalysisView').then(m => ({ default: m.NewAnalysisView })));
+const AnalysisResultsView = lazy(() => import('./components/views/AnalysisResultsView').then(m => ({ default: m.AnalysisResultsView })));
+const ArchiveView = lazy(() => import('./components/views/ArchiveView').then(m => ({ default: m.ArchiveView })));
+const ScriptsLanguagesView = lazy(() => import('./components/views/ScriptsLanguagesView').then(m => ({ default: m.ScriptsLanguagesView })));
+const SettingsView = lazy(() => import('./components/views/SettingsView').then(m => ({ default: m.SettingsView })));
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<NavItemKey>('home');
@@ -101,7 +103,7 @@ export const App: React.FC = () => {
       {isLoading ? (
         <PageSkeletonLoader />
       ) : (
-        <>
+        <Suspense fallback={<PageSkeletonLoader />}>
           {activeTab === 'home' && (
             <LandingHomeView
               inscriptions={inscriptions}
@@ -171,7 +173,7 @@ export const App: React.FC = () => {
           {activeTab === 'settings' && (
             <SettingsView />
           )}
-        </>
+        </Suspense>
       )}
     </MainLayout>
   );
