@@ -196,6 +196,15 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
   initialDynastyFilter,
 }) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState<string>('');
+
+  // Performance Optimization: Debounce search input to avoid expensive re-filtering on every keystroke
+  React.useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery);
+    }, 200);
+    return () => clearTimeout(handler);
+  }, [searchQuery]);
   
   // Applied filters that determine active query results
   const [appliedScripts, setAppliedScripts] = useState<string[]>([]);
@@ -253,11 +262,11 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
     return counts;
   }, [fullCatalogue]);
 
-  // Actual filtered items (driven by applied filters)
+  // Actual filtered items (driven by applied filters and debounced query)
   const filteredItems = useMemo(() => {
     return fullCatalogue.filter((item) => {
-      if (searchQuery.trim() !== '') {
-        const q = searchQuery.toLowerCase().trim();
+      if (debouncedSearchQuery.trim() !== '') {
+        const q = debouncedSearchQuery.toLowerCase().trim();
         const matchesQuery =
           item.title.toLowerCase().includes(q) ||
           item.kannadaTitle.toLowerCase().includes(q) ||
@@ -296,13 +305,13 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
 
       return true;
     });
-  }, [fullCatalogue, searchQuery, appliedScripts, appliedLanguages, appliedDynasties, appliedMaterials, appliedConditions]);
+  }, [fullCatalogue, debouncedSearchQuery, appliedScripts, appliedLanguages, appliedDynasties, appliedMaterials, appliedConditions]);
 
   // Preview count matching the current draft checkboxes (for dynamic button feedback)
   const previewDraftCount = useMemo(() => {
     return fullCatalogue.filter((item) => {
-      if (searchQuery.trim() !== '') {
-        const q = searchQuery.toLowerCase().trim();
+      if (debouncedSearchQuery.trim() !== '') {
+        const q = debouncedSearchQuery.toLowerCase().trim();
         const matchesQuery =
           item.title.toLowerCase().includes(q) ||
           item.kannadaTitle.toLowerCase().includes(q) ||
@@ -324,7 +333,7 @@ export const ArchiveView: React.FC<ArchiveViewProps> = ({
       if (draftConditions.length > 0 && !draftConditions.includes(item.condition)) return false;
       return true;
     }).length;
-  }, [fullCatalogue, searchQuery, draftScripts, draftLanguages, draftDynasties, draftMaterials, draftConditions]);
+  }, [fullCatalogue, debouncedSearchQuery, draftScripts, draftLanguages, draftDynasties, draftMaterials, draftConditions]);
 
   const draftCount = draftScripts.length + draftLanguages.length + draftDynasties.length + draftMaterials.length + draftConditions.length;
   const appliedCount = appliedScripts.length + appliedLanguages.length + appliedDynasties.length + appliedMaterials.length + appliedConditions.length;
