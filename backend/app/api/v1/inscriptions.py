@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 from typing import List, Optional, Union, Literal
-from fastapi import APIRouter, Query, Depends
+from fastapi import APIRouter, Query, Depends, Response
 from backend.app.schemas import (
     InscriptionRecord,
     InscriptionFilter,
@@ -60,12 +60,15 @@ async def list_inscriptions(
         alias="sortBy",
         description="Sorting criteria: date_asc, date_desc, title, confidence, recently_updated. Unknown values return 422."
     ),
+    response: Response = None,
     repo: InscriptionRepository = Depends(get_inscription_repository),
 ):
     """
     Search, filter, and sort the inscriptional corpus.
     All enum query parameters are strictly validated; invalid values return 422.
     """
+    if response:
+        response.headers["Cache-Control"] = "public, max-age=60, stale-while-revalidate=300"
     filters = InscriptionFilter(
         script_class=script_class,
         source_language=source_language,
@@ -81,6 +84,7 @@ async def list_inscriptions(
 @router.get("/{inscription_id}", response_model=InscriptionRecord, summary="Get Inscription Dossier by ID")
 async def get_inscription(
     inscription_id: str,
+    response: Response = None,
     repo: InscriptionRepository = Depends(get_inscription_repository),
 ):
     """
@@ -90,6 +94,8 @@ async def get_inscription(
     ins = await repo.get(inscription_id)
     if not ins:
         raise ResourceNotFoundException(f"Inscription with ID '{inscription_id}' not found.")
+    if response:
+        response.headers["Cache-Control"] = "public, max-age=60, stale-while-revalidate=300"
     return ins
 
 
