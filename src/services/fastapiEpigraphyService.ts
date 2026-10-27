@@ -75,9 +75,9 @@ export class FastApiEpigraphyService implements IEpigraphyService {
   private baseUrl: string;
 
   constructor(baseUrl?: string) {
-    // Defaults to VITE_API_URL or local FastAPI dev port
+    // Defaults to /api/v1 (proxied by Vite to FastAPI backend) or VITE_API_URL
     const envUrl = typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_URL;
-    this.baseUrl = (baseUrl || envUrl || 'http://localhost:8000/api/v1').replace(/\/+$/, '');
+    this.baseUrl = (baseUrl || envUrl || '/api/v1').replace(/\/+$/, '');
   }
 
   public getBaseUrl(): string {

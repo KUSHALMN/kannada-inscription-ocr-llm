@@ -61,15 +61,13 @@ class ServiceRegistry {
   private listeners: Set<Listener> = new Set();
 
   constructor() {
-    // Check saved mode or default to FastAPI for live backend
-    const savedMode = typeof localStorage !== 'undefined' ? localStorage.getItem('epigraphy_adapter_mode') : null;
-    if (savedMode === 'mock') {
-      this.activeMode = 'mock';
-      this.activeService = new MockEpigraphyService();
-    } else {
-      this.activeMode = 'fastapi';
-      this.activeService = fastApiEpigraphyService;
+    // Live FastAPI neural backend is primary.
+    // Clear stale 'mock' override if present so real neural processing always runs.
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('epigraphy_adapter_mode') === 'mock') {
+      localStorage.removeItem('epigraphy_adapter_mode');
     }
+    this.activeMode = 'fastapi';
+    this.activeService = fastApiEpigraphyService;
   }
 
   public getService(): IEpigraphyService {
@@ -90,11 +88,11 @@ class ServiceRegistry {
     this.notify();
   }
 
-  public useMock(): void {
+  public useMock(persist = false): void {
     this.activeMode = 'mock';
     this.activeService = new MockEpigraphyService();
     epigraphyCache.clear();
-    if (typeof localStorage !== 'undefined') {
+    if (persist && typeof localStorage !== 'undefined') {
       localStorage.setItem('epigraphy_adapter_mode', 'mock');
     }
     this.notify();

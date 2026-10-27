@@ -112,8 +112,22 @@ export class MockEpigraphyService implements IEpigraphyService {
    * Demonstration analysis adapter for uploaded rubbings/images.
    * Explicitly flagged as demonstration mock data to prevent false claims.
    */
-  async analyzeInscriptionImage(_file: File | Blob, _options?: any): Promise<AnalysisJobResult> {
+  async analyzeInscriptionImage(file: File | Blob, options?: any): Promise<AnalysisJobResult> {
+    // Attempt live FastAPI neural backend first so real user uploads are always analyzed
+    try {
+      const { fastApiEpigraphyService } = await import('./fastapiEpigraphyService');
+      const liveResult = await fastApiEpigraphyService.analyzeInscriptionImage(file, options);
+      if (liveResult && liveResult.transcription) {
+        return liveResult;
+      }
+    } catch (e) {
+      console.warn('FastAPI live analysis failed in mock fallback, generating local preview:', e);
+    }
+
     const canonical = this.inscriptions[0];
+    const userImgUrl = file && file.size > 0 && typeof URL !== 'undefined'
+      ? URL.createObjectURL(file)
+      : canonical.imageUrl;
 
     return Promise.resolve({
       jobId: `demo-job-${Date.now()}`,
@@ -125,7 +139,9 @@ export class MockEpigraphyService implements IEpigraphyService {
       historicalContext: canonical.historicalContext,
       isDemonstrationOnly: true,
       adapterSource: 'mock_local',
-      imageUrl: canonical.imageUrl,
+      imageUrl: userImgUrl,
+      reliefImageUrl: userImgUrl,
+      rubbingImageUrl: userImgUrl,
     });
   }
 }

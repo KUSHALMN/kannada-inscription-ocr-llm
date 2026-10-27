@@ -43,10 +43,11 @@ export const App: React.FC = () => {
         if (loadedInscriptions.length > 0 && !activeResult) {
           setActiveResult(loadedInscriptions[0]);
         }
+        serviceRegistry.useFastApi();
       } catch (err) {
-        console.warn('Backend unavailable, falling back to mock dataset:', err);
-        // Switch to mock demonstrator and retry so the UI never displays empty state
-        serviceRegistry.useMock();
+        console.warn('Backend temporarily unavailable, falling back to cached/mock dataset:', err);
+        // Switch to mock demonstrator in-memory only without poisoning localStorage
+        serviceRegistry.useMock(false);
         try {
           const [loadedScripts, loadedLanguages, loadedInscriptions, loadedActivity] = await Promise.all([
             epigraphyService.getScriptClasses(),

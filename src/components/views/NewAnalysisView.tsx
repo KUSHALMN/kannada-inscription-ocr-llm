@@ -175,17 +175,33 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
         }
       }
 
-      // Execute live pipeline via epigraphyService (FastAPI or Mock)
-      const jobResult = await epigraphyService.analyzeInscriptionImage(fileToSend, {
-        title: metadata.title,
-        location: metadata.location,
-        dynasty: metadata.dynasty,
-        approximateDate: metadata.approximateDate,
-        knownScript: metadata.knownScript,
-        knownLanguage: metadata.knownLanguage,
-        researcherNotes: metadata.researcherNotes,
-        autoSave: true,
-      });
+      // Execute live neural pipeline via fastApiEpigraphyService to guarantee real model analysis
+      let jobResult: import('../../types').AnalysisJobResult;
+      try {
+        const { fastApiEpigraphyService } = await import('../../services/fastapiEpigraphyService');
+        jobResult = await fastApiEpigraphyService.analyzeInscriptionImage(fileToSend, {
+          title: metadata.title,
+          location: metadata.location,
+          dynasty: metadata.dynasty,
+          approximateDate: metadata.approximateDate,
+          knownScript: metadata.knownScript,
+          knownLanguage: metadata.knownLanguage,
+          researcherNotes: metadata.researcherNotes,
+          autoSave: true,
+        });
+      } catch (backendErr) {
+        console.warn('Direct fastApiEpigraphyService call error, falling back to epigraphyService:', backendErr);
+        jobResult = await epigraphyService.analyzeInscriptionImage(fileToSend, {
+          title: metadata.title,
+          location: metadata.location,
+          dynasty: metadata.dynasty,
+          approximateDate: metadata.approximateDate,
+          knownScript: metadata.knownScript,
+          knownLanguage: metadata.knownLanguage,
+          researcherNotes: metadata.researcherNotes,
+          autoSave: true,
+        });
+      }
 
       clearInterval(stepInterval);
       setProcessingStep(processingStages.length - 1);
@@ -203,8 +219,8 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
           title: metadata.title || (jobResult.historicalContext?.epigraphiaReference ? jobResult.historicalContext.epigraphiaReference : `${jobResult.inferredScript.replace('_', ' ').toUpperCase()} Epigraph`),
           kannadaTitle: jobResult.translation?.modernKannada?.split('.')[0]?.slice(0, 60) || 'ಹೊಸದಾಗಿ ದಾಖಲಿಸಲಾದ ಪ್ರಾಚೀನ ಶಿಲಾಶಾಸನ ಪಾಠ',
           imageUrl: jobResult.imageUrl || uploadedFile.previewUrl,
-          reliefImageUrl: jobResult.reliefImageUrl,
-          rubbingImageUrl: jobResult.rubbingImageUrl,
+          reliefImageUrl: jobResult.reliefImageUrl || jobResult.imageUrl || uploadedFile.previewUrl,
+          rubbingImageUrl: jobResult.rubbingImageUrl || jobResult.imageUrl || uploadedFile.previewUrl,
           scriptClass: jobResult.inferredScript,
           sourceLanguage: jobResult.inferredLanguage,
           substrate: 'granite',

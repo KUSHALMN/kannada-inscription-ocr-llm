@@ -545,8 +545,8 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                   draggable={false}
                   onError={(e) => {
                     const target = e.currentTarget;
-                    if (!target.src.includes('analysis-halmidi-stele')) {
-                      target.src = '/analysis-halmidi-stele.jpg';
+                    if (inscription.imageUrl && target.src !== inscription.imageUrl) {
+                      target.src = inscription.imageUrl;
                     }
                   }}
                 />
