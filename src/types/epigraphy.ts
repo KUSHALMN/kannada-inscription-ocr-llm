@@ -162,6 +162,8 @@ export interface InscriptionRecord {
     depthCm?: number;
   };
   imageUrl: string;
+  reliefImageUrl?: string;
+  rubbingImageUrl?: string;
   thumbnailUrl?: string;
   conditionRating: 'excellent' | 'fair' | 'weathered' | 'partially_effaced';
   reviewStatus: ReviewStatus;
@@ -209,6 +211,8 @@ export interface AnalysisJobResult {
   isDemonstrationOnly?: boolean;
   adapterSource: 'mock_local' | 'fastapi_remote';
   imageUrl?: string;
+  reliefImageUrl?: string;
+  rubbingImageUrl?: string;
   recordId?: string;
   errorMessage?: string;
 }

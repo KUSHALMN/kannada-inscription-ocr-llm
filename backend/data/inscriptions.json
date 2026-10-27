@@ -1,5 +1,197 @@
 [
   {
+    "id": "ins-9a98dc60",
+    "accessionNumber": "ASI-2026-C4FF",
+    "title": "Halmidi Inscription (The Earliest Recorded Kannada Epigraph)",
+    "kannadaTitle": "ನಮಸ್ಕಾರ, ಶ್ರೀಮಂತ ಕದಂಬ ವಂಶದ ಕಾಕುಸ್ಥಭಟ್ಟಾರಕನು ರಾಜ್ಯವಾಳುತ್ತಿದ್ದ",
+    "scriptClass": "kadamba",
+    "sourceLanguage": "purvada_halegannada",
+    "substrate": "granite",
+    "dimensions": null,
+    "imageUrl": "/uploads/job-04bd861cbb9b.jpg",
+    "reliefImageUrl": "/uploads/job-04bd861cbb9b_relief.jpg",
+    "rubbingImageUrl": "/uploads/job-04bd861cbb9b_rubbing.jpg",
+    "thumbnailUrl": null,
+    "conditionRating": "fair",
+    "reviewStatus": "pending_verification",
+    "lastUpdated": "2026-10-27",
+    "historicalContext": {
+      "dynasty": "Kadambas of Banavasi",
+      "ruler": "King Kakusthavarma",
+      "regnalPeriod": "c. 435 – 455 CE",
+      "approximateDate": "c. 450 CE",
+      "century": "5th Century CE",
+      "findSpot": {
+        "village": "Halmidi",
+        "taluk": "Belur",
+        "district": "Hassan",
+        "state": "Karnataka",
+        "coordinates": [
+          13.1672,
+          75.8986
+        ]
+      },
+      "epigraphiaReference": "Epigraphia Carnatica Vol. XV, BL 58",
+      "historicalSummary": "High-contrast photographic survey rubbing provided from in situ protected monument.",
+      "linguisticSignificance": "Classic Purvada Halegannada in box-headed (Petika-shirsha) script featuring archaic Sakata Repha (ಱ)."
+    },
+    "transcription": {
+      "scriptClass": "kadamba",
+      "scriptConfidence": 0.985,
+      "recognizedText": "ನಮಃ ಶ್ರೀಮತ್ ಕದಂಬಪನ್ ಕಾಗುಸ್ಥಭಟ್ಟೋರನ್ ಆಳೆ ನರಿದಾವಿಱೆಯುಳ್ ನಾಡೊಳ್ ಮೃಗೇಶನಾಗೇಂದ್ರಾಭಿಲರ್ ಭಟಹರಪ್ಪೋರ್ ಅಳಿದ ಪಶುಪತಿಯ ಪೆಗ್ಗಡೆಯ ಮಗನ್ ವಿಜಾಯರಸಂಗೆ ಬಾಗಳ್ಚು ಕೊಟ್ಟಾರ್ ಪಶುಪತಿ ತಾನೆಯ್ಯುಳ್ ಕಳ್ದೋನ್ ಭಟಹರಪ್ಪೋರೊಳ್ ಪಸದನ್ ವಿಜಾರಸನ ಪೆಱ್ಗುಡಿ ಬಾಲಾಳ್ಚು ವಿಟಾರ್ದು ಕೊಟ್ಟಾರ್ ಅರಕಲ್ಲ ಭಟ್ಟರಕ್ಕಂ ಪೆಱ್ಗೆಡೆ ಬಾಣ ಕಾಗುಸ್ಥನ್ ಧರ್ಮಂ ಇರಾ ಧರ್ಮವನಱಿವೊಂಗೆ ಸಕಲ ಕಲ್ಯಾಣಮುಂ ಸಿದ್ಧಿಸುಗೆ",
+      "iastTransliteration": "namaḥ śrīmat kadambapan kāgustha-bhaṭṭōran āḷe naridāviṟeyuḷ nāḍoḷ mr̥gēśa-nāgēndrābhilar bhaṭaharappōr aḷida paśupatiya peggaḍeya magan vijāyarasange bāgaḷchu koṭṭār paśupati tāneyyuḷ kaḷdōn bhaṭaharappōroḷ pasadan vijārasana peṟguḍi bālāḷchu viṭārdu koṭṭār arakalla bhaṭṭarakkaṁ peṟgeḍe bāṇa kāgusthan dharmaṁ irā dharmavanaṟivonge sakala kalyāṇamuṁ siddhisuge",
+      "lines": [
+        {
+          "lineNumber": 1,
+          "originalText": "ನಮಃ ಶ್ರೀಮತ್ ಕದಂಬಪನ್ ಕಾಗುಸ್ಥಭಟ್ಟೋರನ್ ಆಳೆ",
+          "iastText": "namaḥ śrīmat kadambapan kāgustha-bhaṭṭōran āḷe",
+          "modernKannadaLine": "ನಮಸ್ಕಾರ, ಶ್ರೀಮಂತ ಕದಂಬ ವಂಶದ ಕಾಕುಸ್ಥಭಟ್ಟಾರಕನು ರಾಜ್ಯವಾಳುತ್ತಿದ್ದಾಗ,",
+          "boundingBox": {
+            "id": "box-1",
+            "x": 4.0,
+            "y": 0.0,
+            "width": 92.0,
+            "height": 10.51,
+            "label": "Line 1: ನಮಸ್ಕಾರ, ಶ್ರೀಮಂತ ಕದಂಬ ವಂಶದ ಕಾಕ...",
+            "confidence": 0.987,
+            "lineIndex": 0
+          }
+        },
+        {
+          "lineNumber": 2,
+          "originalText": "ನರಿದಾವಿಱೆಯುಳ್ ನಾಡೊಳ್ ಮೃಗೇಶನಾಗೇಂದ್ರಾಭಿಲರ್ ಭಟಹರಪ್ಪೋರ್",
+          "iastText": "naridāviṟeyuḷ nāḍoḷ mr̥gēśa-nāgēndrābhilar bhaṭaharappōr",
+          "modernKannadaLine": "ನರಿದಾವಿಳೆ ನಾಡಿನಲ್ಲಿ ಮೃಗೇಶ ಮತ್ತು ನಾಗೇಂದ್ರ ಎಂಬ ಯೋಧರು ಹೋರಾಡಿದರು,",
+          "boundingBox": {
+            "id": "box-2",
+            "x": 4.0,
+            "y": 15.35,
+            "width": 92.0,
+            "height": 12.53,
+            "label": "Line 2: ನರಿದಾವಿಳೆ ನಾಡಿನಲ್ಲಿ ಮೃಗೇಶ ಮತ್ತ...",
+            "confidence": 0.987,
+            "lineIndex": 1
+          }
+        },
+        {
+          "lineNumber": 3,
+          "originalText": "ಅಳಿದ ಪಶುಪತಿಯ ಪೆಗ್ಗಡೆಯ ಮಗನ್ ವಿಜಾಯರಸಂಗೆ ಬಾಗಳ್ಚು ಕೊಟ್ಟಾರ್",
+          "iastText": "aḷida paśupatiya peggaḍeya magan vijāyarasange bāgaḷchu koṭṭār",
+          "modernKannadaLine": "ಮಡಿದ ಪಶುಪತಿ ಹೆಗ್ಗಡೆಯ ಮಗ ವಿಜಯರಸನಿಗೆ ವೀರ ಉಂಬಳಿ ಭೂಮಿಯನ್ನು ನೀಡಿದರು,",
+          "boundingBox": {
+            "id": "box-3",
+            "x": 4.0,
+            "y": 25.45,
+            "width": 92.0,
+            "height": 12.53,
+            "label": "Line 3: ಮಡಿದ ಪಶುಪತಿ ಹೆಗ್ಗಡೆಯ ಮಗ ವಿಜಯರಸ...",
+            "confidence": 0.987,
+            "lineIndex": 2
+          }
+        },
+        {
+          "lineNumber": 4,
+          "originalText": "ಪಶುಪತಿ ತಾನೆಯ್ಯುಳ್ ಕಳ್ದೋನ್ ಭಟಹರಪ್ಪೋರೊಳ್ ಪಸದನ್",
+          "iastText": "paśupati tāneyyuḷ kaḷdōn bhaṭaharappōroḷ pasadan",
+          "modernKannadaLine": "ಪಶುಪತಿಯು ಯುದ್ಧದಲ್ಲಿ ಶತ್ರುಭಟರನ್ನು ಸಂಹರಿಸಿ ವೀರಮರಣ ಹೊಂದಿದನು,",
+          "boundingBox": {
+            "id": "box-4",
+            "x": 4.0,
+            "y": 38.38,
+            "width": 92.0,
+            "height": 12.53,
+            "label": "Line 4: ಪಶುಪತಿಯು ಯುದ್ಧದಲ್ಲಿ ಶತ್ರುಭಟರನ್...",
+            "confidence": 0.987,
+            "lineIndex": 3
+          }
+        },
+        {
+          "lineNumber": 5,
+          "originalText": "ವಿಜಾರಸನ ಪೆಱ್ಗುಡಿ ಬಾಲಾಳ್ಚು ವಿಟಾರ್ದು ಕೊಟ್ಟಾರ್",
+          "iastText": "vijārasana peṟguḍi bālāḷchu viṭārdu koṭṭār",
+          "modernKannadaLine": "ವಿಜಯರಸನಿಗೆ ಹಿರಿಯ ಕುಟುಂಬದ ಗೌರವಾರ್ಥ ಬಾಳ್ಗಚ್ಚು ಭೂದಾನ ನೀಡಲಾಯಿತು,",
+          "boundingBox": {
+            "id": "box-5",
+            "x": 4.0,
+            "y": 51.92,
+            "width": 92.0,
+            "height": 12.53,
+            "label": "Line 5: ವಿಜಯರಸನಿಗೆ ಹಿರಿಯ ಕುಟುಂಬದ ಗೌರವಾ...",
+            "confidence": 0.987,
+            "lineIndex": 4
+          }
+        },
+        {
+          "lineNumber": 6,
+          "originalText": "ಅರಕಲ್ಲ ಭಟ್ಟರಕ್ಕಂ ಪೆಱ್ಗೆಡೆ ಬಾಣ ಕಾಗುಸ್ಥನ್ ಧರ್ಮಂ",
+          "iastText": "arakalla bhaṭṭarakkaṁ peṟgeḍe bāṇa kāgusthan dharmaṁ",
+          "modernKannadaLine": "ಅರಕಲ್ಲ ಭಟ್ಟಾರಕ ಮತ್ತು ಹೆಗ್ಗಡೆ ಬಾಣ ಕಾಕುಸ್ಥರ ಈ ಧರ್ಮ ಕಾರ್ಯವಾಗಿದೆ,",
+          "boundingBox": {
+            "id": "box-6",
+            "x": 4.0,
+            "y": 66.46,
+            "width": 92.0,
+            "height": 12.53,
+            "label": "Line 6: ಅರಕಲ್ಲ ಭಟ್ಟಾರಕ ಮತ್ತು ಹೆಗ್ಗಡೆ ಬ...",
+            "confidence": 0.987,
+            "lineIndex": 5
+          }
+        },
+        {
+          "lineNumber": 7,
+          "originalText": "ಇರಾ ಧರ್ಮವನಱಿವೊಂಗೆ ಸಕಲ ಕಲ್ಯಾಣಮುಂ ಸಿದ್ಧಿಸುಗೆ",
+          "iastText": "irā dharmavanaṟivonge sakala kalyāṇamuṁ siddhisuge",
+          "modernKannadaLine": "ಈ ಧರ್ಮ ಶಾಸನವನ್ನು ಕಾಪಾಡುವವರಿಗೆ ಸಕಲ ಶ್ರೇಯಸ್ಸು ಉಂಟಾಗಲಿ.",
+          "boundingBox": {
+            "id": "box-7",
+            "x": 4.0,
+            "y": 82.42,
+            "width": 92.0,
+            "height": 12.53,
+            "label": "Line 7: ಈ ಧರ್ಮ ಶಾಸನವನ್ನು ಕಾಪಾಡುವವರಿಗೆ ...",
+            "confidence": 0.987,
+            "lineIndex": 6
+          }
+        }
+      ],
+      "detectedGlyphsCount": 288,
+      "isMockData": false
+    },
+    "translation": {
+      "sourceLanguage": "purvada_halegannada",
+      "languageConfidence": 0.992,
+      "modernKannada": "ನಮಸ್ಕಾರ, ಶ್ರೀಮಂತ ಕದಂಬ ವಂಶದ ಕಾಕುಸ್ಥಭಟ್ಟಾರಕನು ರಾಜ್ಯವಾಳುತ್ತಿದ್ದಾಗ ನರಿದಾವಿಳೆ ನಾಡಿನಲ್ಲಿ ಮೃಗೇಶ ಮತ್ತು ನಾಗೇಂದ್ರ ಎಂಬ ಪ್ರಸಿದ್ಧ ಯೋಧರು ಹೋರಾಡಿದರು ಮಡಿದ ಪಶುಪತಿ ಹೆಗ್ಗಡೆಯ ಮಗ ವಿಜಯರಸನಿಗೆ ವೀರ ಉಂಬಳಿ (ಬಾಳ್ಗಚ್ಚು) ಭೂಮಿಯನ್ನು ನೀಡಿದರು",
+      "englishTranslation": "Salutations! When the illustrious Kadamba monarch Kakusthavarma was ruling the realm In the Naridavile province, the valiant warriors Mrigesha and Nagendra engaged in heroic combat To Vijāyarasa, son of the fallen hero Pashupati Heggade, this honorific tax-free land grant (Balgachu) was bestowed",
+      "glossary": [
+        {
+          "term": "ಬಾಗಳ್ಚು (ಬಾಳ್ಗಚ್ಚು)",
+          "iast": "bāgaḷchu / bāḷgaccu",
+          "modernKannadaEquivalent": "ವೀರ ಉಂಬಳಿ (ಯುದ್ಧದಲ್ಲಿ ಮಡಿದ ಯೋಧನ ಕುಟುಂಬಕ್ಕೆ ನೀಡುವ ತೆರಿಗೆ ಮುಕ್ತ ಭೂಮಿ)",
+          "englishDefinition": "A tax-free land grant awarded to the family of a hero who fell in battle (lit. sword-washing honor).",
+          "grammaticalCategory": "Old Kannada Compound Noun"
+        },
+        {
+          "term": "ಪೆಗ್ಗಡೆ (ಹೆಗ್ಗಡೆ)",
+          "iast": "peggaḍe",
+          "modernKannadaEquivalent": "ಹೆಗ್ಗಡೆ / ಪ್ರಧಾನ ಆಡಳಿತಾಧಿಕಾರಿ",
+          "englishDefinition": "Senior royal superintendent or regional chieftain.",
+          "grammaticalCategory": "Old Kannada Title"
+        },
+        {
+          "term": "ಅಳಿದ",
+          "iast": "aḷida",
+          "modernKannadaEquivalent": "ಮಡಿದ / ವೀರಮರಣ ಹೊಂದಿದ",
+          "englishDefinition": "Perished or sacrificed one's life in honorable combat.",
+          "grammaticalCategory": "Past Relative Participle"
+        }
+      ],
+      "stylisticNotes": "Attested epigraph record from Kadambas of Banavasi (5th Century CE) - Complete multi-line historical translation.",
+      "isMockData": false
+    },
+    "provenance": "Catalogued from epigraphical analysis job job-04bd861cbb9b",
+    "currentLocation": "State Archaeological Survey Repository"
+  },
+  {
     "id": "ins-51ff6ecf",
     "accessionNumber": "ASI-2026-3143",
     "title": "Halmidi Inscription (The Earliest Recorded Kannada Epigraph)",
@@ -9,6 +201,8 @@
     "substrate": "granite",
     "dimensions": null,
     "imageUrl": "/uploads/job-642c1dd1e90c.jpg",
+    "reliefImageUrl": null,
+    "rubbingImageUrl": null,
     "thumbnailUrl": null,
     "conditionRating": "fair",
     "reviewStatus": "pending_verification",
@@ -139,6 +333,8 @@
       "depthCm": 18.0
     },
     "imageUrl": "/analysis-halmidi-stele.jpg",
+    "reliefImageUrl": null,
+    "rubbingImageUrl": null,
     "thumbnailUrl": "/analysis-halmidi-stele.jpg",
     "conditionRating": "fair",
     "reviewStatus": "verified",
@@ -269,6 +465,8 @@
       "depthCm": 50.0
     },
     "imageUrl": "/temples/kadamba.jpg",
+    "reliefImageUrl": null,
+    "rubbingImageUrl": null,
     "thumbnailUrl": "/temples/kadamba.jpg",
     "conditionRating": "excellent",
     "reviewStatus": "verified",
@@ -376,6 +574,8 @@
       "depthCm": null
     },
     "imageUrl": "/temples/badami.jpg",
+    "reliefImageUrl": null,
+    "rubbingImageUrl": null,
     "thumbnailUrl": "/temples/badami.jpg",
     "conditionRating": "fair",
     "reviewStatus": "verified",
@@ -499,6 +699,8 @@
       "depthCm": null
     },
     "imageUrl": "/temples/ganga.jpg",
+    "reliefImageUrl": null,
+    "rubbingImageUrl": null,
     "thumbnailUrl": "/temples/ganga.jpg",
     "conditionRating": "excellent",
     "reviewStatus": "verified",
@@ -606,6 +808,8 @@
       "depthCm": 20.0
     },
     "imageUrl": "/temples/hoysala.jpg",
+    "reliefImageUrl": null,
+    "rubbingImageUrl": null,
     "thumbnailUrl": "/temples/hoysala.jpg",
     "conditionRating": "excellent",
     "reviewStatus": "verified",
@@ -713,6 +917,8 @@
       "depthCm": 25.0
     },
     "imageUrl": "/temples/vijayanagara.jpg",
+    "reliefImageUrl": null,
+    "rubbingImageUrl": null,
     "thumbnailUrl": "/temples/vijayanagara.jpg",
     "conditionRating": "excellent",
     "reviewStatus": "verified",

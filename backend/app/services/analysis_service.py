@@ -45,6 +45,12 @@ try:
 except Exception:
     NEURAL_ADAPTERS_AVAILABLE = False
 
+try:
+    from backend.app.ml_adapters.cv_segmenter import CVStonePreprocessor, CVStoneSegmenter
+    CV_SEGMENTER_AVAILABLE = True
+except Exception:
+    CV_SEGMENTER_AVAILABLE = False
+
 
 class AnalysisService:
     """
@@ -127,7 +133,11 @@ class AnalysisService:
             "canonical_lines": [
                 ("ನಮಃ ಶ್ರೀಮತ್ ಕದಂಬಪನ್ ಕಾಗುಸ್ಥಭಟ್ಟೋರನ್ ಆಳೆ", "namaḥ śrīmat kadambapan kāgustha-bhaṭṭōran āḷe", "ನಮಸ್ಕಾರ, ಶ್ರೀಮಂತ ಕದಂಬ ವಂಶದ ಕಾಕುಸ್ಥಭಟ್ಟಾರಕನು ರಾಜ್ಯವಾಳುತ್ತಿದ್ದಾಗ,"),
                 ("ನರಿದಾವಿಱೆಯುಳ್ ನಾಡೊಳ್ ಮೃಗೇಶನಾಗೇಂದ್ರಾಭಿಲರ್ ಭಟಹರಪ್ಪೋರ್", "naridāviṟeyuḷ nāḍoḷ mr̥gēśa-nāgēndrābhilar bhaṭaharappōr", "ನರಿದಾವಿಳೆ ನಾಡಿನಲ್ಲಿ ಮೃಗೇಶ ಮತ್ತು ನಾಗೇಂದ್ರ ಎಂಬ ಯೋಧರು ಹೋರಾಡಿದರು,"),
-                ("ಅಳಿದ ಪಶುಪತಿಯ ಪೆಗ್ಗಡೆಯ ಮಗನ್ ವಿಜಾಯರಸಂಗೆ ಬಾಗಳ್ಚು ಕೊಟ್ಟಾರ್", "aḷida paśupatiya peggaḍeya magan vijāyarasange bāgaḷchu koṭṭār", "ಮಡಿದ ಪಶುಪತಿ ಹೆಗ್ಗಡೆಯ ಮಗ ವಿಜಯರಸನಿಗೆ ವೀರ ಉಂಬಳಿ ಭೂಮಿಯನ್ನು ನೀಡಿದರು.")
+                ("ಅಳಿದ ಪಶುಪತಿಯ ಪೆಗ್ಗಡೆಯ ಮಗನ್ ವಿಜಾಯರಸಂಗೆ ಬಾಗಳ್ಚು ಕೊಟ್ಟಾರ್", "aḷida paśupatiya peggaḍeya magan vijāyarasange bāgaḷchu koṭṭār", "ಮಡಿದ ಪಶುಪತಿ ಹೆಗ್ಗಡೆಯ ಮಗ ವಿಜಯರಸನಿಗೆ ವೀರ ಉಂಬಳಿ ಭೂಮಿಯನ್ನು ನೀಡಿದರು,"),
+                ("ಪಶುಪತಿ ತಾನೆಯ್ಯುಳ್ ಕಳ್ದೋನ್ ಭಟಹರಪ್ಪೋರೊಳ್ ಪಸದನ್", "paśupati tāneyyuḷ kaḷdōn bhaṭaharappōroḷ pasadan", "ಪಶುಪತಿಯು ಯುದ್ಧದಲ್ಲಿ ಶತ್ರುಭಟರನ್ನು ಸಂಹರಿಸಿ ವೀರಮರಣ ಹೊಂದಿದನು,"),
+                ("ವಿಜಾರಸನ ಪೆಱ್ಗುಡಿ ಬಾಲಾಳ್ಚು ವಿಟಾರ್ದು ಕೊಟ್ಟಾರ್", "vijārasana peṟguḍi bālāḷchu viṭārdu koṭṭār", "ವಿಜಯರಸನಿಗೆ ಹಿರಿಯ ಕುಟುಂಬದ ಗೌರವಾರ್ಥ ಬಾಳ್ಗಚ್ಚು ಭೂದಾನ ನೀಡಲಾಯಿತು,"),
+                ("ಅರಕಲ್ಲ ಭಟ್ಟರಕ್ಕಂ ಪೆಱ್ಗೆಡೆ ಬಾಣ ಕಾಗುಸ್ಥನ್ ಧರ್ಮಂ", "arakalla bhaṭṭarakkaṁ peṟgeḍe bāṇa kāgusthan dharmaṁ", "ಅರಕಲ್ಲ ಭಟ್ಟಾರಕ ಮತ್ತು ಹೆಗ್ಗಡೆ ಬಾಣ ಕಾಕುಸ್ಥರ ಈ ಧರ್ಮ ಕಾರ್ಯವಾಗಿದೆ,"),
+                ("ಇರಾ ಧರ್ಮವನಱಿವೊಂಗೆ ಸಕಲ ಕಲ್ಯಾಣಮುಂ ಸಿದ್ಧಿಸುಗೆ", "irā dharmavanaṟivonge sakala kalyāṇamuṁ siddhisuge", "ಈ ಧರ್ಮ ಶಾಸನವನ್ನು ಕಾಪಾಡುವವರಿಗೆ ಸಕಲ ಶ್ರೇಯಸ್ಸು ಉಂಟಾಗಲಿ.")
             ]
         },
         ScriptClassId.BADAMI_CHALUKYA: {
@@ -257,8 +267,8 @@ class AnalysisService:
         mode = getattr(settings, "ADAPTER_MODE", "mock").lower()
         logger.info("Initializing AnalysisService with ADAPTER_MODE='%s'", mode)
 
-        self.preprocessor = preprocessor or MockPreprocessor()
-        self.segmenter = segmenter or MockSegmenter()
+        self.preprocessor = preprocessor or (CVStonePreprocessor() if CV_SEGMENTER_AVAILABLE else MockPreprocessor())
+        self.segmenter = segmenter or (CVStoneSegmenter() if CV_SEGMENTER_AVAILABLE else MockSegmenter())
 
         if classifier:
             self.classifier = classifier
@@ -413,10 +423,44 @@ class AnalysisService:
             full_text_parts = []
             full_iast_parts = []
 
-            for i, line_tuple in enumerate(canonical_lines):
-                line_kannada, line_iast, line_mod = line_tuple
+            total_detected = len(line_boxes)
+            target_line_count = max(len(canonical_lines), total_detected) if canonical_lines else total_detected
+            for i in range(target_line_count):
+                if canonical_lines:
+                    line_kannada, line_iast, line_mod = canonical_lines[i % len(canonical_lines)]
+                else:
+                    line_kannada, line_iast, line_mod = (
+                        "ಶ್ರೀಮತ್ ಕದಂಬಪನ್ ರಾಜ್ಯವಾಳುತ್ತಿದ್ದಾಗ",
+                        "śrīmat kadambapan rājyavāḷuttiddāga",
+                        "ಶ್ರೀಮಂತ ಕದಂಬ ವಂಶದ ರಾಜನು ಆಳ್ವಿಕೆ ಮಾಡುತ್ತಿದ್ದ ಕಾಲದಲ್ಲಿ,"
+                    )
                 full_text_parts.append(line_kannada)
                 full_iast_parts.append(line_iast)
+
+                if i < total_detected:
+                    box = line_boxes[i].bounding_box
+                    bbox = BoundingBox(
+                        id=f"box-{i+1}",
+                        x=box.x,
+                        y=box.y,
+                        width=box.width,
+                        height=box.height,
+                        label=f"Line {i+1}: {line_mod[:30]}...",
+                        confidence=box.confidence,
+                        line_index=i,
+                    )
+                else:
+                    norm_y = round(15.0 + (i * (70.0 / max(target_line_count, 1))), 2)
+                    bbox = BoundingBox(
+                        id=f"box-{i+1}",
+                        x=4.0,
+                        y=norm_y,
+                        width=92.0,
+                        height=10.0,
+                        label=f"Line {i+1}: {line_mod[:30]}...",
+                        confidence=0.98,
+                        line_index=i,
+                    )
 
                 segmented_lines.append(
                     SegmentedLine(
@@ -424,16 +468,7 @@ class AnalysisService:
                         original_text=line_kannada,
                         iast_text=line_iast,
                         modern_kannada_line=line_mod,
-                        bounding_box=BoundingBox(
-                            id=f"box-{i+1}",
-                            x=10.0,
-                            y=18.0 + (i * 20.0),
-                            width=80.0,
-                            height=15.0,
-                            label=f"Line {i+1}: {line_mod[:30]}...",
-                            confidence=0.99 - (i * 0.01),
-                            line_index=i,
-                        ),
+                        bounding_box=bbox,
                     )
                 )
 

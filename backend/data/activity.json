@@ -1,5 +1,35 @@
 [
   {
+    "id": "act-1488c177",
+    "timestamp": "27 Oct 2026, 19:41",
+    "type": "rubbing_catalogued",
+    "title": "Rubbing Analyzed (Completed): Halmidi Inscription (The Earliest Recorded Kannada Epigraph)",
+    "description": "5-stage inference completed with status 'completed'. Inferred script: kadamba.",
+    "scholar": "Automated Computational Paleography Pipeline",
+    "inscriptionId": "ins-9a98dc60",
+    "inscriptionTitle": "Halmidi Inscription (The Earliest Recorded Kannada Epigraph)"
+  },
+  {
+    "id": "act-d817ca68",
+    "timestamp": "27 Oct 2026, 19:39",
+    "type": "rubbing_catalogued",
+    "title": "Rubbing Analyzed (Completed): Ancient Kannada Epigraph Stone Slab",
+    "description": "5-stage inference completed with status 'completed'. Inferred script: kadamba.",
+    "scholar": "Automated Computational Paleography Pipeline",
+    "inscriptionId": "job-f321340e3e75",
+    "inscriptionTitle": "Ancient Kannada Epigraph Stone Slab"
+  },
+  {
+    "id": "act-0de25680",
+    "timestamp": "27 Oct 2026, 19:37",
+    "type": "rubbing_catalogued",
+    "title": "Rubbing Analyzed (Completed): Ancient Kannada Epigraph Stone Slab",
+    "description": "5-stage inference completed with status 'completed'. Inferred script: kadamba.",
+    "scholar": "Automated Computational Paleography Pipeline",
+    "inscriptionId": "job-ab2c79722534",
+    "inscriptionTitle": "Ancient Kannada Epigraph Stone Slab"
+  },
+  {
     "id": "act-98b1bd0a",
     "timestamp": "27 Oct 2026, 18:47",
     "type": "rubbing_catalogued",

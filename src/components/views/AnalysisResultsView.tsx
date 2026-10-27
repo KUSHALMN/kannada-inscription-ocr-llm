@@ -59,6 +59,14 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
   const [zoomLevel, setZoomLevel] = useState<number>(1);
   const [showBoundingBoxes, setShowBoundingBoxes] = useState<boolean>(true);
   const [selectedGlyphIndex, setSelectedGlyphIndex] = useState<number | null>(null);
+  const [visualFilterMode, setVisualFilterMode] = useState<'original' | 'relief' | 'rubbing'>('original');
+
+  const activeImageUrl =
+    visualFilterMode === 'relief' && inscription.reliefImageUrl
+      ? inscription.reliefImageUrl
+      : visualFilterMode === 'rubbing' && inscription.rubbingImageUrl
+      ? inscription.rubbingImageUrl
+      : inscription.imageUrl;
 
   // Audio pronunciation simulation state
   const [isPlayingAudio, setIsPlayingAudio] = useState<boolean>(false);
@@ -416,27 +424,64 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                 backgroundColor: 'var(--theme-surface-subtle)',
                 borderColor: 'var(--theme-border-fine)',
               }}
-              className="p-3 border-b flex items-center justify-between text-xs"
+              className="p-3 border-b flex flex-wrap items-center justify-between gap-2 text-xs"
             >
               <div className="flex items-center gap-2">
                 <span className="font-mono text-[10px] uppercase tracking-wider" style={{ color: 'var(--theme-ink-muted)' }}>
-                  Original Inscription Stele
+                  Stone Facsimile
                 </span>
                 <span style={{ color: 'var(--theme-border-medium)' }}>|</span>
-                <span className="font-serif italic text-xs truncate max-w-[180px]" style={{ color: 'var(--theme-ink-secondary)' }}>
-                  {inscription.title}
-                </span>
+                {/* 3-Mode Visual Filter Selector */}
+                <div className="flex items-center bg-stone-200/80 p-0.5 rounded border border-stone-300">
+                  <button
+                    onClick={() => setVisualFilterMode('original')}
+                    className={`px-2 py-0.5 text-[10px] font-mono rounded transition-colors ${
+                      visualFilterMode === 'original'
+                        ? 'bg-amber-700 text-white font-bold shadow-xs'
+                        : 'text-stone-700 hover:text-stone-900'
+                    }`}
+                    title="Raw Stone Photograph"
+                  >
+                    Original Photo
+                  </button>
+                  <button
+                    onClick={() => setVisualFilterMode('relief')}
+                    className={`px-2 py-0.5 text-[10px] font-mono rounded transition-colors ${
+                      visualFilterMode === 'relief'
+                        ? 'bg-amber-700 text-white font-bold shadow-xs'
+                        : 'text-stone-700 hover:text-stone-900'
+                    }`}
+                    title="Surface Relief Enhancement (CLAHE + Bilateral)"
+                  >
+                    Enhanced Relief
+                  </button>
+                  <button
+                    onClick={() => setVisualFilterMode('rubbing')}
+                    className={`px-2 py-0.5 text-[10px] font-mono rounded transition-colors ${
+                      visualFilterMode === 'rubbing'
+                        ? 'bg-amber-700 text-white font-bold shadow-xs'
+                        : 'text-stone-700 hover:text-stone-900'
+                    }`}
+                    title="Digital Ink Paper Squeeze (White on black rubbing)"
+                  >
+                    Digital Rubbing
+                  </button>
+                </div>
               </div>
 
               {/* Viewer Controls */}
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setShowBoundingBoxes(!showBoundingBoxes)}
-                  className="flex items-center gap-1 px-2 py-1 text-[11px] font-mono border rounded-xs bg-stone-50 border-stone-300 text-stone-700 hover:bg-stone-100"
+                  className={`flex items-center gap-1 px-2 py-1 text-[11px] font-mono border rounded-xs transition-colors ${
+                    showBoundingBoxes
+                      ? 'bg-amber-50 border-amber-400 text-amber-900 font-bold'
+                      : 'bg-stone-50 border-stone-300 text-stone-700 hover:bg-stone-100'
+                  }`}
                   title="Toggle Inscriptional Line Segmentation"
                 >
-                  {showBoundingBoxes ? <Eye className="w-3 h-3" /> : <EyeOff className="w-3 h-3" />}
-                  <span>Bounding</span>
+                  {showBoundingBoxes ? <Eye className="w-3 h-3 text-amber-600" /> : <EyeOff className="w-3 h-3" />}
+                  <span>Lines ({inscription.transcription?.lines?.length || 0})</span>
                 </button>
 
                 <div className="flex items-center border border-stone-300 rounded-xs bg-stone-50">
@@ -475,7 +520,7 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                 className="relative max-w-full max-h-full flex items-center justify-center origin-center"
               >
                 <img
-                  src={inscription.imageUrl}
+                  src={activeImageUrl}
                   alt={inscription.title}
                   className="max-h-[500px] w-auto object-contain rounded-xs shadow-2xl border border-stone-800"
                   draggable={false}
@@ -487,39 +532,52 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                   }}
                 />
 
-                {/* Ground-Truth Inscription Line Overlays (When coords exist) */}
-                {showBoundingBoxes && inscription.transcription?.lines?.map((line, idx) => (
-                  <div
-                    key={line.lineNumber}
-                    onClick={() => setSelectedGlyphIndex(idx)}
-                    style={{
-                      top: `${18 + idx * 20}%`,
-                      left: '10%',
-                      width: '80%',
-                      height: '15%',
-                      borderColor: selectedGlyphIndex === idx ? 'var(--theme-accent)' : 'rgba(217, 180, 110, 0.5)',
-                      backgroundColor: selectedGlyphIndex === idx ? 'rgba(150, 96, 40, 0.2)' : 'rgba(150, 96, 40, 0.08)',
-                    }}
-                    className="absolute border rounded-xs cursor-pointer flex items-center px-2 transition-colors pointer-events-auto"
-                  >
-                    <span className="font-mono text-[9px] text-amber-200 bg-stone-950/90 px-1 py-0.5 rounded-xs border border-amber-800/60">
-                      Line {line.lineNumber}
-                    </span>
-                  </div>
-                ))}
+                {/* Ground-Truth Inscription Line Overlays (Mapped to Real Stone Geometry) */}
+                {showBoundingBoxes && inscription.transcription?.lines?.map((line, idx) => {
+                  const box = line.boundingBox;
+                  const topPercent = box ? `${box.y}%` : `${18 + idx * 20}%`;
+                  const leftPercent = box ? `${box.x}%` : '4%';
+                  const widthPercent = box ? `${box.width}%` : '92%';
+                  const heightPercent = box ? `${box.height}%` : '12%';
+                  const isSelected = selectedGlyphIndex === idx;
+
+                  return (
+                    <div
+                      key={line.lineNumber}
+                      onClick={() => setSelectedGlyphIndex(isSelected ? null : idx)}
+                      style={{
+                        top: topPercent,
+                        left: leftPercent,
+                        width: widthPercent,
+                        height: heightPercent,
+                        borderColor: isSelected ? '#F59E0B' : 'rgba(245, 158, 11, 0.65)',
+                        borderWidth: isSelected ? '2px' : '1px',
+                        backgroundColor: isSelected ? 'rgba(245, 158, 11, 0.25)' : 'rgba(245, 158, 11, 0.08)',
+                        boxShadow: isSelected ? '0 0 10px rgba(245, 158, 11, 0.6)' : 'none',
+                      }}
+                      className="absolute rounded-xs cursor-pointer flex items-center justify-between px-2 transition-all pointer-events-auto hover:bg-amber-500/20"
+                      title={`Line ${line.lineNumber}: ${line.modernKannadaLine || line.originalText}`}
+                    >
+                      <span className="font-mono text-[9px] text-amber-200 bg-stone-950/90 px-1 py-0.5 rounded-xs border border-amber-500/60 font-semibold shadow-xs">
+                        Line {line.lineNumber}
+                      </span>
+                      {isSelected && (
+                        <span className="font-mono text-[8px] text-white bg-amber-600 px-1 py-0.2 rounded font-bold uppercase">
+                          Selected
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
 
               {/* Image Substrate Overlay Plate */}
               <div className="absolute bottom-3 left-3 bg-stone-900/95 border border-stone-700/80 px-3 py-1.5 rounded-xs text-[10px] font-mono text-stone-300 backdrop-blur-sm flex items-center gap-2">
+                <span className="uppercase text-amber-400 font-bold">{visualFilterMode.toUpperCase()}</span>
+                <span>•</span>
                 <span className="uppercase">{inscription.substrate.replace('_', ' ')}</span>
                 <span>•</span>
                 <span className="uppercase">{inscription.conditionRating}</span>
-                {inscription.dimensions && (
-                  <>
-                    <span>•</span>
-                    <span>{inscription.dimensions.heightCm} × {inscription.dimensions.widthCm} cm</span>
-                  </>
-                )}
               </div>
             </div>
           </div>
@@ -923,17 +981,25 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                 {/* Line Aligned Translation */}
                 {translationTextMode === 'aligned' && (
                   <div className="space-y-2">
-                    {inscription.transcription.lines.map((line) => (
-                      <div key={line.lineNumber} className="p-3 border border-stone-200 bg-stone-50 rounded-xs space-y-1 text-xs">
-                        <div className="flex items-center justify-between text-[10px] font-mono text-stone-400">
-                          <span>LINE {line.lineNumber}</span>
+                    {inscription.transcription.lines.map((line, idx) => (
+                      <div
+                        key={line.lineNumber}
+                        onClick={() => setSelectedGlyphIndex(selectedGlyphIndex === idx ? null : idx)}
+                        className={`p-3 border rounded-xs space-y-1 text-xs cursor-pointer transition-all ${
+                          selectedGlyphIndex === idx
+                            ? 'border-amber-500 bg-amber-50/90 shadow-xs ring-1 ring-amber-400'
+                            : 'border-stone-200 bg-stone-50 hover:border-amber-300'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between text-[10px] font-mono text-stone-500">
+                          <span className={`font-bold ${selectedGlyphIndex === idx ? 'text-amber-800' : ''}`}>LINE {line.lineNumber}</span>
                           <span className="italic">{line.iastText}</span>
                         </div>
-                        <div className="font-kannada text-stone-600">
-                          <span className="font-semibold text-stone-700">ಮೂಲ ಪಾಠ:</span> {line.originalText}
+                        <div className="font-kannada text-stone-800 font-medium">
+                          <span className="font-semibold text-stone-500">ಮೂಲ ಪಾಠ:</span> {line.originalText}
                         </div>
-                        <div className="font-kannada text-stone-900 font-medium bg-parchment-100/80 p-2 border border-stone-200/80 rounded-xs">
-                          <span className="font-bold text-stone-700">ಭಾವಾರ್ಥ:</span> {line.modernKannadaLine}
+                        <div className="font-kannada text-stone-900 font-semibold bg-white p-2 border border-amber-200/80 rounded-xs">
+                          <span className="font-bold text-amber-800">ಭಾವಾರ್ಥ:</span> {line.modernKannadaLine}
                         </div>
                       </div>
                     ))}

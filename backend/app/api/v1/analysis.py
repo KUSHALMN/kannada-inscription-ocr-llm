@@ -163,6 +163,20 @@ async def analyze_inscription(
     image_url = f"/uploads/{job_id}{ext}"
     result.image_url = image_url
 
+    # Generate enhanced relief and digital ink rubbing
+    try:
+        from backend.app.ml_adapters.cv_segmenter import CVStonePreprocessor
+        CVStonePreprocessor.generate_visual_derivatives(image, storage_path)
+        relief_url = f"/uploads/{job_id}_relief{ext}"
+        rubbing_url = f"/uploads/{job_id}_rubbing{ext}"
+    except Exception as e:
+        logger.warning("[%s] Could not generate visual derivatives: %s", job_id, e)
+        relief_url = image_url
+        rubbing_url = image_url
+
+    result.relief_image_url = relief_url
+    result.rubbing_image_url = rubbing_url
+
     if auto_save:
         # Automatically persist completed analysis into InscriptionRepository
         rec_id = f"ins-{uuid.uuid4().hex[:8]}"
@@ -180,6 +194,8 @@ async def analyze_inscription(
             title=title or f"{result.inferred_script.value.replace('_', ' ').title()} Epigraph ({job_id})",
             kannada_title=kannada_title,
             image_url=image_url,
+            relief_image_url=relief_url,
+            rubbing_image_url=rubbing_url,
             script_class=result.inferred_script,
             source_language=result.inferred_language,
             substrate=SubstrateMaterial.GRANITE,

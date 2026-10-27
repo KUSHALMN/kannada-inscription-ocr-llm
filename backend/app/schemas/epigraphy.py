@@ -104,6 +104,8 @@ class InscriptionRecord(CamelModel):
     substrate: SubstrateMaterial = Field(..., description="Physical substrate material")
     dimensions: Optional[Dimensions] = Field(None, description="Stele dimensions")
     image_url: str = Field(..., description="High-resolution rubbing or stele image URL")
+    relief_image_url: Optional[str] = Field(None, description="Enhanced relief image URL")
+    rubbing_image_url: Optional[str] = Field(None, description="Digital ink paper squeeze rubbing image URL")
     thumbnail_url: Optional[str] = Field(None, description="Thumbnail preview image URL")
     condition_rating: ConditionRating = Field(..., description="Preservation rating")
     review_status: ReviewStatus = Field(..., description="Editorial review status")
@@ -186,6 +188,8 @@ class AnalysisJobResult(CamelModel):
     error_message: Optional[str] = Field(None, description="Error message if pipeline step failed partially")
     per_class_probs: Optional[dict[str, float]] = Field(None, description="Posterior probability distribution across 10 script eras")
     image_url: Optional[str] = Field(None, description="Static accessible URL for uploaded image")
+    relief_image_url: Optional[str] = Field(None, description="Static accessible URL for enhanced relief image")
+    rubbing_image_url: Optional[str] = Field(None, description="Static accessible URL for digital ink rubbing image")
     record_id: Optional[str] = Field(None, description="Catalog inscription record ID if persisted")
 
 

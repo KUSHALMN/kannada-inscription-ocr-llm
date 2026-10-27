@@ -203,6 +203,8 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
           title: metadata.title || (jobResult.historicalContext?.epigraphiaReference ? jobResult.historicalContext.epigraphiaReference : `${jobResult.inferredScript.replace('_', ' ').toUpperCase()} Epigraph`),
           kannadaTitle: jobResult.translation?.modernKannada?.split('.')[0]?.slice(0, 60) || 'ಹೊಸದಾಗಿ ದಾಖಲಿಸಲಾದ ಪ್ರಾಚೀನ ಶಿಲಾಶಾಸನ ಪಾಠ',
           imageUrl: jobResult.imageUrl || uploadedFile.previewUrl,
+          reliefImageUrl: jobResult.reliefImageUrl,
+          rubbingImageUrl: jobResult.rubbingImageUrl,
           scriptClass: jobResult.inferredScript,
           sourceLanguage: jobResult.inferredLanguage,
           substrate: 'granite',
