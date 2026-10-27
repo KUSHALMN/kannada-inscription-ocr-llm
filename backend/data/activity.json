@@ -1,5 +1,15 @@
 [
   {
+    "id": "act-756bcfe3",
+    "timestamp": "27 Oct 2026, 19:57",
+    "type": "rubbing_catalogued",
+    "title": "Rubbing Analyzed (Completed): Ancient Kannada Epigraph Stone Slab",
+    "description": "5-stage inference completed with status 'completed'. Inferred script: kadamba.",
+    "scholar": "Automated Computational Paleography Pipeline",
+    "inscriptionId": "job-71534e5b795d",
+    "inscriptionTitle": "Ancient Kannada Epigraph Stone Slab"
+  },
+  {
     "id": "act-1488c177",
     "timestamp": "27 Oct 2026, 19:41",
     "type": "rubbing_catalogued",

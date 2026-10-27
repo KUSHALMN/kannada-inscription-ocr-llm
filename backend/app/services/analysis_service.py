@@ -322,6 +322,21 @@ class AnalysisService:
         effective_script = ScriptClassId.KADAMBA
         effective_language = SourceLanguageId.PURVADA_HALEGANNADA
 
+        # Generate visual derivatives if upload path exists or can be written
+        image_url = f"/uploads/{job_id}.jpg"
+        relief_url = f"/uploads/{job_id}_relief.jpg"
+        rubbing_url = f"/uploads/{job_id}_rubbing.jpg"
+        try:
+            from backend.app.ml_adapters.cv_segmenter import CVStonePreprocessor
+            storage_dir = getattr(settings, "STORAGE_UPLOADS_DIR", "backend/storage/uploads")
+            upload_path = os.path.join(storage_dir, f"{job_id}.jpg")
+            if not os.path.exists(upload_path):
+                os.makedirs(storage_dir, exist_ok=True)
+                image.convert("RGB").save(upload_path, "JPEG", quality=92)
+            CVStonePreprocessor.generate_visual_derivatives(image, upload_path)
+        except Exception as e:
+            logger.warning("[%s] Could not generate visual derivatives: %s", job_id, e)
+
         # -----------------------------------------------------------------
         # Step 1: Preprocessing
         # -----------------------------------------------------------------
@@ -580,6 +595,9 @@ class AnalysisService:
             status=status,
             inferred_script=effective_script,
             inferred_language=effective_language,
+            image_url=image_url,
+            relief_image_url=relief_url,
+            rubbing_image_url=rubbing_url,
             transcription=transcription,
             translation=translation,
             historical_context=historical_context,

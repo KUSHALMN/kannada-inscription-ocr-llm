@@ -68,6 +68,18 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
       ? inscription.rubbingImageUrl
       : inscription.imageUrl;
 
+  const handleSelectLine = (idx: number | null) => {
+    setSelectedGlyphIndex(idx);
+    if (idx !== null) {
+      setTimeout(() => {
+        const el = document.getElementById(`transcription-line-${idx}`);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }, 50);
+    }
+  };
+
   // Audio pronunciation simulation state
   const [isPlayingAudio, setIsPlayingAudio] = useState<boolean>(false);
 
@@ -514,20 +526,27 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
             </div>
 
             {/* Inscription Image Canvas */}
-            <div className="flex-1 bg-stone-950 overflow-auto flex items-center justify-center p-4 relative select-none">
+            <div className="flex-1 bg-stone-950 overflow-auto flex items-center justify-center p-4 relative select-none min-h-[420px]">
               <div
                 style={{ transform: `scale(${zoomLevel})`, transition: 'transform 0.15s ease-out' }}
-                className="relative max-w-full max-h-full flex items-center justify-center origin-center"
+                className="relative inline-block max-w-full origin-center"
               >
                 <img
                   src={activeImageUrl}
                   alt={inscription.title}
-                  className="max-h-[500px] w-auto object-contain rounded-xs shadow-2xl border border-stone-800"
+                  className="block max-h-[520px] max-w-full w-auto h-auto rounded-xs shadow-2xl border border-stone-800 transition-all duration-300"
+                  style={{
+                    filter: visualFilterMode === 'relief' && !inscription.reliefImageUrl
+                      ? 'contrast(170%) brightness(95%) grayscale(40%)'
+                      : visualFilterMode === 'rubbing' && !inscription.rubbingImageUrl
+                      ? 'contrast(240%) grayscale(100%) invert(92%)'
+                      : undefined
+                  }}
                   draggable={false}
                   onError={(e) => {
                     const target = e.currentTarget;
-                    if (!target.src.includes('sample-stele')) {
-                      target.src = '/src/assets/sample-stele.jpg';
+                    if (!target.src.includes('analysis-halmidi-stele')) {
+                      target.src = '/analysis-halmidi-stele.jpg';
                     }
                   }}
                 />
@@ -544,18 +563,18 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                   return (
                     <div
                       key={line.lineNumber}
-                      onClick={() => setSelectedGlyphIndex(isSelected ? null : idx)}
+                      onClick={() => handleSelectLine(isSelected ? null : idx)}
                       style={{
                         top: topPercent,
                         left: leftPercent,
                         width: widthPercent,
                         height: heightPercent,
-                        borderColor: isSelected ? '#F59E0B' : 'rgba(245, 158, 11, 0.65)',
-                        borderWidth: isSelected ? '2px' : '1px',
-                        backgroundColor: isSelected ? 'rgba(245, 158, 11, 0.25)' : 'rgba(245, 158, 11, 0.08)',
-                        boxShadow: isSelected ? '0 0 10px rgba(245, 158, 11, 0.6)' : 'none',
+                        borderColor: isSelected ? '#F59E0B' : 'rgba(245, 158, 11, 0.75)',
+                        borderWidth: isSelected ? '2px' : '1.5px',
+                        backgroundColor: isSelected ? 'rgba(245, 158, 11, 0.28)' : 'rgba(245, 158, 11, 0.10)',
+                        boxShadow: isSelected ? '0 0 12px rgba(245, 158, 11, 0.7)' : 'none',
                       }}
-                      className="absolute rounded-xs cursor-pointer flex items-center justify-between px-2 transition-all pointer-events-auto hover:bg-amber-500/20"
+                      className="absolute rounded-xs cursor-pointer flex items-center justify-between px-2 transition-all pointer-events-auto hover:bg-amber-500/25"
                       title={`Line ${line.lineNumber}: ${line.modernKannadaLine || line.originalText}`}
                     >
                       <span className="font-mono text-[9px] text-amber-200 bg-stone-950/90 px-1 py-0.5 rounded-xs border border-amber-500/60 font-semibold shadow-xs">
@@ -649,20 +668,31 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                 {inscription.transcription.lines.map((line, idx) => (
                   <div
                     key={line.lineNumber}
-                    onClick={() => setSelectedGlyphIndex(idx)}
+                    id={`transcription-line-${idx}`}
+                    onClick={() => handleSelectLine(selectedGlyphIndex === idx ? null : idx)}
                     style={{
                       borderColor: selectedGlyphIndex === idx ? 'var(--theme-accent)' : 'var(--theme-border-fine)',
                       backgroundColor: selectedGlyphIndex === idx ? 'var(--theme-accent-light)' : 'var(--theme-surface-bg)',
                     }}
-                    className="p-3 border rounded-xs transition-colors cursor-pointer space-y-1"
+                    className={`p-3.5 border rounded-xs transition-all cursor-pointer space-y-2 ${
+                      selectedGlyphIndex === idx ? 'ring-2 ring-amber-500 shadow-sm' : ''
+                    }`}
                   >
                     <div className="flex items-center justify-between text-[10px] font-mono" style={{ color: 'var(--theme-ink-muted)' }}>
-                      <span>LINE {line.lineNumber}</span>
-                      <span className="font-serif italic">IAST: {line.iastText}</span>
+                      <span className="font-bold text-amber-800">LINE {line.lineNumber}</span>
+                      <span className="font-serif italic text-stone-600">IAST: {line.iastText}</span>
                     </div>
-                    <div className="font-kannada text-sm font-medium" style={{ color: 'var(--theme-ink-primary)' }}>
+                    <div className="font-kannada text-base font-semibold" style={{ color: 'var(--theme-ink-primary)' }}>
                       {line.originalText}
                     </div>
+                    {line.modernKannadaLine && (
+                      <div className="text-xs font-kannada text-amber-950 bg-amber-50/80 p-2 rounded-xs border border-amber-200/70">
+                        <span className="font-mono text-[9px] uppercase font-bold text-amber-800 block mb-0.5">
+                          Modern Kannada (ಹೊಸಗನ್ನಡ ಭಾವಾರ್ಥ):
+                        </span>
+                        {line.modernKannadaLine}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
