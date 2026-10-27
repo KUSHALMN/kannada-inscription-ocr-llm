@@ -1,5 +1,55 @@
 [
   {
+    "id": "act-207bdcd6",
+    "timestamp": "27 Oct 2026, 22:01",
+    "type": "rubbing_catalogued",
+    "title": "Rubbing Analyzed (Completed): Ancient Kannada Epigraph Stone Slab",
+    "description": "5-stage inference completed with status 'completed'. Inferred script: kalyana_chalukya.",
+    "scholar": "Automated Computational Paleography Pipeline",
+    "inscriptionId": "job-1a16f23b77ef",
+    "inscriptionTitle": "Ancient Kannada Epigraph Stone Slab"
+  },
+  {
+    "id": "act-c2408420",
+    "timestamp": "27 Oct 2026, 21:10",
+    "type": "rubbing_catalogued",
+    "title": "Rubbing Analyzed (Completed): images (2).jpg",
+    "description": "5-stage inference completed with status 'completed'. Inferred script: satavahana.",
+    "scholar": "Automated Computational Paleography Pipeline",
+    "inscriptionId": "ins-23cc2cd4",
+    "inscriptionTitle": "Satavahana Epigraph (job-e1bd6209b302)"
+  },
+  {
+    "id": "act-42d87a66",
+    "timestamp": "27 Oct 2026, 21:09",
+    "type": "transcription_verified",
+    "title": "Inscription Updated: Kalyana Chalukya Epigraph (job-9187ddbd7016)",
+    "description": "Record updated via API (review status: verified).",
+    "scholar": "Epigraphical Researcher",
+    "inscriptionId": "ins-fa50c03c",
+    "inscriptionTitle": "Kalyana Chalukya Epigraph (job-9187ddbd7016)"
+  },
+  {
+    "id": "act-0d98eba4",
+    "timestamp": "27 Oct 2026, 21:09",
+    "type": "transcription_verified",
+    "title": "Inscription Updated: Kalyana Chalukya Epigraph (job-9187ddbd7016)",
+    "description": "Record updated via API (review status: verified).",
+    "scholar": "Epigraphical Researcher",
+    "inscriptionId": "ins-fa50c03c",
+    "inscriptionTitle": "Kalyana Chalukya Epigraph (job-9187ddbd7016)"
+  },
+  {
+    "id": "act-c87525b7",
+    "timestamp": "27 Oct 2026, 21:06",
+    "type": "rubbing_catalogued",
+    "title": "Rubbing Analyzed (Completed): ancient-inscription-in.jpg",
+    "description": "5-stage inference completed with status 'completed'. Inferred script: kalyana_chalukya.",
+    "scholar": "Automated Computational Paleography Pipeline",
+    "inscriptionId": "ins-fa50c03c",
+    "inscriptionTitle": "Kalyana Chalukya Epigraph (job-9187ddbd7016)"
+  },
+  {
     "id": "act-103a6917",
     "timestamp": "27 Oct 2026, 20:31",
     "type": "rubbing_catalogued",

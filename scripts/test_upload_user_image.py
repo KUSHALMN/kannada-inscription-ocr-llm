@@ -12,8 +12,7 @@ with open(file_path, "rb") as f:
     files = {"file": ("user_stone_inscription.jpg", f, "image/jpeg")}
     data = {
         "title": "Ancient Kannada Epigraph Stone Slab",
-        "dynasty": "Kadamba",
-        "location": "Banavasi, Uttara Kannada"
+        "location": "Lakkundi, Gadag"
     }
     response = requests.post(url, files=files, data=data)
 

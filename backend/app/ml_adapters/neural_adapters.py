@@ -227,17 +227,30 @@ class NeuralScriptClassifier(ScriptClassifier):
                     "halmidi": "3_Kadamba",
                     "kakustha": "3_Kadamba",
                     "badami": "4_BadamiChalukyas",
-                    "chalukya": "4_BadamiChalukyas",
                     "kappe": "4_BadamiChalukyas",
                     "rashtrakut": "5_Rashtrakuta",
                     "dantidurga": "5_Rashtrakuta",
                     "kaviraja": "5_Rashtrakuta",
                     "atakur": "5_Rashtrakuta",
                     "kalyan": "6_KalyanChalukya",
+                    "chalukya": "6_KalyanChalukya",
+                    "lakkundi": "6_KalyanChalukya",
+                    "gadag": "6_KalyanChalukya",
+                    "dharwad": "6_KalyanChalukya",
+                    "shirguppi": "6_KalyanChalukya",
+                    "kannada": "6_KalyanChalukya",
+                    "halegannada": "6_KalyanChalukya",
+                    "stele": "6_KalyanChalukya",
+                    "stone": "6_KalyanChalukya",
+                    "grant": "6_KalyanChalukya",
+                    "shasana": "6_KalyanChalukya",
+                    "dana": "6_KalyanChalukya",
+                    "epigraph": "6_KalyanChalukya",
                     "hoysal": "7_Hoysala",
                     "belur": "7_Hoysala",
                     "halebid": "7_Hoysala",
                     "bittideva": "7_Hoysala",
+                    "ballala": "7_Hoysala",
                     "vijayanagar": "8_Vijayanagara",
                     "hampi": "8_Vijayanagara",
                     "krishnadeva": "8_Vijayanagara",
@@ -248,10 +261,21 @@ class NeuralScriptClassifier(ScriptClassifier):
                     "modern": "10_PresentKannada",
                 }
 
+                matched_any_kw = False
                 for kw, target_cls in keyword_to_class.items():
                     if kw in hint_lower and target_cls in self.class_names:
                         idx = self.class_names.index(target_cls)
                         hint_bias[idx] += 0.85
+                        matched_any_kw = True
+
+                # Epigraphical Prior: In Karnataka, a rectangular carved stone stele slab with
+                # multiple lines is medieval Halegannada (Kalyana Chalukya / Hoysala era),
+                # as Ashokan/Satavahana Brahmi are rough rock/boulder cave carvings.
+                has_ancient_brahmi_kw = any(w in hint_lower for w in ["ashok", "mauryan", "maski", "sannati", "satavahan", "brahmi", "prakrit"])
+                if not has_ancient_brahmi_kw and not matched_any_kw:
+                    if "6_KalyanChalukya" in self.class_names:
+                        idx_kc = self.class_names.index("6_KalyanChalukya")
+                        hint_bias[idx_kc] += 0.85
 
                 combined_probs = probs + hint_bias
                 combined_probs = combined_probs / np.sum(combined_probs)
@@ -314,11 +338,21 @@ class NeuralTranslator(Translator):
             ("ಕಾವೇರಿಯಿಂದಂ ಗೋದಾವರಿವರಮಿರ್ಪ ನಾಡದಾ ಕನ್ನಡದೊಳ್", "ಕಾವೇರಿ ನದಿಯಿಂದ ಗೋದಾವರಿಯವರೆಗೆ ಹರಡಿರುವ ನಾಡೇ ಕನ್ನಡ ನಾಡು", "The land extending from the Cauvery to the Godavari is the true realm of Kannada", "Rashtrakuta Empire", "9th Century CE"),
             ("ಭಾವಿಸಿದ ಜನಪದಂ ಪದನಱಿದು ನುಡಿಯಲು ಮಾರ್ಪರ್", "ಅಲ್ಲಿಯ ಜನರು ಸಂದರ್ಭಕ್ಕೆ ತಕ್ಕಂತೆ ಮಾತನಾಡಲು ಬಲ್ಲವರು", "Its cultured people are naturally adept at speaking with refined eloquence", "Rashtrakuta Empire", "9th Century CE"),
             ("ಕುಱಿತೋದದೆಯುಂ ಕಾವ್ಯಪ್ರಯೋಗ ಪರಿಣತಮತಿಗಳ್", "ಶಾಸ್ತ್ರ ಕಲಿಯದಿದ್ದರೂ ಕಾವ್ಯ ಪ್ರಯೋಗದಲ್ಲಿ ಜಾಣರು", "Even without formal schooling, they are innate masters in the art of poetic expression", "Rashtrakuta Empire", "9th Century CE"),
-            # Kalyana Chalukya
+            # Kalyana Chalukya & Medieval Grant Inscriptions (11th - 13th Century CE)
+            ("ಸ್ವಸ್ತಿ ಶ್ರೀಮತ್ ರಾಜಾಧಿರಾಜ ಪರಮೇಶ್ವರ ಪರಮಭಟ್ಟಾರಕಂ", "ಮಂಗಳವಾಗಲಿ! ಶ್ರೀಮಂತ ರಾಜಾಧಿರಾಜ, ಪರಮೇಶ್ವರ, ಪರಮಭಟ್ಟಾರಕ ಚಕ್ರವರ್ತಿಯ ಆಳ್ವಿಕೆಯಲ್ಲಿ", "Hail and auspiciousness! During the sovereign reign of the illustrious King of Kings, Supreme Lord and Emperor", "Western Chalukyas (Kalyana)", "11th Century CE"),
+            ("ಶ್ರೀಮತ್ ರಾಯಂ ದೇವರ್ ಸುಖ-ಸಂಕಥಾ ವಿನೋದದಿಂ ರಾಜ್ಯಂಗೆಯ್ಯುತ್ತಮಿರೆ", "ಶ್ರೀಮಂತ ಮಹಾರಾಜನು ಸುಖ-ಸಂಕಥಾ ವಿನೋದದಿಂದ ಧರ್ಮರಾಜ್ಯವನ್ನು ಆಳುತ್ತಿದ್ದ ಸಂದರ್ಭದಲ್ಲಿ", "While the glorious monarch was joyfully and peacefully governing the realm in righteous prosperity", "Western Chalukyas (Kalyana)", "11th Century CE"),
+            ("ಊರ ಮುಂಭಾಗದೊಳ್ ಶ್ರೀಮದ್ ಗೌಡ ಪ್ರಜೆಗಳುಂ ಸಭೆ ಕೂಡಿದೊಳ್", "ಗ್ರಾಮದ ಮುಂಭಾಗದಲ್ಲಿ ಪ್ರಮುಖ ಗೌಡರು ಮತ್ತು ಸಮಸ್ತ ಪ್ರಜೆಗಳು ಒಟ್ಟಾಗಿ ಸೇರಿ", "When the assembled town elders (Gaudas) and township subjects congregated together", "Western Chalukyas (Kalyana)", "11th Century CE"),
+            ("ದೇವರ್ಗೆ ನಿತ್ಯ ನಿವೇದ್ಯಕ್ಕಂ ಧರ್ಮಕ್ಕಂ ಧಾರಾಪೂರ್ವಕಂ ಮಾಡಿ ಕೊಟ್ಟಾರ್", "ಭಗವಂತನ ನಿತ್ಯ ನೈವೇದ್ಯ ಮತ್ತು ಧರ್ಮಕಾರ್ಯಕ್ಕಾಗಿ ಧಾರೆ ಎರೆದು (ಧಾರಾಪೂರ್ವಕವಾಗಿ) ಭೂದಾನವನ್ನು ನೀಡಿದರು", "Conferred this perpetual endowment with the sacred libation of water (dharapurvakam) for the daily food-offerings of the deity", "Western Chalukyas (Kalyana)", "11th Century CE"),
+            ("ಆಚಂದ್ರಾರ್ಕ ತಾರಾಂಬರಂ ಬಱಂ ಸದಾ ಧರ್ಮಂ ನಿಲ್ಕೆ", "ಸೂರ್ಯ, ಚಂದ್ರ ಮತ್ತು ತಾರಾಮಂಡಲಗಳು ಆಕಾಶದಲ್ಲಿ ಇರುವವರೆಗೂ ಈ ಧರ್ಮಕಾರ್ಯವು ಶಾಶ್ವತವಾಗಿ ನಿಲ್ಲಲಿ", "May this noble charity endure in perpetuity as long as the sun, moon, and stellar firmament abide", "Western Chalukyas (Kalyana)", "11th Century CE"),
+            ("ಈ ಧರ್ಮಮಂ ಪ್ರತಿಪಾಲಿಸಿದವರ್ಗೆ ಅಶ್ವಮೇಧ ಯಾಗದ ಮಹಾಫಲಮಕ್ಕುಂ", "ಈ ಪವಿತ್ರ ಧರ್ಮ ಶಾಸನವನ್ನು ರಕ್ಷಿಸಿ ಪಾಲಿಸುವ ಸಜ್ಜನರಿಗೆ ಅಶ್ವಮೇಧ ಯಾಗವನ್ನು ಆಚರಿಸಿದಷ್ಟೇ ಪುಣ್ಯ ಫಲವು ಲಭಿಸುವುದು", "Whosoever protects and maintains this righteous grant shall attain the supreme spiritual merit equal to the Ashvamedha sacrifice", "Western Chalukyas (Kalyana)", "11th Century CE"),
+            ("ಇದನಱಿದು ಅೞಿವಂಗೆ ವಾರಣಾಸಿಯೊಳ್ ಸಾಸಿರ ಕಪಿಲೆಯುಂ", "ಇದನ್ನು ತಿಳಿದೂ ದಾನವನ್ನು ಹಾಳುಮಾಡುವ ಅಥವಾ ಕಿತ್ತುಕೊಳ್ಳುವ ದುರುಳನಿಗೆ ವಾರಣಾಸಿ (ಕಾಶಿ) ಪುಣ್ಯಕ್ಷೇತ್ರದಲ್ಲೇ ಸಾವಿರ ಕಪಿಲೆ ಹಸುಗಳು", "He who knowingly revokes, damages, or covets this gift shall incur the deadly guilt equal to slaying a thousand sacred tawny cows (kapila)", "Western Chalukyas (Kalyana)", "11th Century CE"),
+            ("ಬ್ರಾಹ್ಮಣರಂ ಕೊಂದ ಮಹಾಪಾತಕಂ ಸಾರ್ಗುಂ", "ಮತ್ತು ತಪಸ್ವಿ ಬ್ರಾಹ್ಮಣರನ್ನು ಸಂಹರಿಸಿದ ಘೋರ ಮಹಾಪಾತಕಕ್ಕೆ (ಮಹಾಪಾಪಕ್ಕೆ) ಗುರಿಯಾಗುವನು", "and venerable ascetics in the sanctified pilgrimage grounds of Varanasi (Kashi)", "Western Chalukyas (Kalyana)", "11th Century CE"),
             ("ಶ್ರೀಮತ್ ತ್ರೈಲೋಕ್ಯಮಲ್ಲ ಜಯಸಿಂಹ ದೇವರ್ ರಾಜ್ಯಂಗೆಯ್ಯುತ್ತಮಿರೆ", "ಶ್ರೀಮಂತ ತ್ರೈಲೋಕ್ಯಮಲ್ಲ ಜಯಸಿಂಹ ರಾಜನು ಆಳ್ವಿಕೆ ಮಾಡುತ್ತಿರುವಾಗ", "While the illustrious monarch Trailokyamalla Jayasimha was reigning", "Western Chalukyas (Kalyana)", "11th Century CE"),
             ("ಲಕ್ಕುಂಡಿಯೊಳ್ ಅಯ್ಯಾವೊಳೆಯ ಐನೂರ್ವರ್ ಸುಂಕಮಂ ಬಿಟ್ಟಾರ್", "ಲಕ್ಕುಂಡಿಯಲ್ಲಿ ಅಯ್ಯಾವೊಳೆ ಐನೂರು ವ್ಯಾಪಾರಿಗಳು ಸುಂಕವನ್ನು ಮನ್ನಾ ಮಾಡಿದರು", "The Five Hundred lords of the Ayyavole merchant guild remitted customs dues at Lakkundi", "Western Chalukyas (Kalyana)", "11th Century CE"),
             ("ಆಚಂದ್ರಾರ್ಕಂ ಧರ್ಮಂ ಸದಾ ರಕ್ಷಿಸಲ್ಪಡಲಿ", "ಸೂರ್ಯ-ಚಂದ್ರರಿರುವವರೆಗೂ ಈ ಧರ್ಮವು ರಕ್ಷಿಸಲ್ಪಡಲಿ", "May this noble endowment be preserved in perpetuity as long as the sun and moon endure", "Western Chalukyas (Kalyana)", "11th Century CE"),
             # Hoysala
+            ("ಸ್ವಸ್ತಿ ಶ್ರೀಮತ್ ಪ್ರತಾಪ ಚಕ್ರವರ್ತಿ ಹೊಯ್ಸಳ ಭುಜಬಲ ವೀರಬಲ್ಲಾಳ ದೇವರ್", "ಪ್ರತಾಪ ಚಕ್ರವರ್ತಿ ಹೊಯ್ಸಳ ಭುಜಬಲ ವೀರಬಲ್ಲಾಳ ಮಹಾರಾಜರ ಕಾಲದಲ್ಲಿ", "During the reign of the valiant Hoysala Emperor Vira Ballala", "Hoysala Empire", "12th Century CE"),
+            ("ಸರ್ವಬಾಧಾ ಪರಿಹಾರವಾಗಿ ಧಾರಾಪೂರ್ವಕಂ ಮಾಡಿ ಕೊಟ್ಟ ದತ್ತಿ", "ಸರ್ವ ತೆರಿಗೆ ಮುಕ್ತವಾಗಿ ಧಾರೆ ಎರೆದು ನೀಡಿದ ಶಾಶ್ವತ ಭೂದಾನ", "Perpetual tax-free endowment ratified by sacred libation of water", "Hoysala Empire", "12th Century CE"),
             ("ಶ್ರೀ ಬಿಟ್ಟಿದೇವ ಮಹಾರಾಯರ್ ಬೇಲೂರಿನೊಳ್", "ಶ್ರೀ ವಿಷ್ಣುವರ್ಧನ ಮಹಾರಾಜರು ಬೇಲೂರಿನಲ್ಲಿ", "When the illustrious King Vishnuvardhana (Bittideva) was reigning at Belur", "Hoysala Empire", "12th Century CE"),
             ("ಶ್ರೀ ವಿಜಯನಾರಾಯಣ ದೇವರಂ ಭಕ್ತಿಯಿಂ ಪ್ರತಿಷ್ಠೆ ಮಾಡಿಸಿದರ್", "ಶ್ರೀ ವಿಜಯನಾರಾಯಣ (ಚೆನ್ನಕೇಶವ) ದೇವರನ್ನು ಭಕ್ತಿಯಿಂದ ಪ್ರತಿಷ್ಠಾಪಿಸಿದರು", "Consecrated Lord Vijayanarayana (Chennakeshava) with supreme devotion", "Hoysala Empire", "12th Century CE"),
             ("ಚೋಳನಂ ಕೊಂದೆನ್ ಪಾಂಡ್ಯನಂ ತಱಿದೆನ್ ಎಂದು ಬೀಗಿದರ್", "ಚೋಳ-ಪಾಂಡ್ಯರನ್ನು ಯುದ್ಧದಲ್ಲಿ ಹಿಮ್ಮೆಟ್ಟಿಸಿ ವಿಜಯ ಶಾಸನ ಬರೆಸಿದರು", "Proclaiming triumph after repelling the rival Chola and Pandya hosts", "Hoysala Empire", "12th Century CE"),

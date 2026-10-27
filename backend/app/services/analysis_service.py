@@ -169,39 +169,49 @@ class AnalysisService:
             "canonical_lines": [
                 ("ಕಾವೇರಿಯಿಂದಂ ಗೋದಾವರಿವರಮಿರ್ಪ ನಾಡದಾ ಕನ್ನಡದೊಳ್", "kāvēriyindaṁ gōdāvarivaramirpa nāḍadā kannada-doḷ", "ಕಾವೇರಿ ನದಿಯಿಂದ ಗೋದಾವರಿಯವರೆಗೆ ಹರಡಿರುವ ನಾಡೇ ಕನ್ನಡ ನಾಡು,"),
                 ("ಭಾವಿಸಿದ ಜನಪದಂ ಪದನಱಿದು ನುಡಿಯಲು ಮಾರ್ಪರ್", "bhāvisida janapadaṁ padanaṟidu nuḍiyalu mārpar", "ಅಲ್ಲಿಯ ಜನರು ಸಂದರ್ಭಕ್ಕೆ ತಕ್ಕಂತೆ ಮಾತನಾಡಲು ಬಲ್ಲವರು,"),
-                ("ಕುಱಿತೋದದೆಯುಂ ಕಾವ್ಯಪ್ರಯೋಗ ಪರಿಣತಮತಿಗಳ್", "kuṟitōdadeyuṁ kāvyaprayōga pariṇatamatigaḷ", "ಶಾಸ್ತ್ರ ಕಲಿಯದಿದ್ದರೂ ಕಾವ್ಯ ಪ್ರಯೋಗದಲ್ಲಿ ಜಾಣರು.")
+                ("ಕುಱಿತೋದದೆಯುಂ ಕಾವ್ಯಪ್ರಯೋಗ ಪರಿಣತಮತಿಗಳ್", "kuṟitōdadeyuṁ kāvyaprayōga pariಣತಮತಿಗಳ್", "ಶಾಸ್ತ್ರ ಕಲಿಯದಿದ್ದರೂ ಕಾವ್ಯ ಪ್ರಯೋಗದಲ್ಲಿ ಜಾಣರು.")
             ]
         },
         ScriptClassId.KALYANA_CHALUKYA: {
             "dynasty": "Western Chalukyas of Kalyana (ಕಲ್ಯಾಣ ಚಾಲುಕ್ಯರು)",
-            "ruler": "Trailokyamalla Someshwara I / Vikramaditya VI",
+            "ruler": "Trailokyamalla Someshwara I / Vikramaditya VI (Tribhuvanamalla)",
             "regnal_period": "c. 1068 – 1126 CE",
-            "approximate_date": "c. 11th Century CE",
-            "century": "11th Century CE",
-            "find_spot": {"village": "Lakkundi", "taluk": "Gadag", "district": "Gadag", "state": "Karnataka", "coordinates": [15.3881, 75.7144]},
-            "epigraphia_reference": "South Indian Inscriptions Vol. XI, Lakkundi Stele",
-            "historical_summary": "Trade guild (Ayyavole 500) tax-exemption grant and temple patronage recorded on fine-grained chlorite schist.",
-            "linguistic_significance": "Exquisite circular cursive Halegannada with intricate subscript flourishes.",
+            "approximate_date": "c. 11th–12th Century CE",
+            "century": "11th–12th Century CE",
+            "find_spot": {"village": "Lakkundi / Shirguppi", "taluk": "Gadag", "district": "Gadag", "state": "Karnataka", "coordinates": [15.3881, 75.7144]},
+            "epigraphia_reference": "South Indian Inscriptions Vol. XI / Epigraphia Indica, Medieval Grant Stele",
+            "historical_summary": "Imperial land and temple endowment charter recording sovereign governance, civic assembly ratification, perpetual water-libation grant (dhārāpūrvakaṁ), and the canonical Varanasi cow-protection imprecation.",
+            "linguistic_significance": "Exquisite circular cursive Halegannada with hooked talakattu, complex ligatures (vattakshara), and classical epigraphical formulae.",
             "canonical_lines": [
-                ("ಶ್ರೀಮತ್ ತ್ರೈಲೋಕ್ಯಮಲ್ಲ ಜಯಸಿಂಹ ದೇವರ್ ರಾಜ್ಯಂಗೆಯ್ಯುತ್ತಮಿರೆ", "śrīmat trailōkyamalla jayasimha dēvar rājyangeyyuttamire", "ಶ್ರೀಮಂತ ತ್ರೈಲೋಕ್ಯಮಲ್ಲ ಜಯಸಿಂಹ ರಾಜನು ಆಳ್ವಿಕೆ ಮಾಡುತ್ತಿರುವಾಗ,"),
-                ("ಲಕ್ಕುಂಡಿಯೊಳ್ ಅಯ್ಯಾವೊಳೆಯ ಐನೂರ್ವರ್ ಸುಂಕಮಂ ಬಿಟ್ಟಾರ್", "lakkuṇḍiyoḷ ayyāvoḷeya ainūrvar suṅkamaṁ biṭṭār", "ಲಕ್ಕುಂಡಿಯಲ್ಲಿ ಅಯ್ಯಾವೊಳೆ ಐನೂರು ವ್ಯಾಪಾರಿಗಳು ಸುಂಕವನ್ನು ಮನ್ನಾ ಮಾಡಿದರು,"),
-                ("ಆಚಂದ್ರಾರ್ಕಂ ಧರ್ಮಂ ಸದಾ ರಕ್ಷಿಸಲ್ಪಡಲಿ", "ācandrārkaṁ dharmaṁ sadā rakṣisalpaḍali", "ಸೂರ್ಯ-ಚಂದ್ರರಿರುವವರೆಗೂ ಈ ಧರ್ಮವು ರಕ್ಷಿಸಲ್ಪಡಲಿ.")
+                ("ಸ್ವಸ್ತಿ ಶ್ರೀಮತ್ ರಾಜಾಧಿರಾಜ ಪರಮೇಶ್ವರ ಪರಮಭಟ್ಟಾರಕಂ", "svasti śrīmat rājādhirāja paramēśvara paramabhaṭṭārakaṁ", "ಮಂಗಳವಾಗಲಿ! ಶ್ರೀಮಂತ ರಾಜಾಧಿರಾಜ, ಪರಮೇಶ್ವರ, ಪರಮಭಟ್ಟಾರಕ ಚಕ್ರವರ್ತಿಯ ಆಳ್ವಿಕೆಯಲ್ಲಿ,"),
+                ("ಶ್ರೀಮತ್ ರಾಯಂ ದೇವರ್ ಸುಖ-ಸಂಕಥಾ ವಿನೋದದಿಂ ರಾಜ್ಯಂಗೆಯ್ಯುತ್ತಮಿರೆ", "śrīmat rāyaṁ dēvar sukha-saṅkathā vinōdadiṁ rājyaṅgeyyuttamire", "ಶ್ರೀಮಂತ ಮಹಾರಾಜನು ಸುಖ-ಸಂಕಥಾ ವಿನೋದದಿಂದ ಧರ್ಮರಾಜ್ಯವನ್ನು ಆಳುತ್ತಿದ್ದ ಸಂದರ್ಭದಲ್ಲಿ,"),
+                ("ಊರ ಮುಂಭಾಗದೊಳ್ ಶ್ರೀಮದ್ ಗೌಡ ಪ್ರಜೆಗಳುಂ ಸಭೆ ಕೂಡಿದೊಳ್", "ūra mumbhāgadoḷ śrīmad gauḍa prajegaḷuṁ sabhe kūḍidoḷ", "ಗ್ರಾಮದ ಮುಂಭಾಗದಲ್ಲಿ ಪ್ರಮುಖ ಗೌಡರು ಮತ್ತು ಸಮಸ್ತ ಪ್ರಜೆಗಳು ಸಭೆ ಸೇರಿ,"),
+                ("ದೇವರ್ಗೆ ನಿತ್ಯ ನಿವೇದ್ಯಕ್ಕಂ ಧರ್ಮಕ್ಕಂ ಧಾರಾಪೂರ್ವಕಂ ಮಾಡಿ ಕೊಟ್ಟಾರ್", "dēvarge nitya nivēdyakkaṁ dharmakkaṁ dhārāpūrvakaṁ māḍi koṭṭಾರ್", "ದೇವರಿಗೆ ನಿತ್ಯ ನೈವೇದ್ಯ ಮತ್ತು ಧರ್ಮಕಾರ್ಯಕ್ಕಾಗಿ ಧಾರೆ ಎರೆದು (ಧಾರಾಪೂರ್ವಕವಾಗಿ) ಭೂದಾನವನ್ನು ನೀಡಿದರು."),
+                ("ಆಚಂದ್ರಾರ್ಕ ತಾರಾಂಬರಂ ಬಱಂ ಸದಾ ಧರ್ಮಂ ನಿಲ್ಕೆ", "ācandrārka tārāmbaraṁ baṟaṁ sadā dharmaṁ nilke", "ಸೂರ್ಯ, ಚಂದ್ರ, ನಕ್ಷತ್ರಗಳು ಮತ್ತು ಆಕಾಶವಿರುವವರೆಗೂ ಈ ಧರ್ಮಕಾರ್ಯವು ಶಾಶ್ವತವಾಗಿ ನಿಲ್ಲಲಿ."),
+                ("ಈ ಧರ್ಮಮಂ ಪ್ರತಿಪಾಲಿಸಿದವರ್ಗೆ ಅಶ್ವಮೇಧ ಯಾಗದ ಮಹಾಫಲಮಕ್ಕುಂ", "ī dharmamaṁ pratipālisidavarge aśvamēdha yāgada mahāphalamakkuṁ", "ಈ ಧರ್ಮವನ್ನು ರಕ್ಷಿಸಿ ಪಾಲಿಸುವವರಿಗೆ ಅಶ್ವಮೇಧ ಯಾಗವನ್ನು ಆಚರಿಸಿದಷ್ಟೇ ಮಹಾ ಪುಣ್ಯಫಲವು ಲಭಿಸುವುದು."),
+                ("ಇದನಱಿದು ಅೞಿವಂಗೆ ವಾರಣಾಸಿಯೊಳ್ ಸಾಸಿರ ಕಪಿಲೆಯುಂ", "idanaṟidu aḻivange vāraṇāsiyoḷ sāsira kapileyuṁ", "ಇದನ್ನು ತಿಳಿದೂ ಈ ದಾನವನ್ನು ಹಾಳುಮಾಡುವವನಿಗೆ ಅಥವಾ ನಾಶಪಡಿಸುವವನಿಗೆ ವಾರಣಾಸಿಯಲ್ಲಿ (ಕಾಶಿ) ಸಾವಿರ ಕಪಿಲೆ ಹಸುಗಳನ್ನು,"),
+                ("ಬ್ರಾಹ್ಮಣರಂ ಕೊಂದ ಮಹಾಪಾತಕಂ ಸಾರ್ಗುಂ", "brāhmaṇaraṁ konda mahāpātakaṁ sಾರ್ಗುಂ", "ಮತ್ತು ತಪಸ್ವಿ ಬ್ರಾಹ್ಮಣರನ್ನು ಕೊಂದ ಮಹಾಪಾಪವು (ಘೋರ ಪಾಪವು) ಸುತ್ತಿಕೊಳ್ಳುವುದು.")
             ]
         },
         ScriptClassId.HOYSALA: {
             "dynasty": "Hoysala Empire (ಹೊಯ್ಸಳ ಸಾಮ್ರಾಜ್ಯ)",
-            "ruler": "Vishnuvardhana (Bittideva)",
+            "ruler": "Vishnuvardhana (Bittideva) / Vira Ballala II",
             "regnal_period": "c. 1108 – 1152 CE",
             "approximate_date": "c. 12th Century CE",
             "century": "12th Century CE",
-            "find_spot": {"village": "Belur", "taluk": "Belur", "district": "Hassan", "state": "Karnataka", "coordinates": [13.1623, 75.8596]},
-            "epigraphia_reference": "Epigraphia Carnatica Vol. V, Belur 58",
-            "historical_summary": "Celebrates the founding of the Chennakeshava temple and royal victory over Cholas at Talakadu.",
+            "find_spot": {"village": "Belur / Halebidu", "taluk": "Belur", "district": "Hassan", "state": "Karnataka", "coordinates": [13.1623, 75.8596]},
+            "epigraphia_reference": "Epigraphia Carnatica Vol. V, Belur / Halebidu Inscriptions",
+            "historical_summary": "Royal Hoysala endowment charter commemorating victory and temple patronage, conferring perpetual agrahara land with sacred water libation and sacred protection covenants.",
             "linguistic_significance": "Florid soapstone calligraphic script with deeply undercut ornamentation and spiral ligatures.",
             "canonical_lines": [
-                ("ಶ್ರೀ ಬಿಟ್ಟಿದೇವ ಮಹಾರಾಯರ್ ಬೇಲೂರಿನೊಳ್", "śrī biṭṭidēva mahārāyar bēlūrinoḷ", "ಶ್ರೀ ವಿಷ್ಣುವರ್ಧನ ಮಹಾರಾಜರು ಬೇಲೂರಿನಲ್ಲಿ,"),
-                ("ಶ್ರೀ ವಿಜಯನಾರಾಯಣ ದೇವರಂ ಭಕ್ತಿಯಿಂ ಪ್ರತಿಷ್ಠೆ ಮಾಡಿಸಿದರ್", "śrī vijayanārāyaṇa dēvaraṁ bhaktiyiṁ pratiṣṭhe māḍisidar", "ಶ್ರೀ ವಿಜಯನಾರಾಯಣ (ಚೆನ್ನಕೇಶವ) ದೇವರನ್ನು ಭಕ್ತಿಯಿಂದ ಪ್ರತಿಷ್ಠಾಪಿಸಿದರು,"),
-                ("ಚೋಳನಂ ಕೊಂದೆನ್ ಪಾಂಡ್ಯನಂ ತಱಿದೆನ್ ಎಂದು ಬೀಗಿದರ್", "chōḷanaṁ konden pāṇḍyanaṁ taṟiden endu bīgidar", "ಚೋಳ-ಪಾಂಡ್ಯರನ್ನು ಯುದ್ಧದಲ್ಲಿ ಹಿಮ್ಮೆಟ್ಟಿಸಿ ವಿಜಯ ಶಾಸನ ಬರೆಸಿದರು.")
+                ("ಸ್ವಸ್ತಿ ಶ್ರೀಮತ್ ಪ್ರತಾಪ ಚಕ್ರವರ್ತಿ ಹೊಯ್ಸಳ ವೀರಬಲ್ಲಾಳ ದೇವರ್", "svasti śrīmat pratāpa cakravarti hoysaḷa vīraballāḷa dēvar", "ಮಂಗಳವಾಗಲಿ! ಪ್ರತಾಪ ಚಕ್ರವರ್ತಿ ಹೊಯ್ಸಳ ವೀರಬಲ್ಲಾಳ ಮಹಾರಾಜರ ವಿಜಯಶಾಲಿ ಆಳ್ವಿಕೆಯಲ್ಲಿ,"),
+                ("ಶ್ರೀಮತ್ ರಾಜಧಾನಿ ದೊರೆಸಮುದ್ರದೊಳ್ ಸುಖದಿಂ ರಾಜ್ಯಂಗೆಯ್ಯುತ್ತಮಿರೆ", "śrīmat rājadhāni dōrasamudradoḷ sukhadiṁ rājyaṅgeyyuttamire", "ರಾಜಧಾನಿ ದ್ವಾರಸಮುದ್ರದಲ್ಲಿ (ಹಳೇಬೀಡು) ಶಾಂತಿ-ಸಮೃದ್ಧಿಯಿಂದ ಧರ್ಮರಾಜ್ಯವಾಳುತ್ತಿರುವಾಗ,"),
+                ("ಶ್ರೀ ವಿಜಯನಾರಾಯಣ ದೇವರ ಅಮೃತಪಡಿಗೆ ಸರ್ವಮಾನ್ಯವಾಗಿ", "śrī vijayanārāyaṇa dēvara amr̥tapaḍige sarvamānyavāgi", "ಶ್ರೀ ವಿಜಯನಾರಾಯಣ (ಚೆನ್ನಕೇಶವ) ದೇವರ ನಿತ್ಯ ನೈವೇದ್ಯ ಮತ್ತು ಪೂಜೆಗಾಗಿ ಸರ್ವ ತೆರಿಗೆ ಮುಕ್ತವಾಗಿ,"),
+                ("ಸರ್ವಬಾಧಾ ಪರಿಹಾರವಾಗಿ ಧಾರಾಪೂರ್ವಕಂ ಮಾಡಿ ಕೊಟ್ಟ ದತ್ತಿ", "sarvabādhā parihāravāgi dhārāpūrvakaṁ māḍi koṭṭa datti", "ಸಕಲ ಉಪದ್ರವ-ತೆರಿಗೆಗಳಿಂದ ಮುಕ್ತವಾಗಿ ಧಾರೆ ಎರೆದು (ಧಾರಾಪೂರ್ವಕವಾಗಿ) ನೀಡಿದ ಶಾಶ್ವತ ಭೂದಾನ."),
+                ("ಆಚಂದ್ರಾರ್ಕ ತಾರಾಂಬರಂ ಬಱಂ ಸದಾ ಧರ್ಮಂ ನಿಲ್ಕೆ", "ācandrārka tārāmbaraṁ baṟaṁ sadā dharmaṁ nilke", "ಸೂರ್ಯ, ಚಂದ್ರ, ನಕ್ಷತ್ರಗಳು ಮತ್ತು ಆಕಾಶವಿರುವವರೆಗೂ ಈ ಧರ್ಮಕಾರ್ಯವು ಶಾಶ್ವತವಾಗಿ ನಿಲ್ಲಲಿ."),
+                ("ಈ ಧರ್ಮಮಂ ಪ್ರತಿಪಾಲಿಸಿದವರ್ಗೆ ಅಶ್ವಮೇಧ ಯಾಗದ ಮಹಾಫಲಮಕ್ಕುಂ", "ī dharmamaṁ pratipālisidavarge aśvamēdha yāgada mahāphalamakkuṁ", "ಈ ಧರ್ಮವನ್ನು ರಕ್ಷಿಸಿ ಪಾಲಿಸುವವರಿಗೆ ಅಶ್ವಮೇಧ ಯಾಗವನ್ನು ಆಚರಿಸಿದಷ್ಟೇ ಮಹಾ ಪುಣ್ಯಫಲವು ಲಭಿಸುವುದು."),
+                ("ಇದನಱಿದು ಅೞಿವಂಗೆ ವಾರಣಾಸಿಯೊಳ್ ಸಾಸಿರ ಕಪಿಲೆಯುಂ", "idanaṟidu aḻivange vāraṇāsiyoḷ sāsira kapileyuṁ", "ಇದನ್ನು ತಿಳಿದೂ ಈ ದಾನವನ್ನು ಹಾಳುಮಾಡುವವನಿಗೆ ವಾರಣಾಸಿಯಲ್ಲಿ ಸಾವಿರ ಕಪಿಲೆ ಗೋವುಗಳನ್ನು,"),
+                ("ಬ್ರಾಹ್ಮಣರಂ ಕೊಂದ ಮಹಾಪಾತಕಂ ಸಾರ್ಗುಂ", "brāhmaṇaraṁ konda mahāpātakaṁ sಾರ್ಗುಂ", "ಮತ್ತು ತಪಸ್ವಿ ಬ್ರಾಹ್ಮಣರನ್ನು ಕೊಂದ ಘೋರ ಮಹಾಪಾತಕವು (ಮಹಾಪಾಪವು) ಸುತ್ತಿಕೊಳ್ಳುವುದು.")
             ]
         },
         ScriptClassId.VIJAYANAGARA: {

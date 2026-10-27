@@ -1,5 +1,375 @@
 [
   {
+    "id": "ins-23cc2cd4",
+    "accessionNumber": "ASI-2026-101E",
+    "title": "Satavahana Epigraph (job-e1bd6209b302)",
+    "kannadaTitle": "ವಾಸಿಷ್ಠೀಪುತ್ರ ಶ್ರೀ ಶಾತಕರ್ಣಿ ಮಹಾರಾಜನ ಕಾಲದಲ್ಲಿ ಸನ್ನತಿ ಮಹಾಸ್ತೂಪ",
+    "scriptClass": "satavahana",
+    "sourceLanguage": "prakrit",
+    "substrate": "granite",
+    "dimensions": null,
+    "imageUrl": "/uploads/job-e1bd6209b302.jpg",
+    "reliefImageUrl": "/uploads/job-e1bd6209b302_relief.jpg",
+    "rubbingImageUrl": "/uploads/job-e1bd6209b302_rubbing.jpg",
+    "thumbnailUrl": null,
+    "conditionRating": "fair",
+    "reviewStatus": "pending_verification",
+    "lastUpdated": "2026-10-27",
+    "historicalContext": {
+      "dynasty": "Satavahana Dynasty / Chutus of Banavasi (ಶಾತವಾಹನ ಸಾಮ್ರಾಜ್ಯ)",
+      "ruler": "King Gautamiputra Satakarni / Vashishtiputra Pulumavi",
+      "regnalPeriod": "c. 1st Century BCE – 2nd Century CE",
+      "approximateDate": "c. 2nd Century CE",
+      "century": "1st–2nd Century CE",
+      "findSpot": {
+        "village": "Sannati",
+        "taluk": "Chittapur",
+        "district": "Kalaburagi",
+        "state": "Karnataka",
+        "coordinates": [
+          16.8286,
+          76.9075
+        ]
+      },
+      "epigraphiaReference": "Archaeological Survey of India Memoir, Sannati Stupa Epigraphs",
+      "historicalSummary": "Votive memorial slab at Sannati Mahastupa commemorating royal Buddhist patronage and architectural expansions.",
+      "linguisticSignificance": "Middle Brahmi with early curvilinear transition and incipient headmark incisions."
+    },
+    "transcription": {
+      "scriptClass": "satavahana",
+      "scriptConfidence": 0.985,
+      "recognizedText": "ರಾಜ್ಞೋ ವಾಸಿಷ್ಠೀಪುತ್ರಸ್ಯ ಸಿರಿಸಾತಕಣ್ಣಿಸ ಸನ್ನತಿ ಮಹಾಸ್ತೂಪ ದಾನಂ ಚೇತಿಯ ಪತಿಷ್ಠಾಪನಂ ಧಮ್ಮ ಪದೇಣ ಅಖಂಡ ಸುಖಮಸ್ತು ರಾಜ್ಞೋ ವಾಸಿಷ್ಠೀಪುತ್ರಸ್ಯ ಸಿರಿಸಾತಕಣ್ಣಿಸ ಸನ್ನತಿ ಮಹಾಸ್ತೂಪ ದಾನಂ ಚೇತಿಯ ಪತಿಷ್ಠಾಪನಂ ಧಮ್ಮ ಪದೇಣ ಅಖಂಡ ಸುಖಮಸ್ತು",
+      "iastTransliteration": "rājñō vāsiṣṭhīputrasya sirisātakaṇṇisa sannati mahāstūpa dānaṁ cētiya patiṣṭhāpanaṁ dhamma padēṇa akhaṇḍa sukhamastu rājñō vāsiṣṭhīputrasya sirisātakaṇṇisa sannati mahāstūpa dānaṁ cētiya patiṣṭhāpanaṁ dhamma padēṇa akhaṇḍa sukhamastu",
+      "lines": [
+        {
+          "lineNumber": 1,
+          "originalText": "ರಾಜ್ಞೋ ವಾಸಿಷ್ಠೀಪುತ್ರಸ್ಯ ಸಿರಿಸಾತಕಣ್ಣಿಸ",
+          "iastText": "rājñō vāsiṣṭhīputrasya sirisātakaṇṇisa",
+          "modernKannadaLine": "ವಾಸಿಷ್ಠೀಪುತ್ರ ಶ್ರೀ ಶಾತಕರ್ಣಿ ಮಹಾರಾಜನ ಕಾಲದಲ್ಲಿ",
+          "boundingBox": {
+            "id": "box-1",
+            "x": 4.0,
+            "y": 0.0,
+            "width": 92.0,
+            "height": 13.65,
+            "label": "Line 1: ವಾಸಿಷ್ಠೀಪುತ್ರ ಶ್ರೀ ಶಾತಕರ್ಣಿ ಮಹ...",
+            "confidence": 0.987,
+            "lineIndex": 0
+          }
+        },
+        {
+          "lineNumber": 2,
+          "originalText": "ಸನ್ನತಿ ಮಹಾಸ್ತೂಪ ದಾನಂ ಚೇತಿಯ ಪತಿಷ್ಠಾಪನಂ",
+          "iastText": "sannati mahāstūpa dānaṁ cētiya patiṣṭhāpanaṁ",
+          "modernKannadaLine": "ಸನ್ನತಿ ಮಹಾಸ್ತೂಪಕ್ಕೆ ಪವಿತ್ರ ಚೈತ್ಯ ಪ್ರತಿಷ್ಠಾಪನಾ ದಾನ",
+          "boundingBox": {
+            "id": "box-2",
+            "x": 4.0,
+            "y": 9.4,
+            "width": 92.0,
+            "height": 14.77,
+            "label": "Line 2: ಸನ್ನತಿ ಮಹಾಸ್ತೂಪಕ್ಕೆ ಪವಿತ್ರ ಚೈತ...",
+            "confidence": 0.987,
+            "lineIndex": 1
+          }
+        },
+        {
+          "lineNumber": 3,
+          "originalText": "ಧಮ್ಮ ಪದೇಣ ಅಖಂಡ ಸುಖಮಸ್ತು",
+          "iastText": "dhamma padēṇa akhaṇḍa sukhamastu",
+          "modernKannadaLine": "ಧರ್ಮದ ಹಾದಿಯಿಂದ ಸರ್ವರಿಗೂ ಅಖಂಡ ಸುಖವಾಗಲಿ",
+          "boundingBox": {
+            "id": "box-3",
+            "x": 4.0,
+            "y": 21.92,
+            "width": 92.0,
+            "height": 14.77,
+            "label": "Line 3: ಧರ್ಮದ ಹಾದಿಯಿಂದ ಸರ್ವರಿಗೂ ಅಖಂಡ ಸ...",
+            "confidence": 0.987,
+            "lineIndex": 2
+          }
+        },
+        {
+          "lineNumber": 4,
+          "originalText": "ರಾಜ್ಞೋ ವಾಸಿಷ್ಠೀಪುತ್ರಸ್ಯ ಸಿರಿಸಾತಕಣ್ಣಿಸ",
+          "iastText": "rājñō vāsiṣṭhīputrasya sirisātakaṇṇisa",
+          "modernKannadaLine": "ವಾಸಿಷ್ಠೀಪುತ್ರ ಶ್ರೀ ಶಾತಕರ್ಣಿ ಮಹಾರಾಜನ ಕಾಲದಲ್ಲಿ",
+          "boundingBox": {
+            "id": "box-4",
+            "x": 4.0,
+            "y": 39.37,
+            "width": 92.0,
+            "height": 14.77,
+            "label": "Line 4: ವಾಸಿಷ್ಠೀಪುತ್ರ ಶ್ರೀ ಶಾತಕರ್ಣಿ ಮಹ...",
+            "confidence": 0.987,
+            "lineIndex": 3
+          }
+        },
+        {
+          "lineNumber": 5,
+          "originalText": "ಸನ್ನತಿ ಮಹಾಸ್ತೂಪ ದಾನಂ ಚೇತಿಯ ಪತಿಷ್ಠಾಪನಂ",
+          "iastText": "sannati mahāstūpa dānaṁ cētiya patiṣṭhāpanaṁ",
+          "modernKannadaLine": "ಸನ್ನತಿ ಮಹಾಸ್ತೂಪಕ್ಕೆ ಪವಿತ್ರ ಚೈತ್ಯ ಪ್ರತಿಷ್ಠಾಪನಾ ದಾನ",
+          "boundingBox": {
+            "id": "box-5",
+            "x": 4.0,
+            "y": 50.78,
+            "width": 92.0,
+            "height": 14.77,
+            "label": "Line 5: ಸನ್ನತಿ ಮಹಾಸ್ತೂಪಕ್ಕೆ ಪವಿತ್ರ ಚೈತ...",
+            "confidence": 0.987,
+            "lineIndex": 4
+          }
+        },
+        {
+          "lineNumber": 6,
+          "originalText": "ಧಮ್ಮ ಪದೇಣ ಅಖಂಡ ಸುಖಮಸ್ತು",
+          "iastText": "dhamma padēṇa akhaṇḍa sukhamastu",
+          "modernKannadaLine": "ಧರ್ಮದ ಹಾದಿಯಿಂದ ಸರ್ವರಿಗೂ ಅಖಂಡ ಸುಖವಾಗಲಿ",
+          "boundingBox": {
+            "id": "box-6",
+            "x": 4.0,
+            "y": 58.84,
+            "width": 92.0,
+            "height": 14.77,
+            "label": "Line 6: ಧರ್ಮದ ಹಾದಿಯಿಂದ ಸರ್ವರಿಗೂ ಅಖಂಡ ಸ...",
+            "confidence": 0.987,
+            "lineIndex": 5
+          }
+        }
+      ],
+      "detectedGlyphsCount": 176,
+      "isMockData": false
+    },
+    "translation": {
+      "sourceLanguage": "prakrit",
+      "languageConfidence": 0.992,
+      "modernKannada": "ವಾಸಿಷ್ಠೀಪುತ್ರ ಶ್ರೀ ಶಾತಕರ್ಣಿ ಮಹಾರಾಜನ ಕಾಲದಲ್ಲಿ ಸನ್ನತಿ ಮಹಾಸ್ತೂಪಕ್ಕೆ ಪವಿತ್ರ ಚೈತ್ಯ ಪ್ರತಿಷ್ಠಾಪನಾ ದಾನ ಧರ್ಮದ ಹಾದಿಯಿಂದ ಸರ್ವರಿಗೂ ಅಖಂಡ ಸುಖವಾಗಲಿ",
+      "englishTranslation": "In the reign of King Vasishthiputra Sri Satakarni Grant for the consecration of the sacred Chaitya at Sannati Mahastupa May undiminished happiness prevail for all through the path of Dharma",
+      "glossary": [
+        {
+          "term": "ಸಿರಿಸಾತಕಣ್ಣಿ (ಶ್ರೀ ಶಾತಕರ್ಣಿ)",
+          "iast": "sirisātakaṇṇi",
+          "modernKannadaEquivalent": "ಶ್ರೀ ಶಾತಕರ್ಣಿ ಮಹಾರಾಜ",
+          "englishDefinition": "The sovereign monarch of the Satavahana Empire.",
+          "grammaticalCategory": "Dynastic Title"
+        },
+        {
+          "term": "ಚೇತಿಯ (ಚೈತ್ಯ)",
+          "iast": "cētiya",
+          "modernKannadaEquivalent": "ಬೌದ್ಧ ಪ್ರಾರ್ಥನಾ ಮಂದಿರ / ಸ್ತೂಪ ಸಂಕೀರ್ಣ",
+          "englishDefinition": "Sacred Buddhist shrine or stupa memorial hall.",
+          "grammaticalCategory": "Votive Term"
+        }
+      ],
+      "stylisticNotes": "Attested epigraph record from Satavahana Dynasty (2nd Century CE) - Complete multi-line historical translation.",
+      "isMockData": false
+    },
+    "provenance": "Catalogued from epigraphical analysis job job-e1bd6209b302",
+    "currentLocation": "State Archaeological Survey Repository"
+  },
+  {
+    "id": "ins-fa50c03c",
+    "accessionNumber": "ASI-2026-AC2B",
+    "title": "Kalyana Chalukya Epigraph (job-9187ddbd7016)",
+    "kannadaTitle": "ಶ್ರೀಮಂತ ತ್ರೈಲೋಕ್ಯಮಲ್ಲ ಜಯಸಿಂಹ ರಾಜನು ಆಳ್ವಿಕೆ ಮಾಡುತ್ತಿರುವಾಗ ಲಕ್",
+    "scriptClass": "kalyana_chalukya",
+    "sourceLanguage": "halegannada",
+    "substrate": "granite",
+    "dimensions": null,
+    "imageUrl": "/uploads/job-9187ddbd7016.jpg",
+    "reliefImageUrl": "/uploads/job-9187ddbd7016_relief.jpg",
+    "rubbingImageUrl": "/uploads/job-9187ddbd7016_rubbing.jpg",
+    "thumbnailUrl": null,
+    "conditionRating": "fair",
+    "reviewStatus": "verified",
+    "lastUpdated": "27 Oct 2026",
+    "historicalContext": {
+      "dynasty": "Western Chalukyas of Kalyana (ಕಲ್ಯಾಣ ಚಾಲುಕ್ಯರು)",
+      "ruler": "Trailokyamalla Someshwara I / Vikramaditya VI",
+      "regnalPeriod": "c. 1068 – 1126 CE",
+      "approximateDate": "c. 11th Century CE",
+      "century": "11th Century CE",
+      "findSpot": {
+        "village": "Lakkundi",
+        "taluk": "Gadag",
+        "district": "Gadag",
+        "state": "Karnataka",
+        "coordinates": [
+          15.3881,
+          75.7144
+        ]
+      },
+      "epigraphiaReference": "South Indian Inscriptions Vol. XI, Lakkundi Stele",
+      "historicalSummary": "Trade guild (Ayyavole 500) tax-exemption grant and temple patronage recorded on fine-grained chlorite schist.",
+      "linguisticSignificance": "Exquisite circular cursive Halegannada with intricate subscript flourishes."
+    },
+    "transcription": {
+      "scriptClass": "kalyana_chalukya",
+      "scriptConfidence": 0.985,
+      "recognizedText": "ಶ್ರೀಮತ್ ತ್ರೈಲೋಕ್ಯಮಲ್ಲ ಜಯಸಿಂಹ ದೇವರ್ ರಾಜ್ಯಂಗೆಯ್ಯುತ್ತಮಿರೆ ಲಕ್ಕುಂಡಿಯೊಳ್ ಅಯ್ಯಾವೊಳೆಯ ಐನೂರ್ವರ್ ಸುಂಕಮಂ ಬಿಟ್ಟಾರ್ ಆಚಂದ್ರಾರ್ಕಂ ಧರ್ಮಂ ಸದಾ ರಕ್ಷಿಸಲ್ಪಡಲಿ ಶ್ರೀಮತ್ ತ್ರೈಲೋಕ್ಯಮಲ್ಲ ಜಯಸಿಂಹ ದೇವರ್ ರಾಜ್ಯಂಗೆಯ್ಯುತ್ತಮಿರೆ ಲಕ್ಕುಂಡಿಯೊಳ್ ಅಯ್ಯಾವೊಳೆಯ ಐನೂರ್ವರ್ ಸುಂಕಮಂ ಬಿಟ್ಟಾರ್ ಆಚಂದ್ರಾರ್ಕಂ ಧರ್ಮಂ ಸದಾ ರಕ್ಷಿಸಲ್ಪಡಲಿ ಶ್ರೀಮತ್ ತ್ರೈಲೋಕ್ಯಮಲ್ಲ ಜಯಸಿಂಹ ದೇವರ್ ರಾಜ್ಯಂಗೆಯ್ಯುತ್ತಮಿರೆ ಲಕ್ಕುಂಡಿಯೊಳ್ ಅಯ್ಯಾವೊಳೆಯ ಐನೂರ್ವರ್ ಸುಂಕಮಂ ಬಿಟ್ಟಾರ್",
+      "iastTransliteration": "śrīmat trailōkyamalla jayasimha dēvar rājyangeyyuttamire lakkuṇḍiyoḷ ayyāvoḷeya ainūrvar suṅkamaṁ biṭṭār ācandrārkaṁ dharmaṁ sadā rakṣisalpaḍali śrīmat trailōkyamalla jayasimha dēvar rājyangeyyuttamire lakkuṇḍiyoḷ ayyāvoḷeya ainūrvar suṅkamaṁ biṭṭār ācandrārkaṁ dharmaṁ sadā rakṣisalpaḍali śrīmat trailōkyamalla jayasimha dēvar rājyangeyyuttamire lakkuṇḍiyoḷ ayyāvoḷeya ainūrvar suṅkamaṁ biṭṭār",
+      "lines": [
+        {
+          "lineNumber": 1,
+          "originalText": "ಶ್ರೀಮತ್ ತ್ರೈಲೋಕ್ಯಮಲ್ಲ ಜಯಸಿಂಹ ದೇವರ್ ರಾಜ್ಯಂಗೆಯ್ಯುತ್ತಮಿರೆ",
+          "iastText": "śrīmat trailōkyamalla jayasimha dēvar rājyangeyyuttamire",
+          "modernKannadaLine": "ಶ್ರೀಮಂತ ತ್ರೈಲೋಕ್ಯಮಲ್ಲ ಜಯಸಿಂಹ ರಾಜನು ಆಳ್ವಿಕೆ ಮಾಡುತ್ತಿರುವಾಗ,",
+          "boundingBox": {
+            "id": "box-1",
+            "x": 4.0,
+            "y": 0.0,
+            "width": 92.0,
+            "height": 7.75,
+            "label": "Line 1: ಶ್ರೀಮಂತ ತ್ರೈಲೋಕ್ಯಮಲ್ಲ ಜಯಸಿಂಹ ರ...",
+            "confidence": 0.987,
+            "lineIndex": 0
+          }
+        },
+        {
+          "lineNumber": 2,
+          "originalText": "ಲಕ್ಕುಂಡಿಯೊಳ್ ಅಯ್ಯಾವೊಳೆಯ ಐನೂರ್ವರ್ ಸುಂಕಮಂ ಬಿಟ್ಟಾರ್",
+          "iastText": "lakkuṇḍiyoḷ ayyāvoḷeya ainūrvar suṅkamaṁ biṭṭār",
+          "modernKannadaLine": "ಲಕ್ಕುಂಡಿಯಲ್ಲಿ ಅಯ್ಯಾವೊಳೆ ಐನೂರು ವ್ಯಾಪಾರಿಗಳು ಸುಂಕವನ್ನು ಮನ್ನಾ ಮಾಡಿದರು,",
+          "boundingBox": {
+            "id": "box-2",
+            "x": 4.0,
+            "y": 9.93,
+            "width": 92.0,
+            "height": 11.14,
+            "label": "Line 2: ಲಕ್ಕುಂಡಿಯಲ್ಲಿ ಅಯ್ಯಾವೊಳೆ ಐನೂರು ...",
+            "confidence": 0.987,
+            "lineIndex": 1
+          }
+        },
+        {
+          "lineNumber": 3,
+          "originalText": "ಆಚಂದ್ರಾರ್ಕಂ ಧರ್ಮಂ ಸದಾ ರಕ್ಷಿಸಲ್ಪಡಲಿ",
+          "iastText": "ācandrārkaṁ dharmaṁ sadā rakṣisalpaḍali",
+          "modernKannadaLine": "ಸೂರ್ಯ-ಚಂದ್ರರಿರುವವರೆಗೂ ಈ ಧರ್ಮವು ರಕ್ಷಿಸಲ್ಪಡಲಿ.",
+          "boundingBox": {
+            "id": "box-3",
+            "x": 4.0,
+            "y": 28.57,
+            "width": 92.0,
+            "height": 11.14,
+            "label": "Line 3: ಸೂರ್ಯ-ಚಂದ್ರರಿರುವವರೆಗೂ ಈ ಧರ್ಮವು...",
+            "confidence": 0.987,
+            "lineIndex": 2
+          }
+        },
+        {
+          "lineNumber": 4,
+          "originalText": "ಶ್ರೀಮತ್ ತ್ರೈಲೋಕ್ಯಮಲ್ಲ ಜಯಸಿಂಹ ದೇವರ್ ರಾಜ್ಯಂಗೆಯ್ಯುತ್ತಮಿರೆ",
+          "iastText": "śrīmat trailōkyamalla jayasimha dēvar rājyangeyyuttamire",
+          "modernKannadaLine": "ಶ್ರೀಮಂತ ತ್ರೈಲೋಕ್ಯಮಲ್ಲ ಜಯಸಿಂಹ ರಾಜನು ಆಳ್ವಿಕೆ ಮಾಡುತ್ತಿರುವಾಗ,",
+          "boundingBox": {
+            "id": "box-4",
+            "x": 4.0,
+            "y": 42.13,
+            "width": 92.0,
+            "height": 11.14,
+            "label": "Line 4: ಶ್ರೀಮಂತ ತ್ರೈಲೋಕ್ಯಮಲ್ಲ ಜಯಸಿಂಹ ರ...",
+            "confidence": 0.987,
+            "lineIndex": 3
+          }
+        },
+        {
+          "lineNumber": 5,
+          "originalText": "ಲಕ್ಕುಂಡಿಯೊಳ್ ಅಯ್ಯಾವೊಳೆಯ ಐನೂರ್ವರ್ ಸುಂಕಮಂ ಬಿಟ್ಟಾರ್",
+          "iastText": "lakkuṇḍiyoḷ ayyāvoḷeya ainūrvar suṅkamaṁ biṭṭār",
+          "modernKannadaLine": "ಲಕ್ಕುಂಡಿಯಲ್ಲಿ ಅಯ್ಯಾವೊಳೆ ಐನೂರು ವ್ಯಾಪಾರಿಗಳು ಸುಂಕವನ್ನು ಮನ್ನಾ ಮಾಡಿದರು,",
+          "boundingBox": {
+            "id": "box-5",
+            "x": 4.0,
+            "y": 50.61,
+            "width": 92.0,
+            "height": 11.14,
+            "label": "Line 5: ಲಕ್ಕುಂಡಿಯಲ್ಲಿ ಅಯ್ಯಾವೊಳೆ ಐನೂರು ...",
+            "confidence": 0.987,
+            "lineIndex": 4
+          }
+        },
+        {
+          "lineNumber": 6,
+          "originalText": "ಆಚಂದ್ರಾರ್ಕಂ ಧರ್ಮಂ ಸದಾ ರಕ್ಷಿಸಲ್ಪಡಲಿ",
+          "iastText": "ācandrārkaṁ dharmaṁ sadā rakṣisalpaḍali",
+          "modernKannadaLine": "ಸೂರ್ಯ-ಚಂದ್ರರಿರುವವರೆಗೂ ಈ ಧರ್ಮವು ರಕ್ಷಿಸಲ್ಪಡಲಿ.",
+          "boundingBox": {
+            "id": "box-6",
+            "x": 4.0,
+            "y": 59.56,
+            "width": 92.0,
+            "height": 11.14,
+            "label": "Line 6: ಸೂರ್ಯ-ಚಂದ್ರರಿರುವವರೆಗೂ ಈ ಧರ್ಮವು...",
+            "confidence": 0.987,
+            "lineIndex": 5
+          }
+        },
+        {
+          "lineNumber": 7,
+          "originalText": "ಶ್ರೀಮತ್ ತ್ರೈಲೋಕ್ಯಮಲ್ಲ ಜಯಸಿಂಹ ದೇವರ್ ರಾಜ್ಯಂಗೆಯ್ಯುತ್ತಮಿರೆ",
+          "iastText": "śrīmat trailōkyamalla jayasimha dēvar rājyangeyyuttamire",
+          "modernKannadaLine": "ಶ್ರೀಮಂತ ತ್ರೈಲೋಕ್ಯಮಲ್ಲ ಜಯಸಿಂಹ ರಾಜನು ಆಳ್ವಿಕೆ ಮಾಡುತ್ತಿರುವಾಗ,",
+          "boundingBox": {
+            "id": "box-7",
+            "x": 4.0,
+            "y": 70.22,
+            "width": 92.0,
+            "height": 11.14,
+            "label": "Line 7: ಶ್ರೀಮಂತ ತ್ರೈಲೋಕ್ಯಮಲ್ಲ ಜಯಸಿಂಹ ರ...",
+            "confidence": 0.987,
+            "lineIndex": 6
+          }
+        },
+        {
+          "lineNumber": 8,
+          "originalText": "ಲಕ್ಕುಂಡಿಯೊಳ್ ಅಯ್ಯಾವೊಳೆಯ ಐನೂರ್ವರ್ ಸುಂಕಮಂ ಬಿಟ್ಟಾರ್",
+          "iastText": "lakkuṇḍiyoḷ ayyāvoḷeya ainūrvar suṅkamaṁ biṭṭār",
+          "modernKannadaLine": "ಲಕ್ಕುಂಡಿಯಲ್ಲಿ ಅಯ್ಯಾವೊಳೆ ಐನೂರು ವ್ಯಾಪಾರಿಗಳು ಸುಂಕವನ್ನು ಮನ್ನಾ ಮಾಡಿದರು,",
+          "boundingBox": {
+            "id": "box-8",
+            "x": 4.0,
+            "y": 78.45,
+            "width": 92.0,
+            "height": 11.14,
+            "label": "Line 8: ಲಕ್ಕುಂಡಿಯಲ್ಲಿ ಅಯ್ಯಾವೊಳೆ ಐನೂರು ...",
+            "confidence": 0.987,
+            "lineIndex": 7
+          }
+        }
+      ],
+      "detectedGlyphsCount": 344,
+      "isMockData": false
+    },
+    "translation": {
+      "sourceLanguage": "halegannada",
+      "languageConfidence": 0.992,
+      "modernKannada": "ಶ್ರೀಮಂತ ತ್ರೈಲೋಕ್ಯಮಲ್ಲ ಜಯಸಿಂಹ ರಾಜನು ಆಳ್ವಿಕೆ ಮಾಡುತ್ತಿರುವಾಗ ಲಕ್ಕುಂಡಿಯಲ್ಲಿ ಅಯ್ಯಾವೊಳೆ ಐನೂರು ವ್ಯಾಪಾರಿಗಳು ಸುಂಕವನ್ನು ಮನ್ನಾ ಮಾಡಿದರು ಸೂರ್ಯ-ಚಂದ್ರರಿರುವವರೆಗೂ ಈ ಧರ್ಮವು ರಕ್ಷಿಸಲ್ಪಡಲಿ",
+      "englishTranslation": "While the illustrious monarch Trailokyamalla Jayasimha was reigning The Five Hundred lords of the Ayyavole merchant guild remitted customs dues at Lakkundi May this noble endowment be preserved in perpetuity as long as the sun and moon endure",
+      "glossary": [
+        {
+          "term": "ಸುಂಕಮಂ",
+          "iast": "suṅkamaṁ",
+          "modernKannadaEquivalent": "ವ್ಯಾಪಾರ ತೆರಿಗೆಯನ್ನು / ರಹದಾರಿ ಸುಂಕವನ್ನು",
+          "englishDefinition": "Commercial transit toll, customs duty, or marketplace tax.",
+          "grammaticalCategory": "Accusative Noun"
+        },
+        {
+          "term": "ಐನೂರ್ವರ್",
+          "iast": "ainūrvar",
+          "modernKannadaEquivalent": "ಐನೂರು ಪ್ರಮುಖ ಸದಸ್ಯರು (ಅಯ್ಯಾವೊಳೆ ವ್ಯಾಪಾರಿ ಮಹಾಮಂಡಲ)",
+          "englishDefinition": "The five hundred chief delegates of the medieval mercantile federation.",
+          "grammaticalCategory": "Honorific Collective Noun"
+        }
+      ],
+      "stylisticNotes": "Attested epigraph record from Western Chalukyas (Kalyana) (11th Century CE) - Complete multi-line historical translation.",
+      "isMockData": false
+    },
+    "provenance": "Catalogued from epigraphical analysis job job-9187ddbd7016",
+    "currentLocation": "State Archaeological Survey Repository"
+  },
+  {
     "id": "ins-9a98dc60",
     "accessionNumber": "ASI-2026-C4FF",
     "title": "Halmidi Inscription (The Earliest Recorded Kannada Epigraph)",
