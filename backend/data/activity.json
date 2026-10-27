@@ -1,5 +1,45 @@
 [
   {
+    "id": "act-98b1bd0a",
+    "timestamp": "27 Oct 2026, 18:47",
+    "type": "rubbing_catalogued",
+    "title": "Rubbing Analyzed (Completed): Halmidi Inscription (The Earliest Recorded Kannada Epigraph)",
+    "description": "5-stage inference completed with status 'completed'. Inferred script: kadamba.",
+    "scholar": "Automated Computational Paleography Pipeline",
+    "inscriptionId": "ins-51ff6ecf",
+    "inscriptionTitle": "Halmidi Inscription (The Earliest Recorded Kannada Epigraph)"
+  },
+  {
+    "id": "act-ff1d7537",
+    "timestamp": "27 Oct 2026, 18:44",
+    "type": "rubbing_catalogued",
+    "title": "Rubbing Analyzed (Completed): Halmidi Inscription Stele",
+    "description": "5-stage inference completed with status 'completed'. Inferred script: kadamba.",
+    "scholar": "Automated Computational Paleography Pipeline",
+    "inscriptionId": "job-6aec3bfbdbce",
+    "inscriptionTitle": "Halmidi Inscription Stele"
+  },
+  {
+    "id": "act-3add7db3",
+    "timestamp": "27 Oct 2026, 18:39",
+    "type": "rubbing_catalogued",
+    "title": "Rubbing Analyzed (Completed): Halmidi Inscription Stele",
+    "description": "5-stage inference completed with status 'completed'. Inferred script: kadamba.",
+    "scholar": "Automated Computational Paleography Pipeline",
+    "inscriptionId": "job-efc4b5c9a48a",
+    "inscriptionTitle": "Halmidi Inscription Stele"
+  },
+  {
+    "id": "act-7fea32a4",
+    "timestamp": "27 Oct 2026, 18:35",
+    "type": "rubbing_catalogued",
+    "title": "Rubbing Analyzed (Completed): Halmidi Inscription Stele",
+    "description": "5-stage inference completed with status 'completed'. Inferred script: kadamba.",
+    "scholar": "Automated Computational Paleography Pipeline",
+    "inscriptionId": "job-6f6b90b150d1",
+    "inscriptionTitle": "Halmidi Inscription Stele"
+  },
+  {
     "id": "act-01",
     "timestamp": "2 hours ago",
     "type": "transcription_verified",
