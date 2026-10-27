@@ -79,6 +79,7 @@ class ServiceRegistry {
   }
 
   public useFastApi(): void {
+    if (this.activeMode === 'fastapi') return;
     this.activeMode = 'fastapi';
     this.activeService = fastApiEpigraphyService;
     epigraphyCache.clear();
@@ -89,6 +90,7 @@ class ServiceRegistry {
   }
 
   public useMock(persist = false): void {
+    if (this.activeMode === 'mock') return;
     this.activeMode = 'mock';
     this.activeService = new MockEpigraphyService();
     epigraphyCache.clear();

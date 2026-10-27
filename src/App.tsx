@@ -43,7 +43,6 @@ export const App: React.FC = () => {
         if (loadedInscriptions.length > 0 && !activeResult) {
           setActiveResult(loadedInscriptions[0]);
         }
-        serviceRegistry.useFastApi();
       } catch (err) {
         console.warn('Backend temporarily unavailable, falling back to cached/mock dataset:', err);
         // Switch to mock demonstrator in-memory only without poisoning localStorage
