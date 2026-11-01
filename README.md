@@ -283,7 +283,21 @@ The frontend architecture implements the **Adapter Pattern** via `IEpigraphyServ
 - `GET /api/v1/inscriptions/{id}` -> `getInscriptionById(id)` (complete epigraphical dossier)
 - `PUT /api/v1/inscriptions/{id}` -> `updateInscription(id, updates)` (persisting scholarly verifications)
 - `POST /api/v1/analyze` (multipart/form-data) -> `analyzeInscriptionImage(file, options)` (stone rubbing analysis & auto-cataloging)
+- `POST /api/v1/translate` -> `translate_halegannada_text(request)` (direct neural translation with LoRA adaptation)
 - `GET /uploads/{filename}` -> Static high-resolution stone rubbing image serving
+
+---
+
+## 📸 Multimodal Image Upload & Accurate Translation Pipeline
+
+The image upload workflow provides end-to-end decipherment from raw rubbings:
+
+1. **Drag-and-Drop Image Ingestion:** Upload stone photographs, estampages, or rubbings directly from the Hero Sandbox or the Analysis Workbench.
+2. **CNN + ViT Visual Script Classification:** The hybrid neural model (`proposed_cnn_vit_best.pth`) evaluates multi-scale visual glyph crops and macro-texture across all 10 historical Kannada script epochs.
+3. **Dynasty & Linguistic Attribution:** Discerning ruler, find spot, century, and language dialect (Prakrit, Purvada Halegannada, Classical Halegannada, Nadugannada, Hosagannada).
+4. **Line-by-Line Decipherment:** Extracting segmented line bounding boxes with original text, scholarly IAST transliteration, and aligned Modern Kannada translations.
+5. **Scholarly Translation Synthesis:** Coherent paragraph translation into Modern Hosagannada and English, alongside an archaic epigraphical glossary explaining vocabulary terms.
+6. **Graceful Multi-Tier Fallback:** Intelligent matching for offline research demonstrations ensures zero UI downtime even without network access.
 
 ### 🚀 Running Frontend and Backend Together
 
