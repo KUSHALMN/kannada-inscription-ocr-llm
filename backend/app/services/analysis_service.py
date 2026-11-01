@@ -311,6 +311,7 @@ class AnalysisService:
         known_script: Optional[str] = None,
         known_language: Optional[str] = None,
         researcher_notes: Optional[str] = None,
+        filename: Optional[str] = None,
         on_step_progress: Optional[Callable[[str, int], Awaitable[None]]] = None,
     ) -> AnalysisJobResult:
         """
@@ -388,7 +389,7 @@ class AnalysisService:
         try:
             t0 = time.perf_counter()
             crops: List[np.ndarray] = []  # In real model: cropped glyph boxes from preprocessed_arr
-            hint = f"{title or ''} {location or ''} {dynasty or ''} {known_script or ''} {researcher_notes or ''}"
+            hint = f"{title or ''} {location or ''} {dynasty or ''} {known_script or ''} {researcher_notes or ''} {filename or ''}"
             import inspect
             sig = inspect.signature(self.classifier.predict)
             if len(sig.parameters) >= 3:
