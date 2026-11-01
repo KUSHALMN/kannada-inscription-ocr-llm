@@ -131,12 +131,15 @@ async def analyze_inscription(
         f.write(image_bytes)
     logger.info("[%s] Saved upload to storage: %s (%d bytes)", job_id, storage_path, len(image_bytes))
 
+    clean_fn = os.path.splitext(file.filename or "")[0].replace("_", " ").replace("-", " ").strip()
+    effective_title = title or (clean_fn.title() if clean_fn and not clean_fn.lower().startswith(("job-", "blob", "upload")) else None)
+
     # 4. Handle Async Mode
     if is_async:
         await job_mgr.enqueue(
             job_id=job_id,
             image_path=storage_path,
-            title=title,
+            title=effective_title,
             location=location,
             dynasty=dynasty,
             approximate_date=approximate_date,
@@ -151,13 +154,14 @@ async def analyze_inscription(
     result = await analysis_svc.execute_pipeline(
         image=image,
         job_id=job_id,
-        title=title,
+        title=effective_title,
         location=location,
         dynasty=dynasty,
         approximate_date=approximate_date,
         known_script=known_script,
         known_language=known_language,
         researcher_notes=researcher_notes,
+        filename=file.filename,
     )
 
     image_url = f"/uploads/{job_id}{ext}"
