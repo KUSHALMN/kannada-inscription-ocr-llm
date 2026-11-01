@@ -140,14 +140,17 @@ def interactive_mode():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Translate Ancient Halegannada Text or Image")
-    parser.add_argument("text", nargs="?", help="Halegannada text to translate")
+    parser.add_argument("text", nargs="?", default=None, help="Halegannada text to translate")
+    parser.add_argument("--text", "-t", dest="text_flag", default=None, help="Explicit text to translate")
     parser.add_argument("--image", "-i", help="Path to rubbing or inscription image")
     parser.add_argument("--script", "-s", default="kadamba", help="Script dynasty hint")
     args = parser.parse_args()
 
+    input_text = args.text_flag or args.text
+
     if args.image:
         translate_image(args.image)
-    elif args.text:
-        translate_text(args.text, script_hint=args.script)
+    elif input_text:
+        translate_text(input_text, script_hint=args.script)
     else:
         interactive_mode()
