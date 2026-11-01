@@ -221,61 +221,64 @@ class NeuralScriptClassifier(ScriptClassifier):
                     "ashok": "1_AshokScript",
                     "mauryan": "1_AshokScript",
                     "maski": "1_AshokScript",
+                    "brahmagiri": "1_AshokScript",
+                    "priyadarsi": "1_AshokScript",
                     "satavahan": "2_SatavahanaScript",
                     "sannati": "2_SatavahanaScript",
+                    "shatavahan": "2_SatavahanaScript",
+                    "satakarni": "2_SatavahanaScript",
                     "kadamb": "3_Kadamba",
                     "halmidi": "3_Kadamba",
                     "kakustha": "3_Kadamba",
+                    "banavasi": "3_Kadamba",
                     "badami": "4_BadamiChalukyas",
                     "kappe": "4_BadamiChalukyas",
+                    "arabhatta": "4_BadamiChalukyas",
+                    "vatapi": "4_BadamiChalukyas",
+                    "pulakeshin": "4_BadamiChalukyas",
+                    "tripadi": "4_BadamiChalukyas",
                     "rashtrakut": "5_Rashtrakuta",
                     "dantidurga": "5_Rashtrakuta",
                     "kaviraja": "5_Rashtrakuta",
                     "atakur": "5_Rashtrakuta",
+                    "amoghavarsha": "5_Rashtrakuta",
+                    "manyakheta": "5_Rashtrakuta",
                     "kalyan": "6_KalyanChalukya",
-                    "chalukya": "6_KalyanChalukya",
                     "lakkundi": "6_KalyanChalukya",
                     "gadag": "6_KalyanChalukya",
                     "dharwad": "6_KalyanChalukya",
                     "shirguppi": "6_KalyanChalukya",
-                    "kannada": "6_KalyanChalukya",
-                    "halegannada": "6_KalyanChalukya",
-                    "stele": "6_KalyanChalukya",
-                    "stone": "6_KalyanChalukya",
-                    "grant": "6_KalyanChalukya",
-                    "shasana": "6_KalyanChalukya",
-                    "dana": "6_KalyanChalukya",
-                    "epigraph": "6_KalyanChalukya",
+                    "trailokyamalla": "6_KalyanChalukya",
+                    "someshwara": "6_KalyanChalukya",
+                    "vikramaditya": "6_KalyanChalukya",
                     "hoysal": "7_Hoysala",
                     "belur": "7_Hoysala",
                     "halebid": "7_Hoysala",
+                    "halebeedu": "7_Hoysala",
                     "bittideva": "7_Hoysala",
                     "ballala": "7_Hoysala",
+                    "chennakeshava": "7_Hoysala",
+                    "dorasamudra": "7_Hoysala",
                     "vijayanagar": "8_Vijayanagara",
                     "hampi": "8_Vijayanagara",
                     "krishnadeva": "8_Vijayanagara",
+                    "virupaksha": "8_Vijayanagara",
+                    "vidyaranya": "8_Vijayanagara",
                     "mysur": "9_Mysuru",
+                    "mysore": "9_Mysuru",
                     "wodeyar": "9_Mysuru",
+                    "wadiyar": "9_Mysuru",
                     "srirangapatna": "9_Mysuru",
+                    "kanthirava": "9_Mysuru",
                     "present": "10_PresentKannada",
                     "modern": "10_PresentKannada",
+                    "hosagannada": "10_PresentKannada",
                 }
 
-                matched_any_kw = False
                 for kw, target_cls in keyword_to_class.items():
                     if kw in hint_lower and target_cls in self.class_names:
                         idx = self.class_names.index(target_cls)
-                        hint_bias[idx] += 0.85
-                        matched_any_kw = True
-
-                # Epigraphical Prior: In Karnataka, a rectangular carved stone stele slab with
-                # multiple lines is medieval Halegannada (Kalyana Chalukya / Hoysala era),
-                # as Ashokan/Satavahana Brahmi are rough rock/boulder cave carvings.
-                has_ancient_brahmi_kw = any(w in hint_lower for w in ["ashok", "mauryan", "maski", "sannati", "satavahan", "brahmi", "prakrit"])
-                if not has_ancient_brahmi_kw and not matched_any_kw:
-                    if "6_KalyanChalukya" in self.class_names:
-                        idx_kc = self.class_names.index("6_KalyanChalukya")
-                        hint_bias[idx_kc] += 0.85
+                        hint_bias[idx] += 0.50
 
                 combined_probs = probs + hint_bias
                 combined_probs = combined_probs / np.sum(combined_probs)
@@ -397,12 +400,18 @@ class NeuralTranslator(Translator):
                 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
                 from peft import PeftModel
 
-                self.tokenizer = AutoTokenizer.from_pretrained(model_dir)
+                try:
+                    self.tokenizer = AutoTokenizer.from_pretrained(model_dir, local_files_only=True)
+                except Exception:
+                    self.tokenizer = AutoTokenizer.from_pretrained(model_dir)
                 try:
                     base = AutoModelForSeq2SeqLM.from_pretrained("google/mt5-small", local_files_only=True)
                 except Exception:
                     base = AutoModelForSeq2SeqLM.from_pretrained("google/mt5-small")
-                self.model = PeftModel.from_pretrained(base, model_dir)
+                try:
+                    self.model = PeftModel.from_pretrained(base, model_dir, local_files_only=True)
+                except Exception:
+                    self.model = PeftModel.from_pretrained(base, model_dir)
                 self.model.to(self.device)
                 self.model.eval()
                 logger.info("[+] Loaded Neural Epigraph Translator on %s", self.device)
