@@ -23,6 +23,7 @@ export const App: React.FC = () => {
   const [recentActivity, setRecentActivity] = useState<ResearchActivityItem[]>([]);
   const [activeResult, setActiveResult] = useState<InscriptionRecord | null>(null);
   const [selectedDynastyFilter, setSelectedDynastyFilter] = useState<string | null>(null);
+  const [initialUploadFile, setInitialUploadFile] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // Load initial epigraphical data from decoupled service adapter with fallback
@@ -107,7 +108,10 @@ export const App: React.FC = () => {
           {activeTab === 'home' && (
             <LandingHomeView
               inscriptions={inscriptions}
-              onNavigateToAnalysis={() => setActiveTab('new_analysis')}
+              onNavigateToAnalysis={(file?: File) => {
+                setInitialUploadFile(file || null);
+                setActiveTab('new_analysis');
+              }}
               onNavigateToArchive={handleNavigateToArchive}
               onNavigateToScripts={() => setActiveTab('scripts_languages')}
               onSelectInscription={handleSelectInscription}
@@ -118,7 +122,10 @@ export const App: React.FC = () => {
             <OverviewView
               inscriptions={inscriptions}
               recentActivity={recentActivity}
-              onNavigateToAnalysis={() => setActiveTab('new_analysis')}
+              onNavigateToAnalysis={() => {
+                setInitialUploadFile(null);
+                setActiveTab('new_analysis');
+              }}
               onNavigateToArchive={() => handleNavigateToArchive()}
               onNavigateToScripts={() => setActiveTab('scripts_languages')}
               onSelectInscription={handleSelectInscription}
@@ -128,8 +135,13 @@ export const App: React.FC = () => {
           {activeTab === 'new_analysis' && (
             <NewAnalysisView
               inscriptions={inscriptions}
+              initialFile={initialUploadFile}
+              onClearInitialFile={() => setInitialUploadFile(null)}
               onAnalysisComplete={handleAnalysisComplete}
-              onCancel={() => setActiveTab('home')}
+              onCancel={() => {
+                setInitialUploadFile(null);
+                setActiveTab('home');
+              }}
             />
           )}
 

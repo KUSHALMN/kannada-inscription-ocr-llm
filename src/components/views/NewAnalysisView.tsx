@@ -16,6 +16,8 @@ import { epigraphyService } from '../../services/epigraphyService';
 
 interface NewAnalysisViewProps {
   inscriptions: InscriptionRecord[];
+  initialFile?: File | null;
+  onClearInitialFile?: () => void;
   onAnalysisComplete: (result: InscriptionRecord) => void;
   onCancel: () => void;
 }
@@ -30,6 +32,8 @@ interface UploadedFileState {
 
 export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
   inscriptions,
+  initialFile,
+  onClearInitialFile,
   onAnalysisComplete,
   onCancel,
 }) => {
@@ -38,6 +42,13 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
   const [isDragOver, setIsDragOver] = useState<boolean>(false);
   const [fileError, setFileError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Auto-load initial file from navigation
+  React.useEffect(() => {
+    if (initialFile) {
+      handleValidateAndSetFile(initialFile);
+    }
+  }, [initialFile]);
 
   // Optional researcher metadata (never forced to guess)
   const [metadata, setMetadata] = useState({
@@ -122,6 +133,7 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
     }
     setUploadedFile(null);
     setFileError(null);
+    onClearInitialFile?.();
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
