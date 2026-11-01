@@ -21,7 +21,7 @@ import { TempleAtlasSection } from './landing/TempleAtlasSection';
 
 interface LandingHomeViewProps {
   inscriptions: InscriptionRecord[];
-  onNavigateToAnalysis: () => void;
+  onNavigateToAnalysis: (initialFile?: File) => void;
   onNavigateToArchive: (dynastyFilter?: string) => void;
   onNavigateToScripts: () => void;
   onSelectInscription: (inscription: InscriptionRecord) => void;
@@ -119,7 +119,7 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      onNavigateToAnalysis();
+      onNavigateToAnalysis(e.target.files[0]);
     }
   };
 
@@ -181,7 +181,7 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3.5 pt-1">
               <button
-                onClick={onNavigateToAnalysis}
+                onClick={() => onNavigateToAnalysis()}
                 className="px-6 py-3 bg-[#7C3517] hover:bg-[#682A10] text-[#FFF9F2] rounded-lg text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-sm transition-all hover:shadow-md"
               >
                 <Feather className="w-4 h-4 text-[#F2C58A]" />
@@ -326,7 +326,11 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
                   onDrop={(e) => {
                     e.preventDefault();
                     setIsDragOver(false);
-                    onNavigateToAnalysis();
+                    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                      onNavigateToAnalysis(e.dataTransfer.files[0]);
+                    } else {
+                      onNavigateToAnalysis();
+                    }
                   }}
                   className={`border-2 border-dashed rounded-xl p-6 text-center transition-all bg-[#F4EDE0]/60 ${
                     isDragOver ? 'border-[#7C3517] bg-[#EFE5D2]' : 'border-[#D5C2A6] hover:border-[#7C3517]'
@@ -371,7 +375,7 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
                     className="w-full p-3 rounded-lg border border-[#DFCBB0] bg-white text-xs font-kannada text-[#2B1B14] focus:outline-none focus:ring-1 focus:ring-[#7C3517]"
                   />
                   <button
-                    onClick={onNavigateToAnalysis}
+                    onClick={() => onNavigateToAnalysis()}
                     className="w-full py-2 bg-[#7C3517] text-white rounded-lg text-xs font-semibold"
                   >
                     Analyze Text
@@ -386,7 +390,7 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
                     Halmidi Inscription (c. 450 CE) Kadamba Box-Headed stone grant.
                   </p>
                   <button
-                    onClick={onNavigateToAnalysis}
+                    onClick={() => onNavigateToAnalysis()}
                     className="text-[#7C3517] font-bold text-xs underline"
                   >
                     Load Halmidi in Workspace →
@@ -476,7 +480,7 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {/* Feature Card 1: Upload & Translate */}
           <div
-            onClick={onNavigateToAnalysis}
+            onClick={() => onNavigateToAnalysis()}
             className="p-5 bg-[#FAF7F2] border border-[#E8DEC8] rounded-xl hover:border-[#8B4823] hover:shadow-md transition-all cursor-pointer group flex items-center justify-between gap-4"
           >
             <div className="flex items-center gap-3.5">
