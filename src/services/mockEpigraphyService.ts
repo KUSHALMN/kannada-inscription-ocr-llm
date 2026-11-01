@@ -124,7 +124,43 @@ export class MockEpigraphyService implements IEpigraphyService {
       console.warn('FastAPI live analysis failed in mock fallback, generating local preview:', e);
     }
 
-    const canonical = this.inscriptions[0];
+    // Determine the most accurate matching inscription from corpus based on hints & filename
+    let matchedInscription: InscriptionRecord | undefined;
+    const filename = file instanceof File ? file.name.toLowerCase() : '';
+    const scriptHint = (options?.knownScript || '').toLowerCase();
+    const dynastyHint = (options?.dynasty || '').toLowerCase();
+    const titleHint = (options?.title || '').toLowerCase();
+    const query = `${filename} ${scriptHint} ${dynastyHint} ${titleHint}`;
+
+    if (options?.knownScript && options.knownScript !== 'uncertain') {
+      matchedInscription = this.inscriptions.find(
+        (ins) => ins.scriptClass === options.knownScript
+      );
+    }
+
+    if (!matchedInscription) {
+      if (query.includes('badami') || query.includes('kappe') || query.includes('arabhatta') || query.includes('tripadi')) {
+        matchedInscription = this.inscriptions.find((ins) => ins.scriptClass === 'badami_chalukya');
+      } else if (query.includes('hoysal') || query.includes('belur') || query.includes('halebid') || query.includes('ballala') || query.includes('chennakeshava')) {
+        matchedInscription = this.inscriptions.find((ins) => ins.scriptClass === 'hoysala');
+      } else if (query.includes('ashok') || query.includes('maski') || query.includes('brahmagiri') || query.includes('prakrit')) {
+        matchedInscription = this.inscriptions.find((ins) => ins.scriptClass === 'ashoka');
+      } else if (query.includes('satavahan') || query.includes('sannati')) {
+        matchedInscription = this.inscriptions.find((ins) => ins.scriptClass === 'satavahana');
+      } else if (query.includes('rashtrakut') || query.includes('kaviraja') || query.includes('atakur') || query.includes('manyakheta')) {
+        matchedInscription = this.inscriptions.find((ins) => ins.scriptClass === 'rashtrakuta');
+      } else if (query.includes('vijayanagar') || query.includes('hampi') || query.includes('krishnadeva')) {
+        matchedInscription = this.inscriptions.find((ins) => ins.scriptClass === 'vijayanagara');
+      } else if (query.includes('mysur') || query.includes('wodeyar') || query.includes('kanthirava')) {
+        matchedInscription = this.inscriptions.find((ins) => ins.scriptClass === 'mysuru');
+      } else if (query.includes('kalyan') || query.includes('lakkundi') || query.includes('gadag') || query.includes('trailokyamalla')) {
+        matchedInscription = this.inscriptions.find((ins) => ins.scriptClass === 'kalyana_chalukya');
+      } else if (query.includes('kadamb') || query.includes('halmidi') || query.includes('kakustha')) {
+        matchedInscription = this.inscriptions.find((ins) => ins.scriptClass === 'kadamba');
+      }
+    }
+
+    const canonical = matchedInscription || this.inscriptions[0];
     const userImgUrl = file && file.size > 0 && typeof URL !== 'undefined'
       ? URL.createObjectURL(file)
       : canonical.imageUrl;
