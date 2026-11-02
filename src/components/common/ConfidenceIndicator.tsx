@@ -9,7 +9,7 @@ interface ConfidenceIndicatorProps {
 
 export const ConfidenceIndicator: React.FC<ConfidenceIndicatorProps> = ({
   score,
-  label = 'Model Confidence',
+  label = 'Paleographical Concordance',
   showBar = true,
   className = '',
 }) => {
@@ -20,21 +20,21 @@ export const ConfidenceIndicator: React.FC<ConfidenceIndicatorProps> = ({
 
   return (
     <div className={`space-y-1.5 font-mono text-[11px] ${className}`}>
-      <div className="flex items-center justify-between text-slate-700">
-        <span className="uppercase text-[10px] tracking-wider text-slate-500 font-semibold">{label}</span>
-        <span className={`font-bold ${isHigh ? 'text-emerald-700' : isMed ? 'text-amber-700' : 'text-rose-700'}`}>
+      <div className="flex items-center justify-between text-[#3E2D24]">
+        <span className="uppercase text-[10px] tracking-wider text-[#7C695C] font-semibold">{label}</span>
+        <span className={`font-bold ${isHigh ? 'text-[#2D6A4F]' : isMed ? 'text-[#B07D38]' : 'text-[#9A3B26]'}`}>
           {normalized.toFixed(1)}%
         </span>
       </div>
       {showBar && (
-        <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+        <div className="w-full h-1.5 bg-[#EAE2D5] rounded-full overflow-hidden border border-[#D8CCBA]">
           <div
             className={`h-full rounded-full transition-all duration-500 ${
               isHigh
-                ? 'bg-gradient-to-r from-emerald-500 to-teal-500'
+                ? 'bg-[#2D6A4F]'
                 : isMed
-                ? 'bg-gradient-to-r from-amber-500 to-yellow-500'
-                : 'bg-gradient-to-r from-rose-500 to-red-500'
+                ? 'bg-[#B07D38]'
+                : 'bg-[#9A3B26]'
             }`}
             style={{ width: `${Math.min(Math.max(normalized, 0), 100)}%` }}
           />
