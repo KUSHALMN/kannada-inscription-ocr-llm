@@ -198,7 +198,7 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
               </button>
             </div>
 
-            {/* Statistics Bar (Horizontal strip from design) */}
+            {/* Corpus Evidence & Quantitative Archival Scope */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-6 border-t border-[#DECBB2]/80 max-w-2xl">
               {/* Stat 1 */}
               <div className="flex items-start gap-2.5">
@@ -207,10 +207,10 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
                 </div>
                 <div>
                   <div className="font-serif font-bold text-base sm:text-lg text-[#1E120B] leading-none">
-                    10,000+
+                    11 Primary Steles
                   </div>
                   <div className="text-[11px] text-[#6C584C] mt-1 font-serif">
-                    Inscriptions (Growing)
+                    Canonical EC &amp; ASI Records
                   </div>
                 </div>
               </div>
@@ -222,10 +222,10 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
                 </div>
                 <div>
                   <div className="font-serif font-bold text-base sm:text-lg text-[#1E120B] leading-none">
-                    12+
+                    10 Script Epochs
                   </div>
                   <div className="text-[11px] text-[#6C584C] mt-1 font-serif">
-                    Major Dynasties
+                    3rd C. BCE – 21st C. CE
                   </div>
                 </div>
               </div>
@@ -233,14 +233,14 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
               {/* Stat 3 */}
               <div className="flex items-start gap-2.5">
                 <div className="p-1.5 rounded bg-[#EFE5D2] text-[#7C3517] shrink-0 mt-0.5">
-                  <MapPin className="w-4 h-4" />
+                  <BookOpen className="w-4 h-4" />
                 </div>
                 <div>
                   <div className="font-serif font-bold text-base sm:text-lg text-[#1E120B] leading-none">
-                    100+
+                    4-Tier Aligned
                   </div>
                   <div className="text-[11px] text-[#6C584C] mt-1 font-serif">
-                    Historical Sites
+                    Orig, Brahmi, ISO, Trans.
                   </div>
                 </div>
               </div>
@@ -248,14 +248,14 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
               {/* Stat 4 */}
               <div className="flex items-start gap-2.5">
                 <div className="p-1.5 rounded bg-[#EFE5D2] text-[#7C3517] shrink-0 mt-0.5">
-                  <BookOpen className="w-4 h-4" />
+                  <MapPin className="w-4 h-4" />
                 </div>
                 <div>
                   <div className="font-serif font-bold text-base sm:text-lg text-[#1E120B] leading-none">
-                    Multiple
+                    31 Districts
                   </div>
                   <div className="text-[11px] text-[#6C584C] mt-1 font-serif">
-                    Languages &amp; Scripts
+                    Karnataka Epigraph Survey
                   </div>
                 </div>
               </div>
