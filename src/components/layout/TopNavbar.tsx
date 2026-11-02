@@ -28,14 +28,13 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
-  // Exact navigation tabs matching the design:
-  // Inscriptions, Dynasties, Scripts & Language, Research, About
+  // Scholarly navigation tabs matching institutional research standards
   const navLinks = [
-    { key: 'archive' as NavItemKey, label: 'Inscriptions' },
-    { key: 'dynasties' as any, label: 'Dynasties', isAnchor: true },
-    { key: 'scripts_languages' as NavItemKey, label: 'Scripts & Language' },
-    { key: 'new_analysis' as NavItemKey, label: 'Research' },
-    { key: 'overview' as NavItemKey, label: 'About' },
+    { key: 'archive' as NavItemKey, label: 'Inscriptions Register' },
+    { key: 'dynasties' as any, label: 'Dynastic Corpora', isAnchor: true },
+    { key: 'scripts_languages' as NavItemKey, label: 'Script Paleography' },
+    { key: 'new_analysis' as NavItemKey, label: 'Decipherment Lab' },
+    { key: 'overview' as NavItemKey, label: 'Survey Documentation' },
   ];
 
   const [dynastiesActive, setDynastiesActive] = useState(false);
@@ -149,8 +148,8 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
           {/* Divider & Two-Line Stacked Subtitle */}
           <div className="h-8 w-px bg-white/80 border-r border-[#E2D2BC]/60 mx-2 hidden xl:block" />
           <div className="hidden xl:flex flex-col text-[9.5px] font-mono tracking-widest text-[#7C695C] uppercase font-semibold leading-tight">
-            <span>EPIGRAPHICAL RESEARCH &amp;</span>
-            <span>TRANSLATION PLATFORM</span>
+            <span>KARNATAKA EPIGRAPHICAL ARCHIVE</span>
+            <span>COMPUTATIONAL PALEOGRAPHY LAB</span>
           </div>
         </div>
 
@@ -203,17 +202,17 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
             <Search className="w-4 h-4" />
           </button>
 
-          {/* Primary Translate Inscription Button with Liquid Gloss Sheen */}
+          {/* Primary Decipher Inscription Button with Stone Seal */}
           <button
             onClick={() => onNavigate('new_analysis')}
             className="px-4 py-2 bg-gradient-to-r from-[#8C3B18] via-[#9B421C] to-[#7A3215] hover:from-[#7C3315] hover:to-[#6A2810] text-[#FFF9F2] rounded-xl text-xs font-semibold flex items-center gap-2 shadow-[inset_0_1px_1px_rgba(255,255,255,0.35),0_6px_20px_rgba(140,59,24,0.25)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.45),0_8px_25px_rgba(140,59,24,0.35)] transition-all cursor-pointer group hover:scale-[1.02]"
           >
-            <Feather className="w-3.5 h-3.5 text-[#F5C78E] group-hover:rotate-12 transition-transform" />
-            <span>Translate Inscription</span>
+            <BookOpen className="w-3.5 h-3.5 text-[#F5C78E] group-hover:scale-110 transition-transform" />
+            <span>Decipher Inscription</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#F5C78E] group-hover:translate-x-0.5 transition-transform" />
           </button>
 
-          {/* User Profile Chip - Kushal MN with Liquid Glass Pill */}
+          {/* User Profile Chip - Kushal MN with Archival Pill */}
           <div className="relative" ref={userMenuRef}>
             <button
               onClick={() => setUserMenuOpen(!userMenuOpen)}
@@ -229,7 +228,7 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
               <ChevronDown className={`w-3.5 h-3.5 text-[#7C695C] transition-transform duration-200 ${userMenuOpen ? 'rotate-180' : ''}`} />
             </button>
 
-            {/* User Dropdown Menu with Liquid Frosted Refraction */}
+            {/* User Dropdown Menu with Scholarly Information */}
             {userMenuOpen && (
               <div className="absolute right-0 mt-2.5 w-72 bg-white/85 backdrop-blur-2xl border border-white/90 rounded-2xl shadow-[0_20px_50px_rgba(40,24,18,0.12),inset_0_1px_1.5px_rgba(255,255,255,0.95)] p-3.5 z-50 animate-fadeIn text-xs text-[#2B1711]">
                 <div className="flex items-center gap-3 pb-3 border-b border-[#EEDBCA]">
@@ -247,16 +246,16 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
 
                 <div className="py-2.5 space-y-1.5 border-b border-[#EEDBCA] text-[11px] text-[#6A574A]">
                   <div className="flex items-center justify-between">
-                    <span>Verified Epigraphs:</span>
-                    <span className="font-bold text-[#2B1711]">10,248+</span>
+                    <span>Verified Primary Steles:</span>
+                    <span className="font-bold text-[#2B1711]">11 Canonical Records</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span>Research Role:</span>
-                    <span className="font-bold text-[#2B1711]">AI Paleography Lead</span>
+                    <span>Research Methodology:</span>
+                    <span className="font-bold text-[#2B1711]">4-Tier Decipherment</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span>Repository:</span>
-                    <span className="font-mono text-[10px] text-[#8C3B18]">kannada-inscription-ocr-llm</span>
+                    <span>Corpus Reference:</span>
+                    <span className="font-mono text-[10px] text-[#8C3B18]">Epigraphia Carnatica BL-58</span>
                   </div>
                 </div>
 
