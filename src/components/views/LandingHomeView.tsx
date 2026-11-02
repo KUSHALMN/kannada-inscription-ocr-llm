@@ -19,6 +19,7 @@ import heroBg from '../../assets/hero-bg.jpg';
 import sampleStele from '../../assets/sample-stele.jpg';
 import { TempleAtlasSection } from './landing/TempleAtlasSection';
 import { ScriptPaleographyShowcase } from './landing/ScriptPaleographyShowcase';
+import { LiveDeciphermentPlayground } from './landing/LiveDeciphermentPlayground';
 
 interface LandingHomeViewProps {
   inscriptions: InscriptionRecord[];
@@ -577,6 +578,17 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
             </div>
           ))}
         </div>
+      </section>
+
+      {/* =================================================================
+          3A. LIVE ESTAMPAGE RUBBING & DECIPHERMENT WORKBENCH
+      ================================================================== */}
+      <section className="max-w-[1440px] mx-auto px-4 sm:px-8">
+        <LiveDeciphermentPlayground
+          inscriptions={inscriptions}
+          onSelectInscription={onSelectInscription}
+          onNavigateToAnalysis={() => onNavigateToAnalysis()}
+        />
       </section>
 
       {/* =================================================================
