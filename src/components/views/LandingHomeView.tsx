@@ -163,38 +163,38 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
             {/* Category Breadcrumb Tag */}
             <div className="inline-block">
               <span className="text-xs font-cinzel font-bold tracking-[0.25em] text-[#8C3B18] uppercase">
-                INSCRIPTIONS • HISTORY • PEOPLE • KARNATAKA'S LEGACY
+                ARCHAEOLOGICAL SURVEY &amp; COMPUTATIONAL EPIGRAPHY REGISTER
               </span>
             </div>
 
-            {/* Main Headline (Exact typography from design) */}
+            {/* Main Headline (Institutional Scholarly Workbench) */}
             <h1 className="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl text-[#1E120B] tracking-tight leading-[1.12]">
-              Bridging 2,300 Years <br />
-              <span className="text-[#1E120B]">of Kannada History</span>
+              Deciphering Two Millennia <br />
+              <span className="text-[#1E120B]">of Kannada Epigraphs</span>
             </h1>
 
             {/* Subtitle Description */}
             <p className="text-sm sm:text-base text-[#564337] leading-relaxed max-w-xl font-serif">
-              Read, translate and explore ancient Kannada inscriptions from temples, pillars, heroes stones and monuments using AI and epigraphical knowledge.
+              A scholarly computational paleography workbench dedicated to the systematic transliteration, morphological parsing, and 4-tier aligned translation of Kannada stone steles, hero stones (Veeragallu), and copper plates across 10 script evolutionary epochs.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3.5 pt-1">
               <button
                 onClick={() => onNavigateToAnalysis()}
-                className="px-6 py-3 bg-[#7C3517] hover:bg-[#682A10] text-[#FFF9F2] rounded-lg text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-sm transition-all hover:shadow-md"
+                className="px-6 py-3 bg-[#7C3517] hover:bg-[#682A10] text-[#FFF9F2] rounded-lg text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-sm transition-all hover:shadow-md cursor-pointer"
               >
-                <Feather className="w-4 h-4 text-[#F2C58A]" />
-                <span>Translate an Inscription</span>
+                <BookOpen className="w-4 h-4 text-[#F2C58A]" />
+                <span>Submit Inscription for Decipherment</span>
                 <ArrowRight className="w-4 h-4 ml-1" />
               </button>
 
               <button
                 onClick={() => onNavigateToArchive()}
-                className="px-6 py-3 bg-[#FAF6F0]/90 hover:bg-[#FAF6F0] text-[#2B1B14] border border-[#DFCBB0] rounded-lg text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-xs transition-all"
+                className="px-6 py-3 bg-[#FAF6F0]/90 hover:bg-[#FAF6F0] text-[#2B1B14] border border-[#DFCBB0] rounded-lg text-xs sm:text-sm font-semibold flex items-center gap-2 shadow-xs transition-all cursor-pointer"
               >
-                <BookOpen className="w-4 h-4 text-[#8B4823]" />
-                <span>Explore Inscriptions</span>
+                <FileText className="w-4 h-4 text-[#8B4823]" />
+                <span>Browse Epigraphical Register</span>
               </button>
             </div>
 
@@ -268,11 +268,10 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
               {/* Card Header */}
               <div className="flex items-center justify-between pb-1">
                 <span className="text-xs font-cinzel font-bold tracking-wider text-[#3E2D24]">
-                  TRY A TRANSLATION
+                  PRIMARY INSCRIPTION INGESTION
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded border border-emerald-600/20 bg-emerald-50 text-emerald-800 text-[10px] font-serif font-semibold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
-                  <span>Live Sandbox</span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border border-[#DECBB2] bg-[#F4EDE0] text-[#7C3517] text-[10px] font-serif font-semibold">
+                  <span>Archival Laboratory</span>
                 </span>
               </div>
 
