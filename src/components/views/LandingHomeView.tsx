@@ -18,6 +18,7 @@ import {
 import heroBg from '../../assets/hero-bg.jpg';
 import sampleStele from '../../assets/sample-stele.jpg';
 import { TempleAtlasSection } from './landing/TempleAtlasSection';
+import { ScriptPaleographyShowcase } from './landing/ScriptPaleographyShowcase';
 
 interface LandingHomeViewProps {
   inscriptions: InscriptionRecord[];
@@ -473,105 +474,10 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
       </section>
 
       {/* =================================================================
-          2. FOUR FEATURE ACTION CARDS ROW (Exact match from screenshot)
+          2. PALEOGRAPHICAL MORPHOLOGY MATRIX & SCRIPT EVOLUTION
       ================================================================== */}
       <section className="max-w-[1440px] mx-auto px-4 sm:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {/* Feature Card 1: Upload & Translate */}
-          <div
-            onClick={() => onNavigateToAnalysis()}
-            className="p-5 bg-[#FAF7F2] border border-[#E8DEC8] rounded-xl hover:border-[#8B4823] hover:shadow-md transition-all cursor-pointer group flex items-center justify-between gap-4"
-          >
-            <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-lg bg-[#EFE5D2] border border-[#DFCBB0] flex items-center justify-center text-[#7C3517] shrink-0">
-                <FileText className="w-6 h-6" />
-              </div>
-              <div className="space-y-1">
-                <h3 className="font-serif font-bold text-sm text-[#1E120B] group-hover:text-[#7C3517] transition-colors">
-                  Upload &amp; Translate
-                </h3>
-                <p className="text-[11px] text-[#6C584C] font-serif leading-snug">
-                  Get Halegannada to Hosa Kannada translation with script analysis.
-                </p>
-              </div>
-            </div>
-            <div className="w-7 h-7 rounded-full bg-[#7C3517] text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-              <ArrowRight className="w-3.5 h-3.5" />
-            </div>
-          </div>
-
-          {/* Feature Card 2: Browse by Dynasty */}
-          <div
-            onClick={() => {
-              const el = document.getElementById('dynasties-section');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="p-5 bg-[#FAF7F2] border border-[#E8DEC8] rounded-xl hover:border-[#8B4823] hover:shadow-md transition-all cursor-pointer group flex items-center justify-between gap-4"
-          >
-            <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-lg bg-[#EFE5D2] border border-[#DFCBB0] flex items-center justify-center text-[#7C3517] shrink-0">
-                <Landmark className="w-6 h-6" />
-              </div>
-              <div className="space-y-1">
-                <h3 className="font-serif font-bold text-sm text-[#1E120B] group-hover:text-[#7C3517] transition-colors">
-                  Browse by Dynasty
-                </h3>
-                <p className="text-[11px] text-[#6C584C] font-serif leading-snug">
-                  Explore inscriptions from Ashoka, Kadamba, Chalukya, Rashtrakuta, Hoysala and more.
-                </p>
-              </div>
-            </div>
-            <div className="w-7 h-7 rounded-full bg-[#7C3517] text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-              <ArrowRight className="w-3.5 h-3.5" />
-            </div>
-          </div>
-
-          {/* Feature Card 3: Script Evolution */}
-          <div
-            onClick={onNavigateToScripts}
-            className="p-5 bg-[#FAF7F2] border border-[#E8DEC8] rounded-xl hover:border-[#8B4823] hover:shadow-md transition-all cursor-pointer group flex items-center justify-between gap-4"
-          >
-            <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-lg bg-[#EFE5D2] border border-[#DFCBB0] flex items-center justify-center text-[#7C3517] font-kannada font-bold text-xl shrink-0">
-                ಕ
-              </div>
-              <div className="space-y-1">
-                <h3 className="font-serif font-bold text-sm text-[#1E120B] group-hover:text-[#7C3517] transition-colors">
-                  Script Evolution
-                </h3>
-                <p className="text-[11px] text-[#6C584C] font-serif leading-snug">
-                  Learn the evolution of Kannada script from early forms to modern Kannada.
-                </p>
-              </div>
-            </div>
-            <div className="w-7 h-7 rounded-full bg-[#7C3517] text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-              <ArrowRight className="w-3.5 h-3.5" />
-            </div>
-          </div>
-
-          {/* Feature Card 4: Historical Context */}
-          <div
-            onClick={() => onNavigateToArchive()}
-            className="p-5 bg-[#FAF7F2] border border-[#E8DEC8] rounded-xl hover:border-[#8B4823] hover:shadow-md transition-all cursor-pointer group flex items-center justify-between gap-4"
-          >
-            <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-lg bg-[#EFE5D2] border border-[#DFCBB0] flex items-center justify-center text-[#7C3517] shrink-0">
-                <Compass className="w-6 h-6" />
-              </div>
-              <div className="space-y-1">
-                <h3 className="font-serif font-bold text-sm text-[#1E120B] group-hover:text-[#7C3517] transition-colors">
-                  Historical Context
-                </h3>
-                <p className="text-[11px] text-[#6C584C] font-serif leading-snug">
-                  Get information about period, location, language, material and significance.
-                </p>
-              </div>
-            </div>
-            <div className="w-7 h-7 rounded-full bg-[#7C3517] text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-              <ArrowRight className="w-3.5 h-3.5" />
-            </div>
-          </div>
-        </div>
+        <ScriptPaleographyShowcase onNavigateToScripts={onNavigateToScripts} />
       </section>
 
       {/* =================================================================
