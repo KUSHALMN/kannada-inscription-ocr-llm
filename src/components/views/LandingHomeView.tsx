@@ -603,7 +603,7 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
       </section>
 
       {/* =================================================================
-          4. BOTTOM DARK STONE QUOTE & MISSION BANNER (From screenshot)
+          4. ARCHAEOLOGICAL SCHOLARSHIP & EPIGRAPHICAL CORPUS COLOPHON
       ================================================================== */}
       <footer className="w-full bg-[#18110D] text-[#FFF9F2] py-12 px-4 sm:px-8 border-t border-[#36251C]">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -618,35 +618,38 @@ export const LandingHomeView: React.FC<LandingHomeViewProps> = ({
               />
             </div>
 
-            {/* Majestic Quote */}
-            <div className="space-y-3">
-              <p className="font-serif italic text-lg sm:text-xl lg:text-2xl text-[#E8DEC8] leading-relaxed max-w-2xl">
-                “In stones, they wrote not just words, but the story of a people, a language and a civilization.”
+            {/* Scholarly Epigraphical Citation */}
+            <div className="space-y-2">
+              <p className="font-serif italic text-base sm:text-lg lg:text-xl text-[#E8DEC8] leading-relaxed max-w-2xl">
+                “The inscriptions of Karnataka are the authentic charters of her dynastic, social, and literary history chiseled upon imperishable stone.”
               </p>
-              <div className="w-24 h-0.5 bg-[#8B4823] mx-auto sm:mx-0" />
+              <div className="text-xs font-mono text-[#D4A373] tracking-wide">
+                — B. Lewis Rice, C.I.E., Director of Archaeological Researches in Mysore (<em className="italic">Epigraphia Carnatica</em>, Vol. II)
+              </div>
+              <div className="w-24 h-0.5 bg-[#8B4823] mx-auto sm:mx-0 mt-1" />
             </div>
           </div>
 
-          {/* Right: 4 Mission Pillars */}
+          {/* Right: 4 Academic Pillars */}
           <div className="lg:col-span-4 grid grid-cols-2 gap-4 text-xs font-serif text-[#DFCBB0]">
             <div className="flex items-center gap-2.5">
-              <Feather className="w-4 h-4 text-[#C99052] shrink-0" />
-              <span>Preserve Heritage</span>
-            </div>
-
-            <div className="flex items-center gap-2.5">
               <BookOpen className="w-4 h-4 text-[#C99052] shrink-0" />
-              <span>Make Knowledge Accessible</span>
+              <span>Epigraphia Carnatica</span>
             </div>
 
             <div className="flex items-center gap-2.5">
-              <Users className="w-4 h-4 text-[#C99052] shrink-0" />
-              <span>Enable Research</span>
+              <Landmark className="w-4 h-4 text-[#C99052] shrink-0" />
+              <span>South Indian Inscriptions</span>
+            </div>
+
+            <div className="flex items-center gap-2.5">
+              <FileText className="w-4 h-4 text-[#C99052] shrink-0" />
+              <span>ASI Epigraphy Register</span>
             </div>
 
             <div className="flex items-center gap-2.5">
               <Globe className="w-4 h-4 text-[#C99052] shrink-0" />
-              <span>For Future Generations</span>
+              <span>TEI-XML Harmonization</span>
             </div>
           </div>
         </div>
