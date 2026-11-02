@@ -5,13 +5,10 @@ import {
   Upload,
   FileText,
   Image as ImageIcon,
-  Feather,
   BookOpen,
   MapPin,
   ChevronRight,
   Globe,
-  Users,
-  Compass,
   ChevronLeft,
   Landmark
 } from 'lucide-react';

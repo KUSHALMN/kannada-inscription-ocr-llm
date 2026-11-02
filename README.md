@@ -1,6 +1,6 @@
-# Kannada Heritage AI (ಕನ್ನಡ ಶಾಸನ ಅಧ್ಯಯನ ಮತ್ತು ಸಂರಕ್ಷಣಾ ವೇದಿಕೆ)
+# Karnataka Epigraphical Archive & Computational Paleography Workbench (ಕರ್ನಾಟಕ ಶಾಸನ ದಾಖಲೆ ಮತ್ತು ಕಂಪ್ಯೂಟೇಶನಲ್ ಲಿಪಿಶಾಸ್ತ್ರ ವೇದಿಕೆ)
 
-An institutional-grade computational paleography and epigraphical translation workbench engineered for Indian archaeological research.
+An institutional-grade computational paleography and epigraphical translation workbench engineered for Indian archaeological and epigraphical research.
 
 The platform provides systematic tooling for historical Kannada inscription recognition, paleographical epoch classification across **10 chronological stages**, text reconstruction, and scholarly translation into **Modern Standard Kannada (Hosagannada)** and English.
 
@@ -8,7 +8,7 @@ The platform provides systematic tooling for historical Kannada inscription reco
 
 ## 🏛️ Core Paleographical Problem & 4-Pillar Separation
 
-A fundamental challenge in epigraphy is that historical stone records interweave scripts, languages, and writing systems. **Kannada Heritage AI strictly decouples four distinct pillars**:
+A fundamental challenge in epigraphy is that historical stone records interweave scripts, languages, and writing systems. **The Karnataka Epigraphical Archive strictly decouples four distinct pillars**:
 
 1. **The Script Class:** The paleographic script system engraved on stone (e.g., *Kadamba box-headed script*, *Hoysala florid script*, *Ashokan Brahmi*).
 2. **The Source Language:** The historical linguistic language written in that script (e.g., *Prakrit*, *Sanskrit*, *Purvada Halegannada*, *Classical Halegannada*, *Nadugannada*).
@@ -17,35 +17,26 @@ A fundamental challenge in epigraphy is that historical stone records interweave
 
 ---
 
-## 🎨 Karnataka Epigraphical Heritage Redesign System
+## 🎨 Institutional Epigraphical Design System
 
-The platform features an institutional redesign celebrating the epigraphical wealth of Karnataka:
+The platform features an institutional museum-grade interface celebrating the epigraphical wealth of Karnataka:
 
-### 1. Hero Panorama & Heritage Typography
-- **Golden-Hour Stele Backdrop:** Panoramic depiction of iconic Karnataka Dravidian and Hoysala temples (Hampi, Pattadakal, Belur) paired with an authentic chiseled stone stele containing archaic Brahmi-Kannada inscriptions.
-- **Bilingual Typographic Harmony:** High-contrast serif headlines alongside classical Kannada script ("*ಕಲ್ಲುಗಳಲ್ಲಿ ಕೆತ್ತಿದ ಇತಿಹಾಸವನ್ನು, ತಂತ್ರಜ್ಞಾನದಿಂದ ಜನರಿಗೆ ತಲುಪಿಸುವ ಪ್ರಯತ್ನ*").
-- **Scholarly Quotation Card:** Translucent frosted-glass quote card (*"Stones are not silent; they speak in a language of time" — Epigraphical Research Initiative*).
+### 1. Research Register & Paleography Mandate
+- **Authentic Stele Facsimiles:** Panoramic depiction of iconic Karnataka Dravidian, Badami Chalukyan, and Hoysala monuments (Hampi, Pattadakal, Belur) paired with authentic chiseled stone steles.
+- **Bilingual Typographic Harmony:** High-contrast serif headlines alongside classical Kannada script.
+- **Scholarly Citation Colophon:** Formal epigraphical citations from B. Lewis Rice, C.I.E. (*Epigraphia Carnatica*, Vol. II).
 
-### 2. Epigraphical Telemetry Capsules
-- **10,248+ Inscriptions:** Locally catalogued and verified epigraphs across 31 districts.
-- **12+ Major Dynasties:** Mauryan, Kadamba, Ganga, Badami Chalukya, Rashtrakuta, Kalyana Chalukya, Hoysala, Vijayanagara, and Nayaka periods.
-- **100+ Historical Sites:** Surveyed temple complexes, rock shelters, hero stone shrines, and archaeological digs.
-- **10 Diagnostic Script Types:** 2,300 years of paleographical evolution chiseled on stone and copper plates.
+### 2. Defensible Corpus Metrics
+- **11 Canonical Primary Steles:** Verified and corroborated against the *Epigraphia Carnatica* and ASI registers.
+- **10 Chronological Script Epochs:** 2,300 years of paleographical morphology from 3rd C. BCE Ashokan Brahmi to Contemporary Kannada.
+- **4-Tier Aligned Translation:** Original recognized text, archaic Brahmi phonetics, IAST transliteration, and Modern Kannada / English translation.
+- **31 Surveyed Districts:** Comprehensive territorial coverage of Karnataka's epigraphical find-spots.
 
-### 3. Four-Pillar Purpose Framework
-- **Preserve (Apricot/Peach):** Digital archiving and high-fidelity photogrammetry of endangered steles.
-- **Decode (Mint/Sage):** Machine learning paleography for historical ligature and character recognition.
-- **Translate (Azure/Sky Blue):** Transliteration into modern Kannada (*Hosagannada*) and scholarly English.
-- **Enable Research (Lilac/Lavender):** Verified datasets and open-access tools for historians and epigraphists.
-
-### 4. Chronological Journey & Visual Heritage Route
-- **4-Stage Timeline:** Ancient Roots (2,300+ yrs) → High-Resolution Digitization → AI Script Recognition → Universal Open Access.
-- **Illustrated Route Roadmap:** Interactive milestones tracing the translation lifecycle from raw field inscriptions to public educational access.
-
-### 5. Institutional Impact & Collaborative Network
-- **2x2 Impact Grid:** Cultural Preservation, Research Advancement, Education & Awareness, and Global Accessibility.
-- **Institutional Partnerships:** Cross-disciplinary collaboration connecting academic researchers, AI engineers, and cultural archives.
-- **Verified Researcher Profile:** Interactive account menu recognizing lead maintainer **Kushal M N** and epigraphical contributions.
+### 3. Epigraphical Corpus & Reference Concordance
+- **Epigraphia Carnatica (Vols. I–XVI):** Standard corpus taxonomy initiated by B.L. Rice and continued by the Department of Archaeology.
+- **South Indian Inscriptions (SII):** Epigraphical reports published by the Archaeological Survey of India.
+- **Epigraphia Indica & Indian Antiquary:** Foundational peer-reviewed academic epigraphy papers by Fleet, Kielhorn, and Rice.
+- **TEI-XML Harmonization:** Standardized metadata exchange schema for digital humanities and epigraphical text encoding.
 
 ---
 

@@ -6,7 +6,6 @@ import {
   ArrowRight,
   Menu,
   X,
-  Feather,
   ChevronDown,
   CheckCircle2,
   BookOpen,
