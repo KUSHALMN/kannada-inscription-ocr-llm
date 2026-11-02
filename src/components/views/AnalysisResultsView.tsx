@@ -193,7 +193,7 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-2">
               <span className="font-mono text-xs uppercase tracking-wider font-semibold" style={{ color: 'var(--theme-ink-muted)' }}>
-                {inscription.accessionNumber}
+                EPIGRAPHICAL DOSSIER • ASI / EC RECORD: {inscription.accessionNumber}
               </span>
               <span style={{ color: 'var(--theme-border-medium)' }}>•</span>
               <StatusIndicator status={inscription.reviewStatus} size="sm" />
@@ -233,7 +233,7 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
             className="p-3 border rounded-xs"
           >
             <span className="text-[10px] font-mono uppercase tracking-wider block" style={{ color: 'var(--theme-ink-muted)' }}>
-              1. Historical Script
+              1. Script Paleography &amp; Morphology
             </span>
             <span className="font-serif font-bold text-sm block truncate" style={{ color: 'var(--theme-ink-primary)' }}>
               {SCRIPT_THEMES[currentScriptClass]?.name || currentScriptClass}
@@ -252,7 +252,7 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
             className="p-3 border rounded-xs"
           >
             <span className="text-[10px] font-mono uppercase tracking-wider block" style={{ color: 'var(--theme-ink-muted)' }}>
-              2. Source Language
+              2. Linguistic Medium
             </span>
             <span className="font-serif font-bold text-sm block truncate" style={{ color: 'var(--lang-badge-text, var(--theme-ink-primary))' }}>
               {LANGUAGE_THEMES[currentSourceLanguage]?.name || currentSourceLanguage}
@@ -271,7 +271,7 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
             className="p-3 border rounded-xs"
           >
             <span className="text-[10px] font-mono uppercase tracking-wider block" style={{ color: 'var(--theme-ink-muted)' }}>
-              3. Dynasty & Period
+              3. Regnal Dynasty &amp; Chronology
             </span>
             <span className="font-serif font-bold text-xs block truncate" style={{ color: 'var(--theme-ink-primary)' }}>
               {inscription.historicalContext.dynasty || 'Not established'}
@@ -290,7 +290,7 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
             className="p-3 border rounded-xs"
           >
             <span className="text-[10px] font-mono uppercase tracking-wider block" style={{ color: 'var(--theme-ink-muted)' }}>
-              4. Target Translation
+              4. 4-Tier Aligned Decipherment
             </span>
             <span className="font-serif font-bold text-xs block" style={{ color: 'var(--theme-ink-primary)' }}>
               Modern Kannada (Hosagannada)
@@ -439,8 +439,8 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
               className="p-3 border-b flex flex-wrap items-center justify-between gap-2 text-xs"
             >
               <div className="flex items-center gap-2">
-                <span className="font-mono text-[10px] uppercase tracking-wider" style={{ color: 'var(--theme-ink-muted)' }}>
-                  Stone Facsimile
+                <span className="font-mono text-[10px] uppercase tracking-wider font-semibold" style={{ color: 'var(--theme-ink-muted)' }}>
+                  PRIMARY EPIGRAPH FACSIMILE / ESTAMPAGE
                 </span>
                 <span style={{ color: 'var(--theme-border-medium)' }}>|</span>
                 {/* 3-Mode Visual Filter Selector */}
