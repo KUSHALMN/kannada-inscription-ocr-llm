@@ -59,10 +59,13 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
   const [zoomLevel, setZoomLevel] = useState<number>(1);
   const [showBoundingBoxes, setShowBoundingBoxes] = useState<boolean>(true);
   const [selectedGlyphIndex, setSelectedGlyphIndex] = useState<number | null>(null);
+  const [displayFacet, setDisplayFacet] = useState<'stele' | 'monument'>('stele');
   const [visualFilterMode, setVisualFilterMode] = useState<'original' | 'relief' | 'rubbing' | 'clahe_chisel'>('original');
 
   const activeImageUrl =
-    visualFilterMode === 'relief' && inscription.reliefImageUrl
+    displayFacet === 'monument'
+      ? (inscription.monumentImageUrl || inscription.imageUrl)
+      : visualFilterMode === 'relief' && inscription.reliefImageUrl
       ? inscription.reliefImageUrl
       : visualFilterMode === 'rubbing' && inscription.rubbingImageUrl
       ? inscription.rubbingImageUrl
@@ -449,58 +452,90 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
               }}
               className="p-3 border-b flex flex-wrap items-center justify-between gap-2 text-xs"
             >
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-[10px] uppercase tracking-wider font-semibold" style={{ color: 'var(--theme-ink-muted)' }}>
-                  PRIMARY EPIGRAPH FACSIMILE / ESTAMPAGE
-                </span>
-                <span style={{ color: 'var(--theme-border-medium)' }}>|</span>
-                {/* 3-Mode Visual Filter Selector */}
-                <div className="flex items-center bg-stone-200/80 p-0.5 rounded border border-stone-300">
+              <div className="flex flex-wrap items-center gap-2">
+                {/* Facet Mode Selector: Stele Facsimile vs Find-Spot Monument */}
+                <div className="flex items-center bg-stone-200/90 p-0.5 rounded border border-stone-300">
                   <button
-                    onClick={() => setVisualFilterMode('original')}
-                    className={`px-2 py-0.5 text-[10px] font-mono rounded transition-colors ${
-                      visualFilterMode === 'original'
-                        ? 'bg-amber-700 text-white font-bold shadow-xs'
+                    onClick={() => setDisplayFacet('stele')}
+                    className={`px-2.5 py-0.5 text-[10px] font-mono rounded transition-colors ${
+                      displayFacet === 'stele'
+                        ? 'bg-[#7C3517] text-white font-bold shadow-xs'
                         : 'text-stone-700 hover:text-stone-900'
                     }`}
-                    title="Raw Stone Photograph"
+                    title="Authentic Chiseled Epigraph Stele Facsimile"
                   >
-                    Original Photo
+                    Carved Stele
                   </button>
-                  <button
-                    onClick={() => setVisualFilterMode('relief')}
-                    className={`px-2 py-0.5 text-[10px] font-mono rounded transition-colors ${
-                      visualFilterMode === 'relief'
-                        ? 'bg-amber-700 text-white font-bold shadow-xs'
-                        : 'text-stone-700 hover:text-stone-900'
-                    }`}
-                    title="Surface Relief Enhancement (CLAHE + Bilateral)"
-                  >
-                    Enhanced Relief
-                  </button>
-                  <button
-                    onClick={() => setVisualFilterMode('rubbing')}
-                    className={`px-2 py-0.5 text-[10px] font-mono rounded transition-colors ${
-                      visualFilterMode === 'rubbing'
-                        ? 'bg-amber-700 text-white font-bold shadow-xs'
-                        : 'text-stone-700 hover:text-stone-900'
-                    }`}
-                    title="Digital Ink Paper Squeeze (White on black rubbing)"
-                  >
-                    Digital Rubbing
-                  </button>
-                  <button
-                    onClick={() => setVisualFilterMode('clahe_chisel')}
-                    className={`px-2 py-0.5 text-[10px] font-mono rounded transition-colors ${
-                      visualFilterMode === 'clahe_chisel'
-                        ? 'bg-amber-700 text-white font-bold shadow-xs'
-                        : 'text-stone-700 hover:text-stone-900'
-                    }`}
-                    title="Texture-Invariant CLAHE & Chisel Morphological Kernel"
-                  >
-                    CLAHE Kernel
-                  </button>
+                  {inscription.monumentImageUrl && (
+                    <button
+                      onClick={() => setDisplayFacet('monument')}
+                      className={`px-2.5 py-0.5 text-[10px] font-mono rounded transition-colors ${
+                        displayFacet === 'monument'
+                          ? 'bg-[#7C3517] text-white font-bold shadow-xs'
+                          : 'text-stone-700 hover:text-stone-900'
+                      }`}
+                      title="Archaeological Monument & Landscape Find-Spot"
+                    >
+                      Find-Spot Monument Site
+                    </button>
+                  )}
                 </div>
+
+                <span style={{ color: 'var(--theme-border-medium)' }}>|</span>
+
+                {/* 4-Mode Visual Filter Selector (Shown only when viewing Stele) */}
+                {displayFacet === 'stele' ? (
+                  <div className="flex items-center bg-stone-200/80 p-0.5 rounded border border-stone-300">
+                    <button
+                      onClick={() => setVisualFilterMode('original')}
+                      className={`px-2 py-0.5 text-[10px] font-mono rounded transition-colors ${
+                        visualFilterMode === 'original'
+                          ? 'bg-amber-700 text-white font-bold shadow-xs'
+                          : 'text-stone-700 hover:text-stone-900'
+                      }`}
+                      title="Raw Stone Inscription Photograph"
+                    >
+                      Original
+                    </button>
+                    <button
+                      onClick={() => setVisualFilterMode('relief')}
+                      className={`px-2 py-0.5 text-[10px] font-mono rounded transition-colors ${
+                        visualFilterMode === 'relief'
+                          ? 'bg-amber-700 text-white font-bold shadow-xs'
+                          : 'text-stone-700 hover:text-stone-900'
+                      }`}
+                      title="Surface Relief Enhancement (CLAHE + Bilateral)"
+                    >
+                      Relief
+                    </button>
+                    <button
+                      onClick={() => setVisualFilterMode('rubbing')}
+                      className={`px-2 py-0.5 text-[10px] font-mono rounded transition-colors ${
+                        visualFilterMode === 'rubbing'
+                          ? 'bg-amber-700 text-white font-bold shadow-xs'
+                          : 'text-stone-700 hover:text-stone-900'
+                      }`}
+                      title="Digital Ink Paper Squeeze (White on black rubbing)"
+                    >
+                      Rubbing
+                    </button>
+                    <button
+                      onClick={() => setVisualFilterMode('clahe_chisel')}
+                      className={`px-2 py-0.5 text-[10px] font-mono rounded transition-colors ${
+                        visualFilterMode === 'clahe_chisel'
+                          ? 'bg-amber-700 text-white font-bold shadow-xs'
+                          : 'text-stone-700 hover:text-stone-900'
+                      }`}
+                      title="Texture-Invariant CLAHE & Chisel Morphological Kernel"
+                    >
+                      CLAHE Kernel
+                    </button>
+                  </div>
+                ) : (
+                  <span className="font-mono text-[10px] text-stone-600 bg-stone-200/80 px-2 py-0.5 rounded border border-stone-300">
+                    Find-Spot Landscape: {inscription.historicalContext.findSpot.village} ({inscription.historicalContext.findSpot.district})
+                  </span>
+                )}
               </div>
 
               {/* Viewer Controls */}
@@ -576,12 +611,16 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                 />
 
                 {/* Ground-Truth Inscription Line Overlays (Mapped to Real Stone Geometry) */}
-                {showBoundingBoxes && inscription.transcription?.lines?.map((line, idx) => {
+                {showBoundingBoxes && displayFacet === 'stele' && inscription.transcription?.lines?.map((line, idx) => {
                   const box = line.boundingBox;
-                  const topPercent = box ? `${box.y}%` : `${18 + idx * 20}%`;
-                  const leftPercent = box ? `${box.x}%` : '4%';
-                  const widthPercent = box ? `${box.width}%` : '92%';
-                  const heightPercent = box ? `${box.height}%` : '12%';
+                  // Critical Fix: Only render bounding boxes when real calibrated geometry exists.
+                  // NEVER draw arbitrary stripes over landscape/monument images!
+                  if (!box) return null;
+
+                  const topPercent = `${box.y}%`;
+                  const leftPercent = `${box.x}%`;
+                  const widthPercent = `${box.width}%`;
+                  const heightPercent = `${box.height}%`;
                   const isSelected = selectedGlyphIndex === idx;
 
                   return (
@@ -614,13 +653,25 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                 })}
               </div>
 
-              {/* Image Substrate Overlay Plate */}
+              {/* Image Substrate & Monument Overlay Plate */}
               <div className="absolute bottom-3 left-3 bg-stone-900/95 border border-stone-700/80 px-3 py-1.5 rounded-xs text-[10px] font-mono text-stone-300 backdrop-blur-sm flex items-center gap-2">
-                <span className="uppercase text-amber-400 font-bold">{visualFilterMode.toUpperCase()}</span>
-                <span>•</span>
-                <span className="uppercase">{inscription.substrate.replace('_', ' ')}</span>
-                <span>•</span>
-                <span className="uppercase">{inscription.conditionRating}</span>
+                {displayFacet === 'monument' ? (
+                  <>
+                    <span className="uppercase text-amber-400 font-bold">MONUMENT FIND-SPOT CONTEXT</span>
+                    <span>•</span>
+                    <span className="uppercase">{inscription.historicalContext.findSpot.village}</span>
+                    <span>•</span>
+                    <span className="uppercase">{inscription.historicalContext.dynasty}</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="uppercase text-amber-400 font-bold">{visualFilterMode.toUpperCase()}</span>
+                    <span>•</span>
+                    <span className="uppercase">{inscription.substrate.replace('_', ' ')}</span>
+                    <span>•</span>
+                    <span className="uppercase">{inscription.conditionRating}</span>
+                  </>
+                )}
               </div>
             </div>
           </div>

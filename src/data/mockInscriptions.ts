@@ -533,6 +533,7 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
       depthCm: 18
     },
     imageUrl: '/analysis-halmidi-stele.jpg',
+    monumentImageUrl: '/temples/kadamba.jpg',
     conditionRating: 'fair',
     reviewStatus: 'verified',
     lastUpdated: '14 Oct 2026',
@@ -562,19 +563,46 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
           lineNumber: 1,
           originalText: 'ನಮಃ ಶ್ರೀಮತ್ ಕದಂಬಪನ್ ಕಾಗುಸ್ಥಭಟ್ಟೋರನ್ ಆಳೆ',
           iastText: 'namaḥ śrīmat kadambapan kāgustha-bhaṭṭōran āḷe',
-          modernKannadaLine: 'ನಮಸ್ಕಾರ, ಶ್ರೀಮಂತ ಕದಂಬ ವಂಶದ ಕಾಕುಸ್ಥಭಟ್ಟಾರಕನು ರಾಜ್ಯವಾಳುತ್ತಿದ್ದಾಗ,'
+          modernKannadaLine: 'ನಮಸ್ಕಾರ, ಶ್ರೀಮಂತ ಕದಂಬ ವಂಶದ ಕಾಕುಸ್ಥಭಟ್ಟಾರಕನು ರಾಜ್ಯವಾಳುತ್ತಿದ್ದಾಗ,',
+          boundingBox: {
+            id: 'hlm-line-01',
+            x: 7.8,
+            y: 19.5,
+            width: 84.4,
+            height: 14.0,
+            label: 'Invocation Line 1',
+            confidence: 0.989
+          }
         },
         {
           lineNumber: 2,
           originalText: 'ನರಿದಾವಿಱೆಯುಳ್ ನಾಡೊಳ್ ಮೃಗೇಶನಾಗೇಂದ್ರಾಭಿಲರ್',
           iastText: 'naridāviṟeyuḷ nāḍoḷ mr̥gēśa-nāgēndrābhilar',
-          modernKannadaLine: 'ನರಿದಾವಿಳೆ ನಾಡಿನಲ್ಲಿ ಮೃಗೇಶ ಮತ್ತು ನಾಗೇಂದ್ರ ಎಂಬ ಉಗ್ರ ಯೋಧರು,'
+          modernKannadaLine: 'ನರಿದಾವಿಳೆ ನಾಡಿನಲ್ಲಿ ಮೃಗೇಶ ಮತ್ತು ನಾಗೇಂದ್ರ ಎಂಬ ಉಗ್ರ ಯೋಧರು,',
+          boundingBox: {
+            id: 'hlm-line-02',
+            x: 10.2,
+            y: 41.0,
+            width: 79.5,
+            height: 13.5,
+            label: 'Commander Line 2',
+            confidence: 0.982
+          }
         },
         {
           lineNumber: 3,
           originalText: 'ವಿಜಾಯರಸಂಗೆ ಬಾಗಳ್ಚು ಕೊಟ್ಟಾರ್ ಪಾೞ್ಮಡಿಯುಂ ಮುಳಿವಳ್ಳಿಯುಂ',
           iastText: 'vijāyarasange bāgaḷchu koṭṭār pāḻmaḍiyuṁ muḷivaḷḷiyuṁ',
-          modernKannadaLine: 'ವಿಜಯರಸನಿಗೆ ಬಾಳ್ಗಚ್ಚು (ವೀರ ಉಂಬಳಿ) ಆಗಿ ಪಾಲ್ಮಡಿ ಮತ್ತು ಮುಳಿವಳ್ಳಿ ಗ್ರಾಮಗಳನ್ನು ನೀಡಿದರು.'
+          modernKannadaLine: 'ವಿಜಯರಸನಿಗೆ ಬಾಳ್ಗಚ್ಚು (ವೀರ ಉಂಬಳಿ) ಆಗಿ ಪಾಲ್ಮಡಿ ಮತ್ತು ಮುಳಿವಳ್ಳಿ ಗ್ರಾಮಗಳನ್ನು ನೀಡಿದರು.',
+          boundingBox: {
+            id: 'hlm-line-03',
+            x: 12.5,
+            y: 62.5,
+            width: 75.0,
+            height: 14.0,
+            label: 'Grant Line 3',
+            confidence: 0.985
+          }
         }
       ],
       detectedGlyphsCount: 46,
@@ -627,7 +655,10 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
       widthCm: 95,
       depthCm: 45
     },
-    imageUrl: '/temples/ashoka.jpg',
+    imageUrl: '/inscriptions/ashoka_maski_edict_stele.jpg',
+    reliefImageUrl: '/inscriptions/ashoka_maski_edict_relief.jpg',
+    rubbingImageUrl: '/inscriptions/ashoka_maski_edict_rubbing.jpg',
+    monumentImageUrl: '/temples/ashoka.jpg',
     conditionRating: 'weathered',
     reviewStatus: 'verified',
     lastUpdated: '08 Oct 2026',
@@ -657,13 +688,31 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
           lineNumber: 1,
           originalText: 'ದೇವಾನಂಪಿಯಸ ಅಸೋಕಸ',
           iastText: 'devānaṁpiyasa asōkasa',
-          modernKannadaLine: 'ದೇವತೆಗಳಿಗೆ ಪ್ರಿಯನಾದ ಅಶೋಕನ ಆಜ್ಞೆ'
+          modernKannadaLine: 'ದೇವತೆಗಳಿಗೆ ಪ್ರಿಯನಾದ ಅಶೋಕನ ಆಜ್ಞೆ',
+          boundingBox: {
+            id: 'msk-line-01',
+            x: 10.16,
+            y: 19.0,
+            width: 79.59,
+            height: 12.0,
+            label: 'Edict Heading',
+            confidence: 0.988
+          }
         },
         {
           lineNumber: 2,
           originalText: 'ಅಧಿಕಾನಿ ಅಢಾತೀಯಾನಿ ವಸಾನಿ ಯಂ ಅಮ್ ಸುಮಿ ಬುಧಸಕೆ',
           iastText: 'adhikāni aḍhātīyāni vasāni yaṁ am sumi budhasake',
-          modernKannadaLine: 'ನಾನು ಬುದ್ಧ ಶಾಕ್ಯನಾಗಿ (ಉಪಾಸಕನಾಗಿ) ಎರಡೂವರೆ ವರ್ಷಗಳಿಗೂ ಹೆಚ್ಚು ಕಾಲವಾಯಿತು.'
+          modernKannadaLine: 'ನಾನು ಬುದ್ಧ ಶಾಕ್ಯನಾಗಿ (ಉಪಾಸಕನಾಗಿ) ಎರಡೂವರೆ ವರ್ಷಗಳಿಗೂ ಹೆಚ್ಚು ಕಾಲವಾಯಿತು.',
+          boundingBox: {
+            id: 'msk-line-02',
+            x: 23.44,
+            y: 39.83,
+            width: 53.12,
+            height: 12.0,
+            label: 'Edict Line 2',
+            confidence: 0.981
+          }
         }
       ],
       detectedGlyphsCount: 41,
@@ -709,7 +758,10 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
       widthCm: 85,
       depthCm: 25
     },
-    imageUrl: '/temples/badami.jpg',
+    imageUrl: '/inscriptions/badami_kappe_arabhatta_stele.jpg',
+    reliefImageUrl: '/inscriptions/badami_kappe_arabhatta_relief.jpg',
+    rubbingImageUrl: '/inscriptions/badami_kappe_arabhatta_rubbing.jpg',
+    monumentImageUrl: '/temples/badami.jpg',
     conditionRating: 'excellent',
     reviewStatus: 'in_review',
     lastUpdated: '12 Oct 2026',
@@ -739,19 +791,46 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
           lineNumber: 1,
           originalText: 'ಸಾಧುಗೆ ಸಾಧು ಮಾಧುರ್ಯಂಗೆ ಮಾಧುರ್ಯಂ',
           iastText: 'sādhuge sādhu mādhuryange mādhuryam',
-          modernKannadaLine: 'ಒಳ್ಳೆಯವರಿಗೆ ಒಳ್ಳೆಯವನು, ಮೃದು ಸ್ವಭಾವದವರಿಗೆ ಪರಮ ಮಧುರನು,'
+          modernKannadaLine: 'ಒಳ್ಳೆಯವರಿಗೆ ಒಳ್ಳೆಯವನು, ಮೃದು ಸ್ವಭಾವದವರಿಗೆ ಪರಮ ಮಧುರನು,',
+          boundingBox: {
+            id: 'bdm-line-01',
+            x: 6.05,
+            y: 17.33,
+            width: 87.89,
+            height: 12.83,
+            label: 'Tripadi Line 1',
+            confidence: 0.985
+          }
         },
         {
           lineNumber: 2,
           originalText: 'ಬಾದಿಪ್ಪ ಕಲಿಗೆ ಕಲಿಯುಗ ವಿಪರೀತನ್',
           iastText: 'bādippa kalige kaliyuga viparītan',
-          modernKannadaLine: 'ಹಿಂಸಿಸುವ ಶತ್ರು ಯೋಧರಿಗೆ ಕಲಿಯುಗದ ಯಮನಂತೆ ವಿಪರೀತನಾದವನು,'
+          modernKannadaLine: 'ಹಿಂಸಿಸುವ ಶತ್ರು ಯೋಧರಿಗೆ ಕಲಿಯುಗದ ಯಮನಂತೆ ವಿಪರೀತನಾದವನು,',
+          boundingBox: {
+            id: 'bdm-line-02',
+            x: 12.89,
+            y: 39.0,
+            width: 74.12,
+            height: 11.67,
+            label: 'Tripadi Line 2',
+            confidence: 0.982
+          }
         },
         {
           lineNumber: 3,
           originalText: 'ಮಾಧವನ್ ಇತ್ತನ್ ಪೆರನಲ್ಲನ್',
           iastText: 'mādhavan ittan peranallan',
-          modernKannadaLine: 'ಇವನು ಸಾಕ್ಷಾತ್ ಮಾಧವನೇ (ವಿಷ್ಣುವೇ) ಹೊರತು ಬೇರೆ ಯಾರೂ ಅಲ್ಲ.'
+          modernKannadaLine: 'ಇವನು ಸಾಕ್ಷಾತ್ ಮಾಧವನೇ (ವಿಷ್ಣುವೇ) ಹೊರತು ಬೇರೆ ಯಾರೂ ಅಲ್ಲ.',
+          boundingBox: {
+            id: 'bdm-line-03',
+            x: 20.02,
+            y: 60.67,
+            width: 59.86,
+            height: 12.83,
+            label: 'Tripadi Line 3',
+            confidence: 0.979
+          }
         }
       ],
       detectedGlyphsCount: 46,
@@ -804,7 +883,10 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
       widthCm: 110,
       depthCm: 32
     },
-    imageUrl: '/temples/hoysala.jpg',
+    imageUrl: '/inscriptions/belur_chennakeshava_stele.jpg',
+    reliefImageUrl: '/inscriptions/belur_chennakeshava_relief.jpg',
+    rubbingImageUrl: '/inscriptions/belur_chennakeshava_rubbing.jpg',
+    monumentImageUrl: '/temples/hoysala.jpg',
     conditionRating: 'excellent',
     reviewStatus: 'pending_verification',
     lastUpdated: '15 Oct 2026',
@@ -834,19 +916,46 @@ export const MOCK_INSCRIPTIONS: InscriptionRecord[] = [
           lineNumber: 1,
           originalText: 'ಶ್ರೀಮನ್ ಮಹಾಮಂಡಲೇಶ್ವರನ್ ತಳಕಾಡುಗೊಂಡ',
           iastText: 'śrīman mahāmaṇḍalēśvaran taḷakāḍugoṇḍa',
-          modernKannadaLine: 'ಶ್ರೀಮಂತ ಮಹಾಮಂಡಲೇಶ್ವರನೂ, ತಲಕಾಡನ್ನು ಜಯಿಸಿದವನೂ,'
+          modernKannadaLine: 'ಶ್ರೀಮಂತ ಮಹಾಮಂಡಲೇಶ್ವರನೂ, ತಲಕಾಡನ್ನು ಜಯಿಸಿದವನೂ,',
+          boundingBox: {
+            id: 'blr-line-01',
+            x: 5.86,
+            y: 18.0,
+            width: 88.28,
+            height: 12.5,
+            label: 'Consecration Line 1',
+            confidence: 0.994
+          }
         },
         {
           lineNumber: 2,
           originalText: 'ಭುಜಬಲ ವೀರ ಗಂಗ ವಿಷ್ಣುವರ್ಧನ ದೇವರ್',
           iastText: 'bhujabala vīra gaṅga viṣṇuvardhana dēvar',
-          modernKannadaLine: 'ತನ್ನ ಬಾಹುಬಲದಿಂದ ವೀರಗಂಗನೆನಿಸಿದ ವಿಷ್ಣುವರ್ಧನ ದೇವನು'
+          modernKannadaLine: 'ತನ್ನ ಬಾಹುಬಲದಿಂದ ವೀರಗಂಗನೆನಿಸಿದ ವಿಷ್ಣುವರ್ಧನ ದೇವನು',
+          boundingBox: {
+            id: 'blr-line-02',
+            x: 8.79,
+            y: 38.5,
+            width: 82.42,
+            height: 12.0,
+            label: 'Consecration Line 2',
+            confidence: 0.991
+          }
         },
         {
           lineNumber: 3,
           originalText: 'ವಿಜಯನಾರಾಯಣ ದೇವರಂ ಪ್ರತಿಷ್ಠೆ ಮಾಡಿ',
           iastText: 'vijayanārāyaṇa dēvaraṁ pratiṣṭhe māḍi',
-          modernKannadaLine: 'ವಿಜಯನಾರಾಯಣ (ಚೆನ್ನಕೇಶವ) ದೇವರನ್ನು ಭಕ್ತಿಯಿಂದ ಪ್ರತಿಷ್ಠಾಪಿಸಿ'
+          modernKannadaLine: 'ವಿಜಯನಾರಾಯಣ (ಚೆನ್ನಕೇಶವ) ದೇವರನ್ನು ಭಕ್ತಿಯಿಂದ ಪ್ರತಿಷ್ಠಾಪಿಸಿ',
+          boundingBox: {
+            id: 'blr-line-03',
+            x: 11.23,
+            y: 59.8,
+            width: 77.54,
+            height: 12.5,
+            label: 'Consecration Line 3',
+            confidence: 0.989
+          }
         }
       ],
       detectedGlyphsCount: 49,

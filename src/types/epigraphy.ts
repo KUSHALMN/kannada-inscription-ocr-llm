@@ -166,6 +166,7 @@ export interface InscriptionRecord {
   imageUrl: string;
   reliefImageUrl?: string;
   rubbingImageUrl?: string;
+  monumentImageUrl?: string;
   thumbnailUrl?: string;
   conditionRating: 'excellent' | 'fair' | 'weathered' | 'partially_effaced';
   reviewStatus: ReviewStatus;

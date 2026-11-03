@@ -703,8 +703,8 @@
       "depthCm": 18.0
     },
     "imageUrl": "/analysis-halmidi-stele.jpg",
-    "reliefImageUrl": null,
-    "rubbingImageUrl": null,
+    "reliefImageUrl": "/analysis-halmidi-relief.jpg",
+    "rubbingImageUrl": "/analysis-halmidi-rubbing.jpg",
     "thumbnailUrl": "/analysis-halmidi-stele.jpg",
     "conditionRating": "fair",
     "reviewStatus": "verified",
@@ -819,7 +819,8 @@
       "isMockData": false
     },
     "provenance": "Discovered in 1936 by Dr. M. H. Krishna near Veerabhadra temple in Halmidi village, Belur taluk.",
-    "currentLocation": "Archaeological Museum, Directorate of Archaeology and Museums, Bengaluru"
+    "currentLocation": "Archaeological Museum, Directorate of Archaeology and Museums, Bengaluru",
+    "monumentImageUrl": "/temples/kadamba.jpg"
   },
   {
     "id": "ins-talagunda-002",
@@ -943,10 +944,10 @@
       "widthCm": 140.0,
       "depthCm": null
     },
-    "imageUrl": "/temples/badami.jpg",
-    "reliefImageUrl": null,
-    "rubbingImageUrl": null,
-    "thumbnailUrl": "/temples/badami.jpg",
+    "imageUrl": "/inscriptions/badami_kappe_arabhatta_stele.jpg",
+    "reliefImageUrl": "/inscriptions/badami_kappe_arabhatta_relief.jpg",
+    "rubbingImageUrl": "/inscriptions/badami_kappe_arabhatta_rubbing.jpg",
+    "thumbnailUrl": "/inscriptions/badami_kappe_arabhatta_stele.jpg",
     "conditionRating": "fair",
     "reviewStatus": "verified",
     "lastUpdated": "23 Oct 2026",
@@ -983,11 +984,11 @@
           "modernKannadaLine": "ಒಳ್ಳೆಯವರಿಗೆ ಒಳ್ಳೆಯವನು, ಮಧುರ ಸ್ವಭಾವದವರಿಗೆ ಪರಮ ಮಧುರವಾದವನು,",
           "boundingBox": {
             "id": "bdm-box-1",
-            "x": 10.0,
-            "y": 15.0,
-            "width": 80.0,
-            "height": 18.0,
-            "label": "Tripadi Line 1 (Ganas 1-4)",
+            "x": 6.05,
+            "y": 17.33,
+            "width": 87.89,
+            "height": 12.83,
+            "label": "Tripadi Line 1",
             "confidence": 0.99,
             "lineIndex": 0
           }
@@ -999,12 +1000,12 @@
           "modernKannadaLine": "ಹಿಂಸಿಸುವ ದುಷ್ಟರಿಗೆ ಕಲಿಯುಗದ ಕಷ್ಟಗಳಿಗಿಂತ ಕಠಿಣವಾದ ವಿಪರೀತ ಸ್ವಭಾವದವನು,",
           "boundingBox": {
             "id": "bdm-box-2",
-            "x": 10.0,
-            "y": 36.0,
-            "width": 80.0,
-            "height": 18.0,
-            "label": "Tripadi Line 2 (Ganas 5-8)",
-            "confidence": 0.98,
+            "x": 12.89,
+            "y": 39.0,
+            "width": 74.12,
+            "height": 11.67,
+            "label": "Tripadi Line 2",
+            "confidence": 0.99,
             "lineIndex": 1
           }
         },
@@ -1015,12 +1016,12 @@
           "modernKannadaLine": "ಈತನು ಸಾಕ್ಷಾತ್ ಮಾಧವನೇ (ವಿಷ್ಣುವೇ) ಹೊರತು ಬೇರೆ ಯಾರೂ ಅಲ್ಲ.",
           "boundingBox": {
             "id": "bdm-box-3",
-            "x": 10.0,
-            "y": 57.0,
-            "width": 80.0,
-            "height": 18.0,
-            "label": "Tripadi Line 3 (Ganas 9-11)",
-            "confidence": 0.98,
+            "x": 20.02,
+            "y": 60.67,
+            "width": 59.86,
+            "height": 12.83,
+            "label": "Tripadi Line 3",
+            "confidence": 0.99,
             "lineIndex": 2
           }
         }
@@ -1053,7 +1054,8 @@
       "isMockData": false
     },
     "provenance": "Chiseled into the vertical sandstone rock cliff northeast of Tatakoti Lake, Badami.",
-    "currentLocation": "North Fort Cliffside, Badami, Bagalkote District (State Protected Monument)"
+    "currentLocation": "North Fort Cliffside, Badami, Bagalkote District (State Protected Monument)",
+    "monumentImageUrl": "/temples/badami.jpg"
   },
   {
     "id": "ins-shravanabelagola-004",
@@ -1177,10 +1179,10 @@
       "widthCm": 62.0,
       "depthCm": 20.0
     },
-    "imageUrl": "/temples/hoysala.jpg",
-    "reliefImageUrl": null,
-    "rubbingImageUrl": null,
-    "thumbnailUrl": "/temples/hoysala.jpg",
+    "imageUrl": "/inscriptions/belur_chennakeshava_stele.jpg",
+    "reliefImageUrl": "/inscriptions/belur_chennakeshava_relief.jpg",
+    "rubbingImageUrl": "/inscriptions/belur_chennakeshava_rubbing.jpg",
+    "thumbnailUrl": "/inscriptions/belur_chennakeshava_stele.jpg",
     "conditionRating": "excellent",
     "reviewStatus": "verified",
     "lastUpdated": "23 Oct 2026",
@@ -1217,12 +1219,12 @@
           "modernKannadaLine": "ಶ್ರೀಮತ್ ಮಹಾಮಂಡಲೇಶ್ವರನೂ, ದ್ರೋಹಿಗಳ ಹಿಟ್ಟು ಮಾಡುವವನೂ, ತಲಕಾಡನ್ನು ಗೆದ್ದವನೂ ಆದ,",
           "boundingBox": {
             "id": "blr-box-1",
-            "x": 6.0,
-            "y": 12.0,
-            "width": 88.0,
-            "height": 22.0,
-            "label": "Royal Biruda & Title Prose",
-            "confidence": 0.995,
+            "x": 0.88,
+            "y": 18.17,
+            "width": 98.14,
+            "height": 12.0,
+            "label": "Epigraph Line 1",
+            "confidence": 0.99,
             "lineIndex": 0
           }
         },
@@ -1233,11 +1235,11 @@
           "modernKannadaLine": "ತನ್ನ ಬಾಹುಬಲದಿಂದ ಶೋಭಿಸುವ ವೀರಗಂಗ ವಿಷ್ಣುವರ್ಧನ ದೇವನು ಶ್ರೀ ವಿಜಯನಾರಾಯಣ ದೇವರನ್ನು ಪ್ರತಿಷ್ಠಾಪಿಸಿ,",
           "boundingBox": {
             "id": "blr-box-2",
-            "x": 6.0,
-            "y": 42.0,
-            "width": 88.0,
-            "height": 22.0,
-            "label": "Deity Consecration Sentence",
+            "x": 11.23,
+            "y": 39.83,
+            "width": 77.44,
+            "height": 11.0,
+            "label": "Epigraph Line 2",
             "confidence": 0.99,
             "lineIndex": 1
           }
@@ -1271,7 +1273,8 @@
       "isMockData": false
     },
     "provenance": "Chiseled into the star-shaped plinth moulding of the Chennakeshava temple main navaranga wall.",
-    "currentLocation": "Chennakeshava Temple Complex, Belur, Hassan District (UNESCO World Heritage Site)"
+    "currentLocation": "Chennakeshava Temple Complex, Belur, Hassan District (UNESCO World Heritage Site)",
+    "monumentImageUrl": "/temples/hoysala.jpg"
   },
   {
     "id": "ins-hampi-006",

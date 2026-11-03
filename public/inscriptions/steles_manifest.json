@@ -1,0 +1,86 @@
+{
+  "badami_kappe_arabhatta": {
+    "stele_url": "/inscriptions/badami_kappe_arabhatta_stele.jpg",
+    "relief_url": "/inscriptions/badami_kappe_arabhatta_relief.jpg",
+    "rubbing_url": "/inscriptions/badami_kappe_arabhatta_rubbing.jpg",
+    "bounding_boxes": [
+      {
+        "line_number": 1,
+        "x": 6.05,
+        "y": 17.33,
+        "width": 87.89,
+        "height": 12.83
+      },
+      {
+        "line_number": 2,
+        "x": 12.89,
+        "y": 39.0,
+        "width": 74.12,
+        "height": 11.67
+      },
+      {
+        "line_number": 3,
+        "x": 20.02,
+        "y": 60.67,
+        "width": 59.86,
+        "height": 12.83
+      }
+    ]
+  },
+  "ashoka_maski_edict": {
+    "stele_url": "/inscriptions/ashoka_maski_edict_stele.jpg",
+    "relief_url": "/inscriptions/ashoka_maski_edict_relief.jpg",
+    "rubbing_url": "/inscriptions/ashoka_maski_edict_rubbing.jpg",
+    "bounding_boxes": [
+      {
+        "line_number": 1,
+        "x": 10.16,
+        "y": 19.0,
+        "width": 79.59,
+        "height": 12.0
+      },
+      {
+        "line_number": 2,
+        "x": 23.44,
+        "y": 39.83,
+        "width": 53.12,
+        "height": 12.0
+      },
+      {
+        "line_number": 3,
+        "x": 15.62,
+        "y": 60.67,
+        "width": 68.75,
+        "height": 11.0
+      }
+    ]
+  },
+  "belur_chennakeshava": {
+    "stele_url": "/inscriptions/belur_chennakeshava_stele.jpg",
+    "relief_url": "/inscriptions/belur_chennakeshava_relief.jpg",
+    "rubbing_url": "/inscriptions/belur_chennakeshava_rubbing.jpg",
+    "bounding_boxes": [
+      {
+        "line_number": 1,
+        "x": 0.88,
+        "y": 18.17,
+        "width": 98.14,
+        "height": 12.0
+      },
+      {
+        "line_number": 2,
+        "x": 11.23,
+        "y": 39.83,
+        "width": 77.44,
+        "height": 11.0
+      },
+      {
+        "line_number": 3,
+        "x": 2.05,
+        "y": 61.5,
+        "width": 95.9,
+        "height": 11.0
+      }
+    ]
+  }
+}
