@@ -238,8 +238,19 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
             <span className="font-serif font-bold text-sm block truncate" style={{ color: 'var(--theme-ink-primary)' }}>
               {SCRIPT_THEMES[currentScriptClass]?.name || currentScriptClass}
             </span>
-            <div className="pt-1">
-              <ConfidenceIndicator score={inscription.transcription.scriptConfidence} label="Confidence" />
+            <div className="pt-1 space-y-1">
+              <ConfidenceIndicator
+                score={inscription.transcription.scriptConfidence}
+                label={inscription.transcription.macroConfidence ? "Dynasty Concordance" : "Confidence"}
+              />
+              {inscription.transcription.macroConfidence ? (
+                <div className="flex items-center justify-between text-[10px] font-mono text-[#7C695C] pt-0.5 border-t border-[#DECBB2]/60">
+                  <span className="truncate max-w-[110px]" title={inscription.transcription.macroEra || "Macro-Era Prior"}>
+                    {inscription.transcription.macroEra ? inscription.transcription.macroEra.split('(')[0].trim() : "Macro-Era Gate"}:
+                  </span>
+                  <span className="font-bold text-[#2D6A4F]">{(inscription.transcription.macroConfidence * 100).toFixed(1)}%</span>
+                </div>
+              ) : null}
             </div>
           </div>
 
