@@ -1,0 +1,632 @@
+[
+  {
+    "filename": "synth_6_KalyanChalukya_000.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "18.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_000.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_001.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "15.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_001.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_002.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "19.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_002.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_003.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "13.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_003.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_004.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "39.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_004.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_005.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "44.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_005.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_006.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "1.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_006.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_007.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "40.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_007.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_008.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "15.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_008.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_009.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "41.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_009.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_010.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "6.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_010.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_011.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "2.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_011.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_012.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "36.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_012.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_013.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "45.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_013.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_014.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "40.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_014.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_015.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "43.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_015.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_016.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "24.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_016.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_017.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "15.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_017.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_018.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "4.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_018.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_019.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "11.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_019.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_020.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "8.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_020.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_021.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "15.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_021.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_022.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "9.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_022.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_023.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "12.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_023.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_024.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "1.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_024.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_025.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "4.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_025.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_026.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "37.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_026.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_027.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "3.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_027.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_028.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "36.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_028.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_029.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "14.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_029.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_030.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "3.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_030.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_031.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "41.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_031.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_032.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "31.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_032.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_033.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "46.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_033.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_034.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "42.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_034.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_035.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "17.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_035.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_036.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "15.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_036.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_037.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "29.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_037.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_038.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "7.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_038.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_039.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "22.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_039.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_040.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "27.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_040.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_041.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "17.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_041.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_042.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "38.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_042.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_043.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "15.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_043.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_044.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "14.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_044.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_000.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "48.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_000.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_001.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "25.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_001.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_002.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "38.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_002.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_003.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "3.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_003.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_004.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "32.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_004.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_005.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "36.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_005.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_006.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "20.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_006.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_007.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "17.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_007.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_008.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "28.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_008.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_009.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "18.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_009.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_010.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "37.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_010.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_011.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "22.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_011.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_012.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "15.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_012.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_013.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "18.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_013.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_014.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "3.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_014.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_015.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "33.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_015.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_016.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "22.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_016.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_017.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "28.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_017.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_018.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "34.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_018.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_019.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "6.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_019.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_020.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "43.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_020.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_021.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "49.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_021.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_022.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "46.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_022.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_023.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "16.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_023.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_024.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "25.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_024.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_025.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "23.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_025.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_026.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "43.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_026.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_027.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "40.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_027.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_028.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "45.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_028.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_029.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "13.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_029.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_030.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "4.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_030.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_031.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "7.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_031.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_032.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "16.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_032.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_033.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "7.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_033.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_034.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "37.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_034.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_035.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "1.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_035.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_036.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "21.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_036.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_037.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "24.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_037.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_038.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "33.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_038.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_039.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "21.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_039.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_040.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "21.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_040.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_041.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "23.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_041.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_042.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "8.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_042.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_043.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "41.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_043.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_044.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "32.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_044.png"
+  }
+]
