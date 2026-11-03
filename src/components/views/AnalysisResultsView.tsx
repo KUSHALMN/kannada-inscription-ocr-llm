@@ -59,7 +59,7 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
   const [zoomLevel, setZoomLevel] = useState<number>(1);
   const [showBoundingBoxes, setShowBoundingBoxes] = useState<boolean>(true);
   const [selectedGlyphIndex, setSelectedGlyphIndex] = useState<number | null>(null);
-  const [visualFilterMode, setVisualFilterMode] = useState<'original' | 'relief' | 'rubbing'>('original');
+  const [visualFilterMode, setVisualFilterMode] = useState<'original' | 'relief' | 'rubbing' | 'clahe_chisel'>('original');
 
   const activeImageUrl =
     visualFilterMode === 'relief' && inscription.reliefImageUrl
@@ -489,6 +489,17 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                   >
                     Digital Rubbing
                   </button>
+                  <button
+                    onClick={() => setVisualFilterMode('clahe_chisel')}
+                    className={`px-2 py-0.5 text-[10px] font-mono rounded transition-colors ${
+                      visualFilterMode === 'clahe_chisel'
+                        ? 'bg-amber-700 text-white font-bold shadow-xs'
+                        : 'text-stone-700 hover:text-stone-900'
+                    }`}
+                    title="Texture-Invariant CLAHE & Chisel Morphological Kernel"
+                  >
+                    CLAHE Kernel
+                  </button>
                 </div>
               </div>
 
@@ -551,6 +562,8 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                       ? 'contrast(170%) brightness(95%) grayscale(40%)'
                       : visualFilterMode === 'rubbing' && !inscription.rubbingImageUrl
                       ? 'contrast(240%) grayscale(100%) invert(92%)'
+                      : visualFilterMode === 'clahe_chisel'
+                      ? 'contrast(220%) brightness(105%) grayscale(100%)'
                       : undefined
                   }}
                   draggable={false}
