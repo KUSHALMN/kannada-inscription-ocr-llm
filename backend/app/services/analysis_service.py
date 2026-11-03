@@ -507,6 +507,8 @@ class AnalysisService:
             transcription = TranscriptionResult(
                 script_class=effective_script,
                 script_confidence=script_pred.confidence if script_pred else 0.9875,
+                macro_era=script_pred.macro_era if script_pred else None,
+                macro_confidence=script_pred.macro_confidence if script_pred else None,
                 recognized_text=full_recognized,
                 iast_transliteration=full_iast,
                 lines=segmented_lines,

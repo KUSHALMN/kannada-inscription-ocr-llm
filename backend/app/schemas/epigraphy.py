@@ -53,6 +53,8 @@ class TranscriptionResult(CamelModel):
     """Epigraphical Pillar 3: Decipherment, line segmentation, and transliteration."""
     script_class: ScriptClassId = Field(..., description="Inferred or catalogued script epoch")
     script_confidence: float = Field(..., ge=0.0, le=1.0, description="Script classifier confidence score")
+    macro_era: Optional[str] = Field(None, description="Broad macro epoch (Ancient Brahmi, Medieval Cursive, Post-Medieval/Modern)")
+    macro_confidence: Optional[float] = Field(None, ge=0.0, le=1.0, description="Stage 1 Macro-era confidence score")
     recognized_text: str = Field(..., description="Full deciphered original text in Kannada characters")
     iast_transliteration: str = Field(..., description="Complete IAST academic Romanization")
     lines: List[SegmentedLine] = Field(default_factory=list, description="Segmented inscriptional lines")

@@ -118,6 +118,8 @@ export interface HistoricalContext {
 export interface TranscriptionResult {
   scriptClass: ScriptClassId;
   scriptConfidence: number;
+  macroEra?: string;
+  macroConfidence?: number;
   recognizedText: string;
   iastTransliteration: string;
   lines: SegmentedLine[];
