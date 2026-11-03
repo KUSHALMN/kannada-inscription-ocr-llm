@@ -34,6 +34,8 @@ class ScriptPrediction(BaseModel):
     script_class: ScriptClassId
     confidence: float
     per_class_probs: Dict[str, float]
+    macro_era: Optional[str] = None
+    macro_confidence: Optional[float] = None
 
 
 class CharacterRecognition(BaseModel):

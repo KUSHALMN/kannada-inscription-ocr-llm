@@ -30,6 +30,8 @@ from backend.app.ml_adapters.interfaces import (
     Translator,
 )
 from backend.app.ml_adapters.mock_adapters import MockScriptClassifier, MockTranslator
+from backend.app.ml_adapters.hierarchical_model import HierarchicalCNNViT
+from backend.app.ml_adapters.clahe_preprocessor import TextureInvariantCLAHE
 
 logger = logging.getLogger(__name__)
 
@@ -140,27 +142,44 @@ SCRIPT_CLASS_MAPPING = {
 
 
 class NeuralScriptClassifier(ScriptClassifier):
-    def __init__(self, checkpoint_path: str = "saved_models/proposed_cnn_vit_best.pth"):
+    def __init__(self, checkpoint_path: str = "saved_models/hierarchical_cnn_vit_best.pth"):
         self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         self.model = None
         self.class_names = []
+        self.macro_names = [
+            "Ancient Brahmi (3rd C. BCE - 6th C. CE)",
+            "Medieval Cursive (6th C. - 14th C. CE)",
+            "Post-Medieval and Modern (14th C. - 21st C. CE)"
+        ]
         self.fallback = MockScriptClassifier()
+        self.is_hierarchical = False
 
         self.transform = transforms.Compose([
+            TextureInvariantCLAHE(clip_limit=3.0, tile_grid_size=(8, 8)),
             transforms.Resize((224, 224)),
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
         ])
 
+        if not os.path.exists(checkpoint_path) and os.path.exists("saved_models/proposed_cnn_vit_best.pth"):
+            checkpoint_path = "saved_models/proposed_cnn_vit_best.pth"
+
         if os.path.exists(checkpoint_path):
             try:
                 ckpt = torch.load(checkpoint_path, map_location=self.device)
                 self.class_names = ckpt.get("classes", list(SCRIPT_CLASS_MAPPING.keys()))
-                self.model = ProposedCNNViTHybrid(num_classes=len(self.class_names))
+                self.macro_names = ckpt.get("macro_classes", self.macro_names)
+                if "macro_head.0.weight" in ckpt["model_state_dict"]:
+                    self.model = HierarchicalCNNViT(num_micro_classes=len(self.class_names), num_macro_classes=3)
+                    self.is_hierarchical = True
+                else:
+                    self.model = ProposedCNNViTHybrid(num_classes=len(self.class_names))
+                    self.is_hierarchical = False
+
                 self.model.load_state_dict(ckpt["model_state_dict"])
                 self.model.to(self.device)
                 self.model.eval()
-                logger.info("[+] Loaded Neural Script Classifier on %s", self.device)
+                logger.info("[+] Loaded %s Script Classifier on %s", "Hierarchical" if self.is_hierarchical else "Flat", self.device)
             except Exception as e:
                 logger.warning("Could not load neural checkpoint %s: %s (using fallback)", checkpoint_path, e)
                 self.model = None
@@ -211,8 +230,19 @@ class NeuralScriptClassifier(ScriptClassifier):
                 batch_tensors = [self.transform(c) for c in crops_to_process[:8]]
                 tensor = torch.stack(batch_tensors).to(self.device)
                 with torch.no_grad():
-                    logits = self.model(tensor)
-                    probs = F.softmax(logits, dim=1).mean(dim=0).cpu().numpy()
+                    macro_era_name = None
+                    macro_conf = None
+                    if self.is_hierarchical:
+                        micro_logits, macro_logits = self.model(tensor)
+                        macro_p = F.softmax(macro_logits, dim=-1).mean(dim=0).cpu().numpy()
+                        micro_p = F.softmax(micro_logits, dim=-1).mean(dim=0).cpu().numpy()
+                        macro_best_idx = int(np.argmax(macro_p))
+                        macro_era_name = self.macro_names[macro_best_idx]
+                        macro_conf = float(macro_p[macro_best_idx])
+                        probs = micro_p
+                    else:
+                        logits = self.model(tensor)
+                        probs = F.softmax(logits, dim=1).mean(dim=0).cpu().numpy()
 
                 # Calculate hint bias if researcher or metadata provides strong keywords
                 hint_lower = hint.lower() if hint else ""
@@ -295,8 +325,10 @@ class NeuralScriptClassifier(ScriptClassifier):
 
                 return ScriptPrediction(
                     script_class=enum_cls,
-                    confidence=max(0.985, round(float(combined_probs[top_idx]), 4)),
-                    per_class_probs=per_class
+                    confidence=round(float(combined_probs[top_idx]), 4),
+                    per_class_probs=per_class,
+                    macro_era=macro_era_name,
+                    macro_confidence=round(macro_conf, 4) if macro_conf else None
                 )
 
         except Exception as e:
