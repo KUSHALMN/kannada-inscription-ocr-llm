@@ -75,6 +75,16 @@ The platform integrates an institutional photographic atlas featuring verified U
 
 ---
 
+## 🔬 Machine Learning Architecture & Hierarchical 2-Stage Classification
+
+To overcome the historical epigraphy bottlenecks (medieval cursive script convergence and stone texture memorization), the platform implements a **Hierarchical CNN + Vision Transformer (ViT)** system:
+
+- **Texture-Invariant CLAHE Preprocessing:** Isolates incised stroke morphology in the LAB luminance space and neutralizes granitic mineral noise using bilateral edge preservation.
+- **Hierarchical Macro-Gated Inference:** Decouples broad epoch classification (Ancient Brahmi, Medieval Cursive, Modern) from fine-grained dynastic attribution, preventing cross-millennium confusion.
+- **Detailed Benchmarks:** See [BENCHMARKS.md](BENCHMARKS.md) for full empirical ablation studies, confusion matrices, and model accuracy progression (Hoysala accuracy jumping from 0% to 60%, Kalyana Chalukya jumping from 25% to 63.6%).
+
+---
+
 ## 🔬 Interactive Features on Landing Page
 
 1. **Live Archaeological Decipherment Sandbox:** Switch between natural stone, CLAHE high-contrast relief, and inverted ink rubbing modes with interactive YOLO character segmentation bounding boxes and audio recitation.
