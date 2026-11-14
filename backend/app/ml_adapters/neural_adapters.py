@@ -352,7 +352,18 @@ class NeuralScriptClassifier(ScriptClassifier):
 # 3. Neural Multimodal Translator (Fine-Tuned Seq2Seq + LoRA)
 # =====================================================================
 class NeuralTranslator(Translator):
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+            cls._instance._initialized = False
+        return cls._instance
+
     def __init__(self, model_dir: str = "saved_multimodal_translator"):
+        if getattr(self, "_initialized", False):
+            return
+        self._initialized = True
         self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         self.tokenizer = None
         self.model = None
@@ -436,7 +447,7 @@ class NeuralTranslator(Translator):
             except Exception as e:
                 logger.warning("Could not index parallel dataset: %s", e)
 
-        # Load Neural Seq2Seq model
+        # Load Neural Seq2Seq model (with fast local-first loading)
         if os.path.exists(model_dir):
             try:
                 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
@@ -446,19 +457,18 @@ class NeuralTranslator(Translator):
                     self.tokenizer = AutoTokenizer.from_pretrained(model_dir, local_files_only=True)
                 except Exception:
                     self.tokenizer = AutoTokenizer.from_pretrained(model_dir)
+
                 try:
                     base = AutoModelForSeq2SeqLM.from_pretrained("google/mt5-small", local_files_only=True)
-                except Exception:
-                    base = AutoModelForSeq2SeqLM.from_pretrained("google/mt5-small")
-                try:
                     self.model = PeftModel.from_pretrained(base, model_dir, local_files_only=True)
-                except Exception:
-                    self.model = PeftModel.from_pretrained(base, model_dir)
-                self.model.to(self.device)
-                self.model.eval()
-                logger.info("[+] Loaded Neural Epigraph Translator on %s", self.device)
+                    self.model.to(self.device)
+                    self.model.eval()
+                    logger.info("[+] Loaded Neural Epigraph Translator on %s", self.device)
+                except Exception as local_err:
+                    logger.info("Local base model load deferred (%s); using parallel epigraph memory", local_err)
+                    self.model = None
             except Exception as e:
-                logger.warning("Could not load fine-tuned translator from %s: %s", model_dir, e)
+                logger.warning("Could not initialize fine-tuned translator from %s: %s", model_dir, e)
                 self.model = None
 
     def translate(self, text: str, script: ScriptClassId, language: SourceLanguageId) -> TranslationResult:
