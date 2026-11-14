@@ -388,7 +388,26 @@ class AnalysisService:
             await on_step_progress("classification", 50)
         try:
             t0 = time.perf_counter()
-            crops: List[np.ndarray] = []  # In real model: cropped glyph boxes from preprocessed_arr
+            crops: List[np.ndarray] = []
+            if preprocessed_arr is not None and line_boxes:
+                h_img, w_img = preprocessed_arr.shape[:2]
+                for lb in line_boxes[:8]:
+                    bb = lb.bounding_box
+                    y1 = max(0, int((bb.y / 100.0) * h_img))
+                    y2 = min(h_img, int(((bb.y + bb.height) / 100.0) * h_img))
+                    x1 = max(0, int((bb.x / 100.0) * w_img))
+                    x2 = min(w_img, int(((bb.x + bb.width) / 100.0) * w_img))
+                    if y2 > y1 + 10 and x2 > x1 + 10:
+                        crops.append(preprocessed_arr[y1:y2, x1:x2])
+                    if hasattr(lb, "glyphs") and lb.glyphs:
+                        for gb in lb.glyphs[:4]:
+                            gy1 = max(0, int((gb.y / 100.0) * h_img))
+                            gy2 = min(h_img, int(((gb.y + gb.height) / 100.0) * h_img))
+                            gx1 = max(0, int((gb.x / 100.0) * w_img))
+                            gx2 = min(w_img, int(((gb.x + gb.width) / 100.0) * w_img))
+                            if gy2 > gy1 + 5 and gx2 > gx1 + 5:
+                                crops.append(preprocessed_arr[gy1:gy2, gx1:gx2])
+
             hint = f"{title or ''} {location or ''} {dynasty or ''} {known_script or ''} {researcher_notes or ''} {filename or ''}"
             import inspect
             sig = inspect.signature(self.classifier.predict)

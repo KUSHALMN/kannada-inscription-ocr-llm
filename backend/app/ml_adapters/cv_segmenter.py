@@ -132,7 +132,16 @@ class CVStoneSegmenter(Segmenter):
             glyph_boxes: List[GlyphBox] = []
 
             if line_strip.size > 0:
-                v_proj = np.sum(line_strip < 100, axis=0).astype(float)
+                # Polarity-adaptive thresholding (handles both squeezes and natural relief carvings)
+                mean_val = np.mean(line_strip)
+                if mean_val > 127:
+                    # Light background, dark carved strokes
+                    _, bin_strip = cv2.threshold(line_strip, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+                else:
+                    # Dark background rubbing, light chiseled characters
+                    _, bin_strip = cv2.threshold(line_strip, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+
+                v_proj = np.sum(bin_strip > 0, axis=0).astype(float)
                 v_window = max(3, int(line_strip.shape[1] * 0.01) | 1)
                 v_smooth = np.convolve(v_proj, np.ones(v_window) / v_window, mode="same")
                 v_peaks, _ = find_peaks(v_smooth, distance=max(10, int(line_strip.shape[1] * 0.04)))
