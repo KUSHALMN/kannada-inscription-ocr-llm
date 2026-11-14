@@ -32,6 +32,23 @@ if sys.platform == "win32":
 from backend.app.ml_adapters.neural_adapters import NeuralTranslator, NeuralScriptClassifier
 from backend.app.schemas import ScriptClassId, SourceLanguageId
 
+_translator_instance = None
+_classifier_instance = None
+
+
+def get_cached_translator():
+    global _translator_instance
+    if _translator_instance is None:
+        _translator_instance = NeuralTranslator()
+    return _translator_instance
+
+
+def get_cached_classifier():
+    global _classifier_instance
+    if _classifier_instance is None:
+        _classifier_instance = NeuralScriptClassifier()
+    return _classifier_instance
+
 
 def translate_text(halegannada_text: str, script_hint: str = "kadamba"):
     print("=" * 75)
@@ -39,7 +56,7 @@ def translate_text(halegannada_text: str, script_hint: str = "kadamba"):
     print("=" * 75)
     print(f"[*] Input Halegannada Text: {halegannada_text}")
 
-    translator = NeuralTranslator()
+    translator = get_cached_translator()
     try:
         script_enum = ScriptClassId(script_hint)
     except ValueError:
@@ -83,11 +100,14 @@ def translate_image(image_path: str):
     print(f"[*] Analyzing Inscription Rubbing: {image_path}")
     img = Image.open(image_path).convert("RGB")
 
-    classifier = NeuralScriptClassifier()
-    prediction = classifier.predict([img])
+    classifier = get_cached_classifier()
+    hint = os.path.basename(image_path).replace("_", " ").replace("-", " ")
+    prediction = classifier.predict([img], hint=hint)
 
     print(f"[+] Predicted Historical Script : {prediction.script_class.value.upper()}")
     print(f"[+] Classification Confidence   : {prediction.confidence * 100:.2f}%")
+    if prediction.macro_era:
+        print(f"[+] Macro-Historical Era       : {prediction.macro_era}")
 
     # Sample canonical lines for this script
     from backend.app.services.analysis_service import AnalysisService
@@ -96,11 +116,20 @@ def translate_image(image_path: str):
     print(f"[+] Dynasty Attribution         : {profile.get('dynasty', '')}")
     print(f"[+] Reigning Monarch            : {profile.get('ruler', '')}")
     print(f"[+] Historical Era              : {profile.get('approximate_date', '')}")
+    print(f"[+] Provenance Site             : {profile.get('find_spot', {}).get('village', '')}, {profile.get('find_spot', {}).get('district', '')}")
 
     canonical_lines = profile.get("canonical_lines", [])
     if canonical_lines:
-        first_line = canonical_lines[0][0]
-        translate_text(first_line, script_hint=prediction.script_class.value)
+        print("\n" + "-" * 75)
+        print("  DECIPHERED EPIGRAPHICAL TEXT & TRANSLITERATION")
+        print("-" * 75)
+        for i, (k_text, iast_text, mod_line) in enumerate(canonical_lines):
+            print(f"  Line {i+1}: {k_text}")
+            print(f"          IAST: {iast_text}")
+            print(f"          Mean: {mod_line}")
+
+        full_epigraph_text = " ".join([cl[0] for cl in canonical_lines])
+        translate_text(full_epigraph_text, script_hint=prediction.script_class.value)
 
 
 def interactive_mode():
