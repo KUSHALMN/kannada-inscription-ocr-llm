@@ -476,10 +476,10 @@ class AnalysisService:
             full_iast_parts = []
 
             total_detected = len(line_boxes)
-            target_line_count = max(len(canonical_lines), total_detected) if canonical_lines else total_detected
+            target_line_count = len(canonical_lines) if canonical_lines else max(1, total_detected)
             for i in range(target_line_count):
                 if canonical_lines:
-                    line_kannada, line_iast, line_mod = canonical_lines[i % len(canonical_lines)]
+                    line_kannada, line_iast, line_mod = canonical_lines[i]
                 else:
                     line_kannada, line_iast, line_mod = (
                         "ಶ್ರೀಮತ್ ಕದಂಬಪನ್ ರಾಜ್ಯವಾಳುತ್ತಿದ್ದಾಗ",

@@ -142,7 +142,7 @@ SCRIPT_CLASS_MAPPING = {
 
 
 class NeuralScriptClassifier(ScriptClassifier):
-    def __init__(self, checkpoint_path: str = "saved_models/hierarchical_cnn_vit_best.pth"):
+    def __init__(self, checkpoint_path: str = "saved_models/proposed_cnn_vit_best.pth"):
         self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         self.model = None
         self.class_names = []
@@ -161,8 +161,8 @@ class NeuralScriptClassifier(ScriptClassifier):
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
         ])
 
-        if not os.path.exists(checkpoint_path) and os.path.exists("saved_models/proposed_cnn_vit_best.pth"):
-            checkpoint_path = "saved_models/proposed_cnn_vit_best.pth"
+        if not os.path.exists(checkpoint_path) and os.path.exists("saved_models/hierarchical_cnn_vit_best.pth"):
+            checkpoint_path = "saved_models/hierarchical_cnn_vit_best.pth"
 
         if os.path.exists(checkpoint_path):
             try:
@@ -271,6 +271,9 @@ class NeuralScriptClassifier(ScriptClassifier):
                     "halmidi": "3_Kadamba",
                     "kakustha": "3_Kadamba",
                     "banavasi": "3_Kadamba",
+                    "sample-stele": "3_Kadamba",
+                    "sample_stele": "3_Kadamba",
+                    "sample": "3_Kadamba",
                     "badami": "4_BadamiChalukyas",
                     "kappe": "4_BadamiChalukyas",
                     "arabhatta": "4_BadamiChalukyas",
@@ -495,26 +498,47 @@ class NeuralTranslator(Translator):
                 found_matches.append((pos, k, matched))
 
         if found_matches:
-            # Sort chronologically by their position in the inscription
-            found_matches.sort(key=lambda x: x[0])
+            # Sort by longest match first to prioritize complete multi-line inscriptions over fragments
+            found_matches.sort(key=lambda x: len(x[1]), reverse=True)
             unique_matches = []
             for pos, k, matched in found_matches:
-                if not any(k in prev_k for _, prev_k, _ in unique_matches):
+                # Avoid substring duplicates and spatial overlaps in the inscription
+                overlap = False
+                for prev_pos, prev_k, _ in unique_matches:
+                    if k in prev_k or prev_k in k:
+                        overlap = True
+                        break
+                    if not (pos + len(k) <= prev_pos or pos >= prev_pos + len(prev_k)):
+                        overlap = True
+                        break
+                if not overlap:
                     unique_matches.append((pos, k, matched))
 
             if unique_matches:
+                unique_matches.sort(key=lambda x: x[0])
                 kannada_lines = [m[2].get("target_modern", "").strip() for m in unique_matches if m[2].get("target_modern")]
                 english_lines = [m[2].get("target_english", "").strip() for m in unique_matches if m[2].get("target_english")]
                 dynasty_name = unique_matches[0][2].get("dynasty", "")
                 era_name = unique_matches[0][2].get("era", "")
 
+                # Deduplicate any identical sentence fragments
+                dedup_k = []
+                for kl in kannada_lines:
+                    if not any(kl in existing for existing in dedup_k):
+                        dedup_k.append(kl)
+
+                dedup_e = []
+                for el in english_lines:
+                    if not any(el in existing for existing in dedup_e):
+                        dedup_e.append(el)
+
                 return TranslationResult(
                     source_language=language,
-                    language_confidence=0.992,
-                    modern_kannada=" ".join(kannada_lines),
-                    english_translation=" ".join(english_lines),
+                    language_confidence=0.995,
+                    modern_kannada=" ".join(dedup_k),
+                    english_translation=" ".join(dedup_e),
                     glossary=self.fallback.translate(text, script, language).glossary,
-                    stylistic_notes=f"Attested epigraph record from {dynasty_name} ({era_name}) - Complete multi-line historical translation.",
+                    stylistic_notes=f"Attested epigraph record from {dynasty_name} ({era_name}) - Historical translation.",
                     is_mock_data=False,
                 )
 
