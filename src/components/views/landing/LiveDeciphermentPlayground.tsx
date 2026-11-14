@@ -98,7 +98,27 @@ const PLAYGROUND_SAMPLES: PlaygroundSample[] = [
     hosagannada: 'ಮಹಾಪರಾಕ್ರಮಿ ಹೊಯ್ಸಳ ದೊರೆ ವಿಷ್ಣುವರ್ಧನನು ತಲಕಾಡನ್ನು ವಶಪಡಿಸಿಕೊಂಡು ಚೋಳರನ್ನು ಹಿಮ್ಮೆಟ್ಟಿಸಿದ ವಿಜಯೋತ್ಸವದ ಶಾಸನ.',
     english: 'The illustrious and valiant Hoysala monarch Vishnuvardhana, having conquered Talakadu and routed the Chola forces, consecrated this temple.',
     audioPronunciationText: 'ಶ್ರೀಮತ್ ಪ್ರೌಢಪ್ರತಾಪ ಹೊಯ್ಸಳ ಶ್ರೀ ವಿಷ್ಣುವರ್ಧನ ದೇವರ್',
-    historicalNote: 'Celebrates King Vishnuvardhana adopting the imperial title "Talakadugonda" (Conqueror of Talakadu).'
+    historicalNote: 'Commemorates the epoch-making Hoysala liberation of Talakadu and foundation of the grand temple of Lord Chennakeshava in 1117 CE.'
+  },
+  {
+    id: 'kavirajamarga',
+    name: 'Kavirajamarga Inscription (ಕ್ರಿ.ಶ. ೮೫೦)',
+    dynasty: 'Rashtrakuta Empire',
+    century: 'c. 850 CE',
+    site: 'Manyakheta / Malkhed',
+    imageUrl: '/temples/rashtrakuta.jpg',
+    scriptEra: 'Imperial Rashtrakuta Script',
+    boundingBoxes: [
+      { id: 'b1', top: 22, left: 18, width: 26, height: 12, char: 'ಕಾವೇರಿಯಿಂದಂ', iast: 'kāvēriyindaṁ' },
+      { id: 'b2', top: 22, left: 48, width: 28, height: 12, char: 'ಗೋದಾವರಿವರಂ', iast: 'gōdāvarivaraṁ' },
+      { id: 'b3', top: 44, left: 20, width: 30, height: 12, char: 'ನಾಡದಾ ಕನ್ನಡದೊಳ್', iast: 'nāḍadā kannaḍadoḷ' },
+    ],
+    halegannada: 'ಕಾವೇರಿಯಿಂದಂ ಗೋದಾವರಿವರಮಿರ್ಪ ನಾಡದಾ ಕನ್ನಡದೊಳ್ ಭಾವಿಸಿದ ಜನಪದಂ ಪದನಱಿದು ನುಡಿಯಲು ಮಾರ್ಪರ್...',
+    iast: 'kāvēriyindaṁ gōdāvarivaramirpa nāḍadā kannaḍadoḷ bhāvisida janapadaṁ padanaṟidu nuḍiyalu mārpar...',
+    hosagannada: 'ಕಾವೇರಿ ನದಿಯಿಂದ ಗೋದಾವರಿ ನದಿಯವರೆಗೆ ಹಬ್ಬಿರುವ ಸುಂದರ ನಾಡೇ ಕನ್ನಡ ನಾಡು; ಅಲ್ಲಿಯ ಜನರು ಸಹಜ ಕಾವ್ಯ ಪ್ರೌಢಿಮೆಯುಳ್ಳವರು.',
+    english: 'The noble land stretching from the Cauvery river to the Godavari is the realm of Kannada, whose cultured people possess innate poetic eloquence.',
+    audioPronunciationText: 'ಕಾವೇರಿಯಿಂದಂ ಗೋದಾವರಿವರಮಿರ್ಪ ನಾಡದಾ ಕನ್ನಡದೊಳ್ ಭಾವಿಸಿದ ಜನಪದಂ',
+    historicalNote: 'Celebrated classical epigraph defining the geographical and cultural boundaries of the Kannada realm under King Amoghavarsha I Nrupatunga.'
   },
   {
     id: 'hampi',
