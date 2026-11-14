@@ -51,6 +51,12 @@ try:
 except Exception:
     CV_SEGMENTER_AVAILABLE = False
 
+try:
+    from rapidocr_onnxruntime import RapidOCR
+    RAPID_OCR_AVAILABLE = True
+except Exception:
+    RAPID_OCR_AVAILABLE = False
+
 
 class AnalysisService:
     """
@@ -289,6 +295,7 @@ class AnalysisService:
 
         self.recognizer = recognizer or MockRecognizer()
         self.transliterator = transliterator or MockTransliterator()
+        self.ocr_engine = RapidOCR() if RAPID_OCR_AVAILABLE else None
 
         if translator:
             self.translator = translator
