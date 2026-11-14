@@ -35,9 +35,43 @@ class CVStonePreprocessor(Preprocessor):
         clahe = cv2.createCLAHE(clipLimit=3.5, tileGridSize=(8, 8))
         enhanced_gray = clahe.apply(smooth)
 
+        # Difference of Gaussians (DoG) bandpass filter to suppress grain and highlight chisel lines
+        dog = self.apply_difference_of_gaussians(enhanced_gray, sigma1=1.0, sigma2=3.0)
+        blended = cv2.addWeighted(enhanced_gray, 0.75, dog, 0.25, 0)
+
         # Normalized float array [0, 1]
-        enhanced_rgb = cv2.cvtColor(enhanced_gray, cv2.COLOR_GRAY2RGB)
+        enhanced_rgb = cv2.cvtColor(blended, cv2.COLOR_GRAY2RGB)
         return (enhanced_rgb.astype(np.float32) / 255.0)
+
+    @staticmethod
+    def apply_difference_of_gaussians(gray: np.ndarray, sigma1: float = 1.0, sigma2: float = 3.0) -> np.ndarray:
+        """
+        Isolates chisel depressions from high-frequency stone grain noise
+        using Difference of Gaussians (DoG) bandpass filtering.
+        """
+        g1 = cv2.GaussianBlur(gray, (0, 0), sigma1)
+        g2 = cv2.GaussianBlur(gray, (0, 0), sigma2)
+        dog = cv2.subtract(g1, g2)
+        return cv2.normalize(dog, None, 0, 255, cv2.NORM_MINMAX).astype(np.uint8)
+
+    @staticmethod
+    def morphological_skeletonize(bin_img: np.ndarray, max_iterations: int = 30) -> np.ndarray:
+        """
+        Reduces thick weathered chisel depressions down to 1-pixel-wide stroke trajectories
+        using iterative morphological thinning / skeletonization.
+        """
+        skel = np.zeros(bin_img.shape, np.uint8)
+        element = cv2.getStructuringElement(cv2.MORPH_CROSS, (3, 3))
+        img = bin_img.copy()
+        for _ in range(max_iterations):
+            eroded = cv2.erode(img, element)
+            temp = cv2.dilate(eroded, element)
+            temp = cv2.subtract(img, temp)
+            skel = cv2.bitwise_or(skel, temp)
+            img = eroded.copy()
+            if cv2.countNonZero(img) == 0:
+                break
+        return skel
 
     @staticmethod
     def generate_visual_derivatives(image: Image.Image, base_storage_path: str) -> Tuple[str, str]:
@@ -180,3 +214,92 @@ class CVStoneSegmenter(Segmenter):
             )
 
         return line_boxes
+
+
+# =====================================================================
+# Panoramic Multi-Panel Temple Wall Stitcher
+# =====================================================================
+class PanoramicWallStitcher:
+    """
+    Stitches multiple continuous photographs of long temple wall inscriptions
+    into a single unified high-resolution epigraph stele image.
+    Supports OpenCV Panorama Stitcher with robust ORB Planar Homography fallback.
+    """
+
+    @classmethod
+    def stitch_panels(cls, images: List[np.ndarray]) -> Tuple[bool, Optional[np.ndarray], str]:
+        if not images or len(images) < 2:
+            if images and len(images) == 1:
+                return True, images[0], "Single panel provided (no stitching required)"
+            return False, None, "At least two image panels are required for stitching."
+
+        # Convert all to uint8 BGR
+        bgr_panels = []
+        for img in images:
+            if img.dtype in (np.float32, np.float64):
+                uint8_im = np.clip(img * 255.0, 0, 255).astype(np.uint8)
+            else:
+                uint8_im = img.astype(np.uint8)
+
+            if len(uint8_im.shape) == 2:
+                bgr_panels.append(cv2.cvtColor(uint8_im, cv2.COLOR_GRAY2BGR))
+            elif uint8_im.shape[2] == 3:
+                bgr_panels.append(uint8_im)
+
+        # 1. Try OpenCV SCANS / PANORAMA stitcher
+        try:
+            stitcher = cv2.Stitcher_create(cv2.Stitcher_SCANS)
+            status, pano = stitcher.stitch(bgr_panels)
+            if status == cv2.Stitcher_OK and pano is not None:
+                return True, pano, "OpenCV SCANS stitch completed successfully."
+        except Exception:
+            pass
+
+        # 2. Planar ORB Homography Stitcher fallback (ideal for planar temple walls)
+        try:
+            current_pano = bgr_panels[0]
+            orb = cv2.ORB_create(1200)
+            bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+
+            for next_panel in bgr_panels[1:]:
+                kp1, des1 = orb.detectAndCompute(current_pano, None)
+                kp2, des2 = orb.detectAndCompute(next_panel, None)
+
+                if des1 is None or des2 is None or len(des1) < 10 or len(des2) < 10:
+                    continue
+
+                matches = sorted(bf.match(des1, des2), key=lambda x: x.distance)
+                if len(matches) < 8:
+                    # If match count is too low, horizontally stack with slight blend
+                    h1, w1 = current_pano.shape[:2]
+                    h2, w2 = next_panel.shape[:2]
+                    max_h = max(h1, h2)
+                    stacked = np.zeros((max_h, w1 + w2, 3), dtype=np.uint8)
+                    stacked[:h1, :w1] = current_pano
+                    stacked[:h2, w1:w1+w2] = next_panel
+                    current_pano = stacked
+                    continue
+
+                src_pts = np.float32([kp1[m.queryIdx].pt for m in matches[:60]]).reshape(-1, 1, 2)
+                dst_pts = np.float32([kp2[m.trainIdx].pt for m in matches[:60]]).reshape(-1, 1, 2)
+                H, _ = cv2.findHomography(dst_pts, src_pts, cv2.RANSAC, 4.0)
+
+                if H is not None:
+                    h1, w1 = current_pano.shape[:2]
+                    h2, w2 = next_panel.shape[:2]
+                    warped = cv2.warpPerspective(next_panel, H, (w1 + w2, max(h1, h2)))
+                    warped[0:h1, 0:w1] = current_pano
+
+                    # Crop unmapped black border
+                    gray = cv2.cvtColor(warped, cv2.COLOR_BGR2GRAY)
+                    _, thresh = cv2.threshold(gray, 1, 255, cv2.THRESH_BINARY)
+                    x, y, w_box, h_box = cv2.boundingRect(thresh)
+                    if w_box > 50 and h_box > 50:
+                        current_pano = warped[y:y+h_box, x:x+w_box]
+                    else:
+                        current_pano = warped
+
+            return True, current_pano, "Planar ORB Homography seam stitch completed successfully."
+
+        except Exception as e:
+            return False, None, f"Multi-panel wall stitching failed: {str(e)}"

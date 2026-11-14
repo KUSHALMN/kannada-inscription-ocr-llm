@@ -83,15 +83,44 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
     }
   };
 
-  // Audio pronunciation simulation state
+  // Audio pronunciation synthesis state
   const [isPlayingAudio, setIsPlayingAudio] = useState<boolean>(false);
 
   const toggleAudioPronunciation = () => {
+    if (typeof window === 'undefined') return;
+
     if (isPlayingAudio) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
       setIsPlayingAudio(false);
+      return;
+    }
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      // Prefer recognized Halegannada epigraph text, falling back to Modern Kannada translation
+      const textToSpeak = inscription.transcription.recognizedText || inscription.translation.modernKannada;
+      const utterance = new SpeechSynthesisUtterance(textToSpeak);
+      utterance.lang = 'kn-IN';
+      utterance.rate = 0.85; // Measured scholarly cadence
+      utterance.pitch = 1.0;
+
+      // Select Kannada voice if installed on system
+      const voices = window.speechSynthesis.getVoices();
+      const knVoice = voices.find((v) => v.lang.includes('kn') || v.name.toLowerCase().includes('kannada'));
+      if (knVoice) {
+        utterance.voice = knVoice;
+      }
+
+      utterance.onend = () => setIsPlayingAudio(false);
+      utterance.onerror = () => setIsPlayingAudio(false);
+
+      setIsPlayingAudio(true);
+      window.speechSynthesis.speak(utterance);
     } else {
       setIsPlayingAudio(true);
-      setTimeout(() => setIsPlayingAudio(false), 5000);
+      setTimeout(() => setIsPlayingAudio(false), 4000);
     }
   };
 
@@ -851,14 +880,24 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
               </div>
 
               {activeRightPanelTab === 'translation' && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  icon={hasCopiedTranslation ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                  onClick={handleCopyTranslation}
-                >
-                  {hasCopiedTranslation ? 'Copied' : 'Copy'}
-                </Button>
+                <div className="flex items-center gap-1.5">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    icon={isPlayingAudio ? <VolumeX className="w-3 h-3 text-amber-700 animate-pulse" /> : <Volume2 className="w-3 h-3 text-amber-700" />}
+                    onClick={toggleAudioPronunciation}
+                  >
+                    {isPlayingAudio ? 'Stop / ನಿಲ್ಲಿಸಿ' : 'Pronounce / ಆಲಿಸಿ'}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    icon={hasCopiedTranslation ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                    onClick={handleCopyTranslation}
+                  >
+                    {hasCopiedTranslation ? 'Copied' : 'Copy'}
+                  </Button>
+                </div>
               )}
             </div>
 

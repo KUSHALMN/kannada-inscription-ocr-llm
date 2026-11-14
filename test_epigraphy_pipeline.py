@@ -197,6 +197,38 @@ async def test_unhinted_image_classification_and_translation():
     print("    [+] Unhinted Belur Hoysala upload recognized and translated correctly!")
 
 
+def test_glyph_matching_and_wall_stitching():
+    print("[*] 6. Testing Weathered Stone Glyph Matching & Panoramic Wall Stitching...")
+    import cv2
+    from backend.app.ml_adapters.glyph_matcher import HistoricalGlyphPrototypeMatcher
+    from backend.app.ml_adapters.cv_segmenter import PanoramicWallStitcher
+
+    # Test 1: Historical Glyph Prototype Matcher
+    matcher = HistoricalGlyphPrototypeMatcher()
+    sample_glyph_path = "public/glyphs/kadamba/2.png"
+    assert os.path.exists(sample_glyph_path), "Sample glyph not found"
+    glyph_img = cv2.imread(sample_glyph_path)
+    char, iast, conf = matcher.match_glyph(glyph_img, "kadamba")
+    assert char in ["ಅ", "ಕ", "ಗ"], f"Expected Kannada glyph, got {char}"
+    assert conf >= 0.70, f"Confidence too low: {conf}"
+    print(f"    [+] Glyph prototype match succeeded: '{char}' ({iast}) with confidence {conf*100:.1f}%")
+
+    # Test 2: Multi-Panel Temple Wall Stitching
+    stele_path = "public/sample-stele.jpg"
+    assert os.path.exists(stele_path), "Sample stele not found"
+    full_img = cv2.imread(stele_path)
+    h, w = full_img.shape[:2]
+    mid = w // 2
+    overlap = int(w * 0.15)
+    left_panel = full_img[:, :mid + overlap]
+    right_panel = full_img[:, mid - overlap:]
+
+    ok, pano, msg = PanoramicWallStitcher.stitch_panels([left_panel, right_panel])
+    assert ok is True, f"Wall stitching failed: {msg}"
+    assert pano is not None and pano.shape[1] >= mid, "Stitched panorama must be wide"
+    print(f"    [+] Multi-panel temple wall stitching succeeded: {pano.shape[1]}x{pano.shape[0]} px ({msg})")
+
+
 def main():
     print("=" * 80)
     print("  ANCIENT KANNADA EPIGRAPHY AI VALIDATION SUITE")
@@ -204,6 +236,7 @@ def main():
     test_cv_segmentation()
     test_neural_classification()
     test_neural_translation()
+    test_glyph_matching_and_wall_stitching()
     asyncio.run(test_full_analysis_pipeline())
     asyncio.run(test_unhinted_image_classification_and_translation())
     print("=" * 80)
