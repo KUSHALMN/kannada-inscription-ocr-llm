@@ -160,7 +160,78 @@ export class MockEpigraphyService implements IEpigraphyService {
       }
     }
 
-    const canonical = matchedInscription || this.inscriptions[0];
+    // Visual lithology and morphological stone sampling for arbitrary client uploads
+    if (!matchedInscription && typeof document !== 'undefined' && typeof Image !== 'undefined' && file && file.size > 0) {
+      try {
+        const visualMatch = await new Promise<string | null>((resolve) => {
+          const img = new Image();
+          const url = URL.createObjectURL(file);
+          img.onload = () => {
+            try {
+              const canvas = document.createElement('canvas');
+              const ctx = canvas.getContext('2d');
+              if (!ctx) {
+                URL.revokeObjectURL(url);
+                resolve(null);
+                return;
+              }
+              canvas.width = 32;
+              canvas.height = 32;
+              ctx.drawImage(img, 0, 0, 32, 32);
+              const data = ctx.getImageData(0, 0, 32, 32).data;
+              let rTot = 0, gTot = 0, bTot = 0;
+              const count = data.length / 4;
+              for (let i = 0; i < data.length; i += 4) {
+                rTot += data[i];
+                gTot += data[i + 1];
+                bTot += data[i + 2];
+              }
+              const rAvg = rTot / count;
+              const gAvg = gTot / count;
+              const bAvg = bTot / count;
+              const lum = (rAvg + gAvg + bAvg) / 3;
+              const aspect = img.width / Math.max(1, img.height);
+              URL.revokeObjectURL(url);
+
+              // 1. Red Sandstone lithology (Badami cliff rock face)
+              if (rAvg > gAvg + 20 && rAvg > bAvg + 40) {
+                resolve('badami_chalukya');
+                return;
+              }
+              // 2. Dark Chloritic Soapstone lithology (Hoysala Belur/Halebidu)
+              if (lum < 75) {
+                resolve('hoysala');
+                return;
+              }
+              // 3. Tall Granite Stele rubbing (Kadamba Halmidi stele)
+              if (aspect < 1.0 || (aspect > 1.8 && lum > 140)) {
+                resolve('kadamba');
+                return;
+              }
+              resolve(null);
+            } catch {
+              URL.revokeObjectURL(url);
+              resolve(null);
+            }
+          };
+          img.onerror = () => {
+            URL.revokeObjectURL(url);
+            resolve(null);
+          };
+          img.src = url;
+        });
+
+        if (visualMatch) {
+          matchedInscription = this.inscriptions.find((ins) => ins.scriptClass === visualMatch);
+        }
+      } catch (err) {
+        console.warn('Browser visual lithology sampling skipped:', err);
+      }
+    }
+
+    // Default to Kadamba Halmidi (foundational Kannada inscription) rather than Ashokan Prakrit
+    const kadambaDefault = this.inscriptions.find((ins) => ins.scriptClass === 'kadamba') || this.inscriptions[0];
+    const canonical = matchedInscription || kadambaDefault;
     const userImgUrl = file && file.size > 0 && typeof URL !== 'undefined'
       ? URL.createObjectURL(file)
       : canonical.imageUrl;

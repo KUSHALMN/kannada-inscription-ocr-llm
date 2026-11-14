@@ -21,6 +21,7 @@ logging.getLogger("torch").setLevel(logging.ERROR)
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 
+import numpy as np
 from PIL import Image
 
 # Fix Windows console UTF-8 output
@@ -102,7 +103,7 @@ def translate_image(image_path: str):
 
     classifier = get_cached_classifier()
     hint = os.path.basename(image_path).replace("_", " ").replace("-", " ")
-    prediction = classifier.predict([img], hint=hint)
+    prediction = classifier.predict([img], hint=hint, image_arr=np.array(img))
 
     print(f"[+] Predicted Historical Script : {prediction.script_class.value.upper()}")
     print(f"[+] Classification Confidence   : {prediction.confidence * 100:.2f}%")

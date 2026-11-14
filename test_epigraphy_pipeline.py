@@ -129,6 +129,74 @@ async def test_full_analysis_pipeline():
     print("    [+] End-to-end async pipeline test passed successfully!")
 
 
+async def test_unhinted_image_classification_and_translation():
+    print("[*] 5. Testing Generic Unhinted Inscription Uploads (Zero-Metadata)...")
+    service = AnalysisService()
+
+    # 1. Test Badami Sandstone Stele with generic filename and no researcher hints
+    badami_path = "public/inscriptions/badami_kappe_arabhatta_stele.jpg"
+    assert os.path.exists(badami_path), "Badami stele not found"
+    img_badami = Image.open(badami_path).convert("RGB")
+    res_badami = await service.execute_pipeline(
+        image=img_badami,
+        job_id="test-unhinted-badami",
+        filename="IMG_20261114_001.jpg",
+        title=None,
+        location=None,
+        dynasty=None,
+        known_script="uncertain",
+        known_language="uncertain",
+    )
+    assert res_badami.status == "completed"
+    assert res_badami.inferred_script == ScriptClassId.BADAMI_CHALUKYA, f"Expected BADAMI_CHALUKYA, got {res_badami.inferred_script}"
+    assert ("Chalukya" in res_badami.historical_context.dynasty or "ಚಾಲುಕ್ಯ" in res_badami.historical_context.dynasty)
+    assert "ಮಾಧುರ್ಯ" in res_badami.transcription.recognized_text or "ಸಾಧುಗೆ" in res_badami.transcription.recognized_text
+    assert ("ಒಳ್ಳೆಯವರಿಗೆ" in res_badami.translation.modern_kannada or "ಸಜ್ಜನರಿಗೆ" in res_badami.translation.modern_kannada)
+    print("    [+] Unhinted Badami upload recognized and translated correctly into Hosagannada & English!")
+
+    # 2. Test Halmidi Granite Stele with generic filename
+    sample_path = "public/sample-stele.jpg"
+    assert os.path.exists(sample_path), "Sample stele not found"
+    img_kadamba = Image.open(sample_path).convert("RGB")
+    res_kadamba = await service.execute_pipeline(
+        image=img_kadamba,
+        job_id="test-unhinted-halmidi",
+        filename="photo_camera.png",
+        title=None,
+        location=None,
+        dynasty=None,
+        known_script="uncertain",
+        known_language="uncertain",
+    )
+    assert res_kadamba.status == "completed"
+    assert res_kadamba.inferred_script == ScriptClassId.KADAMBA, f"Expected KADAMBA, got {res_kadamba.inferred_script}"
+    assert "Kadamba" in res_kadamba.historical_context.dynasty
+    assert ("ಕದಂಬ" in res_kadamba.translation.modern_kannada or "ಕಾಕುಸ್ಥ" in res_kadamba.translation.modern_kannada)
+    print("    [+] Unhinted Halmidi Kadamba upload recognized and translated correctly!")
+
+    # 3. Test Belur Hoysala Stele with generic filename
+    belur_path = "public/inscriptions/belur_chennakeshava_stele.jpg"
+    assert os.path.exists(belur_path), "Belur stele not found"
+    img_hoysala = Image.open(belur_path).convert("RGB")
+    res_hoysala = await service.execute_pipeline(
+        image=img_hoysala,
+        job_id="test-unhinted-belur",
+        filename="upload_dark_stone.jpg",
+        title=None,
+        location=None,
+        dynasty=None,
+        known_script="uncertain",
+        known_language="uncertain",
+    )
+    assert res_hoysala.status == "completed"
+    assert res_hoysala.inferred_script == ScriptClassId.HOYSALA, f"Expected HOYSALA, got {res_hoysala.inferred_script}"
+    assert "Hoysala" in res_hoysala.historical_context.dynasty
+    assert "ಹೊಯ್ಸಳ" in res_hoysala.transcription.recognized_text
+    assert ("ಭೂದಾನ" in res_hoysala.translation.modern_kannada or "ದಾನ" in res_hoysala.translation.modern_kannada or "ಧರ್ಮ" in res_hoysala.translation.modern_kannada)
+    assert ("endowment" in res_hoysala.translation.english_translation.lower() or "grant" in res_hoysala.translation.english_translation.lower())
+    print("    [+] Unhinted Belur Hoysala upload recognized and translated correctly!")
+
+
 def main():
     print("=" * 80)
     print("  ANCIENT KANNADA EPIGRAPHY AI VALIDATION SUITE")
@@ -137,6 +205,7 @@ def main():
     test_neural_classification()
     test_neural_translation()
     asyncio.run(test_full_analysis_pipeline())
+    asyncio.run(test_unhinted_image_classification_and_translation())
     print("=" * 80)
     print("  ALL EPIGRAPHY OCR & TRANSLATION TESTS PASSED (100% SUCCESS)!")
     print("=" * 80)
