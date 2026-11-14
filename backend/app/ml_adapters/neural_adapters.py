@@ -207,6 +207,16 @@ class NeuralScriptClassifier(ScriptClassifier):
                     elif isinstance(crop, Image.Image):
                         crops_to_process.append(crop.convert("RGB"))
 
+            # If only 1 large image was passed (e.g. full monument or stele photo), auto-slice text lines
+            if len(crops_to_process) == 1 and crops_to_process[0].size[0] > 250:
+                full_img = crops_to_process[0]
+                fw, fh = full_img.size
+                for slice_idx in range(4):
+                    y_start = int(fh * (0.15 + (slice_idx * 0.18)))
+                    y_end = min(fh, y_start + int(fh * 0.20))
+                    if y_end > y_start + 10:
+                        crops_to_process.append(full_img.crop((int(fw * 0.05), y_start, int(fw * 0.95), y_end)))
+
             # 2. Extract multi-scale crops from image_arr if available
             if image_arr is not None:
                 if image_arr.dtype in (np.float32, np.float64):
@@ -308,7 +318,7 @@ class NeuralScriptClassifier(ScriptClassifier):
                 for kw, target_cls in keyword_to_class.items():
                     if kw in hint_lower and target_cls in self.class_names:
                         idx = self.class_names.index(target_cls)
-                        hint_bias[idx] += 0.50
+                        hint_bias[idx] += 1.50
 
                 combined_probs = probs + hint_bias
                 combined_probs = combined_probs / np.sum(combined_probs)
