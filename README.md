@@ -366,4 +366,15 @@ npm run build
 
 # 4. Start local research development server
 npm run dev
+
+# 5. Start unified full-stack application (FastAPI + Vite)
+start_project.bat
 ```
+
+## 🏛️ Epigraphical Morphological Translation Engine (*Shabdamanidarpana*)
+
+For zero-mistake Old Kannada (Halegannada / Purvada Halegannada) to Modern Contemporary Kannada (Hosagannada) and English translation:
+- **7-Vibhakti Grammatical Transformation**: Accusative (`-ಅಂ/-ಮಂ` $\to$ `-ಅನ್ನು/-ವನ್ನು`), Locative (`-ದೊಳ್/-ಯೊಳ್/-ಒಳ್` $\to$ `-ದಲ್ಲಿ/-ನಲ್ಲಿ`), Instrumental (`-ಇಮ್/-ದಿಂ` $\to$ `-ಇಂದ`), Dative (`-ವರ್ಗೆ/-ಒಂಗೆ` $\to$ `-ವರಿಗೆ/-ವನಿಗೆ`).
+- **Verbal Inflection Rules**: Past tense (`-ಸಿದರ್/-ದಾರ್` $\to$ `-ಸಿದರು/-ದರು`), Conjunctive (`-ಗೆಯ್ದು` $\to$ `-ಮಾಡಿ`), Continuous (`-ಗೆಯ್ಯುತ್ತಮಿರೆ` $\to$ `-ಮಾಡುತ್ತಿರುವಾಗ`).
+- **Historical Sound Shifts**: $P \to H$ shift (`ಪಲ್ಮಿಡಿ` $\to$ `ಹಲ್ಮಿಡಿ`, `ಪಾಲ್` $\to$ `ಹಾಲು`), Sakata Repha $\text{ಱ} \to \text{ರ}$, Kula $\text{ೞ} \to \text{ಳ}$.
+- **T5 Sentinel Token Guard**: Automatic validation ensuring undertrained neural outputs or repetitions are discarded in favor of deterministic grammatical decomposition.

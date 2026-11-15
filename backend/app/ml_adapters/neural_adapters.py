@@ -37,6 +37,7 @@ from backend.app.ml_adapters.interfaces import (
 from backend.app.ml_adapters.mock_adapters import MockScriptClassifier, MockTranslator
 from backend.app.ml_adapters.hierarchical_model import HierarchicalCNNViT
 from backend.app.ml_adapters.clahe_preprocessor import TextureInvariantCLAHE
+from backend.app.ml_adapters.morphological_translator import HalegannadaMorphologicalTranslator
 
 logger = logging.getLogger(__name__)
 
@@ -517,6 +518,7 @@ class NeuralTranslator(Translator):
         self.tokenizer = None
         self.model = None
         self.fallback = MockTranslator()
+        self.morpho_translator = HalegannadaMorphologicalTranslator()
 
         # Epigraph parallel memory dataset for exact reference lookup
         self.parallel_lookup: Dict[str, Dict[str, Any]] = {}
@@ -531,26 +533,38 @@ class NeuralTranslator(Translator):
             ("ರಾಜ್ಞೋ ವಾಸಿಷ್ಠೀಪುತ್ರಸ್ಯ ಸಿರಿಸಾತಕಣ್ಣಿಸ", "ವಾಸಿಷ್ಠೀಪುತ್ರ ಶ್ರೀ ಶಾತಕರ್ಣಿ ಮಹಾರಾಜನ ಕಾಲದಲ್ಲಿ", "In the reign of King Vasishthiputra Sri Satakarni", "Satavahana Dynasty", "2nd Century CE"),
             ("ಸನ್ನತಿ ಮಹಾಸ್ತೂಪ ದಾನಂ ಚೇತಿಯ ಪತಿಷ್ಠಾಪನಂ", "ಸನ್ನತಿ ಮಹಾಸ್ತೂಪಕ್ಕೆ ಪವಿತ್ರ ಚೈತ್ಯ ಪ್ರತಿಷ್ಠಾಪನಾ ದಾನ", "Grant for the consecration of the sacred Chaitya at Sannati Mahastupa", "Satavahana Dynasty", "2nd Century CE"),
             ("ಧಮ್ಮ ಪದೇಣ ಅಖಂಡ ಸುಖಮಸ್ತು", "ಧರ್ಮದ ಹಾದಿಯಿಂದ ಸರ್ವರಿಗೂ ಅಖಂಡ ಸುಖವಾಗಲಿ", "May undiminished happiness prevail for all through the path of Dharma", "Satavahana Dynasty", "2nd Century CE"),
-            # Kadamba / Halmidi
+            # Kadamba / Halmidi & Talagunda
             ("ನಮಃ ಶ್ರೀಮತ್ ಕದಂಬಪನ್ ಕಾಗುಸ್ಥಭಟ್ಟೋರನ್ ಆಳೆ", "ನಮಸ್ಕಾರ, ಶ್ರೀಮಂತ ಕದಂಬ ವಂಶದ ಕಾಕುಸ್ಥಭಟ್ಟಾರಕನು ರಾಜ್ಯವಾಳುತ್ತಿದ್ದಾಗ", "Salutations! When the illustrious Kadamba monarch Kakusthavarma was ruling the realm", "Kadambas of Banavasi", "c. 450 CE"),
             ("ಭಟ್ಟಾರ್ಯರ್ ಒಪ್ಪಿದ ಅಳಪ-ಗಣ ಪಶುಪತಿ ದಾನಮಂ ಕೊಟ್ಟಾರ್", "ಭಟ್ಟಾರಕರು ಮೆಚ್ಚಿ ಆಳುಪ-ಸೇನಾಧಿಪತಿ ಪಶುಪತಿಗೆ ಬಳ್ಗಚ್ಚು ವೀರದಾನ ನೀಡಿದರು", "The venerable monarch affectionately granted the hero-endowment (Balgachu) to commander Pashupati of the Alupa lineage", "Kadambas of Banavasi", "c. 450 CE"),
             ("ಪಲ್ಮಿಡಿಯುಂ ಮೂಳಿವಳ್ಳಿಯುಂ ತಮಗೆ ಸಂದು ಬಾಳ್ಗಚ್ಚು ಸೀಮೆಯಾದುವು", "ಹಲ್ಮಿಡಿ ಮತ್ತು ಮೂಳಿವಳ್ಳಿ ಗ್ರಾಮಗಳು ಅವರ ವೀರಪರಾಕ್ರಮಕ್ಕಾಗಿ ಪ್ರದಾನವಾದವು", "The villages of Palmidi (Halmidi) and Mulivalli were formally conveyed as boundary territories for their valour", "Kadambas of Banavasi", "c. 450 CE"),
             ("ನರಿದಾವಿಱೆಯುಳ್ ನಾಡೊಳ್ ಮೃಗೇಶನಾಗೇಂದ್ರಾಭಿಲರ್ ಭಟಹರಪ್ಪೋರ್", "ನರಿದಾವಿಳೆ ನಾಡಿನಲ್ಲಿ ಮೃಗೇಶ ಮತ್ತು ನಾಗೇಂದ್ರ ಎಂಬ ಯೋಧರು ಹೋರಾಡಿದರು", "In the Naridavile province, the courageous commanders Mrigesha and Nagendra engaged in heroic combat", "Kadambas of Banavasi", "c. 450 CE"),
             ("ಅಳಿದ ಪಶುಪತಿಯ ಪೆಗ್ಗಡೆಯ ಮಗನ್ ವಿಜಾಯರಸಂಗೆ ಬಾಗಳ್ಚು ಕೊಟ್ಟಾರ್", "ಮಡಿದ ಪಶುಪತಿ ಹೆಗ್ಗಡೆಯ ಮಗ ವಿಜಯರಸನಿಗೆ ವೀರ ಉಂಬಳಿ (ಬಾಳ್ಗಚ್ಚು) ಭೂಮಿಯನ್ನು ನೀಡಿದರು", "To Vijāyarasa, son of the fallen hero Pashupati Heggade, this honorific tax-free land grant (Balgachu) was bestowed", "Kadambas of Banavasi", "c. 450 CE"),
-            # Badami Chalukya / Kappe Arabhatta
+            ("ಪಶುಪತಿ ತಾನೆಯ್ಯುಳ್ ಕಳ್ದೋನ್ ಭಟಹರಪ್ಪೋರೊಳ್ ಪಸದನ್", "ಪಶುಪತಿಯು ಯುದ್ಧದಲ್ಲಿ ಶತ್ರುಭಟರನ್ನು ಸಂಹರಿಸಿ ವೀರಮರಣ ಹೊಂದಿದನು", "Pashupati bravely slew the enemy soldiers in battle and sacrificed his life", "Kadambas of Banavasi", "c. 450 CE"),
+            ("ವಿಜಾರಸನ ಪೆಱ್ಗುಡಿ ಬಾಲಾಳ್ಚು ವಿಟಾರ್ದು ಕೊಟ್ಟಾರ್", "ವಿಜಯರಸನಿಗೆ ಹಿರಿಯ ಕುಟುಂಬದ ಗೌರವಾರ್ಥ ಬಾಳ್ಗಚ್ಚು ಭೂದಾನ ನೀಡಲಾಯಿತು", "Conferred the hero land grant (Balgachu) unto Vijaya Arasa in honor of his noble household", "Kadambas of Banavasi", "c. 450 CE"),
+            ("ಅರಕಲ್ಲ ಭಟ್ಟರಕ್ಕಂ ಪೆಱ್ಗೆಡೆ ಬಾಣ ಕಾಗುಸ್ಥನ್ ಧರ್ಮಂ", "ಅರಕಲ್ಲ ಭಟ್ಟಾರಕ ಮತ್ತು ಹೆಗ್ಗಡೆ ಬಾಣ ಕಾಕುಸ್ಥರ ಈ ಧರ್ಮ ಕಾರ್ಯವಾಗಿದೆ", "This is the righteous endowment made by Arakalla Bhattara and Peggade Bana Kakustha", "Kadambas of Banavasi", "c. 450 CE"),
+            ("ಇರಾ ಧರ್ಮವನಱಿವೊಂಗೆ ಸಕಲ ಕಲ್ಯಾಣಮುಂ ಸಿದ್ಧಿಸುಗೆ", "ಈ ಧರ್ಮ ಶಾಸನವನ್ನು ಕಾಪಾಡುವವರಿಗೆ ಸಕಲ ಶ್ರೇಯಸ್ಸು ಉಂಟಾಗಲಿ", "May all auspicious blessings be bestowed upon whoever preserves this righteous charter", "Kadambas of Banavasi", "c. 450 CE"),
+            ("ನಮಃ ಶಿವಾಯ ಸ್ವಸ್ತಿ ಕದಂಬಾಣಾಂ ರಾಜಾ ಶ್ರೀ ಕಾಕುಸ್ಥವರ್ಮ", "ಶಿವನಿಗೆ ನಮಸ್ಕಾರ, ಮಂಗಳವಾಗಲಿ! ಕದಂಬ ವಂಶದ ರಾಜ ಶ್ರೀ ಕಾಕುಸ್ಥವರ್ಮ", "Salutations unto Shiva! Hail and auspiciousness! King Sri Kakusthavarma of the Kadambas", "Kadambas of Banavasi", "c. 450 CE"),
+            # Badami Chalukya / Kappe Arabhatta & Aihole
             ("ಸಾಧುಗೆ ಸಾಧು ಮಾಧುರ್ಯಂಗೆ ಮಾಧುರ್ಯಂ ಬಧಿಪ್ಪ ಕಲಿಯುಗ ವಿಪರೀತನ್", "ಸಜ್ಜನರಿಗೆ ಸಜ್ಜನ, ಮಾಧುರ್ಯಕ್ಕೆ ಮಾಧುರ್ಯ, ಕೆಟ್ಟವರಿಗೆ ಕಲಿಯುಗದ ವಿಪರೀತನಾದ ವೀರನು", "To the righteous, he is gentle; to the sweet, sweetness personified; but to the wicked, he is a tempestuous force of Kaliyuga", "Badami Chalukyas", "7th Century CE"),
             ("ಮಾಧವನೀತನ್ ಪೆರನಲ್ಲ ಕಪ್ಪೆ ಅರಭಟ್ಟನ್ ಸದ್ಗುಣ ಸಂಪನ್ನನ್", "ಈ ಕಪ್ಪೆ ಅರಭಟ್ಟನು ಶ್ರೀಕೃಷ್ಣನಂತೆ ಪರಾಕ್ರಮಿ, ಸಾಕ್ಷಾತ್ ಸದ್ಗುಣಗಳ ಸಾಗರ", "This hero Kappe Arabhatta is none other than Madhava incarnate, endowed with all noble virtues", "Badami Chalukyas", "7th Century CE"),
             ("ಕಷ್ಟದೊಳ್ ನೊಂದವರಂ ಪೊರೆದು ಧರ್ಮಮಂ ನೆಲೆಗೊಳಿಸಿದ ಧೀರನ್", "ಸಂಕಷ್ಟದಲ್ಲಿ ನೊಂದವರನ್ನು ರಕ್ಷಿಸಿ ಶಾಶ್ವತ ಧರ್ಮವನ್ನು ಎತ್ತಿಹಿಡಿದ ಧೀರ", "A valiant protector who sheltered those stricken by grief and firmly established righteousness", "Badami Chalukyas", "7th Century CE"),
             ("ಸಾಧುಗೆ ಸಾಧು ಮಾಧುರ್ಯಂಗೆ ಮಾಧುರ್ಯಂ", "ಒಳ್ಳೆಯವರಿಗೆ ಒಳ್ಳೆಯವನು, ಮೃದು ಸ್ವಭಾವದವರಿಗೆ ಮಧುರವಾದವನು", "Kind to the gentle, sweet to the virtuous", "Badami Chalukyas", "7th Century CE"),
             ("ಬಾಧಿಪ್ಪ ಕಲಿಗೆ ಕಲಿಯುಗ ವಿಪರೀತನ್", "ಶತ್ರುಗಳಿಗೆ ಕಲಿಯುಗದ ವಿಪರೀತನಂತೆ ಭಯಂಕರನು", "Terrifying to adversaries like an adversary in the Kaliyuga", "Badami Chalukyas", "7th Century CE"),
             ("ಮಾಧವನೀತನ್ ಪೆರನಲ್ಲ ಸತ್ಯಶೌಚನ್", "ಈತನು ಸಾಕ್ಷಾತ್ ವಿಷ್ಣುವೇ ಹೊರತು ಬೇರೆಯಲ್ಲ", "He is indeed Lord Madhava incarnate and no other, of pure truth", "Badami Chalukyas", "7th Century CE"),
-            # Rashtrakuta / Atakur & Kavirajamarga
+            ("ಒಳ್ಳಿತ ಕೆಯ್ವಂಗೆ ಒಳಿತಪ್ಪುಂ ಪೊಲ್ಲತ ಕೆಯ್ವಂಗೆ ಪೊಲ್ಲತಪ್ಪುಂ", "ಒಳ್ಳೆಯದನ್ನು ಮಾಡುವವನಿಗೆ ಒಳ್ಳೆಯದೇ ಆಗುತ್ತದೆ, ಕೆಟ್ಟದ್ದನ್ನು ಮಾಡುವವನಿಗೆ ಕೆಟ್ಟದ್ದೇ ಆಗುತ್ತದೆ", "He who does good reaps good; he who commits evil suffers evil", "Badami Chalukyas", "7th Century CE"),
+            ("ಕಪ್ಪೆಅರಭಟ್ಟನ್ ಶಿಷ್ಟಜನಪ್ರಿಯನ್ ಕಷ್ಟಜನವರ್ಜಿತನ್ ಕಲಿಯುಗವಿಪರೀತನ್", "ಕಪ್ಪೆ ಅರಭಟ್ಟನು ಸಜ್ಜನರಿಗೆ ಪ್ರಿಯನಾದವನು, ದುಷ್ಟರಿಂದ ದೂರವಿರುವವನು, ಕಲಿಯುಗಕ್ಕೆ ವಿಪರೀತನಾದವನು", "Kappe Arabhatta is beloved by the virtuous, shunned by the wicked, and a contrarian hero in the age of Kaliyuga", "Badami Chalukyas", "7th Century CE"),
+            ("ಜಯತಿ ಜಗದೇಕನಾಥೋ ಜಿನೇಂದ್ರೋ", "ಜಗತ್ತಿನ ಏಕೈಕ ಒಡೆಯನಾದ ಜಿನೇಂದ್ರನಿಗೆ ಜಯವಾಗಲಿ", "Victorious is Jinendra, the sole sovereign lord of the universe", "Badami Chalukyas", "7th Century CE"),
+            ("ಸತ್ಯಾಶ್ರಯ ಶ್ರೀ ಪೃಥ್ವೀವಲ್ಲಭ ಮಹಾರಾಜಾಧಿರಾಜ ಪರಮೇಶ್ವರ", "ಸತ್ಯಾಶ್ರಯ ಶ್ರೀ ಪೃಥ್ವೀವಲ್ಲಭ ಮಹಾರಾಜಾಧಿರಾಜ ಪರಮೇಶ್ವರ ಪುಲಕೇಶಿ", "Satyashraya Sri Prithvivallabha, Emperor of Kings, Supreme Lord Pulakeshin", "Badami Chalukyas", "7th Century CE"),
+            # Rashtrakuta / Atakur & Kavirajamarga & Shravanabelagola
             ("ಕನ್ನರಂ ನೃಪತುಂಗಂ ಧರ್ಮಪ್ರಿಯಂ ರಾಜ್ಯಂ ಗೆಯ್ಯುತ್ತಿರೆ", "ಕೃಷ್ಣ ಮತ್ತು ನೃಪತುಂಗ ಅಮೋಘವರ್ಷ ಚಕ್ರವರ್ತಿಗಳು ಧರ್ಮದಿಂದ ರಾಜ್ಯವಾಳುತ್ತಿದ್ದಾಗ", "While Krishna and Nrupatunga Amoghavarsha ruled the empire with devotion to righteousness", "Rashtrakuta Empire", "9th Century CE"),
             ("ಆತಕೂರಿನ ಕಾಳಗದೊಳ್ ಕಾದಿ ಮಡಿದ ವೀರಂಗೆ ವೀರಗಲ್ಲಂ ನಿಲ್ಲಿಸಿದರ್", "ಆತಕೂರಿನ ಯುದ್ಧದಲ್ಲಿ ಹೋರಾಡಿ ವೀರಮರಣವನ್ನಪ್ಪಿದ ನಾಯಕನ ನೆನಪಿಗೆ ವೀರಗಲ್ಲನ್ನು ಸ್ಥಾಪಿಸಲಾಯಿತು", "Erected this commemorative hero-stone (Viragallu) for the champion who fell valiantly in the Battle of Atakur", "Rashtrakuta Empire", "9th Century CE"),
+            ("ಗಂಗರ ಬಂಟನ್ ಬೂತುಗಂ ಚೋಳನಂ ಕಾಳಗದೊಳ್ ಇರಿದು ಕೊಂದನ್", "ಗಂಗ ವಂಶದ ವೀರ ಬೂತುಗನು ಯುದ್ಧದಲ್ಲಿ ಚೋಳ ರಾಜಾದಿತ್ಯನನ್ನು ಇರಿದು ಕೊಂದನು", "The Ganga hero Butuga pierced and slew the Chola monarch Rajaditya in the fierce battle of Takkolam", "Rashtrakuta Empire", "9th Century CE"),
             ("ಚೋಳನಂ ಗೆದ್ದು ಕೀರ್ತಿಯಂ ಪಡೆದ ಮಹಾಸಾಮಂತರ ಕೊಡುಗೆ", "ಚೋಳರನ್ನು ಹಿಮ್ಮೆಟ್ಟಿಸಿ ಜಯಗಳಿಸಿದ ಮಹಾಸಾಮಂತರ ಶಾಶ್ವತ ವೀರದಾನ", "Heroic endowment commemorating the feudatory commanders who vanquished the Chola forces", "Rashtrakuta Empire", "9th Century CE"),
             ("ಕಾವೇರಿಯಿಂದಂ ಗೋದಾವರಿವರಮಿರ್ಪ ನಾಡದಾ ಕನ್ನಡದೊಳ್", "ಕಾವೇರಿ ನದಿಯಿಂದ ಗೋದಾವರಿಯವರೆಗೆ ಹರಡಿರುವ ನಾಡೇ ಕನ್ನಡ ನಾಡು", "The land extending from the Cauvery to the Godavari is the true realm of Kannada", "Rashtrakuta Empire", "9th Century CE"),
             ("ಭಾವಿಸಿದ ಜನಪದಂ ಪದನಱಿದು ನುಡಿಯಲು ಮಾರ್ಪರ್", "ಅಲ್ಲಿಯ ಜನರು ಸಂದರ್ಭಕ್ಕೆ ತಕ್ಕಂತೆ ಮಾತನಾಡಲು ಬಲ್ಲವರು", "Its cultured people are naturally adept at speaking with refined eloquence", "Rashtrakuta Empire", "9th Century CE"),
             ("ಕುಱಿತೋದದೆಯುಂ ಕಾವ್ಯಪ್ರಯೋಗ ಪರಿಣತಮತಿಗಳ್", "ಶಾಸ್ತ್ರ ಕಲಿಯದಿದ್ದರೂ ಕಾವ್ಯ ಪ್ರಯೋಗದಲ್ಲಿ ಜಾಣರು", "Even without formal schooling, they are innate masters in the art of poetic expression", "Rashtrakuta Empire", "9th Century CE"),
+            ("ಶ್ರೀ ಚಾವುಂಡರಾಜಂ ಮಾಡಿಸಿದನ್", "ಶ್ರೀ ಚಾವುಂಡರಾಯನು ಈ ಭವ್ಯ ಗೊಮ್ಮಟೇಶ್ವರ ಪ್ರತಿಮೆಯನ್ನು ನಿರ್ಮಿಸಿದನು", "Sri Chavundaraya caused this majestic image of Gommateshwara to be consecrated", "Western Ganga Dynasty", "10th Century CE"),
+            ("ಶ್ರೀ ಗಂಗರಾಜಂ ಸುತಾಲಂ ಮಾಡಿಸಿದನ್", "ಶ್ರೀ ಗಂಗರಾಜನು ಸುತ್ತಲಿನ ಸುಂದರ ಪ್ರಾಕಾರವನ್ನು ನಿರ್ಮಿಸಿದನು", "Sri Gangaraja caused the surrounding cloistered enclosure to be built", "Hoysala Empire", "12th Century CE"),
             # Kalyana Chalukya & Medieval Grant Inscriptions (11th - 13th Century CE)
             ("ಶ್ರೀ ತ್ರಿಭುವನಮಲ್ಲ ವಿಕ್ರಮಾದಿತ್ಯ ಮಹಾರಾಜಾಧಿರಾಜರ ಆಳ್ವಿಕೆಯೊಳ್", "ಶ್ರೀ ತ್ರಿಭುವನಮಲ್ಲ ಆರನೇ ವಿಕ್ರಮಾದಿತ್ಯ ಚಕ್ರವರ್ತಿಗಳ ವಿಜಯ ರಾಜ್ಯವಾಳ್ವಿಕೆಯಲ್ಲಿ", "In the victorious reign of Tribhuvanamalla Vikramaditya VI, King of Kings", "Western Chalukyas (Kalyana)", "11th Century CE"),
             ("ಲೋಕೇಶ್ವರ ಮಹಾದೇವಾಯ ಸರ್ವ ನಮಸ್ಯ ದತ್ತಿ ಪಾಲನಂ", "ಲೋಕೇಶ್ವರ ಮಹಾದೇವರಿಗೆ ಸರ್ವಮಾನ್ಯ ಭೂದಾನವನ್ನು ಶ್ರದ್ಧೆಯಿಂದ ಸಮರ್ಪಿಸಲಾಯಿತು", "Dedicated perpetual tax-free grants to the deity Lokeshvara Mahadeva", "Western Chalukyas (Kalyana)", "11th Century CE"),
@@ -573,12 +587,18 @@ class NeuralTranslator(Translator):
             ("ಸ್ವಸ್ತಿ ಶ್ರೀಮತ್ ಪ್ರತಾಪ ಚಕ್ರವರ್ತಿ ಹೊಯ್ಸಳ ಭುಜಬಲ ವೀರಬಲ್ಲಾಳ ದೇವರ್", "ಪ್ರತಾಪ ಚಕ್ರವರ್ತಿ ಹೊಯ್ಸಳ ಭುಜಬಲ ವೀರಬಲ್ಲಾಳ ಮಹಾರಾಜರ ಕಾಲದಲ್ಲಿ", "During the reign of the valiant Hoysala Emperor Vira Ballala", "Hoysala Empire", "12th Century CE"),
             ("ಸರ್ವಬಾಧಾ ಪರಿಹಾರವಾಗಿ ಧಾರಾಪೂರ್ವಕಂ ಮಾಡಿ ಕೊಟ್ಟ ದತ್ತಿ", "ಸರ್ವ ತೆರಿಗೆ ಮುಕ್ತವಾಗಿ ಧಾರೆ ಎರೆದು ನೀಡಿದ ಶಾಶ್ವತ ಭೂದಾನ", "Perpetual tax-free endowment ratified by sacred libation of water", "Hoysala Empire", "12th Century CE"),
             ("ಶ್ರೀ ಬಿಟ್ಟಿದೇವ ಮಹಾರಾಯರ್ ಬೇಲೂರಿನೊಳ್", "ಶ್ರೀ ವಿಷ್ಣುವರ್ಧನ ಮಹಾರಾಜರು ಬೇಲೂರಿನಲ್ಲಿ", "When the illustrious King Vishnuvardhana (Bittideva) was reigning at Belur", "Hoysala Empire", "12th Century CE"),
+            ("ಶ್ರೀ ಬಿಟ್ಟಿದೇವ ಮಹಾರಾಯರ್ ಬೇಲೂರಿನೊಳ್ ಶ್ರೀ ವಿಜಯನಾರಾಯಣ ದೇವರಂ ಪ್ರತಿಷ್ಠೆ ಗೆಯ್ದು", "ಶ್ರೀ ವಿಷ್ಣುವರ್ಧನ ಮಹಾರಾಜರು ಬೇಲೂರಿನಲ್ಲಿ ಶ್ರೀ ವಿಜಯನಾರಾಯಣ ದೇವರನ್ನು ಪ್ರತಿಷ್ಠಾಪಿಸಿ", "When King Vishnuvardhana (Bittideva) consecrated Lord Vijayanarayana at Belur", "Hoysala Empire", "12th Century CE"),
             ("ಶ್ರೀ ವಿಜಯನಾರಾಯಣ ದೇವರಂ ಭಕ್ತಿಯಿಂ ಪ್ರತಿಷ್ಠೆ ಮಾಡಿಸಿದರ್", "ಶ್ರೀ ವಿಜಯನಾರಾಯಣ (ಚೆನ್ನಕೇಶವ) ದೇವರನ್ನು ಭಕ್ತಿಯಿಂದ ಪ್ರತಿಷ್ಠಾಪಿಸಿದರು", "Consecrated Lord Vijayanarayana (Chennakeshava) with supreme devotion", "Hoysala Empire", "12th Century CE"),
             ("ಚೋಳನಂ ಕೊಂದೆನ್ ಪಾಂಡ್ಯನಂ ತಱಿದೆನ್ ಎಂದು ಬೀಗಿದರ್", "ಚೋಳ-ಪಾಂಡ್ಯರನ್ನು ಯುದ್ಧದಲ್ಲಿ ಹಿಮ್ಮೆಟ್ಟಿಸಿ ವಿಜಯ ಶಾಸನ ಬರೆಸಿದರು", "Proclaiming triumph after repelling the rival Chola and Pandya hosts", "Hoysala Empire", "12th Century CE"),
+            ("ಶ್ರೀಮತ್ ರಾಜಧಾನಿ ದೊರೆಸಮುದ್ರದೊಳ್ ಸುಖದಿಂ ರಾಜ್ಯಂಗೆಯ್ಯುತ್ತಮಿರೆ", "ರಾಜಧಾನಿ ದ್ವಾರಸಮುದ್ರದಲ್ಲಿ (ಹಳೇಬೀಡು) ಶಾಂತಿ-ಸಮೃದ್ಧಿಯಿಂದ ಧರ್ಮರಾಜ್ಯವಾಳುತ್ತಿರುವಾಗ", "While peace and righteous prosperity reigned in the capital Dorasamudra", "Hoysala Empire", "12th Century CE"),
+            ("ಶ್ರೀ ವಿಜಯನಾರಾಯಣ ದೇವರ ಅಮೃತಪಡಿಗೆ ಸರ್ವಮಾನ್ಯವಾಗಿ", "ಶ್ರೀ ವಿಜಯನಾರಾಯಣ (ಚೆನ್ನಕೇಶವ) ದೇವರ ನಿತ್ಯ ನೈವೇದ್ಯ ಮತ್ತು ಪೂಜೆಗಾಗಿ ಸರ್ವ ತೆರಿಗೆ ಮುಕ್ತವಾಗಿ", "Conferred tax-free endowment for daily food offerings (amrutapadi) of Lord Vijayanarayana", "Hoysala Empire", "12th Century CE"),
             # Vijayanagara
             ("ಕೃಷ್ಣದೇವರಾಯ ಮಹಾರಾಯರ್ ದಿಗ್ವಿಜಯಂ ಗೆಯ್ದು", "ಕೃಷ್ಣದೇವರಾಯ ಮಹಾರಾಜರು ಸಕಲ ದಿಕ್ಕುಗಳನ್ನು ಗೆದ್ದು", "When Emperor Krishnadevaraya accomplished his victorious campaigns in all directions", "Vijayanagara Empire", "16th Century CE"),
             ("ಹಂಪಿಯೊಳ್ ಶ್ರೀ ವಿರೂಪಾಕ್ಷನ ಸನ್ನಿಧಿಯೊಳ್ ಶಾಸನಮಂ ನಿಲ್ಲಿಸಿದರ್", "ಹಂಪಿಯ ಶ್ರೀ ವಿರೂಪಾಕ್ಷನ ಸನ್ನಿಧಿಯಲ್ಲಿ ವಿಜಯ ಶಾಸನವನ್ನು ಸ್ಥಾಪಿಸಿದರು", "Installed this victory edict before the sanctum of Lord Virupaksha at Hampi", "Vijayanagara Empire", "16th Century CE"),
             ("ಸ್ವರ್ಣ ರಂಗಮಂಟಪಮಂ ಭಕ್ತಿಯಿಂದ ಸಮರ್ಪಿಸಿದರ್", "ಚಿನ್ನದ ರಂಗಮಂಟಪ ಮತ್ತು ಶಾಶ್ವತ ಭೂದಾನವನ್ನು ಸಮರ್ಪಿಸಿದರು", "Dedicated the golden assembly pavilion (Ranga-mandapa) and perpetual land grants", "Vijayanagara Empire", "16th Century CE"),
+            ("ಶ್ರೀ ಕೃಷ್ಣದೇವರಾಯ ಮಹಾರಾಯರ್ ಪಟ್ಟಾಭಿಷೇಕದ ಶುಭ ವೇಳೆಯೊಳ್", "ಶ್ರೀ ಕೃಷ್ಣದೇವರಾಯ ಮಹಾರಾಜರ ಪಟ್ಟಾಭಿಷೇಕದ ಶುಭ ಸಂದರ್ಭದಲ್ಲಿ", "On the auspicious occasion of the grand coronation of Emperor Krishnadevaraya", "Vijayanagara Empire", "16th Century CE"),
+            ("ವಿರೂಪಾಕ್ಷ ದೇವರಿಗೆ ಮಹಾರಂಗಮಂಟಪಮಂ ಕಟ್ಟಿಸಿ ದಾನಮಂ ಕೊಟ್ಟಾರ್", "ವಿರೂಪಾಕ್ಷ ದೇವರಿಗೆ ಭವ್ಯ ಮಹಾರಂಗಮಂಟಪವನ್ನು ನಿರ್ಮಿಸಿ ಶಾಶ್ವತ ಭೂದಾನವನ್ನು ನೀಡಿದರು", "Constructed the grand Ranga-mandapa for Lord Virupaksha and conferred perpetual land grants", "Vijayanagara Empire", "16th Century CE"),
+            ("ಉದಯಗಿರಿ ಕೊಂಡವೀಡು ಕೋಟೆಗಳಂ ಗೆದ್ದು ವಿಜಯ ಸ್ತಂಭಮಂ ನಿಲ್ಲಿಸಿದರ್", "ಉದಯಗಿರಿ ಮತ್ತು ಕೊಂಡವೀಡು ಕೋಟೆಗಳನ್ನು ಗೆದ್ದು ವಿಜಯ ಸ್ತಂಭವನ್ನು ಸ್ಥಾಪಿಸಿದರು", "Having conquered the fortress citadels of Udayagiri and Kondavidu, erected this victory pillar", "Vijayanagara Empire", "16th Century CE"),
             # Mysuru Wodeyars
             ("ಶ್ರೀಮನ್ಮಹಾರಾಜಾಧಿರಾಜ ರಾಜಪರಮೇಶ್ವರ ಶ್ರೀ ಕಂಠೀರವ ನರಸರಾಜ ಒಡೆಯರ್", "ಮೈಸೂರಿನ ರಾಜ ಕಂಠೀರವ ನರಸರಾಜ ಒಡೆಯರ್ ಅವರು", "His Highness Maharaja Kanthirava Narasaraja Wodeyar of Mysuru", "Kingdom of Mysuru (Wodeyars)", "17th Century CE"),
             ("ಅಯ್ಯನವರು ನಿರೂಪಿಸಿದ ಧರ್ಮ ಶಾಸನ ಕಾವೇರಿ ನದಿ ಕಟ್ಟೆಯ ದಾನ", "ಕಾವೇರಿ ನದಿಯ ಅಣೆಕಟ್ಟು ಮತ್ತು ಕಾಲುವೆಗಳ ನಿರ್ಮಾಣಕ್ಕೆ ನೀಡಿದ ದಾನ", "Issued this righteous edict granting canal works and anicuts along the sacred Cauvery river", "Kingdom of Mysuru (Wodeyars)", "17th Century CE"),
@@ -637,6 +657,16 @@ class NeuralTranslator(Translator):
     def translate(self, text: str, script: ScriptClassId, language: SourceLanguageId) -> TranslationResult:
         cleaned_text = text.strip() if text else ""
 
+        def _get_glossary(txt: str):
+            if self.morpho_translator:
+                try:
+                    _, _, items = self.morpho_translator.translate_sentence(txt)
+                    if items:
+                        return items
+                except Exception:
+                    pass
+            return self.fallback.translate(txt, script, language).glossary
+
         # 1. Exact match in historical epigraph database
         if cleaned_text in self.parallel_lookup:
             matched = self.parallel_lookup[cleaned_text]
@@ -645,7 +675,7 @@ class NeuralTranslator(Translator):
                 language_confidence=0.995,
                 modern_kannada=matched.get("target_modern", ""),
                 english_translation=matched.get("target_english", ""),
-                glossary=self.fallback.translate(text, script, language).glossary,
+                glossary=_get_glossary(cleaned_text),
                 stylistic_notes=f"Attested epigraph record from {matched.get('dynasty', '')} ({matched.get('era', '')})",
                 is_mock_data=False,
             )
@@ -697,7 +727,7 @@ class NeuralTranslator(Translator):
                     language_confidence=0.995,
                     modern_kannada=" ".join(dedup_k),
                     english_translation=" ".join(dedup_e),
-                    glossary=self.fallback.translate(text, script, language).glossary,
+                    glossary=_get_glossary(cleaned_text),
                     stylistic_notes=f"Attested epigraph record from {dynasty_name} ({era_name}) - Historical translation.",
                     is_mock_data=False,
                 )
@@ -710,7 +740,7 @@ class NeuralTranslator(Translator):
                     language_confidence=0.985,
                     modern_kannada=matched.get("target_modern", ""),
                     english_translation=matched.get("target_english", ""),
-                    glossary=self.fallback.translate(text, script, language).glossary,
+                    glossary=_get_glossary(cleaned_text),
                     stylistic_notes=f"Identified from {matched.get('source_title', 'Inscription')} ({matched.get('dynasty', '')})",
                     is_mock_data=False,
                 )
@@ -731,30 +761,45 @@ class NeuralTranslator(Translator):
 
                 decoded = self.tokenizer.decode(output_tokens[0], skip_special_tokens=True).strip()
 
-                if decoded.startswith("{") and decoded.endswith("}"):
-                    parsed = json.loads(decoded)
-                    return TranslationResult(
-                        source_language=language,
-                        language_confidence=0.95,
-                        modern_kannada=parsed.get("hosagannada", decoded),
-                        english_translation=parsed.get("english", ""),
-                        glossary=self.fallback.translate(text, script, language).glossary,
-                        stylistic_notes="Neural sequence-to-sequence translation with LoRA adaptation.",
-                        is_mock_data=False
-                    )
-                elif decoded:
-                    return TranslationResult(
-                        source_language=language,
-                        language_confidence=0.92,
-                        modern_kannada=decoded,
-                        english_translation="Neural epigraphical translation synthesis.",
-                        glossary=self.fallback.translate(text, script, language).glossary,
-                        stylistic_notes="Synthesized by neural translation model.",
-                        is_mock_data=False
-                    )
+                # Validate neural generation: reject T5 sentinel tokens (<extra_id_) or corrupted outputs
+                if "<extra_id" not in decoded and decoded.startswith("{") and decoded.endswith("}"):
+                    try:
+                        parsed = json.loads(decoded)
+                        cand_k = parsed.get("hosagannada", "").strip()
+                        cand_e = parsed.get("english", "").strip()
+                        if cand_k and "<extra_id" not in cand_k:
+                            return TranslationResult(
+                                source_language=language,
+                                language_confidence=0.95,
+                                modern_kannada=cand_k,
+                                english_translation=cand_e,
+                                glossary=_get_glossary(cleaned_text),
+                                stylistic_notes="Neural sequence-to-sequence translation with LoRA adaptation.",
+                                is_mock_data=False
+                            )
+                    except json.JSONDecodeError:
+                        pass
             except Exception as e:
                 logger.error("Error during neural translation inference: %s", e)
 
-        # 5. Fallback to knowledge base
+        # 5. Shabdamanidarpana Morphological Translation Engine
+        if self.morpho_translator and cleaned_text:
+            try:
+                mod_k, mod_e, morpho_glossary = self.morpho_translator.translate_sentence(cleaned_text)
+                if mod_k:
+                    glossary = morpho_glossary if morpho_glossary else self.fallback.translate(text, script, language).glossary
+                    return TranslationResult(
+                        source_language=language,
+                        language_confidence=0.965,
+                        modern_kannada=mod_k,
+                        english_translation=mod_e,
+                        glossary=glossary,
+                        stylistic_notes="Shabdamanidarpana morphological decomposition & historical vibhakti transformation (Halegannada -> Hosagannada).",
+                        is_mock_data=False,
+                    )
+            except Exception as morpho_err:
+                logger.error("Error during morphological translation: %s", morpho_err)
+
+        # 6. Fallback to knowledge base
         return self.fallback.translate(text, script, language)
 
