@@ -155,7 +155,7 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
   };
 
   // Tab views
-  const [transcriptionViewMode, setTranscriptionViewMode] = useState<'line' | 'character' | 'scholarly_iast'>('line');
+  const [transcriptionViewMode, setTranscriptionViewMode] = useState<'line' | 'character' | 'scholarly_iast' | 'leiden'>('line');
   const [translationTextMode, setTranslationTextMode] = useState<'four_tier' | 'narrative' | 'aligned' | 'grammatical'>('four_tier');
   const [activeRightPanelTab, setActiveRightPanelTab] = useState<'translation' | 'context' | 'evidence'>('translation');
 
@@ -203,6 +203,14 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
     <body>
       <div type="edition" xml:lang="kan-Old">
         <p>${inscription.transcription.recognizedText}</p>
+      </div>
+      <div type="edition" subtype="leiden" xml:lang="kan-Old">
+        <p>${inscription.transcription.leidenText || inscription.transcription.recognizedText}</p>
+      </div>
+      <div type="apparatus">
+        <listApp>
+          ${(inscription.transcription.apparatusCriticus || []).map(a => `<app loc="line ${a.lineNumber}"><lem>${a.leidenReading}</lem><note>${a.historicalNote}</note></app>`).join('\n          ')}
+        </listApp>
       </div>
       <div type="transliteration" xml:lang="sa-Latn">
         <p>${inscription.transcription.iastTransliteration}</p>
@@ -857,6 +865,12 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                   >
                     IAST Latin
                   </button>
+                  <button
+                    onClick={() => setTranscriptionViewMode('leiden')}
+                    className={`px-2 py-0.5 rounded-xs ${transcriptionViewMode === 'leiden' ? 'bg-amber-100/90 text-amber-900 font-bold shadow-subtle' : 'text-stone-600'}`}
+                  >
+                    Leiden Edition (ಲೈಡನ್)
+                  </button>
                 </div>
 
                 <Button
@@ -933,6 +947,91 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                 className="p-4 border rounded-xs font-mono text-xs leading-relaxed"
               >
                 {inscription.transcription.iastTransliteration}
+              </div>
+            )}
+
+            {/* Leiden Academic Critical Edition Mode */}
+            {transcriptionViewMode === 'leiden' && (
+              <div className="space-y-3">
+                {/* Leiden Text Container */}
+                <div className="p-4 bg-amber-50/50 border border-amber-200/80 rounded-xs space-y-3">
+                  <div className="flex items-center justify-between border-b border-amber-200/60 pb-2">
+                    <span className="text-[10px] font-mono uppercase font-bold text-amber-900 tracking-wider">
+                      Leiden Critical Text (ಲೈಡನ್ ಅಧಿಕೃತ ಪಾಠ):
+                    </span>
+                    <span className="text-[10px] font-sans px-2 py-0.5 rounded-full bg-amber-200/60 text-amber-950 font-semibold">
+                      ASI &amp; EpiDoc Compatible
+                    </span>
+                  </div>
+
+                  <p className="font-kannada text-base sm:text-lg leading-loose text-stone-900 font-medium">
+                    {inscription.transcription.leidenText || inscription.transcription.recognizedText}
+                  </p>
+
+                  <div className="pt-2 border-t border-amber-200/50">
+                    <span className="text-[9px] font-mono uppercase font-bold text-stone-500 block mb-1">
+                      IAST Romanized Critical Text:
+                    </span>
+                    <p className="font-serif italic text-xs leading-relaxed text-stone-700">
+                      {inscription.transcription.leidenIast || inscription.transcription.iastTransliteration}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Leiden Convention Epigraphical Legend */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[10px] font-mono bg-stone-50 p-2.5 rounded-xs border border-stone-200">
+                  <div className="flex items-center gap-1.5 text-amber-900">
+                    <span className="font-bold bg-amber-100 px-1 rounded">[abc]</span>
+                    <span className="text-stone-600">Restoration (ಮರುಪೂರಣ)</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-amber-900">
+                    <span className="font-bold bg-amber-100 px-1 rounded">(abc)</span>
+                    <span className="text-stone-600">Expansion (ವಿಸ್ತರಣೆ)</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-amber-900">
+                    <span className="font-bold bg-amber-100 px-1 rounded">ಕ̣ / ạ</span>
+                    <span className="text-stone-600">Unclear (ಅಸ್ಪಷ್ಟ ಸವೆತ)</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-amber-900">
+                    <span className="font-bold bg-amber-100 px-1 rounded">+ + +</span>
+                    <span className="text-stone-600">Lost Gap (ನಾಶವಾದವು)</span>
+                  </div>
+                </div>
+
+                {/* Apparatus Criticus Table */}
+                {inscription.transcription.apparatusCriticus && inscription.transcription.apparatusCriticus.length > 0 && (
+                  <div className="space-y-2 pt-1">
+                    <span className="text-[10px] font-mono uppercase font-bold text-stone-700 tracking-wider block">
+                      Apparatus Criticus (ಪಾಠಾಂತರ ಮತ್ತು ಸವೆತ ಟಿಪ್ಪಣಿಗಳು):
+                    </span>
+                    <div className="border border-stone-200 rounded-xs overflow-hidden text-xs">
+                      <table className="w-full text-left border-collapse">
+                        <thead>
+                          <tr className="bg-stone-100/80 text-[10px] font-mono text-stone-600 border-b border-stone-200">
+                            <th className="py-1.5 px-2.5 w-12 font-bold">Line</th>
+                            <th className="py-1.5 px-2.5 w-32 font-bold">Reading</th>
+                            <th className="py-1.5 px-2.5 w-28 font-bold">Category</th>
+                            <th className="py-1.5 px-2.5 font-bold">Archaeological Rationale</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-stone-100 font-sans text-[11px]">
+                          {inscription.transcription.apparatusCriticus.map((item, aIdx) => (
+                            <tr key={aIdx} className="hover:bg-amber-50/40 transition-colors">
+                              <td className="py-2 px-2.5 font-mono text-stone-500 font-bold">{item.lineNumber}</td>
+                              <td className="py-2 px-2.5 font-kannada font-semibold text-amber-950">{item.leidenReading}</td>
+                              <td className="py-2 px-2.5">
+                                <span className="font-mono text-[9px] uppercase px-1.5 py-0.5 rounded bg-stone-100 text-stone-700 font-bold">
+                                  {item.apparatusType.replace('_', ' ')}
+                                </span>
+                              </td>
+                              <td className="py-2 px-2.5 text-stone-600 font-serif italic">{item.historicalNote}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 

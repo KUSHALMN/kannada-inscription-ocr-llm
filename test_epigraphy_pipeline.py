@@ -389,6 +389,39 @@ def test_phash_caching():
     print(f"    [+] Cache statistics operational: {stats['cache_hits']} hits, {stats['total_cached_steles']} cached steles")
 
 
+def test_leiden_epigraphical_formatting():
+    print("[*] 9. Testing Leiden Epigraphical Conventions & Apparatus Criticus...")
+    from backend.app.ml_adapters.leiden_formatter import LeidenEpigraphicalFormatter, COMBINING_DOT_BELOW
+
+    # Test 1: Line formatting with editorial expansions, restorations, and underdots
+    raw_kannada = "ಶ್ರೀಮತ್ ಕದಂಬಪನ್ ಪೆಱ್ಗೆಡೆ ಬಾಗಳ್ಚು ಕೊಟ್ಟಾರ್"
+    raw_iast = "śrīmat kadambapan peṟgede bāgaḷchu koṭṭār"
+    formatted_k, formatted_i, apparatus = LeidenEpigraphicalFormatter.format_line(
+        raw_kannada, raw_iast, line_num=1, line_confidence=0.82
+    )
+
+    # Verify bracket restoration for invocation formula
+    assert "[" in formatted_k and "]" in formatted_k, f"Expected restoration brackets in '{formatted_k}'"
+
+    # Verify editorial expansion parentheses
+    assert "(" in formatted_k and ")" in formatted_k, f"Expected expansion parentheses in '{formatted_k}'"
+
+    # Verify underdot presence on weathered glyphs
+    assert COMBINING_DOT_BELOW in formatted_k, "Expected combining dot below on effaced glyphs"
+
+    # Verify apparatus criticus generation
+    assert len(apparatus) >= 2, f"Expected at least 2 apparatus entries, got {len(apparatus)}"
+    categories = [a.apparatus_type for a in apparatus]
+    assert "editorial_expansion" in categories, "Must include editorial expansion entry"
+    print(f"    [+] Leiden critical text rendered: '{formatted_k}'")
+    print(f"    [+] Generated {len(apparatus)} apparatus criticus entries: {categories}")
+
+    # Test 2: TEI EpiDoc XML tag conversion
+    xml_frag = LeidenEpigraphicalFormatter.to_epidoc_xml_fragment(formatted_k)
+    assert "<supplied reason=\"lost\">" in xml_frag or "<expan><ex>" in xml_frag or "<unclear>" in xml_frag
+    print(f"    [+] TEI EpiDoc XML schema conversion verified.")
+
+
 def main():
     print("=" * 80)
     print("  ANCIENT KANNADA EPIGRAPHY AI VALIDATION SUITE")
@@ -398,6 +431,7 @@ def main():
     test_neural_translation()
     test_glyph_matching_and_wall_stitching()
     test_phash_caching()
+    test_leiden_epigraphical_formatting()
     asyncio.run(test_full_analysis_pipeline())
     asyncio.run(test_unhinted_image_classification_and_translation())
     asyncio.run(test_irrelevant_image_fallback())

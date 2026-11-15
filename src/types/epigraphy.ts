@@ -85,8 +85,19 @@ export interface SegmentedLine {
   lineNumber: number;
   originalText: string;
   iastText: string;
+  leidenText?: string;
+  leidenIast?: string;
   modernKannadaLine?: string;
   boundingBox?: BoundingBox;
+}
+
+export interface ApparatusCriticusItem {
+  lineNumber: number;
+  token: string;
+  leidenReading: string;
+  apparatusType: string;
+  confidence: number;
+  historicalNote: string;
 }
 
 export interface ArchaicGlossaryItem {
@@ -138,9 +149,12 @@ export interface TranscriptionResult {
   macroConfidence?: number;
   recognizedText: string;
   iastTransliteration: string;
+  leidenText?: string;
+  leidenIast?: string;
   lines: SegmentedLine[];
   detectedGlyphsCount: number;
   glyphAlternatives?: GlyphAlternativeReading[];
+  apparatusCriticus?: ApparatusCriticusItem[];
   isMockData?: boolean;
 }
 

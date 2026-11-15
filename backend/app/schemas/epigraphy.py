@@ -36,8 +36,20 @@ class SegmentedLine(CamelModel):
     line_number: int = Field(..., description="1-based line sequence number")
     original_text: str = Field(..., description="Deciphered original inscriptional text in Kannada characters")
     iast_text: str = Field(..., description="IAST transliteration for the line")
+    leiden_text: Optional[str] = Field(None, description="Line rendered with international Leiden epigraphical conventions")
+    leiden_iast: Optional[str] = Field(None, description="IAST Romanization rendered with Leiden conventions")
     modern_kannada_line: Optional[str] = Field(None, description="Aligned Modern Kannada (Hosagannada) sentence")
     bounding_box: Optional[BoundingBox] = Field(None, description="Bounding region for the line on the rubbing")
+
+
+class ApparatusCriticusItem(CamelModel):
+    """Academic critical apparatus item documenting epigraphical textual variants."""
+    line_number: int = Field(..., description="1-based inscriptional line number")
+    token: str = Field(..., description="Original deciphered token or akshara")
+    leiden_reading: str = Field(..., description="Formatted Leiden convention reading")
+    apparatus_type: str = Field(..., description="Classification: restoration [ ], underdot unclear, expansion ( ), omitted < >, superfluous { }")
+    confidence: float = Field(..., ge=0.0, le=1.0, description="Epigraphical reading confidence")
+    historical_note: str = Field(..., description="Scholarly textual rationale or parallel citation")
 
 
 class ArchaicGlossaryItem(CamelModel):
@@ -75,9 +87,12 @@ class TranscriptionResult(CamelModel):
     macro_confidence: Optional[float] = Field(None, ge=0.0, le=1.0, description="Stage 1 Macro-era confidence score")
     recognized_text: str = Field(..., description="Full deciphered original text in Kannada characters")
     iast_transliteration: str = Field(..., description="Complete IAST academic Romanization")
+    leiden_text: Optional[str] = Field(None, description="Full inscriptional text formatted with international Leiden epigraphical conventions")
+    leiden_iast: Optional[str] = Field(None, description="Complete IAST transliteration formatted with Leiden conventions")
     lines: List[SegmentedLine] = Field(default_factory=list, description="Segmented inscriptional lines")
     detected_glyphs_count: int = Field(0, description="Total count of recognized character glyphs")
     glyph_alternatives: List[GlyphAlternativeReading] = Field(default_factory=list, description="Alternate candidate readings for weathered glyphs")
+    apparatus_criticus: List[ApparatusCriticusItem] = Field(default_factory=list, description="Academic apparatus criticus entries documenting physical stone variants and restorations")
     is_mock_data: bool = Field(False, description="Flag indicating mock vs live neural model output")
 
 

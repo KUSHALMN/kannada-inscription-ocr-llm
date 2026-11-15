@@ -635,6 +635,24 @@ class AnalysisService:
                             )
                         )
 
+            # Generate academic Leiden critical edition and Apparatus Criticus
+            full_leiden_k, full_leiden_i, apparatus_list = full_recognized, full_iast, []
+            try:
+                from backend.app.ml_adapters.leiden_formatter import LeidenEpigraphicalFormatter
+                lines_for_leiden = [
+                    (sl.line_number, sl.original_text, sl.iast_text, sl.bounding_box.confidence if sl.bounding_box else 0.95)
+                    for sl in segmented_lines
+                ]
+                full_leiden_k, full_leiden_i, apparatus_list = LeidenEpigraphicalFormatter.format_full_inscription(lines_for_leiden)
+
+                for idx, sl in enumerate(segmented_lines):
+                    conf = sl.bounding_box.confidence if sl.bounding_box else 0.95
+                    lk, li, _ = LeidenEpigraphicalFormatter.format_line(sl.original_text, sl.iast_text, sl.line_number, conf)
+                    sl.leiden_text = lk
+                    sl.leiden_iast = li
+            except Exception as leiden_err:
+                logger.debug("Leiden formatting error: %s", leiden_err)
+
             transcription = TranscriptionResult(
                 script_class=effective_script,
                 script_confidence=script_pred.confidence if script_pred else 0.9875,
@@ -642,9 +660,12 @@ class AnalysisService:
                 macro_confidence=script_pred.macro_confidence if script_pred else None,
                 recognized_text=full_recognized,
                 iast_transliteration=full_iast,
+                leiden_text=full_leiden_k,
+                leiden_iast=full_leiden_i,
                 lines=segmented_lines,
                 detected_glyphs_count=total_glyphs,
                 glyph_alternatives=glyph_alts,
+                apparatus_criticus=apparatus_list,
                 is_mock_data=self.is_demonstration,
             )
             logger.info("[%s] Step 4 & 5 Recognition & Transliteration completed in %.2f ms", job_id, t_ms)
