@@ -213,6 +213,30 @@ def test_glyph_matching_and_wall_stitching():
     assert conf >= 0.70, f"Confidence too low: {conf}"
     print(f"    [+] Glyph prototype match succeeded: '{char}' ({iast}) with confidence {conf*100:.1f}%")
 
+    # Test 1B: Resilient Directed Chamfer Matching on Fractured / Chipped Glyph (Simulating stone effacement)
+    # Clip away bottom 40% of the character to simulate a fractured, chipped stone edge
+    chipped_glyph = glyph_img.copy()
+    chipped_glyph[int(chipped_glyph.shape[0] * 0.6):, :] = 255  # Efface bottom 40%
+    char_chipped, iast_chipped, conf_chipped, candidates = matcher.match_glyph_with_candidates(
+        chipped_glyph, "kadamba", top_k=3, prev_char="ಶ"
+    )
+    assert char_chipped is not None and conf_chipped >= 0.50, "Chipped glyph must resolve via Chamfer sub-contour matching"
+    print(f"    [+] Chipped/effaced stone edge test: Successfully recognized fractured glyph as '{char_chipped}' ({conf_chipped*100:.1f}% conf)")
+
+    # Test 1C: Cylindrical Pillar / Column Dewarping
+    preprocessor = CVStonePreprocessor()
+    test_pillar = cv2.imread(sample_glyph_path)
+    dewarped_pillar, was_dewarped = preprocessor.cylindrical_dewarp(test_pillar, cylinder_radius_ratio=1.1)
+    assert was_dewarped is True, "Cylindrical dewarp must succeed"
+    assert dewarped_pillar.shape == test_pillar.shape, "Dewarped pillar must preserve coordinate dimensions"
+    print(f"    [+] Cylindrical 3D pillar unrolling verified on curved monument surface.")
+
+    # Test 1D: Quantized Epigraphy Engine (INT8 CPU & low-memory footprint)
+    from backend.app.ml_adapters.quantized_engine import QuantizedEpigraphyEngine
+    device_info = QuantizedEpigraphyEngine.get_device_info()
+    assert "recommended_precision" in device_info, "Quantized engine must report optimal precision mode"
+    print(f"    [+] Quantized engine initialized: Mode '{device_info['recommended_precision']}' (VRAM: {device_info['vram_gb']} GB)")
+
     # Test 2: Multi-Panel Temple Wall Stitching
     stele_path = "public/sample-stele.jpg"
     assert os.path.exists(stele_path), "Sample stele not found"

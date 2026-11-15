@@ -13,6 +13,7 @@ import {
   Camera,
   Crop,
   Sparkles,
+  Columns,
 } from 'lucide-react';
 
 interface NewAnalysisViewProps {
@@ -56,6 +57,9 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
 
   // Real-Time SSE Stream State
   const [liveStreamStage, setLiveStreamStage] = useState<string | null>(null);
+
+  // 3D Cylindrical Pillar Dewarping State
+  const [isCylindrical, setIsCylindrical] = useState<boolean>(false);
 
   // Auto-load initial file from navigation
   React.useEffect(() => {
@@ -217,6 +221,7 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
           researcherNotes: metadata.researcherNotes,
           autoSave: true,
           cropROI: isCropActive ? cropROI : undefined,
+          isCylindrical: isCylindrical,
         });
       } catch (backendErr) {
         console.warn('FastAPI remote backend unavailable or rate-limited, engaging high-fidelity local scholarly analyzer:', backendErr);
@@ -567,6 +572,21 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
                 {/* Top Action Buttons */}
                 <div className="absolute top-3 right-3 flex items-center gap-2">
                   <button
+                    type="button"
+                    onClick={() => setIsCylindrical(!isCylindrical)}
+                    className={`p-2 rounded-lg border transition-all shadow-md backdrop-blur-md cursor-pointer flex items-center gap-1.5 text-xs font-semibold ${
+                      isCylindrical
+                        ? 'bg-[#7C3517] text-white border-[#5A240E]'
+                        : 'bg-white/90 text-[#1E120B] border-[#DFCBB0] hover:bg-amber-50'
+                    }`}
+                    title="Unroll 3D surface curvature for circular temple columns and pillars"
+                  >
+                    <Columns className="w-3.5 h-3.5" />
+                    <span>{isCylindrical ? 'Pillar Dewarp ON' : 'Pillar Dewarp'}</span>
+                  </button>
+
+                  <button
+                    type="button"
                     onClick={() => setIsCropActive(!isCropActive)}
                     className={`p-2 rounded-lg border transition-all shadow-md backdrop-blur-md cursor-pointer flex items-center gap-1.5 text-xs font-semibold ${
                       isCropActive

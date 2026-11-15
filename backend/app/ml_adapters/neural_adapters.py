@@ -659,15 +659,17 @@ class NeuralTranslator(Translator):
                     self.tokenizer = AutoTokenizer.from_pretrained(effective_model_dir)
 
                 try:
-                    if self.is_causal:
-                        base = AutoModelForCausalLM.from_pretrained(base_name, local_files_only=True, torch_dtype=torch.float32)
+                    from backend.app.ml_adapters.quantized_engine import QuantizedEpigraphyEngine
+                    self.model, self.precision_mode = QuantizedEpigraphyEngine.load_optimized_model(
+                        base_model_name=base_name,
+                        adapter_path=effective_model_dir,
+                        is_causal=self.is_causal
+                    )
+                    if self.model is not None:
+                        self.model.eval()
+                        logger.info("[+] Loaded %s Epigraph Translator (%s) with mode '%s'", "Causal Decoder" if self.is_causal else "Seq2Seq", base_name, self.precision_mode)
                     else:
-                        base = AutoModelForSeq2SeqLM.from_pretrained(base_name, local_files_only=True)
-
-                    self.model = PeftModel.from_pretrained(base, effective_model_dir, local_files_only=True)
-                    self.model.to(self.device)
-                    self.model.eval()
-                    logger.info("[+] Loaded %s Epigraph Translator (%s) on %s", "Causal Decoder" if self.is_causal else "Seq2Seq", base_name, self.device)
+                        logger.info("Local base model load deferred; using parallel epigraph vector memory")
                 except Exception as local_err:
                     logger.info("Local base model load deferred (%s); using parallel epigraph memory", local_err)
                     self.model = None

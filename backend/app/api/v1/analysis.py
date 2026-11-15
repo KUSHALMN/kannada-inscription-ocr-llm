@@ -71,6 +71,7 @@ async def analyze_inscription(
     crop_y: Optional[float] = Form(None, description="Normalized ROI y (0.0 to 1.0)"),
     crop_w: Optional[float] = Form(None, description="Normalized ROI width (0.0 to 1.0)"),
     crop_h: Optional[float] = Form(None, description="Normalized ROI height (0.0 to 1.0)"),
+    is_cylindrical: Optional[bool] = Form(False, alias="isCylindrical", description="Unroll cylindrical pillar or column curvature"),
     act_repo: ActivityRepository = Depends(get_activity_repository),
     ins_repo: InscriptionRepository = Depends(get_inscription_repository),
     analysis_svc: AnalysisService = Depends(get_analysis_service),
@@ -189,6 +190,7 @@ async def analyze_inscription(
         known_language=known_language,
         researcher_notes=researcher_notes,
         filename=file.filename,
+        is_cylindrical=bool(is_cylindrical),
     )
 
     image_url = f"/uploads/{job_id}{ext}"

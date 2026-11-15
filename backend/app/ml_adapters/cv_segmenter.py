@@ -23,11 +23,17 @@ class CVStonePreprocessor(Preprocessor):
     3. Inverted digital paper squeeze (white chiseled characters on dark ink)
     """
 
-    def process(self, image: Image.Image) -> np.ndarray:
+    def process(self, image: Image.Image, is_cylindrical: bool = False) -> np.ndarray:
         rgb_img = image.convert("RGB")
         bgr = cv2.cvtColor(np.array(rgb_img), cv2.COLOR_RGB2BGR)
 
-        # 0. Automated Perspective Rectification and Keystone De-Skewing
+        # 0A. Cylindrical Surface Dewarping (for round temple columns & pillars)
+        if is_cylindrical or self.detect_cylindrical_curvature(bgr)[0]:
+            bgr, was_dewarped = self.cylindrical_dewarp(bgr)
+            if was_dewarped:
+                logger.info("[+] Cylindrical pillar dewarping unrolled curved epigraph surface onto planar grid")
+
+        # 0B. Automated Perspective Rectification and Keystone De-Skewing
         corrected_bgr, _, _ = self.auto_deskew_and_perspective_correction(bgr)
 
         # Bilateral filter to smooth stone granitic texture while preserving chiseled edges
@@ -45,6 +51,99 @@ class CVStonePreprocessor(Preprocessor):
         # Normalized float array [0, 1]
         enhanced_rgb = cv2.cvtColor(blended, cv2.COLOR_GRAY2RGB)
         return (enhanced_rgb.astype(np.float32) / 255.0)
+
+    @staticmethod
+    def cylindrical_dewarp(
+        bgr_image: np.ndarray,
+        cylinder_radius_ratio: float = 1.05,
+    ) -> Tuple[np.ndarray, bool]:
+        """
+        Unrolls 3D cylindrical pillar / column curvature onto a planar coordinate grid.
+        Applies inverse cylindrical projection with Lanczos-4 interpolation:
+        x' = x0 + R * arcsin((x - x0) / R)
+        y' = y0 + (y - y0) / cos(arcsin((x - x0) / R))
+        """
+        h, w = bgr_image.shape[:2]
+        if w < 20 or h < 20:
+            return bgr_image, False
+
+        R = float(w) * cylinder_radius_ratio
+        x0 = float(w) / 2.0
+        y0 = float(h) / 2.0
+
+        u = np.arange(w, dtype=np.float32)
+        v = np.arange(h, dtype=np.float32)
+        u_grid, v_grid = np.meshgrid(u, v)
+
+        norm_x = (u_grid - x0) / R
+        valid_mask = np.abs(norm_x) < 0.96
+
+        theta = np.zeros_like(norm_x)
+        theta[valid_mask] = np.arcsin(norm_x[valid_mask])
+        cos_theta = np.ones_like(norm_x)
+        cos_theta[valid_mask] = np.cos(theta[valid_mask])
+
+        map_x = np.where(valid_mask, x0 + R * np.sin(norm_x), u_grid).astype(np.float32)
+        map_y = np.where(valid_mask, y0 + (v_grid - y0) / np.maximum(cos_theta, 0.2), v_grid).astype(np.float32)
+
+        dewarped = cv2.remap(
+            bgr_image,
+            map_x,
+            map_y,
+            interpolation=cv2.INTER_LANCZOS4,
+            borderMode=cv2.BORDER_REPLICATE
+        )
+        return dewarped, True
+
+    @staticmethod
+    def detect_cylindrical_curvature(bgr_image: np.ndarray) -> Tuple[bool, float]:
+        """
+        Detects whether an inscription image exhibits cylindrical curvature (pillar or column):
+        1. Checks for lateral Lambertian luminance falloff (darker lateral edges relative to center strip).
+        2. Returns: (is_cylindrical_detected, curvature_drop_ratio)
+        """
+        h, w = bgr_image.shape[:2]
+        if w < 100 or h < 100:
+            return False, 0.0
+
+        gray = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2GRAY)
+        w_strip = int(w * 0.15)
+        left_strip = gray[:, :w_strip]
+        center_strip = gray[:, int(w * 0.35):int(w * 0.65)]
+        right_strip = gray[:, -w_strip:]
+
+        lum_left = float(left_strip.mean())
+        lum_center = float(center_strip.mean())
+        lum_right = float(right_strip.mean())
+
+        lateral_drop = (lum_center - min(lum_left, lum_right)) / max(lum_center, 1.0)
+        is_curved = (lateral_drop > 0.25) and (lum_center > 40)
+        return is_curved, float(lateral_drop)
+
+    @staticmethod
+    def bridge_fractured_strokes(bin_img: np.ndarray, max_gap: int = 3) -> np.ndarray:
+        """
+        Multi-directional Morphological Fracture Inpainting & Chisel Crack Bridging:
+        Connects micro-fractures, chipped stroke gaps, and hairline breaks along stroke
+        trajectories (0°, 45°, 90°, 135°) without dilating or blurring distinct glyphs.
+        """
+        if bin_img is None or bin_img.size == 0:
+            return bin_img
+
+        k_h = cv2.getStructuringElement(cv2.MORPH_RECT, (max_gap, 1))
+        k_v = cv2.getStructuringElement(cv2.MORPH_RECT, (1, max_gap))
+        k_d1 = np.eye(max_gap, dtype=np.uint8)
+        k_d2 = np.fliplr(k_d1)
+
+        c_h = cv2.morphologyEx(bin_img, cv2.MORPH_CLOSE, k_h)
+        c_v = cv2.morphologyEx(bin_img, cv2.MORPH_CLOSE, k_v)
+        c_d1 = cv2.morphologyEx(bin_img, cv2.MORPH_CLOSE, k_d1)
+        c_d2 = cv2.morphologyEx(bin_img, cv2.MORPH_CLOSE, k_d2)
+
+        bridged = cv2.bitwise_or(c_h, c_v)
+        bridged = cv2.bitwise_or(bridged, c_d1)
+        bridged = cv2.bitwise_or(bridged, c_d2)
+        return bridged
 
     @staticmethod
     def auto_deskew_and_perspective_correction(bgr_image: np.ndarray) -> Tuple[np.ndarray, bool, float]:
@@ -152,14 +251,20 @@ class CVStonePreprocessor(Preprocessor):
         return cv2.normalize(dog, None, 0, 255, cv2.NORM_MINMAX).astype(np.uint8)
 
     @staticmethod
-    def morphological_skeletonize(bin_img: np.ndarray, max_iterations: int = 30) -> np.ndarray:
+    def morphological_skeletonize(bin_img: np.ndarray, max_iterations: int = 30, bridge_fractures: bool = True) -> np.ndarray:
         """
         Reduces thick weathered chisel depressions down to 1-pixel-wide stroke trajectories
-        using iterative morphological thinning / skeletonization.
+        using iterative morphological thinning / skeletonization, optionally bridging micro-cracks first.
         """
-        skel = np.zeros(bin_img.shape, np.uint8)
+        if bin_img is None or bin_img.size == 0:
+            return np.zeros((10, 10), dtype=np.uint8)
+
+        # Bridge hairline fractures across weathered stone grooves before thinning
+        prepared_bin = CVStonePreprocessor.bridge_fractured_strokes(bin_img) if bridge_fractures else bin_img
+
+        skel = np.zeros(prepared_bin.shape, np.uint8)
         element = cv2.getStructuringElement(cv2.MORPH_CROSS, (3, 3))
-        img = bin_img.copy()
+        img = prepared_bin.copy()
         for _ in range(max_iterations):
             eroded = cv2.erode(img, element)
             temp = cv2.dilate(eroded, element)

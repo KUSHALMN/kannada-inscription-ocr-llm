@@ -326,6 +326,7 @@ class AnalysisService:
         known_language: Optional[str] = None,
         researcher_notes: Optional[str] = None,
         filename: Optional[str] = None,
+        is_cylindrical: bool = False,
         on_step_progress: Optional[Callable[[str, int], Awaitable[None]]] = None,
     ) -> AnalysisJobResult:
         """
@@ -369,7 +370,10 @@ class AnalysisService:
             await on_step_progress("preprocessing", 15)
         try:
             t0 = time.perf_counter()
-            preprocessed_arr = await run_in_threadpool(self.preprocessor.process, image)
+            if hasattr(self.preprocessor, "process") and "is_cylindrical" in self.preprocessor.process.__code__.co_varnames:
+                preprocessed_arr = await run_in_threadpool(self.preprocessor.process, image, is_cylindrical=is_cylindrical)
+            else:
+                preprocessed_arr = await run_in_threadpool(self.preprocessor.process, image)
             t_ms = (time.perf_counter() - t0) * 1000.0
             timings["preprocessing"] = round(t_ms, 2)
             logger.info("[%s] Step 1 Preprocessing completed in %.2f ms", job_id, t_ms)

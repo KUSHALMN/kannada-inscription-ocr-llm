@@ -29,6 +29,7 @@ export interface AnalyzeRubbingOptions {
     width: number;
     height: number;
   };
+  isCylindrical?: boolean;
 }
 
 export interface JobStatusResponse {
@@ -262,6 +263,9 @@ export class FastApiEpigraphyService implements IEpigraphyService {
         formData.append('crop_w', String(options.cropROI.width));
         formData.append('crop_h', String(options.cropROI.height));
       }
+      if (options.isCylindrical) {
+        formData.append('is_cylindrical', 'true');
+      }
     }
 
     const autoSaveParam = options?.autoSave !== false ? '?autoSave=true' : '';
@@ -300,6 +304,9 @@ export class FastApiEpigraphyService implements IEpigraphyService {
         formData.append('crop_y', String(options.cropROI.y));
         formData.append('crop_w', String(options.cropROI.width));
         formData.append('crop_h', String(options.cropROI.height));
+      }
+      if (options.isCylindrical) {
+        formData.append('is_cylindrical', 'true');
       }
     }
 
