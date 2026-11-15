@@ -1,12 +1,15 @@
 import os
 import io
+import json
 import uuid
+import asyncio
 from datetime import datetime
 from typing import Optional, Union, List
 from PIL import Image, UnidentifiedImageError
 import cv2
 import numpy as np
 from fastapi import APIRouter, UploadFile, File, Form, Query, HTTPException, Depends, status
+from fastapi.responses import StreamingResponse
 
 from backend.app.config import settings
 from backend.app.services.analysis_service import AnalysisService
@@ -64,6 +67,10 @@ async def analyze_inscription(
     known_script: Optional[str] = Form(None, alias="knownScript", description="Optional script hint or 'uncertain'"),
     known_language: Optional[str] = Form(None, alias="knownLanguage", description="Optional language hint or 'uncertain'"),
     researcher_notes: Optional[str] = Form(None, alias="researcherNotes", description="Optional field notes"),
+    crop_x: Optional[float] = Form(None, description="Normalized ROI x (0.0 to 1.0)"),
+    crop_y: Optional[float] = Form(None, description="Normalized ROI y (0.0 to 1.0)"),
+    crop_w: Optional[float] = Form(None, description="Normalized ROI width (0.0 to 1.0)"),
+    crop_h: Optional[float] = Form(None, description="Normalized ROI height (0.0 to 1.0)"),
     act_repo: ActivityRepository = Depends(get_activity_repository),
     ins_repo: InscriptionRepository = Depends(get_inscription_repository),
     analysis_svc: AnalysisService = Depends(get_analysis_service),
@@ -107,6 +114,24 @@ async def analyze_inscription(
             )
         # Load pixels to confirm integrity
         img_probe.load()
+
+        # 2.5 Apply Interactive ROI Cropping if requested (Google Lens style)
+        if crop_w is not None and crop_h is not None and crop_w > 0.05 and crop_h > 0.05:
+            try:
+                cx = max(0.0, min(1.0, float(crop_x or 0.0)))
+                cy = max(0.0, min(1.0, float(crop_y or 0.0)))
+                cw = max(0.05, min(1.0 - cx, float(crop_w)))
+                ch = max(0.05, min(1.0 - cy, float(crop_h)))
+                orig_w, orig_h = img_probe.size
+                box_px = (int(cx * orig_w), int(cy * orig_h), int((cx + cw) * orig_w), int((cy + ch) * orig_h))
+                if box_px[2] > box_px[0] + 15 and box_px[3] > box_px[1] + 15:
+                    img_probe = img_probe.crop(box_px)
+                    out_buf = io.BytesIO()
+                    img_probe.save(out_buf, format=detected_format)
+                    image_bytes = out_buf.getvalue()
+                    logger.info("Successfully cropped stele ROI box: %s", box_px)
+            except Exception as crop_err:
+                logger.warning("Could not crop ROI: %s", crop_err)
     except HTTPException:
         raise
     except UnidentifiedImageError as e:
@@ -396,3 +421,56 @@ async def stitch_and_analyze_panels(
         filename=f"{job_id}.jpg"
     )
     return result
+
+
+@router.get(
+    "/{job_id}/stream",
+    summary="Real-Time Server-Sent Events (SSE) Analysis Progress Stream",
+)
+async def stream_analysis_progress(
+    job_id: str,
+    job_mgr: JobQueueManager = Depends(get_job_manager),
+):
+    """
+    Streams millisecond-accurate pipeline progression events (SSE) from the FastAPI backend.
+    Emits {"jobId", "status", "progress", "currentStep", "result"} directly to browser.
+    """
+    async def event_generator():
+        last_progress = -1
+        last_step = ""
+        poll_count = 0
+        while poll_count < 120:  # Timeout after 60 seconds
+            job = job_mgr.get_job(job_id)
+            if not job:
+                yield f"data: {json.dumps({'status': 'not_found', 'jobId': job_id, 'progress': 0})}\n\n"
+                break
+
+            if job.progress != last_progress or job.current_step != last_step or job.status in ("completed", "failed"):
+                payload = {
+                    "jobId": job.job_id,
+                    "status": job.status,
+                    "progress": job.progress,
+                    "currentStep": job.current_step,
+                    "updatedAt": job.updated_at
+                }
+                if job.result:
+                    payload["result"] = job.result.dict()
+                yield f"data: {json.dumps(payload)}\n\n"
+                last_progress = job.progress
+                last_step = job.current_step
+
+            if job.status in ("completed", "failed", "partial"):
+                break
+
+            poll_count += 1
+            await asyncio.sleep(0.35)
+
+    return StreamingResponse(
+        event_generator(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no"
+        }
+    )

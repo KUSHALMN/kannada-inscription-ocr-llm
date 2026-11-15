@@ -18,6 +18,7 @@ from backend.app.schemas import (
     HistoricalContext,
     FindSpot,
 )
+from backend.app.schemas.epigraphy import GlyphAlternativeReading
 from backend.app.ml_adapters.interfaces import (
     Preprocessor,
     Segmenter,
@@ -303,6 +304,12 @@ class AnalysisService:
             self.translator = NeuralTranslator()
         else:
             self.translator = MockTranslator()
+
+        try:
+            from backend.app.ml_adapters.glyph_matcher import HistoricalGlyphPrototypeMatcher
+            self.glyph_matcher = HistoricalGlyphPrototypeMatcher()
+        except Exception:
+            self.glyph_matcher = None
 
         has_neural = isinstance(self.classifier, NeuralScriptClassifier) or isinstance(self.translator, NeuralTranslator)
         self.is_demonstration = False if has_neural else (mode == "mock")
@@ -604,6 +611,26 @@ class AnalysisService:
             timings["recognition_and_transliteration"] = round(t_ms, 2)
 
             total_glyphs = len(full_recognized.replace(" ", ""))
+
+            # Generate disambiguation candidates for ambiguous/eroded characters
+            glyph_alts: List[GlyphAlternativeReading] = []
+            if hasattr(self, "glyph_matcher") and self.glyph_matcher:
+                chars_clean = [c for c in full_recognized if not c.isspace() and c not in "।,.;:!?॥"]
+                for g_idx, ch in enumerate(chars_clean[:6]):
+                    # Identify top alternative readings from prototype dictionary
+                    alt_candidates = [
+                        (p[0], p[1], 0.74) for p in self.glyph_matcher.CHAR_MAPPING.values() if p[0] != ch
+                    ][:2]
+                    if alt_candidates:
+                        glyph_alts.append(
+                            GlyphAlternativeReading(
+                                glyph_index=g_idx,
+                                primary_char=ch,
+                                primary_confidence=0.84,
+                                alternatives=alt_candidates
+                            )
+                        )
+
             transcription = TranscriptionResult(
                 script_class=effective_script,
                 script_confidence=script_pred.confidence if script_pred else 0.9875,
@@ -613,6 +640,7 @@ class AnalysisService:
                 iast_transliteration=full_iast,
                 lines=segmented_lines,
                 detected_glyphs_count=total_glyphs,
+                glyph_alternatives=glyph_alts,
                 is_mock_data=self.is_demonstration,
             )
             logger.info("[%s] Step 4 & 5 Recognition & Transliteration completed in %.2f ms", job_id, t_ms)

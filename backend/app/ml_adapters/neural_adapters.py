@@ -515,6 +515,10 @@ class NeuralTranslator(Translator):
         self.fallback = MockTranslator()
         self.morpho_translator = HalegannadaMorphologicalTranslator()
 
+        # In-memory vector similarity index for fast epigraph retrieval
+        from backend.app.ml_adapters.vector_store import EpigraphVectorStore
+        self.vector_store = EpigraphVectorStore()
+
         # Epigraph parallel memory dataset for exact reference lookup
         self.parallel_lookup: Dict[str, Dict[str, Any]] = {}
 
@@ -674,15 +678,23 @@ class NeuralTranslator(Translator):
     def translate(self, text: str, script: ScriptClassId, language: SourceLanguageId) -> TranslationResult:
         cleaned_text = text.strip() if text else ""
 
-        def _get_glossary(txt: str):
+        def _get_glossary_and_alignments(txt: str):
+            g_items = []
+            align_items = []
             if self.morpho_translator:
                 try:
-                    _, _, items = self.morpho_translator.translate_sentence(txt)
-                    if items:
-                        return items
+                    res = self.morpho_translator.translate_sentence(txt)
+                    if len(res) == 4:
+                        _, _, g_items, align_items = res
+                    elif len(res) == 3:
+                        _, _, g_items = res
                 except Exception:
                     pass
-            return self.fallback.translate(txt, script, language).glossary
+            if not g_items:
+                g_items = self.fallback.translate(txt, script, language).glossary
+            return g_items, align_items
+
+        glossary_items, token_alignments = _get_glossary_and_alignments(cleaned_text)
 
         # 1. Exact match in historical epigraph database
         if cleaned_text in self.parallel_lookup:
@@ -692,10 +704,30 @@ class NeuralTranslator(Translator):
                 language_confidence=0.995,
                 modern_kannada=matched.get("target_modern", ""),
                 english_translation=matched.get("target_english", ""),
-                glossary=_get_glossary(cleaned_text),
+                glossary=glossary_items,
+                token_alignments=token_alignments,
                 stylistic_notes=f"Attested epigraph record from {matched.get('dynasty', '')} ({matched.get('era', '')})",
                 is_mock_data=False,
             )
+
+        # 1.5 Fast Vector Similarity Lookup in Epigraph Memory
+        if getattr(self, "vector_store", None):
+            try:
+                vec_matches = self.vector_store.search(cleaned_text, top_k=1, min_similarity=0.82)
+                if vec_matches:
+                    v_matched, v_sim = vec_matches[0]
+                    return TranslationResult(
+                        source_language=language,
+                        language_confidence=min(0.995, 0.90 + (v_sim * 0.10)),
+                        modern_kannada=v_matched.get("target_modern", ""),
+                        english_translation=v_matched.get("target_english", ""),
+                        glossary=glossary_items,
+                        token_alignments=token_alignments,
+                        stylistic_notes=f"Retrieved via vector similarity ({v_sim*100:.1f}%) from {v_matched.get('dynasty', '')} ({v_matched.get('era', '')})",
+                        is_mock_data=False,
+                    )
+            except Exception as e:
+                logger.debug("Vector store search error: %s", e)
 
         # 2. Multi-line or compound sentence matches in cleaned_text
         found_matches = []
@@ -744,7 +776,8 @@ class NeuralTranslator(Translator):
                     language_confidence=0.995,
                     modern_kannada=" ".join(dedup_k),
                     english_translation=" ".join(dedup_e),
-                    glossary=_get_glossary(cleaned_text),
+                    glossary=glossary_items,
+                    token_alignments=token_alignments,
                     stylistic_notes=f"Attested epigraph record from {dynasty_name} ({era_name}) - Historical translation.",
                     is_mock_data=False,
                 )
@@ -825,7 +858,8 @@ class NeuralTranslator(Translator):
                                     language_confidence=0.95,
                                     modern_kannada=cand_k,
                                     english_translation=cand_e,
-                                    glossary=_get_glossary(cleaned_text),
+                                    glossary=glossary_items,
+                                    token_alignments=token_alignments,
                                     stylistic_notes="Neural sequence-to-sequence translation with LoRA adaptation.",
                                     is_mock_data=False
                                 )
@@ -837,15 +871,19 @@ class NeuralTranslator(Translator):
         # 5. Shabdamanidarpana Morphological Translation Engine
         if self.morpho_translator and cleaned_text:
             try:
-                mod_k, mod_e, morpho_glossary = self.morpho_translator.translate_sentence(cleaned_text)
+                res = self.morpho_translator.translate_sentence(cleaned_text)
+                mod_k, mod_e = res[0], res[1]
+                morpho_glossary = res[2] if len(res) > 2 else []
+                morpho_aligns = res[3] if len(res) > 3 else token_alignments
                 if mod_k:
-                    glossary = morpho_glossary if morpho_glossary else self.fallback.translate(text, script, language).glossary
+                    glossary = morpho_glossary if morpho_glossary else glossary_items
                     return TranslationResult(
                         source_language=language,
                         language_confidence=0.965,
                         modern_kannada=mod_k,
                         english_translation=mod_e,
                         glossary=glossary,
+                        token_alignments=morpho_aligns,
                         stylistic_notes="Shabdamanidarpana morphological decomposition & historical vibhakti transformation (Halegannada -> Hosagannada).",
                         is_mock_data=False,
                     )

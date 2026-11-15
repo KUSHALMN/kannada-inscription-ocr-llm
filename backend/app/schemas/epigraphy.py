@@ -49,6 +49,24 @@ class ArchaicGlossaryItem(CamelModel):
     grammatical_category: str = Field(..., description="Grammatical classification (e.g. Dravidian verbal noun)")
 
 
+class WordAlignmentItem(CamelModel):
+    """Bidirectional token alignment mapping ancient, modern, and English words."""
+    id: str = Field(..., description="Unique alignment token identifier")
+    source_token: str = Field(..., description="Archaic Old Kannada token")
+    modern_token: str = Field(..., description="Equivalent modern Hosagannada word")
+    english_token: str = Field(..., description="English translation equivalent")
+    grammatical_rule: str = Field(..., description="Applied Shabdamanidarpana morphological rule")
+    confidence: float = Field(0.95, ge=0.0, le=1.0, description="Alignment confidence score")
+
+
+class GlyphAlternativeReading(CamelModel):
+    """Alternative candidate readings for weathered or ambiguous characters."""
+    glyph_index: int = Field(..., description="Index of character in line or inscription")
+    primary_char: str = Field(..., description="Primary recognized Kannada character")
+    primary_confidence: float = Field(..., ge=0.0, le=1.0, description="Confidence of primary reading")
+    alternatives: List[Tuple[str, str, float]] = Field(default_factory=list, description="Top-K alternative readings (char, iast, confidence)")
+
+
 class TranscriptionResult(CamelModel):
     """Epigraphical Pillar 3: Decipherment, line segmentation, and transliteration."""
     script_class: ScriptClassId = Field(..., description="Inferred or catalogued script epoch")
@@ -59,6 +77,7 @@ class TranscriptionResult(CamelModel):
     iast_transliteration: str = Field(..., description="Complete IAST academic Romanization")
     lines: List[SegmentedLine] = Field(default_factory=list, description="Segmented inscriptional lines")
     detected_glyphs_count: int = Field(0, description="Total count of recognized character glyphs")
+    glyph_alternatives: List[GlyphAlternativeReading] = Field(default_factory=list, description="Alternate candidate readings for weathered glyphs")
     is_mock_data: bool = Field(False, description="Flag indicating mock vs live neural model output")
 
 
@@ -69,6 +88,7 @@ class TranslationResult(CamelModel):
     modern_kannada: str = Field(..., description="Flowing Modern Standard Kannada (Hosagannada) prose translation")
     english_translation: str = Field(..., description="Comprehensive academic English translation")
     glossary: List[ArchaicGlossaryItem] = Field(default_factory=list, description="Archaic vocabulary glossary items")
+    token_alignments: List[WordAlignmentItem] = Field(default_factory=list, description="Word-level bidirectional alignment mappings")
     stylistic_notes: str = Field("", description="Linguistic, metric, and orthographical notes")
     is_mock_data: bool = Field(False, description="Flag indicating mock vs live translation output")
 

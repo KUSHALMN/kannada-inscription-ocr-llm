@@ -26,6 +26,8 @@ import {
   Sparkles,
   Layers,
   AlertTriangle,
+  FileText,
+  Printer,
 } from 'lucide-react';
 
 interface AnalysisResultsViewProps {
@@ -169,6 +171,75 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
 
   // Review status notification
   const [reviewBannerNotice, setReviewBannerNotice] = useState<string | null>(null);
+
+  // Bidirectional Word-Hover Synchronizer State
+  const [hoveredTokenId, setHoveredTokenId] = useState<string | null>(null);
+
+  // 1-Click Academic PDF & TEI-XML Export
+  const handleExportPdf = () => {
+    window.print();
+  };
+
+  const handleExportTeiXml = () => {
+    const teiXml = `<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>${inscription.title}</title>
+        <author>Digital Epigraphy Corpus of Karnataka</author>
+      </titleStmt>
+      <publicationStmt>
+        <p>Published under archaeological research license.</p>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Attributed Dynasty: ${inscription.historicalContext.dynasty} (${inscription.historicalContext.century})</p>
+        <p>Find Spot: ${inscription.historicalContext.findSpot.village}, ${inscription.historicalContext.findSpot.district}</p>
+        <p>Script Class: ${inscription.scriptClass}</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <div type="edition" xml:lang="kan-Old">
+        <p>${inscription.transcription.recognizedText}</p>
+      </div>
+      <div type="transliteration" xml:lang="sa-Latn">
+        <p>${inscription.transcription.iastTransliteration}</p>
+      </div>
+      <div type="translation" xml:lang="kan">
+        <p>${inscription.translation.modernKannada}</p>
+      </div>
+      <div type="translation" xml:lang="en">
+        <p>${inscription.translation.englishTranslation}</p>
+      </div>
+    </body>
+  </text>
+</TEI>`;
+    const blob = new Blob([teiXml], { type: 'application/xml' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${inscription.id || 'inscription'}_epidoc.xml`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleSubstituteGlyph = (glyphIdx: number, newChar: string) => {
+    const chars = Array.from(inscription.transcription.recognizedText);
+    if (glyphIdx >= 0 && glyphIdx < chars.length) {
+      chars[glyphIdx] = newChar;
+      const updatedText = chars.join('');
+      setInscription((prev) => ({
+        ...prev,
+        transcription: {
+          ...prev.transcription,
+          recognizedText: updatedText,
+        },
+      }));
+      setEditedText(updatedText);
+    }
+  };
 
   const handleCopyTranscription = () => {
     navigator.clipboard.writeText(inscription.transcription.recognizedText);
@@ -946,6 +1017,24 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                   >
                     {hasCopiedTranslation ? 'Copied' : 'Copy'}
                   </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    icon={<Printer className="w-3 h-3 text-slate-700" />}
+                    onClick={handleExportPdf}
+                    title="Print or Save as Academic PDF Report"
+                  >
+                    PDF
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    icon={<FileText className="w-3 h-3 text-slate-700" />}
+                    onClick={handleExportTeiXml}
+                    title="Export Archaeological TEI-XML (EpiDoc Standard)"
+                  >
+                    XML
+                  </Button>
                 </div>
               )}
             </div>
@@ -1122,13 +1211,70 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                           Orthographic Fidelity: {(inscription.transcription.scriptConfidence * 100).toFixed(1)}%
                         </span>
                       </div>
-                      <p className="font-kannada text-sm sm:text-base leading-relaxed text-slate-900 bg-amber-50/50 p-3 rounded-lg border border-amber-200/60 font-medium">
-                        {inscription.transcription.recognizedText}
-                      </p>
+
+                      {/* Interactive Word Tokens with Hover Sync */}
+                      <div className="font-kannada text-sm sm:text-base leading-relaxed text-slate-900 bg-amber-50/50 p-3 rounded-lg border border-amber-200/60 font-medium flex flex-wrap gap-x-2 gap-y-1.5">
+                        {inscription.translation.tokenAlignments && inscription.translation.tokenAlignments.length > 0
+                          ? inscription.translation.tokenAlignments.map((align, aIdx) => (
+                              <span
+                                key={align.id || aIdx}
+                                onMouseEnter={() => setHoveredTokenId(align.id)}
+                                onMouseLeave={() => setHoveredTokenId(null)}
+                                className={`px-1.5 py-0.5 rounded transition-all cursor-pointer relative group ${
+                                  hoveredTokenId === align.id
+                                    ? 'bg-amber-300 text-amber-950 font-bold shadow-xs ring-1 ring-amber-400'
+                                    : 'hover:bg-amber-100'
+                                }`}
+                                title={`${align.sourceToken} ➜ ${align.modernToken} (${align.grammaticalRule})`}
+                              >
+                                {align.sourceToken}
+                                {hoveredTokenId === align.id && (
+                                  <span className="absolute -top-7 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-slate-900 text-amber-200 text-[10px] font-sans font-medium rounded shadow-lg whitespace-nowrap z-30 pointer-events-none">
+                                    {align.modernToken} • {align.grammaticalRule}
+                                  </span>
+                                )}
+                              </span>
+                            ))
+                          : inscription.transcription.recognizedText}
+                      </div>
+
                       <div className="text-xs font-mono text-slate-600 italic bg-slate-50 p-2.5 rounded-lg border border-slate-200">
                         <span className="text-[10px] uppercase not-italic text-slate-400 font-bold block">IAST Transliteration:</span>
                         {inscription.transcription.iastTransliteration}
                       </div>
+
+                      {/* Multi-Variant Glyph Disambiguation Tool */}
+                      {inscription.transcription.glyphAlternatives && inscription.transcription.glyphAlternatives.length > 0 && (
+                        <div className="mt-3 p-3 bg-amber-50/80 rounded-xl border border-amber-200 space-y-2">
+                          <div className="flex items-center justify-between text-xs">
+                            <span className="font-mono text-[10px] uppercase font-bold text-amber-900 flex items-center gap-1.5">
+                              <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+                              Paleographical Glyph Disambiguation (&lt;85% confidence):
+                            </span>
+                            <span className="text-[10px] text-amber-700 font-medium">Click candidate to substitute</span>
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            {inscription.transcription.glyphAlternatives.map((ga, idx) => (
+                              <div key={idx} className="flex items-center gap-1.5 px-2 py-1 bg-white rounded-lg border border-amber-300/80 text-xs shadow-2xs">
+                                <span className="font-bold text-slate-800 font-kannada px-1.5 py-0.5 bg-amber-100 rounded">
+                                  {ga.primaryChar}
+                                </span>
+                                <span className="text-[10px] text-slate-400">➜</span>
+                                {ga.alternatives.map((alt, aIdx) => (
+                                  <button
+                                    key={aIdx}
+                                    onClick={() => handleSubstituteGlyph(ga.glyphIndex, alt[0])}
+                                    className="px-2 py-0.5 bg-amber-50 hover:bg-amber-600 hover:text-white text-amber-900 border border-amber-300 rounded text-[11px] font-kannada transition-colors cursor-pointer"
+                                    title={`Substitute with ${alt[0]} (${alt[1]}) - ${(alt[2] * 100).toFixed(0)}% correlation`}
+                                  >
+                                    {alt[0]} <span className="text-[9px] font-mono">{(alt[2] * 100).toFixed(0)}%</span>
+                                  </button>
+                                ))}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     {/* Tier 3: Modern Standard Kannada Translation */}
@@ -1140,9 +1286,24 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                         </span>
                         <span className="text-[10px] font-mono text-emerald-700 font-semibold">Hosagannada Translation</span>
                       </div>
-                      <p className="font-kannada text-sm sm:text-base leading-relaxed text-slate-900 bg-emerald-50/40 p-3 rounded-lg border border-emerald-200/60 font-medium">
-                        {inscription.translation.modernKannada}
-                      </p>
+                      <div className="font-kannada text-sm sm:text-base leading-relaxed text-slate-900 bg-emerald-50/40 p-3 rounded-lg border border-emerald-200/60 font-medium flex flex-wrap gap-x-2 gap-y-1.5">
+                        {inscription.translation.tokenAlignments && inscription.translation.tokenAlignments.length > 0
+                          ? inscription.translation.tokenAlignments.map((align, aIdx) => (
+                              <span
+                                key={align.id || aIdx}
+                                onMouseEnter={() => setHoveredTokenId(align.id)}
+                                onMouseLeave={() => setHoveredTokenId(null)}
+                                className={`px-1.5 py-0.5 rounded transition-all cursor-pointer ${
+                                  hoveredTokenId === align.id
+                                    ? 'bg-emerald-300 text-emerald-950 font-bold shadow-xs ring-1 ring-emerald-500'
+                                    : 'hover:bg-emerald-100/60'
+                                }`}
+                              >
+                                {align.modernToken}
+                              </span>
+                            ))
+                          : inscription.translation.modernKannada}
+                      </div>
                     </div>
 
                     {/* Tier 4: Scholarly English Translation */}
@@ -1154,9 +1315,24 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                         </span>
                         <span className="text-[10px] font-mono text-sky-700 font-semibold">Epigraphia Carnatica Standard</span>
                       </div>
-                      <p className="font-serif italic text-xs sm:text-sm leading-relaxed text-slate-800 bg-sky-50/40 p-3 rounded-lg border border-sky-200/60">
-                        "{inscription.translation.englishTranslation}"
-                      </p>
+                      <div className="font-serif italic text-xs sm:text-sm leading-relaxed text-slate-800 bg-sky-50/40 p-3 rounded-lg border border-sky-200/60 flex flex-wrap gap-x-1.5 gap-y-1">
+                        {inscription.translation.tokenAlignments && inscription.translation.tokenAlignments.length > 0
+                          ? inscription.translation.tokenAlignments.map((align, aIdx) => (
+                              <span
+                                key={align.id || aIdx}
+                                onMouseEnter={() => setHoveredTokenId(align.id)}
+                                onMouseLeave={() => setHoveredTokenId(null)}
+                                className={`px-1 py-0.5 rounded transition-all cursor-pointer not-italic font-sans text-xs ${
+                                  hoveredTokenId === align.id
+                                    ? 'bg-sky-200 text-sky-950 font-bold shadow-xs ring-1 ring-sky-400'
+                                    : 'hover:bg-sky-100/60'
+                                }`}
+                              >
+                                {align.englishToken}
+                              </span>
+                            ))
+                          : `"${inscription.translation.englishTranslation}"`}
+                      </div>
                       <div className="text-[11px] text-slate-600 font-serif leading-relaxed">
                         <span className="font-mono text-[10px] uppercase text-slate-400 font-bold block">Stylistic Context:</span>
                         {inscription.translation.stylisticNotes}

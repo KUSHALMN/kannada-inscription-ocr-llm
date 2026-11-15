@@ -8,6 +8,7 @@ and sound shift laws (P->H, R->R, L->L) across all 10 historical Kannada dynasti
 import re
 from typing import Dict, List, Tuple, Optional
 from backend.app.schemas import SourceLanguageId, ScriptClassId, TranslationResult, ArchaicGlossaryItem
+from backend.app.schemas.epigraphy import WordAlignmentItem
 
 
 class HalegannadaMorphologicalTranslator:
@@ -230,23 +231,25 @@ class HalegannadaMorphologicalTranslator:
             res = res.replace(old_ch, new_ch)
         return res
 
-    def translate_token(self, token: str) -> Tuple[str, str]:
+    def translate_token_with_rule(self, token: str) -> Tuple[str, str, str]:
         """
-        Translates a single Halegannada word into Hosagannada and English.
-        Returns: (hosagannada_word, english_word)
+        Translates a single Halegannada word into Hosagannada and English along with the applied grammar rule.
+        Returns: (hosagannada_word, english_word, rule_description)
         """
         clean = token.strip(" ,.;:!?|।॥")
         if not clean:
-            return token, token
+            return token, token, "Identity punctuation"
 
         # 1. Direct Lexical Lookup
         if clean in self.LEXICON:
-            return self.LEXICON[clean][0], self.LEXICON[clean][1]
+            k_val, e_val, defn = self.LEXICON[clean]
+            return k_val, e_val, f"Direct Lexicon ({defn})"
 
         # Check with normalized phonemes (e.g. ಱ -> ರ)
         norm = self.normalize_phonemes(clean)
         if norm in self.LEXICON:
-            return self.LEXICON[norm][0], self.LEXICON[norm][1]
+            k_val, e_val, defn = self.LEXICON[norm]
+            return k_val, e_val, f"Phonetic Shift ({defn})"
 
         # 2. Morphological Suffix Rule Engine
         for pat, repl, label in self.SUFFIX_RULES:
@@ -278,33 +281,53 @@ class HalegannadaMorphologicalTranslator:
                     eng = f"while reigning over {mod_e_stem}"
                 else:
                     eng = mod_e_stem
-                return transformed, eng
+                return transformed, eng, label
 
         # 3. P-to-H Sound Shift for unseen noun roots
-        # If starts with ಪ and not in dictionary, check if modern counterpart exists with ಹ
         if clean.startswith("ಪ") and len(clean) > 2:
             h_candidate = "ಹ" + clean[1:]
             if h_candidate in self.LEXICON:
-                return self.LEXICON[h_candidate][0], self.LEXICON[h_candidate][1]
+                return self.LEXICON[h_candidate][0], self.LEXICON[h_candidate][1], "Archaic P-to-H Consonantal Mutation"
 
-        return clean, clean
+        return clean, clean, "Unmutated Root"
 
-    def translate_sentence(self, sentence: str) -> Tuple[str, str, List[ArchaicGlossaryItem]]:
+    def translate_token(self, token: str) -> Tuple[str, str]:
+        """
+        Translates a single Halegannada word into Hosagannada and English.
+        Returns: (hosagannada_word, english_word)
+        """
+        k, e, _ = self.translate_token_with_rule(token)
+        return k, e
+
+    def translate_sentence(self, sentence: str) -> Tuple[str, str, List[ArchaicGlossaryItem], List[WordAlignmentItem]]:
         """
         Translates a complete Halegannada epigraph line or sentence into Hosagannada and English.
-        Extracts verified archaic glossary items.
+        Extracts verified archaic glossary items and bidirectional token alignment mappings.
         """
         tokens = sentence.split()
         kannada_tokens: List[str] = []
         english_tokens: List[str] = []
         glossary_items: List[ArchaicGlossaryItem] = []
+        alignments: List[WordAlignmentItem] = []
         seen_terms = set()
 
-        for token in tokens:
+        for idx, token in enumerate(tokens):
             clean_tok = token.strip(" ,.;:!?|।॥")
-            mod_k, mod_e = self.translate_token(token)
+            mod_k, mod_e, rule = self.translate_token_with_rule(token)
             kannada_tokens.append(mod_k)
             english_tokens.append(mod_e)
+
+            if clean_tok:
+                alignments.append(
+                    WordAlignmentItem(
+                        id=f"align-{idx}",
+                        source_token=clean_tok,
+                        modern_token=mod_k,
+                        english_token=mod_e,
+                        grammatical_rule=rule,
+                        confidence=0.98 if clean_tok in self.LEXICON else 0.92
+                    )
+                )
 
             # Record in glossary if recognized as archaic lexical root
             if clean_tok in self.LEXICON and clean_tok not in seen_terms:
@@ -328,4 +351,4 @@ class HalegannadaMorphologicalTranslator:
             english = english + "."
         english = english[0].upper() + english[1:] if len(english) > 1 else english
 
-        return hosagannada, english, glossary_items
+        return hosagannada, english, glossary_items, alignments

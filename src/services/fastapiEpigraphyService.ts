@@ -23,6 +23,12 @@ export interface AnalyzeRubbingOptions {
   knownLanguage?: SourceLanguageId | 'uncertain';
   researcherNotes?: string;
   autoSave?: boolean;
+  cropROI?: {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  };
 }
 
 export interface JobStatusResponse {
@@ -250,6 +256,12 @@ export class FastApiEpigraphyService implements IEpigraphyService {
       if (options.knownScript) formData.append('knownScript', options.knownScript);
       if (options.knownLanguage) formData.append('knownLanguage', options.knownLanguage);
       if (options.researcherNotes) formData.append('researcherNotes', options.researcherNotes);
+      if (options.cropROI) {
+        formData.append('crop_x', String(options.cropROI.x));
+        formData.append('crop_y', String(options.cropROI.y));
+        formData.append('crop_w', String(options.cropROI.width));
+        formData.append('crop_h', String(options.cropROI.height));
+      }
     }
 
     const autoSaveParam = options?.autoSave !== false ? '?autoSave=true' : '';
@@ -283,6 +295,12 @@ export class FastApiEpigraphyService implements IEpigraphyService {
       if (options.knownScript) formData.append('knownScript', options.knownScript);
       if (options.knownLanguage) formData.append('knownLanguage', options.knownLanguage);
       if (options.researcherNotes) formData.append('researcherNotes', options.researcherNotes);
+      if (options.cropROI) {
+        formData.append('crop_x', String(options.cropROI.x));
+        formData.append('crop_y', String(options.cropROI.y));
+        formData.append('crop_w', String(options.cropROI.width));
+        formData.append('crop_h', String(options.cropROI.height));
+      }
     }
 
     // 1. Submit job in async mode
@@ -327,6 +345,39 @@ export class FastApiEpigraphyService implements IEpigraphyService {
 
   async getJobStatus(jobId: string): Promise<JobStatusResponse> {
     return this.request<JobStatusResponse>(`/jobs/${jobId}`);
+  }
+
+  /**
+   * Real-Time Server-Sent Events (SSE) Stream subscriber for live progress updates.
+   */
+  subscribeToJobStream(
+    jobId: string,
+    onEvent: (event: JobStatusResponse) => void,
+    onError?: (error: unknown) => void
+  ): () => void {
+    const url = `${this.baseUrl}/analyze/${jobId}/stream`;
+    try {
+      const eventSource = new EventSource(url);
+      eventSource.onmessage = (e) => {
+        try {
+          const data = JSON.parse(e.data);
+          onEvent(data);
+          if (data.status === 'completed' || data.status === 'failed' || data.status === 'partial') {
+            eventSource.close();
+          }
+        } catch (err) {
+          if (onError) onError(err);
+        }
+      };
+      eventSource.onerror = (err) => {
+        if (onError) onError(err);
+        eventSource.close();
+      };
+      return () => eventSource.close();
+    } catch (e) {
+      if (onError) onError(e);
+      return () => {};
+    }
   }
 
   /**

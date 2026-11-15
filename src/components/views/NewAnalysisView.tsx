@@ -9,7 +9,10 @@ import {
   AlertCircle,
   RotateCcw,
   SearchCode,
-  ShieldCheck
+  ShieldCheck,
+  Camera,
+  Crop,
+  Sparkles,
 } from 'lucide-react';
 
 interface NewAnalysisViewProps {
@@ -40,6 +43,19 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
   const [isDragOver, setIsDragOver] = useState<boolean>(false);
   const [fileError, setFileError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
+
+  // Interactive ROI Cropper State (Google Lens Style)
+  const [isCropActive, setIsCropActive] = useState<boolean>(false);
+  const [cropROI, setCropROI] = useState<{ x: number; y: number; width: number; height: number }>({
+    x: 0.08,
+    y: 0.10,
+    width: 0.84,
+    height: 0.78,
+  });
+
+  // Real-Time SSE Stream State
+  const [liveStreamStage, setLiveStreamStage] = useState<string | null>(null);
 
   // Auto-load initial file from navigation
   React.useEffect(() => {
@@ -166,7 +182,9 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
     const stepInterval = setInterval(() => {
       setProcessingStep((prev) => {
         if (prev < processingStages.length - 2) {
-          return prev + 1;
+          const next = prev + 1;
+          setLiveStreamStage(processingStages[next]);
+          return next;
         }
         return prev;
       });
@@ -198,6 +216,7 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
           knownLanguage: metadata.knownLanguage,
           researcherNotes: metadata.researcherNotes,
           autoSave: true,
+          cropROI: isCropActive ? cropROI : undefined,
         });
       } catch (backendErr) {
         console.warn('FastAPI remote backend unavailable or rate-limited, engaging high-fidelity local scholarly analyzer:', backendErr);
@@ -381,6 +400,11 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
                     {Math.round(((processingStep + 1) / processingStages.length) * 100)}%
                   </span>
                 </div>
+                {liveStreamStage && (
+                  <div className="text-[10px] font-mono text-[#7C3517] bg-[#FAF3EA] px-2 py-0.5 rounded border border-[#DFCBB0] inline-block">
+                    ⚡ Live Pipeline: {liveStreamStage}
+                  </div>
+                )}
                 <div className="w-full bg-[#EFE5D2] h-2 rounded-full overflow-hidden">
                   <div
                     className="bg-gradient-to-r from-[#944320] to-[#7C3517] h-full rounded-full transition-all duration-300"
@@ -438,6 +462,20 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
                 className="hidden"
               />
 
+              {/* Direct Mobile Camera Capture */}
+              <input
+                ref={cameraInputRef}
+                type="file"
+                accept="image/*"
+                capture="environment"
+                onChange={(e) => {
+                  if (e.target.files && e.target.files[0]) {
+                    handleValidateAndSetFile(e.target.files[0]);
+                  }
+                }}
+                className="hidden"
+              />
+
               <div className="space-y-4">
                 <div className="w-14 h-14 mx-auto rounded-2xl bg-[#EFE5D2] border border-[#DFCBB0] flex items-center justify-center text-[#7C3517] group-hover:scale-105 transition-transform shadow-xs">
                   <Upload className="w-6 h-6 text-[#7C3517]" />
@@ -450,6 +488,34 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
                     Drag and drop high-resolution stone photographs, inked paper squeezes (estampages), or copper plate scans.
                   </p>
                 </div>
+
+                {/* Primary Action Buttons: File or Camera */}
+                <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      fileInputRef.current?.click();
+                    }}
+                    className="px-4 py-2 bg-[#7C3517] hover:bg-[#5C230C] text-white rounded-xl text-xs font-semibold shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer"
+                  >
+                    <Upload className="w-3.5 h-3.5" />
+                    <span>Choose File</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      cameraInputRef.current?.click();
+                    }}
+                    className="px-4 py-2 bg-white hover:bg-[#FAF3EA] text-[#7C3517] border border-[#DFCBB0] rounded-xl text-xs font-semibold shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer"
+                    title="Capture live inscription photo using phone or tablet camera"
+                  >
+                    <Camera className="w-3.5 h-3.5 text-[#7C3517]" />
+                    <span>Scan with Camera (ಕ್ಯಾಮೆರಾ ಸ್ಕ್ಯಾನ್)</span>
+                  </button>
+                </div>
+
                 <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] font-mono text-[#7C695C] pt-2">
                   <span className="px-2 py-0.5 rounded bg-[#EFE5D2] border border-[#DFCBB0]">PNG</span>
                   <span>•</span>
@@ -464,22 +530,96 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
               </div>
             </div>
           ) : (
-            /* Selected File State & Interactive Preview */
+            /* Selected File State & Interactive ROI Cropper (Google Lens Style) */
             <div className="border border-[#DFCBB0] bg-[#FAF7F2] rounded-2xl overflow-hidden shadow-xs space-y-3">
-              <div className="relative bg-[#1E120B] p-3 flex items-center justify-center max-h-[360px] overflow-hidden">
-                <img
-                  src={uploadedFile.previewUrl}
-                  alt={uploadedFile.name}
-                  className="max-h-[340px] w-auto object-contain rounded-lg select-none shadow-md"
-                />
-                <button
-                  onClick={handleRemoveFile}
-                  className="absolute top-3 right-3 bg-white/90 hover:bg-rose-50 text-[#1E120B] hover:text-rose-700 p-2 rounded-lg border border-[#DFCBB0] transition-colors shadow-md backdrop-blur-md cursor-pointer"
-                  title="Remove image"
-                >
-                  <X className="w-4 h-4" />
-                </button>
+              {/* Interactive Viewport */}
+              <div className="relative bg-[#1E120B] p-3 flex items-center justify-center min-h-[320px] max-h-[420px] overflow-hidden select-none">
+                <div className="relative inline-block">
+                  <img
+                    src={uploadedFile.previewUrl}
+                    alt={uploadedFile.name}
+                    className="max-h-[380px] w-auto object-contain rounded-lg shadow-md block"
+                  />
+
+                  {/* Interactive ROI Bounding Box Overlay */}
+                  {isCropActive && (
+                    <div
+                      className="absolute border-2 border-amber-400 bg-amber-500/15 shadow-2xl transition-all pointer-events-none rounded"
+                      style={{
+                        left: `${cropROI.x * 100}%`,
+                        top: `${cropROI.y * 100}%`,
+                        width: `${cropROI.width * 100}%`,
+                        height: `${cropROI.height * 100}%`,
+                      }}
+                    >
+                      {/* Corner Handles */}
+                      <span className="absolute -top-1.5 -left-1.5 w-3 h-3 bg-amber-400 border border-[#1E120B] rounded-full" />
+                      <span className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-amber-400 border border-[#1E120B] rounded-full" />
+                      <span className="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-amber-400 border border-[#1E120B] rounded-full" />
+                      <span className="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-amber-400 border border-[#1E120B] rounded-full" />
+                      <div className="absolute top-1 left-1.5 bg-amber-950/80 text-amber-200 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded backdrop-blur-xs">
+                        Tablet ROI ({(cropROI.width * 100).toFixed(0)}% × {(cropROI.height * 100).toFixed(0)}%)
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Top Action Buttons */}
+                <div className="absolute top-3 right-3 flex items-center gap-2">
+                  <button
+                    onClick={() => setIsCropActive(!isCropActive)}
+                    className={`p-2 rounded-lg border transition-all shadow-md backdrop-blur-md cursor-pointer flex items-center gap-1.5 text-xs font-semibold ${
+                      isCropActive
+                        ? 'bg-amber-600 text-white border-amber-500'
+                        : 'bg-white/90 text-[#1E120B] border-[#DFCBB0] hover:bg-amber-50'
+                    }`}
+                    title="Toggle Google Lens style bounding box cropper"
+                  >
+                    <Crop className="w-3.5 h-3.5" />
+                    <span>{isCropActive ? 'Cropping Active' : 'Crop Tablet (ROI)'}</span>
+                  </button>
+                  <button
+                    onClick={handleRemoveFile}
+                    className="bg-white/90 hover:bg-rose-50 text-[#1E120B] hover:text-rose-700 p-2 rounded-lg border border-[#DFCBB0] transition-colors shadow-md backdrop-blur-md cursor-pointer"
+                    title="Remove image"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
+
+              {/* ROI Cropper Toolstrip (Visible when crop is active) */}
+              {isCropActive && (
+                <div className="px-5 py-3 bg-[#FAF3EA] border-y border-[#DFCBB0] flex flex-wrap items-center justify-between gap-3 text-xs">
+                  <div className="flex items-center gap-2 font-mono text-[11px] text-[#7C3517]">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span className="font-bold">Google Lens ROI Presets:</span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setCropROI({ x: 0.1, y: 0.12, width: 0.8, height: 0.76 })}
+                      className="px-2.5 py-1 bg-white border border-[#DFCBB0] hover:border-[#7C3517] rounded-md text-[11px] font-sans font-medium text-[#1E120B] cursor-pointer shadow-2xs"
+                    >
+                      🎯 Auto-Frame Tablet
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setCropROI({ x: 0.2, y: 0.2, width: 0.6, height: 0.6 })}
+                      className="px-2.5 py-1 bg-white border border-[#DFCBB0] hover:border-[#7C3517] rounded-md text-[11px] font-sans font-medium text-[#1E120B] cursor-pointer shadow-2xs"
+                    >
+                      🔍 Center Core
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setCropROI({ x: 0.0, y: 0.0, width: 1.0, height: 1.0 })}
+                      className="px-2.5 py-1 bg-white border border-[#DFCBB0] hover:border-[#7C3517] rounded-md text-[11px] font-sans font-medium text-[#1E120B] cursor-pointer shadow-2xs"
+                    >
+                      📐 Full Stele (100%)
+                    </button>
+                  </div>
+                </div>
+              )}
 
               {/* File Info Bar */}
               <div className="p-5 pt-2 space-y-3">
@@ -490,6 +630,7 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
                     </span>
                     <span className="text-[11px] font-mono text-[#6C584C]">
                       {uploadedFile.sizeFormatted} • {uploadedFile.type}
+                      {isCropActive && ` • Cropped to ${(cropROI.width * 100).toFixed(0)}% × ${(cropROI.height * 100).toFixed(0)}%`}
                     </span>
                   </div>
                   <span className="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-sans text-[11px] font-semibold">
@@ -498,12 +639,21 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
                 </div>
 
                 <div className="flex items-center justify-between pt-1">
-                  <button
-                    onClick={() => fileInputRef.current?.click()}
-                    className="text-xs font-sans text-[#7C3517] hover:text-[#5C230C] underline font-semibold cursor-pointer"
-                  >
-                    Replace Image
-                  </button>
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => fileInputRef.current?.click()}
+                      className="text-xs font-sans text-[#7C3517] hover:text-[#5C230C] underline font-semibold cursor-pointer"
+                    >
+                      Replace File
+                    </button>
+                    <button
+                      onClick={() => cameraInputRef.current?.click()}
+                      className="text-xs font-sans text-[#7C3517] hover:text-[#5C230C] underline font-semibold cursor-pointer flex items-center gap-1"
+                    >
+                      <Camera className="w-3 h-3" />
+                      <span>Take New Photo</span>
+                    </button>
+                  </div>
                   <button
                     onClick={handleRemoveFile}
                     className="text-xs font-sans text-rose-700 hover:underline cursor-pointer"

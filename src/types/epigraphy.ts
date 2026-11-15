@@ -97,6 +97,22 @@ export interface ArchaicGlossaryItem {
   grammaticalCategory: string; // e.g. "Dravidian verbal noun", "Sanskrit Tatshama"
 }
 
+export interface WordAlignmentItem {
+  id: string;
+  sourceToken: string;
+  modernToken: string;
+  englishToken: string;
+  grammaticalRule: string;
+  confidence: number;
+}
+
+export interface GlyphAlternativeReading {
+  glyphIndex: number;
+  primaryChar: string;
+  primaryConfidence: number;
+  alternatives: [string, string, number][]; // [char, iast, confidence]
+}
+
 export interface HistoricalContext {
   dynasty: string;
   ruler: string;
@@ -124,6 +140,7 @@ export interface TranscriptionResult {
   iastTransliteration: string;
   lines: SegmentedLine[];
   detectedGlyphsCount: number;
+  glyphAlternatives?: GlyphAlternativeReading[];
   isMockData?: boolean;
 }
 
@@ -133,6 +150,7 @@ export interface TranslationResult {
   modernKannada: string;
   englishTranslation: string;
   glossary: ArchaicGlossaryItem[];
+  tokenAlignments?: WordAlignmentItem[];
   stylisticNotes: string;
   isMockData?: boolean;
 }
