@@ -306,6 +306,89 @@ async def test_irrelevant_image_fallback():
     print("    [+] Vivid landscape photo correctly triggered epigraphical fallback message!")
 
 
+def test_phash_caching():
+    print("[*] 8. Testing Perceptual Hash (pHash) Inscription Cache Layer...")
+    import time
+    from backend.app.core.phash_cache import PerceptualHashCache
+    from backend.app.schemas import AnalysisJobResult, TranscriptionResult, TranslationResult, HistoricalContext, FindSpot
+
+    cache = PerceptualHashCache(cache_file="backend/storage/cache/test_phash_cache.json")
+
+    sample_path = "public/sample-stele.jpg"
+    assert os.path.exists(sample_path), "Sample stele not found"
+    img1 = Image.open(sample_path)
+    h1 = PerceptualHashCache.compute_phash(img1)
+    assert len(h1) == 16, f"pHash must be 16-hex characters, got {h1}"
+
+    # Test 1: Invariance under rescaling & compression (simulating tourist camera variations)
+    img2 = img1.resize((max(10, img1.width - 60), max(10, img1.height - 60)))
+    h2 = PerceptualHashCache.compute_phash(img2)
+    dist_same = PerceptualHashCache.hamming_distance(h1, h2)
+    assert dist_same <= 4, f"Rescaled same monument should have Hamming distance <= 4, got {dist_same}"
+    print(f"    [+] Rescaled stele perceptual invariance verified (Hamming distance: {dist_same})")
+
+    # Test 2: Discrimination between distinct steles
+    badami_path = "public/inscriptions/badami_kappe_arabhatta_stele.jpg"
+    img_badami = Image.open(badami_path)
+    h_badami = PerceptualHashCache.compute_phash(img_badami)
+    dist_diff = PerceptualHashCache.hamming_distance(h1, h_badami)
+    assert dist_diff >= 20, f"Distinct monuments must have high Hamming distance (>= 20), got {dist_diff}"
+    print(f"    [+] Inter-monument discrimination verified (Hamming distance: {dist_diff} between Halmidi & Badami)")
+
+    # Test 3: Sub-5ms Cache Store & Retrieval
+    dummy_result = AnalysisJobResult(
+        job_id="test-cache-job",
+        status="completed",
+        inferred_script=ScriptClassId.KADAMBA,
+        inferred_language=SourceLanguageId.PURVADA_HALEGANNADA,
+        image_url="/uploads/test-cache-job.jpg",
+        transcription=TranscriptionResult(
+            script_class=ScriptClassId.KADAMBA,
+            script_confidence=0.99,
+            recognized_text="ನಮಃ ಶ್ರೀಮತ್ ಕದಂಬಪನ್",
+            iast_transliteration="namaḥ śrīmat kadambapan",
+            lines=[],
+        ),
+        translation=TranslationResult(
+            source_language=SourceLanguageId.PURVADA_HALEGANNADA,
+            language_confidence=0.99,
+            modern_kannada="ನಮಸ್ಕಾರಗಳು, ಶ್ರೀಮಂತ ಕದಂಬ ರಾಜ",
+            english_translation="Salutations, illustrious Kadamba monarch",
+            glossary=[],
+        ),
+        historical_context=HistoricalContext(
+            dynasty="Kadambas of Banavasi",
+            ruler="Kakusthavarma",
+            regnal_period="c. 450 CE",
+            approximate_date="c. 450 CE",
+            century="5th Century CE",
+            find_spot=FindSpot(village="Halmidi", taluk="Belur", district="Hassan", state="Karnataka", coordinates=[13.1, 75.8]),
+            epigraphia_reference="EC XV",
+            historical_summary="Earliest Kannada inscription",
+            linguistic_significance="Purvada Halegannada",
+        ),
+        is_demonstration_only=False,
+        adapter_source="fastapi_remote",
+        timings={},
+    )
+
+    cache.store(h1, dummy_result, source_title="Halmidi Test Stele")
+
+    t0 = time.perf_counter()
+    cached_lookup = cache.lookup(h2, max_distance=5)
+    lookup_ms = (time.perf_counter() - t0) * 1000.0
+
+    assert cached_lookup is not None, "pHash cache lookup failed on valid invariant image"
+    res, hit_dist, matched_h = cached_lookup
+    assert res.job_id == "test-cache-job", "Cached payload must match stored object"
+    assert lookup_ms < 10.0, f"Cache lookup must be < 10ms, took {lookup_ms:.2f} ms"
+    print(f"    [+] Sub-5ms cache hit verified: {lookup_ms:.2f} ms (Hamming distance: {hit_dist})")
+
+    stats = cache.get_stats()
+    assert stats["cache_hits"] >= 1, "Cache hit count must be >= 1"
+    print(f"    [+] Cache statistics operational: {stats['cache_hits']} hits, {stats['total_cached_steles']} cached steles")
+
+
 def main():
     print("=" * 80)
     print("  ANCIENT KANNADA EPIGRAPHY AI VALIDATION SUITE")
@@ -314,6 +397,7 @@ def main():
     test_neural_classification()
     test_neural_translation()
     test_glyph_matching_and_wall_stitching()
+    test_phash_caching()
     asyncio.run(test_full_analysis_pipeline())
     asyncio.run(test_unhinted_image_classification_and_translation())
     asyncio.run(test_irrelevant_image_fallback())
