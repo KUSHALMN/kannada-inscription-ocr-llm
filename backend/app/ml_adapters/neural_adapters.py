@@ -625,28 +625,50 @@ class NeuralTranslator(Translator):
             except Exception as e:
                 logger.warning("Could not index parallel dataset: %s", e)
 
-        # Load Neural Seq2Seq model (with fast local-first loading)
-        if os.path.exists(model_dir):
+        # Load Neural Decoder / Seq2Seq Model (Gemma-2-2B / Llama-3.2-1B / mT5)
+        # Check for Gemma fine-tuned adapter directory first, falling back to model_dir
+        effective_model_dir = "saved_gemma_translator" if os.path.exists("saved_gemma_translator") else model_dir
+        self.is_causal = False
+
+        if os.path.exists(effective_model_dir):
             try:
-                from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+                from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, AutoModelForCausalLM
                 from peft import PeftModel
 
-                try:
-                    self.tokenizer = AutoTokenizer.from_pretrained(model_dir, local_files_only=True)
-                except Exception:
-                    self.tokenizer = AutoTokenizer.from_pretrained(model_dir)
+                adapter_cfg_file = os.path.join(effective_model_dir, "adapter_config.json")
+                base_name = "google/mt5-small"
+                task_type = "SEQ_2_SEQ_LM"
+                if os.path.exists(adapter_cfg_file):
+                    try:
+                        with open(adapter_cfg_file, "r") as acf:
+                            acfg = json.load(acf)
+                            base_name = acfg.get("base_model_name_or_path", base_name)
+                            task_type = acfg.get("task_type", task_type)
+                    except Exception:
+                        pass
+
+                self.is_causal = (task_type == "CAUSAL_LM") or ("gemma" in base_name.lower()) or ("llama" in base_name.lower())
 
                 try:
-                    base = AutoModelForSeq2SeqLM.from_pretrained("google/mt5-small", local_files_only=True)
-                    self.model = PeftModel.from_pretrained(base, model_dir, local_files_only=True)
+                    self.tokenizer = AutoTokenizer.from_pretrained(effective_model_dir, local_files_only=True)
+                except Exception:
+                    self.tokenizer = AutoTokenizer.from_pretrained(effective_model_dir)
+
+                try:
+                    if self.is_causal:
+                        base = AutoModelForCausalLM.from_pretrained(base_name, local_files_only=True, torch_dtype=torch.float32)
+                    else:
+                        base = AutoModelForSeq2SeqLM.from_pretrained(base_name, local_files_only=True)
+
+                    self.model = PeftModel.from_pretrained(base, effective_model_dir, local_files_only=True)
                     self.model.to(self.device)
                     self.model.eval()
-                    logger.info("[+] Loaded Neural Epigraph Translator on %s", self.device)
+                    logger.info("[+] Loaded %s Epigraph Translator (%s) on %s", "Causal Decoder" if self.is_causal else "Seq2Seq", base_name, self.device)
                 except Exception as local_err:
                     logger.info("Local base model load deferred (%s); using parallel epigraph memory", local_err)
                     self.model = None
             except Exception as e:
-                logger.warning("Could not initialize fine-tuned translator from %s: %s", model_dir, e)
+                logger.warning("Could not initialize fine-tuned translator from %s: %s", effective_model_dir, e)
                 self.model = None
 
     def translate(self, text: str, script: ScriptClassId, language: SourceLanguageId) -> TranslationResult:
@@ -740,40 +762,75 @@ class NeuralTranslator(Translator):
                     is_mock_data=False,
                 )
 
-        # 4. Generate translation via Neural Seq2Seq Model with LoRA
+        # 4. Generate translation via Neural Decoder (Gemma-2-2B / Llama) or Seq2Seq Model with LoRA
         if self.model and self.tokenizer and cleaned_text:
             try:
-                prompt = f"Analyze and translate ancient Kannada epigraph: {cleaned_text}"
-                inputs = self.tokenizer(prompt, return_tensors="pt", max_length=128, truncation=True).to(self.device)
-
-                with torch.no_grad():
-                    output_tokens = self.model.generate(
-                        **inputs,
-                        max_length=256,
-                        num_beams=4,
-                        early_stopping=True
+                if getattr(self, "is_causal", False):
+                    prompt = (
+                        f"<start_of_turn>user\n"
+                        f"Translate this Halegannada epigraph into modern Hosagannada and English:\n"
+                        f"Inscription: {cleaned_text}<end_of_turn>\n"
+                        f"<start_of_turn>model\n"
                     )
+                    inputs = self.tokenizer(prompt, return_tensors="pt", max_length=128, truncation=True).to(self.device)
+                    prompt_len = inputs["input_ids"].shape[1]
+                    with torch.no_grad():
+                        output_tokens = self.model.generate(
+                            **inputs,
+                            max_new_tokens=128,
+                            do_sample=False,
+                            pad_token_id=self.tokenizer.eos_token_id
+                        )
+                    decoded = self.tokenizer.decode(output_tokens[0][prompt_len:], skip_special_tokens=True).strip()
+                    # Parse out modern Kannada and English lines
+                    k_match, e_match = "", ""
+                    for line in decoded.split("\n"):
+                        if "Modern Kannada:" in line:
+                            k_match = line.split("Modern Kannada:", 1)[1].strip()
+                        elif "English:" in line:
+                            e_match = line.split("English:", 1)[1].strip()
+                    if k_match:
+                        return TranslationResult(
+                            source_language=language,
+                            language_confidence=0.97,
+                            modern_kannada=k_match,
+                            english_translation=e_match or decoded,
+                            glossary=_get_glossary(cleaned_text),
+                            stylistic_notes="Neural causal decoder translation with QLoRA instruction tuning.",
+                            is_mock_data=False
+                        )
+                else:
+                    prompt = f"Analyze and translate ancient Kannada epigraph: {cleaned_text}"
+                    inputs = self.tokenizer(prompt, return_tensors="pt", max_length=128, truncation=True).to(self.device)
 
-                decoded = self.tokenizer.decode(output_tokens[0], skip_special_tokens=True).strip()
+                    with torch.no_grad():
+                        output_tokens = self.model.generate(
+                            **inputs,
+                            max_length=256,
+                            num_beams=4,
+                            early_stopping=True
+                        )
 
-                # Validate neural generation: reject T5 sentinel tokens (<extra_id_) or corrupted outputs
-                if "<extra_id" not in decoded and decoded.startswith("{") and decoded.endswith("}"):
-                    try:
-                        parsed = json.loads(decoded)
-                        cand_k = parsed.get("hosagannada", "").strip()
-                        cand_e = parsed.get("english", "").strip()
-                        if cand_k and "<extra_id" not in cand_k:
-                            return TranslationResult(
-                                source_language=language,
-                                language_confidence=0.95,
-                                modern_kannada=cand_k,
-                                english_translation=cand_e,
-                                glossary=_get_glossary(cleaned_text),
-                                stylistic_notes="Neural sequence-to-sequence translation with LoRA adaptation.",
-                                is_mock_data=False
-                            )
-                    except json.JSONDecodeError:
-                        pass
+                    decoded = self.tokenizer.decode(output_tokens[0], skip_special_tokens=True).strip()
+
+                    # Validate neural generation: reject T5 sentinel tokens (<extra_id_) or corrupted outputs
+                    if "<extra_id" not in decoded and decoded.startswith("{") and decoded.endswith("}"):
+                        try:
+                            parsed = json.loads(decoded)
+                            cand_k = parsed.get("hosagannada", "").strip()
+                            cand_e = parsed.get("english", "").strip()
+                            if cand_k and "<extra_id" not in cand_k:
+                                return TranslationResult(
+                                    source_language=language,
+                                    language_confidence=0.95,
+                                    modern_kannada=cand_k,
+                                    english_translation=cand_e,
+                                    glossary=_get_glossary(cleaned_text),
+                                    stylistic_notes="Neural sequence-to-sequence translation with LoRA adaptation.",
+                                    is_mock_data=False
+                                )
+                        except json.JSONDecodeError:
+                            pass
             except Exception as e:
                 logger.error("Error during neural translation inference: %s", e)
 

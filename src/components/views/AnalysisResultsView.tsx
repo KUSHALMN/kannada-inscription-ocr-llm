@@ -84,13 +84,19 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
     }
   };
 
-  // Audio pronunciation synthesis state
+  // Audio pronunciation synthesis state with ancient prosody tuning
   const [isPlayingAudio, setIsPlayingAudio] = useState<boolean>(false);
+  const [audioRecitationStyle, setAudioRecitationStyle] = useState<'ancient_meter' | 'modern_hosagannada'>('ancient_meter');
 
-  const toggleAudioPronunciation = () => {
+  const toggleAudioPronunciation = (preferredStyle?: 'ancient_meter' | 'modern_hosagannada') => {
     if (typeof window === 'undefined') return;
 
-    if (isPlayingAudio) {
+    const targetStyle = preferredStyle || audioRecitationStyle;
+    if (preferredStyle && preferredStyle !== audioRecitationStyle) {
+      setAudioRecitationStyle(preferredStyle);
+    }
+
+    if (isPlayingAudio && (!preferredStyle || preferredStyle === audioRecitationStyle)) {
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
       }
@@ -100,12 +106,33 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
 
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
-      // Prefer recognized Halegannada epigraph text, falling back to Modern Kannada translation
-      const textToSpeak = inscription.transcription.recognizedText || inscription.translation.modernKannada;
+
+      let textToSpeak = '';
+      let pitchVal = 1.0;
+      let rateVal = 0.85;
+
+      if (targetStyle === 'ancient_meter') {
+        // Halegannada classical prosody: solemn resonant pitch (0.88), slow chanting cadence (0.76)
+        pitchVal = 0.88;
+        rateVal = 0.76;
+        const raw = inscription.transcription.recognizedText || inscription.translation.modernKannada;
+        // Inject caesura (ಯತಿ) micro-pauses by mapping danda lines and stanza breaks
+        textToSpeak = raw
+          .replace(/[॥|।]/g, ' , ')
+          .replace(/[\n\r]+/g, ' , ')
+          .replace(/\s{2,}/g, ' ')
+          .trim();
+      } else {
+        // Modern Hosagannada speech: natural pitch (1.05), standard tempo (0.92)
+        pitchVal = 1.05;
+        rateVal = 0.92;
+        textToSpeak = inscription.translation.modernKannada || inscription.transcription.recognizedText;
+      }
+
       const utterance = new SpeechSynthesisUtterance(textToSpeak);
       utterance.lang = 'kn-IN';
-      utterance.rate = 0.85; // Measured scholarly cadence
-      utterance.pitch = 1.0;
+      utterance.rate = rateVal;
+      utterance.pitch = pitchVal;
 
       // Select Kannada voice if installed on system
       const voices = window.speechSynthesis.getVoices();
@@ -907,7 +934,7 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                     variant="outline"
                     size="sm"
                     icon={isPlayingAudio ? <VolumeX className="w-3 h-3 text-amber-700 animate-pulse" /> : <Volume2 className="w-3 h-3 text-amber-700" />}
-                    onClick={toggleAudioPronunciation}
+                    onClick={() => toggleAudioPronunciation()}
                   >
                     {isPlayingAudio ? 'Stop / ನಿಲ್ಲಿಸಿ' : 'Pronounce / ಆಲಿಸಿ'}
                   </Button>
@@ -988,44 +1015,76 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                     <div className="p-3.5 rounded-xl bg-gradient-to-r from-amber-50/70 via-white to-amber-50/70 border border-amber-200 flex flex-wrap items-center justify-between gap-3 shadow-xs">
                       <div className="flex items-center gap-3">
                         <button
-                          onClick={toggleAudioPronunciation}
+                          onClick={() => toggleAudioPronunciation()}
                           className={`p-2.5 rounded-full border transition-all shadow-xs ${
                             isPlayingAudio
                               ? 'bg-amber-600 text-white border-amber-500 animate-pulse'
                               : 'bg-white text-amber-700 border-amber-300 hover:bg-amber-50'
                           }`}
-                          title="Simulate Ancient Metric Recitation (ಅನುಷ್ಟೂಪ್ / ಕಂದ ಛಂದಸ್ಸು)"
+                          title={audioRecitationStyle === 'ancient_meter' ? 'Play Halegannada Prosody (ಕಂದ/ತ್ರಿಪದಿ ಛಂದಸ್ಸು)' : 'Play Modern Hosagannada Pronunciation'}
                         >
                           {isPlayingAudio ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
                         </button>
                         <div>
                           <div className="flex items-center gap-2">
                             <span className="text-xs font-bold text-slate-900">
-                              {isPlayingAudio ? 'Reciting Halegannada Epigraph...' : 'Ancient Metrical Audio Synthesizer'}
+                              {isPlayingAudio
+                                ? audioRecitationStyle === 'ancient_meter'
+                                  ? 'Reciting Halegannada Epigraph (Solemn Meter)...'
+                                  : 'Pronouncing Modern Hosagannada...'
+                                : 'Ancient Metrical Audio Synthesizer'}
                             </span>
                             <span className="text-[10px] font-cinzel font-semibold text-[#8C3B18] uppercase tracking-wider">
-                              Kanda Metre
+                              {audioRecitationStyle === 'ancient_meter' ? 'Tripadi & Kanda Meter' : 'Hosagannada Voice'}
                             </span>
                           </div>
                           <p className="text-[10px] text-slate-500">
-                            {isPlayingAudio
-                              ? 'Acoustic simulation of 5th–10th century classical Kannada phonetics & guttural cadences'
-                              : 'Listen to reconstructed archaic pronunciation with authentic Sandhi phonemes'}
+                            {audioRecitationStyle === 'ancient_meter'
+                              ? 'Acoustic simulation of 7th-century Dravidian phonetics with caesura (ಯತಿ) pauses'
+                              : 'Standard contemporary Kannada speech pronunciation'}
                           </p>
                         </div>
                       </div>
 
-                      {/* Animated Soundwave Equalizer */}
-                      {isPlayingAudio && (
-                        <div className="flex items-center gap-1 h-5 px-2.5 py-1 bg-amber-50 rounded border border-amber-200/80">
-                          <span className="w-1 bg-[#8C3B18] rounded-full animate-bounce h-2" style={{ animationDelay: '0ms' }} />
-                          <span className="w-1 bg-[#8C3B18] rounded-full animate-bounce h-4" style={{ animationDelay: '150ms' }} />
-                          <span className="w-1 bg-[#8C3B18] rounded-full animate-bounce h-5" style={{ animationDelay: '300ms' }} />
-                          <span className="w-1 bg-[#8C3B18] rounded-full animate-bounce h-3" style={{ animationDelay: '450ms' }} />
-                          <span className="w-1 bg-[#8C3B18] rounded-full animate-bounce h-4" style={{ animationDelay: '200ms' }} />
-                          <span className="text-[10px] font-cinzel text-[#8C3B18] ml-1 font-bold">44.1 kHz</span>
+                      <div className="flex items-center gap-2">
+                        {/* Recitation Style Toggle */}
+                        <div className="flex items-center bg-white/90 border border-amber-200 rounded-lg p-0.5 text-[11px]">
+                          <button
+                            onClick={() => toggleAudioPronunciation('ancient_meter')}
+                            className={`px-2 py-1 rounded-md transition-all font-medium flex items-center gap-1 ${
+                              audioRecitationStyle === 'ancient_meter'
+                                ? 'bg-amber-700 text-white shadow-xs'
+                                : 'text-slate-600 hover:text-amber-900'
+                            }`}
+                            title="Solemn 7th-century Halegannada chant with caesura (ಯತಿ) pauses and resonant pitch"
+                          >
+                            📜 ಪ್ರಾಚೀನ ಛಂದಸ್ಸು
+                          </button>
+                          <button
+                            onClick={() => toggleAudioPronunciation('modern_hosagannada')}
+                            className={`px-2 py-1 rounded-md transition-all font-medium flex items-center gap-1 ${
+                              audioRecitationStyle === 'modern_hosagannada'
+                                ? 'bg-amber-700 text-white shadow-xs'
+                                : 'text-slate-600 hover:text-amber-900'
+                            }`}
+                            title="Modern Hosagannada clear pronunciation"
+                          >
+                            🗣️ ಹೊಸಗನ್ನಡ
+                          </button>
                         </div>
-                      )}
+
+                        {/* Animated Soundwave Equalizer */}
+                        {isPlayingAudio && (
+                          <div className="flex items-center gap-1 h-6 px-2.5 py-1 bg-amber-50 rounded border border-amber-200/80">
+                            <span className="w-1 bg-[#8C3B18] rounded-full animate-bounce h-2" style={{ animationDelay: '0ms' }} />
+                            <span className="w-1 bg-[#8C3B18] rounded-full animate-bounce h-4" style={{ animationDelay: '150ms' }} />
+                            <span className="w-1 bg-[#8C3B18] rounded-full animate-bounce h-5" style={{ animationDelay: '300ms' }} />
+                            <span className="w-1 bg-[#8C3B18] rounded-full animate-bounce h-3" style={{ animationDelay: '450ms' }} />
+                            <span className="w-1 bg-[#8C3B18] rounded-full animate-bounce h-4" style={{ animationDelay: '200ms' }} />
+                            <span className="text-[10px] font-cinzel text-[#8C3B18] ml-1 font-bold">44.1 kHz</span>
+                          </div>
+                        )}
+                      </div>
                     </div>
 
                     {/* Tier 1: Original Inscription Stele */}

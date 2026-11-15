@@ -27,8 +27,11 @@ class CVStonePreprocessor(Preprocessor):
         rgb_img = image.convert("RGB")
         bgr = cv2.cvtColor(np.array(rgb_img), cv2.COLOR_RGB2BGR)
 
+        # 0. Automated Perspective Rectification and Keystone De-Skewing
+        corrected_bgr, _, _ = self.auto_deskew_and_perspective_correction(bgr)
+
         # Bilateral filter to smooth stone granitic texture while preserving chiseled edges
-        gray = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)
+        gray = cv2.cvtColor(corrected_bgr, cv2.COLOR_BGR2GRAY)
         smooth = cv2.bilateralFilter(gray, 9, 75, 75)
 
         # CLAHE (Contrast Limited Adaptive Histogram Equalization)
@@ -42,6 +45,100 @@ class CVStonePreprocessor(Preprocessor):
         # Normalized float array [0, 1]
         enhanced_rgb = cv2.cvtColor(blended, cv2.COLOR_GRAY2RGB)
         return (enhanced_rgb.astype(np.float32) / 255.0)
+
+    @staticmethod
+    def auto_deskew_and_perspective_correction(bgr_image: np.ndarray) -> Tuple[np.ndarray, bool, float]:
+        """
+        Automated Perspective Rectification and Keystone De-Skewing for Stone Steles:
+        1. Detects stone slab quadrilateral boundaries using morphological contour approximation.
+        2. Applies 4-point homography warp (cv2.getPerspectiveTransform + warpPerspective).
+        3. If no 4-point boundary is found, computes dominant text-line chisel skew via Hough transform
+           and rotates the image to level horizontal lines (0° skew).
+        Returns: (rectified_bgr_image, was_corrected, skew_angle_degrees)
+        """
+        h, w = bgr_image.shape[:2]
+        gray = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2GRAY)
+
+        # 1. Look for prominent quadrilateral stele boundary
+        blurred = cv2.bilateralFilter(gray, 7, 50, 50)
+        edges = cv2.Canny(blurred, 30, 120)
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
+        closed_edges = cv2.morphologyEx(edges, cv2.MORPH_CLOSE, kernel, iterations=2)
+
+        contours, _ = cv2.findContours(closed_edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        img_area = float(h * w)
+        best_quad = None
+        max_quad_area = 0.0
+
+        for c in contours:
+            area = cv2.contourArea(c)
+            # Outer stele boundary must occupy a significant portion of the image
+            if area > 0.45 * img_area:
+                x, y, bw, bh = cv2.boundingRect(c)
+                # Must span substantial portion of the frame (not an internal sub-feature or text block)
+                if bw >= 0.70 * w and bh >= 0.65 * h:
+                    peri = cv2.arcLength(c, True)
+                    approx = cv2.approxPolyDP(c, 0.03 * peri, True)
+                    if len(approx) == 4 and area > max_quad_area:
+                        if cv2.isContourConvex(approx):
+                            best_quad = approx.reshape(4, 2)
+                            max_quad_area = area
+
+        if best_quad is not None:
+            pts = best_quad.astype(np.float32)
+            s = pts.sum(axis=1)
+            diff = np.diff(pts, axis=1)
+            tl = pts[np.argmin(s)]
+            br = pts[np.argmax(s)]
+            tr = pts[np.argmin(diff)]
+            bl = pts[np.argmax(diff)]
+            ordered = np.array([tl, tr, br, bl], dtype=np.float32)
+
+            width_a = np.linalg.norm(br - bl)
+            width_b = np.linalg.norm(tr - tl)
+            max_w = int(max(width_a, width_b))
+
+            height_a = np.linalg.norm(tr - br)
+            height_b = np.linalg.norm(tl - bl)
+            max_h = int(max(height_a, height_b))
+
+            # Only perform perspective warp if there is noticeable keystone asymmetry
+            ratio_w = abs(width_a - width_b) / max(width_a, width_b, 1.0)
+            ratio_h = abs(height_a - height_b) / max(height_a, height_b, 1.0)
+            if (ratio_w > 0.08 or ratio_h > 0.08) and max_w > 100 and max_h > 100:
+                dst = np.array([
+                    [0, 0],
+                    [max_w - 1, 0],
+                    [max_w - 1, max_h - 1],
+                    [0, max_h - 1]
+                ], dtype=np.float32)
+
+                M = cv2.getPerspectiveTransform(ordered, dst)
+                warped = cv2.warpPerspective(bgr_image, M, (max_w, max_h), flags=cv2.INTER_LANCZOS4)
+                return warped, True, 0.0
+
+        # 2. Fallback: Horizontal Line De-skewing using Hough Chisel Strokes
+        lines = cv2.HoughLinesP(edges, 1, np.pi / 180, threshold=80, minLineLength=int(w * 0.15), maxLineGap=15)
+        if lines is not None and len(lines) >= 3:
+            angles = []
+            for line in lines:
+                pts = line.flatten()
+                if len(pts) == 4:
+                    x1, y1, x2, y2 = pts
+                    if abs(x2 - x1) > 10:
+                        deg = np.degrees(np.arctan2(y2 - y1, x2 - x1))
+                        if abs(deg) < 30.0:
+                            angles.append(deg)
+
+            if len(angles) >= 3:
+                median_angle = float(np.median(angles))
+                if abs(median_angle) > 0.8:
+                    center = (w // 2, h // 2)
+                    rot_mat = cv2.getRotationMatrix2D(center, median_angle, 1.0)
+                    rotated = cv2.warpAffine(bgr_image, rot_mat, (w, h), flags=cv2.INTER_LANCZOS4, borderMode=cv2.BORDER_REPLICATE)
+                    return rotated, True, median_angle
+
+        return bgr_image, False, 0.0
 
     @staticmethod
     def apply_difference_of_gaussians(gray: np.ndarray, sigma1: float = 1.0, sigma2: float = 3.0) -> np.ndarray:

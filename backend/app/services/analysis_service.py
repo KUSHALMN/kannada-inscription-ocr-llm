@@ -416,10 +416,11 @@ class AnalysisService:
                                 crops.append(preprocessed_arr[gy1:gy2, gx1:gx2])
 
             hint = f"{title or ''} {location or ''} {dynasty or ''} {known_script or ''} {researcher_notes or ''} {filename or ''}"
+            raw_rgb = np.array(image.convert("RGB"))
             import inspect
             sig = inspect.signature(self.classifier.predict)
             if len(sig.parameters) >= 3:
-                script_pred = await run_in_threadpool(self.classifier.predict, crops, hint, preprocessed_arr)
+                script_pred = await run_in_threadpool(self.classifier.predict, crops, hint, raw_rgb)
             elif len(sig.parameters) == 2:
                 script_pred = await run_in_threadpool(self.classifier.predict, crops, hint)
             else:

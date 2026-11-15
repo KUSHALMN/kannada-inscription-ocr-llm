@@ -26,6 +26,18 @@ class HistoricalGlyphPrototypeMatcher:
         "1.png": ("ಅ", "a", "Foundation Open Vowel (ಅಕಾರ)"),
         "2.png": ("ಕ", "ka", "Unaspirated Velar Stop (ಕಕಾರ)"),
         "3.png": ("ಗ", "ga", "Voiced Velar Stop (ಗಕಾರ)"),
+        "4.png": ("ರ", "ra", "Alveolar Liquid (ರಕಾರ)"),
+        "5.png": ("ತ", "ta", "Dental Stop (ತಕಾರ)"),
+        "6.png": ("ನ", "na", "Dental Nasal (ನಕಾರ)"),
+        "7.png": ("ಮ", "ma", "Labial Nasal (ಮಕಾರ)"),
+        "8.png": ("ವ", "va", "Labio-dental Approximant (ವಕಾರ)"),
+        "9.png": ("ಶ", "śa", "Palatal Sibilant (ಶಕಾರ)"),
+        "10.png": ("ಸ", "sa", "Dental Sibilant (ಸಕಾರ)"),
+        "11.png": ("ಿ", "i", "Vowel Sign I (ಇಕಾರ ಮಾತ್ರೆ)"),
+        "12.png": ("ೆ", "e", "Vowel Sign E (ಏತ್ವ ಮಾತ್ರೆ)"),
+        "13.png": ("ೊ", "o", "Vowel Sign O (ಒತ್ವ ಮಾತ್ರೆ)"),
+        "14.png": ("ಱ", "ṟa", "Archaic Sakata Repha (ಱಕಾರ)"),
+        "15.png": ("ೞ", "ḻa", "Archaic Kula Dravidian Liquid (ೞಕಾರ)"),
     }
 
     def __init__(self, glyphs_root: str = "public/glyphs"):
