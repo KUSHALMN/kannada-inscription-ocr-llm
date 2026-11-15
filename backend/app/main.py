@@ -71,10 +71,18 @@ def create_application() -> FastAPI:
     app.add_exception_handler(StarletteHTTPException, http_exception_handler)
     app.add_exception_handler(Exception, global_exception_handler)
 
-    # 3. Mount Static Uploads
+    # 3. Mount Static Uploads and Public Asset Paths
     os.makedirs(settings.STORAGE_UPLOADS_DIR, exist_ok=True)
     os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
     app.mount("/uploads", StaticFiles(directory=settings.STORAGE_UPLOADS_DIR), name="uploads")
+    if os.path.exists("public"):
+        app.mount("/public", StaticFiles(directory="public"), name="public")
+        if os.path.exists("public/inscriptions"):
+            app.mount("/inscriptions", StaticFiles(directory="public/inscriptions"), name="inscriptions")
+        if os.path.exists("public/glyphs"):
+            app.mount("/glyphs", StaticFiles(directory="public/glyphs"), name="glyphs")
+        if os.path.exists("public/temples"):
+            app.mount("/temples", StaticFiles(directory="public/temples"), name="temples")
 
     # 4. Include API v1 Router with prefix and root convenience
     app.include_router(api_v1_router, prefix="/api/v1")

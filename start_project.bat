@@ -30,17 +30,17 @@ start "FastAPI Neural Epigraph Backend (Port 8000)" cmd /k "chcp 65001 > nul && 
 echo [*] Step 2: Waiting 3 seconds for backend initialization...
 timeout /t 3 /nobreak > nul
 
-echo [*] Step 3: Launching Vite Frontend on port 5173...
-start "Vite Epigraph UI (Port 5173)" cmd /k "npm run dev"
+echo [*] Step 3: Launching Vite Frontend on port 3000...
+start "Vite Epigraph UI (Port 3000)" cmd /k "npm run dev"
 
-echo [*] Step 4: Opening Browser at http://localhost:5173...
+echo [*] Step 4: Opening Browser at http://localhost:3000...
 timeout /t 2 /nobreak > nul
-start http://localhost:5173
+start http://localhost:3000
 
 echo.
 echo ===============================================================================
 echo   SYSTEM LAUNCHED SUCCESSFULLY!
-echo   - Web UI: http://localhost:5173
+echo   - Web UI: http://localhost:3000
 echo   - Neural API Docs: http://localhost:8000/docs
 echo ===============================================================================
 echo Keep the backend and frontend terminal windows open while working.

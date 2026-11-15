@@ -2,8 +2,10 @@ import os
 import io
 import uuid
 from datetime import datetime
-from typing import Optional, Union
+from typing import Optional, Union, List
 from PIL import Image, UnidentifiedImageError
+import cv2
+import numpy as np
 from fastapi import APIRouter, UploadFile, File, Form, Query, HTTPException, Depends, status
 
 from backend.app.config import settings
@@ -335,3 +337,62 @@ async def save_analyzed_job_to_catalog(
 
     logger.info("[%s] Successfully saved job as InscriptionRecord: %s (%s)", job_id, created.id, created.accession_number)
     return created
+
+
+@router.post(
+    "/stitch",
+    response_model=AnalysisJobResult,
+    summary="Stitch Multiple Continuous Temple Wall Panels & Analyze",
+)
+async def stitch_and_analyze_panels(
+    files: List[UploadFile] = File(..., description="2 or more overlapping panel images of a temple wall inscription"),
+    title: Optional[str] = Form(None),
+    location: Optional[str] = Form(None),
+    dynasty: Optional[str] = Form(None),
+    known_script: Optional[str] = Form(None, alias="knownScript"),
+    analysis_svc: AnalysisService = Depends(get_analysis_service),
+):
+    """
+    Stitches multiple sequential photographs of a continuous temple wall or horizontal plinth
+    using Planar ORB Homography and runs the complete epigraphical translation pipeline.
+    """
+    if len(files) < 2:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="At least 2 overlapping image panels are required for temple wall stitching."
+        )
+
+    panel_arrays = []
+    for f in files:
+        b = await f.read()
+        try:
+            pil_img = Image.open(io.BytesIO(b)).convert("RGB")
+            panel_arrays.append(np.array(pil_img))
+        except Exception as e:
+            raise HTTPException(status_code=400, detail=f"Could not decode image panel '{f.filename}': {e}")
+
+    from backend.app.ml_adapters.cv_segmenter import PanoramicWallStitcher
+    ok, pano_bgr, msg = PanoramicWallStitcher.stitch_panels(panel_arrays)
+    if not ok or pano_bgr is None:
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=f"Temple wall stitching failed: {msg}")
+
+    # Convert stitched image to PIL
+    stitched_rgb = cv2.cvtColor(pano_bgr, cv2.COLOR_BGR2RGB)
+    stitched_pil = Image.fromarray(stitched_rgb)
+
+    job_id = f"stitched-{uuid.uuid4().hex[:8]}"
+    storage_dir = getattr(settings, "STORAGE_UPLOADS_DIR", "backend/storage/uploads")
+    os.makedirs(storage_dir, exist_ok=True)
+    stitched_path = os.path.join(storage_dir, f"{job_id}.jpg")
+    stitched_pil.save(stitched_path, "JPEG", quality=95)
+
+    result = await analysis_svc.execute_pipeline(
+        image=stitched_pil,
+        job_id=job_id,
+        title=title or "Stitched Temple Wall Inscription",
+        location=location,
+        dynasty=dynasty,
+        known_script=known_script,
+        filename=f"{job_id}.jpg"
+    )
+    return result

@@ -14,17 +14,17 @@ Start-Process powershell -ArgumentList "-NoExit", "-Command", "python -m uvicorn
 Write-Host "[*] Step 2: Waiting for backend startup..." -ForegroundColor Green
 Start-Sleep -Seconds 3
 
-Write-Host "[*] Step 3: Starting Vite Frontend on port 5173..." -ForegroundColor Green
+Write-Host "[*] Step 3: Starting Vite Frontend on port 3000..." -ForegroundColor Green
 Start-Process powershell -ArgumentList "-NoExit", "-Command", "npm run dev"
 
 Write-Host "[*] Step 4: Opening Browser..." -ForegroundColor Green
 Start-Sleep -Seconds 2
-Start-Process "http://localhost:5173"
+Start-Process "http://localhost:3000"
 
 Write-Host ""
 Write-Host "===============================================================================" -ForegroundColor Cyan
 Write-Host "  PLATFORM LAUNCHED!" -ForegroundColor Yellow
-Write-Host "  - UI: http://localhost:5173" -ForegroundColor White
+Write-Host "  - UI: http://localhost:3000" -ForegroundColor White
 Write-Host "  - API Docs: http://localhost:8000/docs" -ForegroundColor White
 Write-Host "===============================================================================" -ForegroundColor Cyan
 
