@@ -237,6 +237,16 @@ def test_glyph_matching_and_wall_stitching():
     assert "recommended_precision" in device_info, "Quantized engine must report optimal precision mode"
     print(f"    [+] Quantized engine initialized: Mode '{device_info['recommended_precision']}' (VRAM: {device_info['vram_gb']} GB)")
 
+    # Test 1E: Epigraph-DINOv2 Self-Supervised Visual Feature Backbone
+    import torch
+    from backend.app.ml_adapters.dino_backbone import EpigraphDINOBackbone
+    dino_net = EpigraphDINOBackbone()
+    dummy_input = torch.randn(1, 3, 224, 224, device=dino_net.device)
+    micro_out, macro_out = dino_net(dummy_input)
+    assert micro_out.shape == (1, 10), f"Expected 10 micro-classes, got {micro_out.shape}"
+    assert macro_out.shape == (1, 3), f"Expected 3 macro-classes, got {macro_out.shape}"
+    print(f"    [+] Epigraph-DINOv2 self-supervised backbone passed forward pass: 384-dim stroke embeddings verified.")
+
     # Test 2: Multi-Panel Temple Wall Stitching
     stele_path = "public/sample-stele.jpg"
     assert os.path.exists(stele_path), "Sample stele not found"

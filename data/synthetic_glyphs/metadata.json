@@ -1,632 +1,4027 @@
 [
   {
+    "filename": "synth_3_Kadamba_000.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "11.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_000.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_001.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "42.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_001.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_002.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "13.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_002.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_003.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "27.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_003.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_004.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "46.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_004.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_005.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "12.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_005.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_006.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "27.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_006.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_007.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "31.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_007.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_008.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "43.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_008.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_009.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "2.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_009.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_010.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "21.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_010.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_011.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "10.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_011.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_012.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "40.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_012.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_013.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "28.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_013.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_014.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "13.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_014.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_015.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "44.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_015.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_016.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "29.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_016.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_017.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "2.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_017.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_018.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "39.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_018.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_019.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "12.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_019.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_020.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "41.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_020.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_021.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "7.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_021.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_022.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "42.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_022.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_023.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "23.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_023.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_024.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "29.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_024.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_025.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "23.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_025.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_026.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "20.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_026.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_027.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "44.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_027.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_028.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "3.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_028.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_029.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "33.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_029.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_030.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "14.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_030.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_031.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "6.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_031.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_032.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "18.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_032.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_033.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "3.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_033.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_034.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "35.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_034.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_035.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "12.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_035.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_036.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "5.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_036.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_037.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "6.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_037.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_038.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "5.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_038.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_039.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "23.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_039.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_040.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "42.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_040.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_041.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "22.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_041.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_042.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "21.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_042.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_043.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "20.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_043.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_044.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "28.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_044.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_045.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "10.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_045.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_046.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "46.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_046.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_047.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "25.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_047.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_048.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "12.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_048.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_049.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "23.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_049.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_050.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "22.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_050.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_051.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "18.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_051.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_052.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "44.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_052.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_053.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "30.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_053.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_054.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "15.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_054.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_055.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "43.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_055.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_056.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "45.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_056.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_057.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "1.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_057.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_058.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "21.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_058.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_059.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "41.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_059.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_060.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "28.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_060.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_061.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "35.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_061.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_062.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "32.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_062.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_063.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "29.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_063.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_064.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "38.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_064.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_065.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "15.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_065.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_066.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "29.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_066.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_067.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "15.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_067.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_068.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "6.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_068.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_069.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "6.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_069.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_070.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "13.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_070.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_071.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "42.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_071.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_072.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "41.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_072.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_073.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "13.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_073.png"
+  },
+  {
+    "filename": "synth_3_Kadamba_074.png",
+    "class_name": "3_Kadamba",
+    "source_seed": "35.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\3_Kadamba\\synth_3_Kadamba_074.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_000.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "45.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_000.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_001.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "7.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_001.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_002.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "27.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_002.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_003.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "31.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_003.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_004.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "20.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_004.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_005.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "7.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_005.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_006.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "12.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_006.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_007.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "17.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_007.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_008.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "5.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_008.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_009.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "7.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_009.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_010.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "35.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_010.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_011.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "20.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_011.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_012.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "27.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_012.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_013.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "31.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_013.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_014.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "36.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_014.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_015.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "29.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_015.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_016.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "36.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_016.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_017.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "2.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_017.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_018.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "30.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_018.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_019.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "28.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_019.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_020.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "25.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_020.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_021.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "7.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_021.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_022.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "39.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_022.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_023.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "40.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_023.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_024.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "31.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_024.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_025.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "9.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_025.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_026.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "11.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_026.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_027.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "45.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_027.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_028.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "40.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_028.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_029.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "7.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_029.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_030.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "12.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_030.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_031.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "19.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_031.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_032.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "1.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_032.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_033.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "41.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_033.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_034.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "15.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_034.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_035.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "20.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_035.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_036.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "21.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_036.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_037.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "10.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_037.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_038.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "19.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_038.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_039.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "36.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_039.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_040.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "37.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_040.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_041.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "13.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_041.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_042.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "44.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_042.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_043.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "15.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_043.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_044.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "30.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_044.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_045.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "10.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_045.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_046.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "27.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_046.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_047.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "6.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_047.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_048.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "37.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_048.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_049.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "36.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_049.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_050.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "41.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_050.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_051.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "39.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_051.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_052.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "10.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_052.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_053.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "31.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_053.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_054.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "20.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_054.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_055.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "17.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_055.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_056.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "32.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_056.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_057.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "28.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_057.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_058.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "41.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_058.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_059.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "42.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_059.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_060.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "13.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_060.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_061.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "13.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_061.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_062.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "38.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_062.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_063.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "11.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_063.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_064.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "24.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_064.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_065.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "14.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_065.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_066.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "29.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_066.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_067.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "11.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_067.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_068.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "19.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_068.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_069.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "13.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_069.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_070.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "25.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_070.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_071.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "32.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_071.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_072.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "35.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_072.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_073.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "31.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_073.png"
+  },
+  {
+    "filename": "synth_4_BadamiChalukyas_074.png",
+    "class_name": "4_BadamiChalukyas",
+    "source_seed": "21.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\4_BadamiChalukyas\\synth_4_BadamiChalukyas_074.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_000.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "32.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_000.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_001.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "29.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_001.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_002.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "43.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_002.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_003.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "37.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_003.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_004.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "46.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_004.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_005.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "41.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_005.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_006.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "31.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_006.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_007.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "20.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_007.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_008.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "29.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_008.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_009.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "13.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_009.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_010.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "41.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_010.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_011.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "2.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_011.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_012.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "8.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_012.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_013.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "3.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_013.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_014.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "44.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_014.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_015.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "39.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_015.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_016.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "30.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_016.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_017.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "9.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_017.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_018.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "23.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_018.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_019.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "42.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_019.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_020.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "22.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_020.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_021.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "16.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_021.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_022.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "14.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_022.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_023.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "16.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_023.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_024.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "15.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_024.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_025.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "9.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_025.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_026.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "17.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_026.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_027.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "32.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_027.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_028.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "19.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_028.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_029.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "14.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_029.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_030.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "4.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_030.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_031.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "18.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_031.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_032.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "27.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_032.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_033.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "34.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_033.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_034.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "5.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_034.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_035.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "28.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_035.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_036.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "8.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_036.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_037.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "24.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_037.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_038.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "30.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_038.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_039.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "28.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_039.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_040.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "22.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_040.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_041.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "41.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_041.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_042.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "31.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_042.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_043.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "20.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_043.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_044.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "43.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_044.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_045.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "22.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_045.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_046.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "17.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_046.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_047.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "29.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_047.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_048.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "43.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_048.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_049.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "45.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_049.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_050.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "25.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_050.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_051.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "32.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_051.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_052.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "39.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_052.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_053.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "14.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_053.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_054.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "42.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_054.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_055.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "5.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_055.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_056.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "8.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_056.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_057.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "6.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_057.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_058.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "27.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_058.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_059.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "1.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_059.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_060.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "45.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_060.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_061.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "28.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_061.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_062.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "35.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_062.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_063.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "23.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_063.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_064.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "5.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_064.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_065.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "42.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_065.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_066.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "31.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_066.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_067.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "33.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_067.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_068.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "44.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_068.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_069.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "34.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_069.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_070.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "21.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_070.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_071.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "22.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_071.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_072.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "41.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_072.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_073.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "11.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_073.png"
+  },
+  {
+    "filename": "synth_5_Rashtrakuta_074.png",
+    "class_name": "5_Rashtrakuta",
+    "source_seed": "11.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\5_Rashtrakuta\\synth_5_Rashtrakuta_074.png"
+  },
+  {
     "filename": "synth_6_KalyanChalukya_000.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "18.png",
-    "light_angle": 315,
+    "source_seed": "38.png",
+    "light_angle": 120,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_000.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_001.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "15.png",
+    "source_seed": "8.png",
     "light_angle": 120,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_001.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_002.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "19.png",
-    "light_angle": 30,
+    "source_seed": "11.png",
+    "light_angle": 315,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_002.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_003.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "13.png",
-    "light_angle": 30,
+    "source_seed": "31.png",
+    "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_003.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_004.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "39.png",
-    "light_angle": 225,
+    "source_seed": "6.png",
+    "light_angle": 315,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_004.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_005.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "44.png",
-    "light_angle": 45,
+    "source_seed": "10.png",
+    "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_005.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_006.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "1.png",
-    "light_angle": 315,
+    "source_seed": "8.png",
+    "light_angle": 90,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_006.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_007.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "40.png",
-    "light_angle": 315,
+    "source_seed": "19.png",
+    "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_007.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_008.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "15.png",
-    "light_angle": 225,
+    "source_seed": "46.png",
+    "light_angle": 120,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_008.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_009.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "41.png",
-    "light_angle": 315,
+    "source_seed": "36.png",
+    "light_angle": 30,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_009.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_010.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "6.png",
+    "source_seed": "25.png",
     "light_angle": 30,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_010.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_011.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "2.png",
-    "light_angle": 45,
+    "source_seed": "50.png",
+    "light_angle": 30,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_011.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_012.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "36.png",
-    "light_angle": 30,
+    "source_seed": "25.png",
+    "light_angle": 120,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_012.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_013.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "45.png",
-    "light_angle": 315,
+    "source_seed": "28.png",
+    "light_angle": 90,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_013.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_014.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "40.png",
-    "light_angle": 45,
+    "source_seed": "39.png",
+    "light_angle": 315,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_014.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_015.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "43.png",
-    "light_angle": 120,
+    "source_seed": "27.png",
+    "light_angle": 30,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_015.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_016.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "24.png",
+    "source_seed": "33.png",
     "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_016.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_017.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "15.png",
-    "light_angle": 45,
+    "source_seed": "6.png",
+    "light_angle": 30,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_017.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_018.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "4.png",
-    "light_angle": 45,
+    "source_seed": "41.png",
+    "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_018.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_019.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "11.png",
-    "light_angle": 45,
+    "source_seed": "8.png",
+    "light_angle": 30,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_019.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_020.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "8.png",
+    "source_seed": "43.png",
     "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_020.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_021.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "15.png",
-    "light_angle": 315,
+    "source_seed": "46.png",
+    "light_angle": 90,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_021.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_022.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "9.png",
+    "source_seed": "24.png",
     "light_angle": 120,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_022.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_023.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "12.png",
-    "light_angle": 45,
+    "source_seed": "2.png",
+    "light_angle": 120,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_023.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_024.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "1.png",
-    "light_angle": 45,
+    "source_seed": "8.png",
+    "light_angle": 120,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_024.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_025.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "4.png",
-    "light_angle": 120,
+    "source_seed": "46.png",
+    "light_angle": 45,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_025.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_026.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "37.png",
-    "light_angle": 315,
+    "source_seed": "39.png",
+    "light_angle": 90,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_026.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_027.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "3.png",
-    "light_angle": 30,
+    "source_seed": "8.png",
+    "light_angle": 120,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_027.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_028.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "36.png",
-    "light_angle": 315,
+    "source_seed": "48.png",
+    "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_028.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_029.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "14.png",
-    "light_angle": 315,
+    "source_seed": "28.png",
+    "light_angle": 45,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_029.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_030.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "3.png",
-    "light_angle": 120,
+    "source_seed": "29.png",
+    "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_030.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_031.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "41.png",
+    "source_seed": "3.png",
     "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_031.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_032.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "31.png",
-    "light_angle": 225,
+    "source_seed": "29.png",
+    "light_angle": 30,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_032.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_033.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "46.png",
-    "light_angle": 45,
+    "source_seed": "32.png",
+    "light_angle": 30,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_033.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_034.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "42.png",
-    "light_angle": 120,
+    "source_seed": "3.png",
+    "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_034.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_035.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "17.png",
-    "light_angle": 315,
+    "source_seed": "33.png",
+    "light_angle": 90,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_035.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_036.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "15.png",
-    "light_angle": 120,
+    "source_seed": "50.png",
+    "light_angle": 45,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_036.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_037.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "29.png",
+    "source_seed": "25.png",
     "light_angle": 315,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_037.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_038.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "7.png",
-    "light_angle": 225,
+    "source_seed": "47.png",
+    "light_angle": 45,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_038.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_039.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "22.png",
-    "light_angle": 45,
+    "source_seed": "12.png",
+    "light_angle": 30,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_039.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_040.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "27.png",
-    "light_angle": 30,
+    "source_seed": "9.png",
+    "light_angle": 90,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_040.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_041.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "17.png",
-    "light_angle": 30,
+    "source_seed": "1.png",
+    "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_041.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_042.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "38.png",
+    "source_seed": "45.png",
     "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_042.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_043.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "15.png",
-    "light_angle": 315,
+    "source_seed": "2.png",
+    "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_043.png"
   },
   {
     "filename": "synth_6_KalyanChalukya_044.png",
     "class_name": "6_KalyanChalukya",
-    "source_seed": "14.png",
-    "light_angle": 225,
+    "source_seed": "1.png",
+    "light_angle": 120,
     "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_044.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_045.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "27.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_045.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_046.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "13.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_046.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_047.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "22.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_047.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_048.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "22.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_048.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_049.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "18.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_049.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_050.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "19.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_050.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_051.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "28.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_051.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_052.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "22.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_052.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_053.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "41.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_053.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_054.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "49.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_054.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_055.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "40.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_055.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_056.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "34.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_056.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_057.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "5.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_057.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_058.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "35.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_058.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_059.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "8.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_059.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_060.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "29.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_060.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_061.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "35.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_061.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_062.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "12.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_062.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_063.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "5.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_063.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_064.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "42.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_064.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_065.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "42.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_065.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_066.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "34.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_066.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_067.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "48.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_067.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_068.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "24.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_068.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_069.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "34.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_069.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_070.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "28.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_070.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_071.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "34.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_071.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_072.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "2.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_072.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_073.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "39.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_073.png"
+  },
+  {
+    "filename": "synth_6_KalyanChalukya_074.png",
+    "class_name": "6_KalyanChalukya",
+    "source_seed": "11.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\6_KalyanChalukya\\synth_6_KalyanChalukya_074.png"
   },
   {
     "filename": "synth_7_Hoysala_000.png",
     "class_name": "7_Hoysala",
-    "source_seed": "48.png",
-    "light_angle": 30,
+    "source_seed": "8.png",
+    "light_angle": 45,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_000.png"
   },
   {
     "filename": "synth_7_Hoysala_001.png",
     "class_name": "7_Hoysala",
-    "source_seed": "25.png",
-    "light_angle": 225,
+    "source_seed": "32.png",
+    "light_angle": 120,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_001.png"
   },
   {
     "filename": "synth_7_Hoysala_002.png",
     "class_name": "7_Hoysala",
-    "source_seed": "38.png",
-    "light_angle": 315,
+    "source_seed": "26.png",
+    "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_002.png"
   },
   {
     "filename": "synth_7_Hoysala_003.png",
     "class_name": "7_Hoysala",
-    "source_seed": "3.png",
-    "light_angle": 45,
+    "source_seed": "27.png",
+    "light_angle": 315,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_003.png"
   },
   {
     "filename": "synth_7_Hoysala_004.png",
     "class_name": "7_Hoysala",
-    "source_seed": "32.png",
-    "light_angle": 225,
+    "source_seed": "7.png",
+    "light_angle": 45,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_004.png"
   },
   {
     "filename": "synth_7_Hoysala_005.png",
     "class_name": "7_Hoysala",
-    "source_seed": "36.png",
+    "source_seed": "34.png",
     "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_005.png"
   },
   {
     "filename": "synth_7_Hoysala_006.png",
     "class_name": "7_Hoysala",
-    "source_seed": "20.png",
+    "source_seed": "45.png",
     "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_006.png"
   },
   {
     "filename": "synth_7_Hoysala_007.png",
     "class_name": "7_Hoysala",
-    "source_seed": "17.png",
-    "light_angle": 30,
+    "source_seed": "33.png",
+    "light_angle": 45,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_007.png"
   },
   {
     "filename": "synth_7_Hoysala_008.png",
     "class_name": "7_Hoysala",
-    "source_seed": "28.png",
+    "source_seed": "37.png",
     "light_angle": 30,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_008.png"
   },
   {
     "filename": "synth_7_Hoysala_009.png",
     "class_name": "7_Hoysala",
-    "source_seed": "18.png",
+    "source_seed": "14.png",
     "light_angle": 30,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_009.png"
   },
   {
     "filename": "synth_7_Hoysala_010.png",
     "class_name": "7_Hoysala",
-    "source_seed": "37.png",
-    "light_angle": 120,
+    "source_seed": "15.png",
+    "light_angle": 90,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_010.png"
   },
   {
     "filename": "synth_7_Hoysala_011.png",
     "class_name": "7_Hoysala",
-    "source_seed": "22.png",
+    "source_seed": "35.png",
     "light_angle": 315,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_011.png"
   },
   {
     "filename": "synth_7_Hoysala_012.png",
     "class_name": "7_Hoysala",
-    "source_seed": "15.png",
-    "light_angle": 30,
+    "source_seed": "13.png",
+    "light_angle": 90,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_012.png"
   },
   {
     "filename": "synth_7_Hoysala_013.png",
     "class_name": "7_Hoysala",
-    "source_seed": "18.png",
-    "light_angle": 45,
+    "source_seed": "36.png",
+    "light_angle": 30,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_013.png"
   },
   {
     "filename": "synth_7_Hoysala_014.png",
     "class_name": "7_Hoysala",
-    "source_seed": "3.png",
-    "light_angle": 225,
+    "source_seed": "47.png",
+    "light_angle": 90,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_014.png"
   },
   {
     "filename": "synth_7_Hoysala_015.png",
     "class_name": "7_Hoysala",
-    "source_seed": "33.png",
-    "light_angle": 45,
+    "source_seed": "7.png",
+    "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_015.png"
   },
   {
     "filename": "synth_7_Hoysala_016.png",
     "class_name": "7_Hoysala",
-    "source_seed": "22.png",
-    "light_angle": 315,
+    "source_seed": "41.png",
+    "light_angle": 30,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_016.png"
   },
   {
     "filename": "synth_7_Hoysala_017.png",
     "class_name": "7_Hoysala",
-    "source_seed": "28.png",
-    "light_angle": 45,
+    "source_seed": "44.png",
+    "light_angle": 90,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_017.png"
   },
   {
     "filename": "synth_7_Hoysala_018.png",
     "class_name": "7_Hoysala",
-    "source_seed": "34.png",
-    "light_angle": 30,
+    "source_seed": "8.png",
+    "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_018.png"
   },
   {
     "filename": "synth_7_Hoysala_019.png",
     "class_name": "7_Hoysala",
-    "source_seed": "6.png",
-    "light_angle": 30,
+    "source_seed": "37.png",
+    "light_angle": 120,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_019.png"
   },
   {
     "filename": "synth_7_Hoysala_020.png",
     "class_name": "7_Hoysala",
-    "source_seed": "43.png",
-    "light_angle": 120,
+    "source_seed": "46.png",
+    "light_angle": 90,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_020.png"
   },
   {
     "filename": "synth_7_Hoysala_021.png",
     "class_name": "7_Hoysala",
-    "source_seed": "49.png",
+    "source_seed": "45.png",
     "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_021.png"
   },
   {
     "filename": "synth_7_Hoysala_022.png",
     "class_name": "7_Hoysala",
-    "source_seed": "46.png",
+    "source_seed": "22.png",
     "light_angle": 315,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_022.png"
   },
   {
     "filename": "synth_7_Hoysala_023.png",
     "class_name": "7_Hoysala",
-    "source_seed": "16.png",
-    "light_angle": 45,
+    "source_seed": "10.png",
+    "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_023.png"
   },
   {
     "filename": "synth_7_Hoysala_024.png",
     "class_name": "7_Hoysala",
-    "source_seed": "25.png",
-    "light_angle": 45,
+    "source_seed": "2.png",
+    "light_angle": 315,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_024.png"
   },
   {
     "filename": "synth_7_Hoysala_025.png",
     "class_name": "7_Hoysala",
-    "source_seed": "23.png",
-    "light_angle": 45,
+    "source_seed": "30.png",
+    "light_angle": 120,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_025.png"
   },
   {
     "filename": "synth_7_Hoysala_026.png",
     "class_name": "7_Hoysala",
-    "source_seed": "43.png",
-    "light_angle": 30,
+    "source_seed": "10.png",
+    "light_angle": 90,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_026.png"
   },
   {
     "filename": "synth_7_Hoysala_027.png",
     "class_name": "7_Hoysala",
-    "source_seed": "40.png",
-    "light_angle": 225,
+    "source_seed": "21.png",
+    "light_angle": 45,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_027.png"
   },
   {
     "filename": "synth_7_Hoysala_028.png",
     "class_name": "7_Hoysala",
-    "source_seed": "45.png",
-    "light_angle": 315,
+    "source_seed": "36.png",
+    "light_angle": 120,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_028.png"
   },
   {
     "filename": "synth_7_Hoysala_029.png",
     "class_name": "7_Hoysala",
-    "source_seed": "13.png",
-    "light_angle": 315,
+    "source_seed": "1.png",
+    "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_029.png"
   },
   {
     "filename": "synth_7_Hoysala_030.png",
     "class_name": "7_Hoysala",
-    "source_seed": "4.png",
-    "light_angle": 45,
+    "source_seed": "10.png",
+    "light_angle": 120,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_030.png"
   },
   {
     "filename": "synth_7_Hoysala_031.png",
     "class_name": "7_Hoysala",
-    "source_seed": "7.png",
-    "light_angle": 45,
+    "source_seed": "26.png",
+    "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_031.png"
   },
   {
     "filename": "synth_7_Hoysala_032.png",
     "class_name": "7_Hoysala",
-    "source_seed": "16.png",
-    "light_angle": 30,
+    "source_seed": "6.png",
+    "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_032.png"
   },
   {
     "filename": "synth_7_Hoysala_033.png",
     "class_name": "7_Hoysala",
-    "source_seed": "7.png",
+    "source_seed": "22.png",
     "light_angle": 45,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_033.png"
   },
   {
     "filename": "synth_7_Hoysala_034.png",
     "class_name": "7_Hoysala",
-    "source_seed": "37.png",
-    "light_angle": 225,
+    "source_seed": "24.png",
+    "light_angle": 45,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_034.png"
   },
   {
     "filename": "synth_7_Hoysala_035.png",
     "class_name": "7_Hoysala",
-    "source_seed": "1.png",
-    "light_angle": 120,
+    "source_seed": "26.png",
+    "light_angle": 315,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_035.png"
   },
   {
     "filename": "synth_7_Hoysala_036.png",
     "class_name": "7_Hoysala",
-    "source_seed": "21.png",
-    "light_angle": 30,
+    "source_seed": "48.png",
+    "light_angle": 120,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_036.png"
   },
   {
     "filename": "synth_7_Hoysala_037.png",
     "class_name": "7_Hoysala",
-    "source_seed": "24.png",
-    "light_angle": 120,
+    "source_seed": "16.png",
+    "light_angle": 315,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_037.png"
   },
   {
     "filename": "synth_7_Hoysala_038.png",
     "class_name": "7_Hoysala",
-    "source_seed": "33.png",
+    "source_seed": "45.png",
     "light_angle": 45,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_038.png"
   },
   {
     "filename": "synth_7_Hoysala_039.png",
     "class_name": "7_Hoysala",
-    "source_seed": "21.png",
-    "light_angle": 225,
+    "source_seed": "23.png",
+    "light_angle": 120,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_039.png"
   },
   {
     "filename": "synth_7_Hoysala_040.png",
     "class_name": "7_Hoysala",
-    "source_seed": "21.png",
+    "source_seed": "27.png",
     "light_angle": 30,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_040.png"
   },
   {
     "filename": "synth_7_Hoysala_041.png",
     "class_name": "7_Hoysala",
-    "source_seed": "23.png",
-    "light_angle": 315,
+    "source_seed": "20.png",
+    "light_angle": 90,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_041.png"
   },
   {
     "filename": "synth_7_Hoysala_042.png",
     "class_name": "7_Hoysala",
-    "source_seed": "8.png",
+    "source_seed": "48.png",
     "light_angle": 315,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_042.png"
   },
   {
     "filename": "synth_7_Hoysala_043.png",
     "class_name": "7_Hoysala",
-    "source_seed": "41.png",
-    "light_angle": 315,
+    "source_seed": "9.png",
+    "light_angle": 45,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_043.png"
   },
   {
     "filename": "synth_7_Hoysala_044.png",
     "class_name": "7_Hoysala",
-    "source_seed": "32.png",
-    "light_angle": 30,
+    "source_seed": "10.png",
+    "light_angle": 225,
     "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_044.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_045.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "23.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_045.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_046.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "32.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_046.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_047.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "30.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_047.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_048.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "27.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_048.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_049.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "30.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_049.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_050.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "28.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_050.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_051.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "13.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_051.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_052.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "20.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_052.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_053.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "37.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_053.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_054.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "6.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_054.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_055.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "21.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_055.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_056.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "31.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_056.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_057.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "14.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_057.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_058.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "26.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_058.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_059.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "46.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_059.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_060.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "47.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_060.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_061.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "47.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_061.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_062.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "39.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_062.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_063.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "20.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_063.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_064.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "10.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_064.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_065.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "23.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_065.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_066.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "8.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_066.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_067.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "19.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_067.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_068.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "37.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_068.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_069.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "6.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_069.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_070.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "43.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_070.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_071.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "20.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_071.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_072.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "20.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_072.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_073.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "30.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_073.png"
+  },
+  {
+    "filename": "synth_7_Hoysala_074.png",
+    "class_name": "7_Hoysala",
+    "source_seed": "22.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\7_Hoysala\\synth_7_Hoysala_074.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_000.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "36.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_000.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_001.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "1.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_001.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_002.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "8.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_002.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_003.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "17.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_003.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_004.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "38.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_004.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_005.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "41.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_005.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_006.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "6.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_006.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_007.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "40.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_007.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_008.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "6.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_008.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_009.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "35.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_009.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_010.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "30.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_010.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_011.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "50.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_011.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_012.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "43.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_012.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_013.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "32.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_013.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_014.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "19.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_014.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_015.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "23.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_015.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_016.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "16.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_016.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_017.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "4.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_017.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_018.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "50.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_018.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_019.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "41.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_019.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_020.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "40.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_020.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_021.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "45.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_021.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_022.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "35.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_022.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_023.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "39.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_023.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_024.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "22.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_024.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_025.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "13.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_025.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_026.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "5.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_026.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_027.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "21.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_027.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_028.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "18.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_028.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_029.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "45.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_029.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_030.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "6.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_030.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_031.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "1.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_031.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_032.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "24.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_032.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_033.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "50.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_033.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_034.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "6.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_034.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_035.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "29.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_035.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_036.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "16.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_036.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_037.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "44.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_037.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_038.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "46.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_038.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_039.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "10.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_039.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_040.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "28.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_040.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_041.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "29.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_041.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_042.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "36.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_042.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_043.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "12.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_043.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_044.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "46.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_044.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_045.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "1.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_045.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_046.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "48.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_046.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_047.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "40.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_047.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_048.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "40.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_048.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_049.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "36.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_049.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_050.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "7.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_050.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_051.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "12.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_051.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_052.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "28.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_052.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_053.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "34.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_053.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_054.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "19.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_054.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_055.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "23.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_055.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_056.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "22.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_056.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_057.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "28.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_057.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_058.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "4.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_058.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_059.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "13.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_059.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_060.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "23.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_060.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_061.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "18.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_061.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_062.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "26.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_062.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_063.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "8.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_063.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_064.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "37.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_064.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_065.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "32.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_065.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_066.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "20.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_066.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_067.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "30.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_067.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_068.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "21.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_068.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_069.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "5.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_069.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_070.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "16.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_070.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_071.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "48.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_071.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_072.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "8.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_072.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_073.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "38.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_073.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_074.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "26.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_074.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_075.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "44.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_075.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_076.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "45.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_076.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_077.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "50.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_077.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_078.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "36.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_078.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_079.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "9.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_079.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_080.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "16.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_080.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_081.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "36.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_081.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_082.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "18.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_082.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_083.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "46.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_083.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_084.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "41.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_084.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_085.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "49.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_085.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_086.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "7.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_086.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_087.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "35.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_087.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_088.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "34.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_088.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_089.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "33.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_089.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_090.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "16.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_090.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_091.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "23.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_091.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_092.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "24.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_092.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_093.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "41.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_093.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_094.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "29.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_094.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_095.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "9.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_095.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_096.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "47.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_096.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_097.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "35.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_097.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_098.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "19.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_098.png"
+  },
+  {
+    "filename": "synth_8_Vijayanagara_099.png",
+    "class_name": "8_Vijayanagara",
+    "source_seed": "48.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\8_Vijayanagara\\synth_8_Vijayanagara_099.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_000.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "46.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_000.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_001.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "15.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_001.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_002.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "27.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_002.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_003.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "19.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_003.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_004.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "12.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_004.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_005.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "37.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_005.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_006.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "47.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_006.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_007.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "26.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_007.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_008.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "3.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_008.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_009.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "9.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_009.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_010.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "39.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_010.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_011.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "3.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_011.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_012.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "39.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_012.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_013.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "1.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_013.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_014.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "22.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_014.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_015.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "22.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_015.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_016.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "38.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_016.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_017.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "38.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_017.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_018.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "3.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_018.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_019.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "28.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_019.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_020.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "12.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_020.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_021.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "36.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_021.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_022.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "39.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_022.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_023.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "38.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_023.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_024.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "34.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_024.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_025.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "23.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_025.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_026.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "26.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_026.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_027.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "46.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_027.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_028.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "30.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_028.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_029.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "2.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_029.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_030.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "9.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_030.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_031.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "1.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_031.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_032.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "47.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_032.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_033.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "8.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_033.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_034.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "14.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_034.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_035.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "24.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_035.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_036.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "9.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_036.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_037.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "47.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_037.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_038.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "13.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_038.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_039.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "32.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_039.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_040.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "25.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_040.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_041.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "20.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_041.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_042.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "38.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_042.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_043.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "34.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_043.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_044.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "20.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_044.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_045.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "7.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_045.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_046.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "43.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_046.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_047.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "2.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_047.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_048.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "29.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_048.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_049.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "5.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_049.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_050.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "11.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_050.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_051.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "29.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_051.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_052.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "49.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_052.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_053.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "43.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_053.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_054.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "17.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_054.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_055.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "2.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_055.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_056.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "16.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_056.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_057.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "21.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_057.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_058.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "19.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_058.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_059.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "20.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_059.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_060.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "4.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_060.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_061.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "25.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_061.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_062.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "29.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_062.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_063.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "11.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_063.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_064.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "3.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_064.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_065.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "33.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_065.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_066.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "24.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_066.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_067.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "41.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_067.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_068.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "22.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_068.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_069.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "7.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_069.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_070.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "5.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_070.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_071.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "45.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_071.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_072.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "47.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_072.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_073.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "7.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_073.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_074.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "27.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_074.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_075.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "31.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_075.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_076.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "29.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_076.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_077.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "20.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_077.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_078.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "40.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_078.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_079.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "8.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_079.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_080.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "12.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_080.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_081.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "4.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_081.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_082.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "34.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_082.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_083.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "46.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_083.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_084.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "9.png",
+    "light_angle": 120,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_084.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_085.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "5.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_085.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_086.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "6.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_086.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_087.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "20.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_087.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_088.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "4.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_088.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_089.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "49.png",
+    "light_angle": 315,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_089.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_090.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "25.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_090.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_091.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "32.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_091.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_092.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "8.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_092.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_093.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "46.png",
+    "light_angle": 45,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_093.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_094.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "44.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_094.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_095.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "35.png",
+    "light_angle": 225,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_095.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_096.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "36.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_096.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_097.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "7.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_097.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_098.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "27.png",
+    "light_angle": 90,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_098.png"
+  },
+  {
+    "filename": "synth_9_Mysuru_099.png",
+    "class_name": "9_Mysuru",
+    "source_seed": "30.png",
+    "light_angle": 30,
+    "relative_path": "data\\synthetic_glyphs\\9_Mysuru\\synth_9_Mysuru_099.png"
   }
 ]

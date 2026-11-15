@@ -308,6 +308,15 @@ class NeuralScriptClassifier(ScriptClassifier):
         else:
             logger.info("Checkpoint %s not found yet, will use fallback", checkpoint_path)
 
+        # 3. Optional Epigraph-DINOv2 Self-Supervised Feature Extractor
+        self.dino_backbone = None
+        try:
+            from backend.app.ml_adapters.dino_backbone import EpigraphDINOBackbone
+            self.dino_backbone = EpigraphDINOBackbone(device=self.device)
+            logger.info("[+] Epigraph-DINOv2 self-supervised visual backbone ready")
+        except Exception as dino_err:
+            logger.debug("Epigraph-DINOv2 initialization deferred: %s", dino_err)
+
     def predict(
         self,
         glyph_crops: Optional[List[np.ndarray]] = None,
@@ -792,7 +801,8 @@ class NeuralTranslator(Translator):
                     language_confidence=0.985,
                     modern_kannada=matched.get("target_modern", ""),
                     english_translation=matched.get("target_english", ""),
-                    glossary=_get_glossary(cleaned_text),
+                    glossary=glossary_items,
+                    token_alignments=token_alignments,
                     stylistic_notes=f"Identified from {matched.get('source_title', 'Inscription')} ({matched.get('dynasty', '')})",
                     is_mock_data=False,
                 )
@@ -830,8 +840,9 @@ class NeuralTranslator(Translator):
                             language_confidence=0.97,
                             modern_kannada=k_match,
                             english_translation=e_match or decoded,
-                            glossary=_get_glossary(cleaned_text),
-                            stylistic_notes="Neural causal decoder translation with QLoRA instruction tuning.",
+                            glossary=glossary_items,
+                            token_alignments=token_alignments,
+                            stylistic_notes="Neural causal decoder translation with 4-bit quantized QLoRA instruction tuning.",
                             is_mock_data=False
                         )
                 else:
