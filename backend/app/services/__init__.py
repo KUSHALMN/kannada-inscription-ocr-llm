@@ -2,6 +2,7 @@ from backend.app.services.epigraphy_service import EpigraphyService, epigraphy_s
 from backend.app.services.analysis_service import AnalysisService, analysis_service
 from backend.app.services.job_manager import JobQueueManager, job_manager
 from backend.app.services.cleanup_service import StorageCleanupService, cleanup_service
+from backend.app.services.audio_service import EpigraphAudioService, audio_service
 
 __all__ = [
     "EpigraphyService",
@@ -12,4 +13,6 @@ __all__ = [
     "job_manager",
     "StorageCleanupService",
     "cleanup_service",
+    "EpigraphAudioService",
+    "audio_service",
 ]

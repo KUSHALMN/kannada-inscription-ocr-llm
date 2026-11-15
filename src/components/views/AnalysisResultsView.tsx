@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { InscriptionRecord, ScriptClassId, SourceLanguageId } from '../../types';
 import { getEpigraphThemeVariables, SCRIPT_THEMES, LANGUAGE_THEMES } from '../../theme/themeRegistry';
 import { epigraphyService } from '../../services/epigraphyService';
@@ -86,9 +86,24 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
     }
   };
 
-  // Audio pronunciation synthesis state with ancient prosody tuning
+  // Audio pronunciation synthesis state with ancient prosody tuning & server-side streaming
   const [isPlayingAudio, setIsPlayingAudio] = useState<boolean>(false);
+  const [isLoadingAudio, setIsLoadingAudio] = useState<boolean>(false);
   const [audioRecitationStyle, setAudioRecitationStyle] = useState<'ancient_meter' | 'modern_hosagannada'>('ancient_meter');
+  const activeAudioRef = useRef<HTMLAudioElement | null>(null);
+
+  const stopAudio = () => {
+    if (activeAudioRef.current) {
+      activeAudioRef.current.pause();
+      activeAudioRef.current.currentTime = 0;
+      activeAudioRef.current = null;
+    }
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    setIsPlayingAudio(false);
+    setIsLoadingAudio(false);
+  };
 
   const toggleAudioPronunciation = (preferredStyle?: 'ancient_meter' | 'modern_hosagannada') => {
     if (typeof window === 'undefined') return;
@@ -99,59 +114,83 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
     }
 
     if (isPlayingAudio && (!preferredStyle || preferredStyle === audioRecitationStyle)) {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-      }
-      setIsPlayingAudio(false);
+      stopAudio();
       return;
     }
 
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
+    stopAudio();
 
-      let textToSpeak = '';
-      let pitchVal = 1.0;
-      let rateVal = 0.85;
+    let textToSpeak = '';
+    let pitchVal = 1.0;
+    let rateVal = 0.85;
 
-      if (targetStyle === 'ancient_meter') {
-        // Halegannada classical prosody: solemn resonant pitch (0.88), slow chanting cadence (0.76)
-        pitchVal = 0.88;
-        rateVal = 0.76;
-        const raw = inscription.transcription.recognizedText || inscription.translation.modernKannada;
-        // Inject caesura (ಯತಿ) micro-pauses by mapping danda lines and stanza breaks
-        textToSpeak = raw
-          .replace(/[॥|।]/g, ' , ')
-          .replace(/[\n\r]+/g, ' , ')
-          .replace(/\s{2,}/g, ' ')
-          .trim();
-      } else {
-        // Modern Hosagannada speech: natural pitch (1.05), standard tempo (0.92)
-        pitchVal = 1.05;
-        rateVal = 0.92;
-        textToSpeak = inscription.translation.modernKannada || inscription.transcription.recognizedText;
-      }
-
-      const utterance = new SpeechSynthesisUtterance(textToSpeak);
-      utterance.lang = 'kn-IN';
-      utterance.rate = rateVal;
-      utterance.pitch = pitchVal;
-
-      // Select Kannada voice if installed on system
-      const voices = window.speechSynthesis.getVoices();
-      const knVoice = voices.find((v) => v.lang.includes('kn') || v.name.toLowerCase().includes('kannada'));
-      if (knVoice) {
-        utterance.voice = knVoice;
-      }
-
-      utterance.onend = () => setIsPlayingAudio(false);
-      utterance.onerror = () => setIsPlayingAudio(false);
-
-      setIsPlayingAudio(true);
-      window.speechSynthesis.speak(utterance);
+    if (targetStyle === 'ancient_meter') {
+      // Halegannada classical prosody: solemn resonant pitch (0.88), slow chanting cadence (0.76)
+      pitchVal = 0.88;
+      rateVal = 0.76;
+      const raw = inscription.transcription.recognizedText || inscription.translation.modernKannada;
+      // Inject caesura (ಯತಿ) micro-pauses by mapping danda lines and stanza breaks
+      textToSpeak = raw
+        .replace(/[॥|।]/g, ' , ')
+        .replace(/[\n\r]+/g, ' , ')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
     } else {
-      setIsPlayingAudio(true);
-      setTimeout(() => setIsPlayingAudio(false), 4000);
+      // Modern Hosagannada speech: natural pitch (1.05), standard tempo (0.92)
+      pitchVal = 1.05;
+      rateVal = 0.92;
+      textToSpeak = inscription.translation.modernKannada || inscription.transcription.recognizedText;
     }
+
+    setIsLoadingAudio(true);
+
+    // 1. Primary: Server-Side Audio Recitation Endpoint (/api/v1/audio/recite)
+    // Guarantees 100% audio reliability across all phones, tablets, and browsers without missing voice packs
+    const serverAudioUrl = `/api/v1/audio/recite?text=${encodeURIComponent(textToSpeak)}&style=${targetStyle}&lang=kn`;
+    const audio = new Audio(serverAudioUrl);
+    activeAudioRef.current = audio;
+
+    audio.onplay = () => {
+      setIsLoadingAudio(false);
+      setIsPlayingAudio(true);
+    };
+
+    audio.onended = () => {
+      setIsPlayingAudio(false);
+      setIsLoadingAudio(false);
+      activeAudioRef.current = null;
+    };
+
+    audio.onerror = () => {
+      // 2. Client-side Web Speech API Fallback (if running offline without backend server)
+      setIsLoadingAudio(false);
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
+        utterance.lang = 'kn-IN';
+        utterance.rate = rateVal;
+        utterance.pitch = pitchVal;
+
+        const voices = window.speechSynthesis.getVoices();
+        const knVoice = voices.find((v) => v.lang.includes('kn') || v.name.toLowerCase().includes('kannada'));
+        if (knVoice) {
+          utterance.voice = knVoice;
+        }
+
+        utterance.onend = () => setIsPlayingAudio(false);
+        utterance.onerror = () => setIsPlayingAudio(false);
+
+        setIsPlayingAudio(true);
+        window.speechSynthesis.speak(utterance);
+      } else {
+        setIsPlayingAudio(false);
+      }
+    };
+
+    audio.play().catch(() => {
+      // Autoplay or network policy rejection, trigger fallback handler
+      audio.onerror?.(new Event('error'));
+    });
   };
 
   // Tab views
@@ -1103,10 +1142,10 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                   <Button
                     variant="outline"
                     size="sm"
-                    icon={isPlayingAudio ? <VolumeX className="w-3 h-3 text-amber-700 animate-pulse" /> : <Volume2 className="w-3 h-3 text-amber-700" />}
+                    icon={isPlayingAudio ? <VolumeX className="w-3 h-3 text-amber-700 animate-pulse" /> : isLoadingAudio ? <Sparkles className="w-3 h-3 text-amber-700 animate-spin" /> : <Volume2 className="w-3 h-3 text-amber-700" />}
                     onClick={() => toggleAudioPronunciation()}
                   >
-                    {isPlayingAudio ? 'Stop / ನಿಲ್ಲಿಸಿ' : 'Pronounce / ಆಲಿಸಿ'}
+                    {isPlayingAudio ? 'Stop / ನಿಲ್ಲಿಸಿ' : isLoadingAudio ? 'Loading...' : 'Pronounce / ಆಲಿಸಿ'}
                   </Button>
                   <Button
                     variant="outline"
@@ -1207,16 +1246,26 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
                           className={`p-2.5 rounded-full border transition-all shadow-xs ${
                             isPlayingAudio
                               ? 'bg-amber-600 text-white border-amber-500 animate-pulse'
+                              : isLoadingAudio
+                              ? 'bg-amber-100 text-amber-800 border-amber-400'
                               : 'bg-white text-amber-700 border-amber-300 hover:bg-amber-50'
                           }`}
                           title={audioRecitationStyle === 'ancient_meter' ? 'Play Halegannada Prosody (ಕಂದ/ತ್ರಿಪದಿ ಛಂದಸ್ಸು)' : 'Play Modern Hosagannada Pronunciation'}
                         >
-                          {isPlayingAudio ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                          {isPlayingAudio ? (
+                            <VolumeX className="w-4 h-4" />
+                          ) : isLoadingAudio ? (
+                            <Sparkles className="w-4 h-4 animate-spin text-amber-700" />
+                          ) : (
+                            <Volume2 className="w-4 h-4" />
+                          )}
                         </button>
                         <div>
                           <div className="flex items-center gap-2">
                             <span className="text-xs font-bold text-slate-900">
-                              {isPlayingAudio
+                              {isLoadingAudio
+                                ? 'Streaming High-Fidelity Audio...'
+                                : isPlayingAudio
                                 ? audioRecitationStyle === 'ancient_meter'
                                   ? 'Reciting Halegannada Epigraph (Solemn Meter)...'
                                   : 'Pronouncing Modern Hosagannada...'

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   FileText,
   Sliders,
   Volume2,
+  VolumeX,
   ZoomIn,
   Eye,
   CheckCircle2,
@@ -153,23 +154,54 @@ export const LiveDeciphermentPlayground: React.FC<LiveDeciphermentPlaygroundProp
   const [imageFilterMode, setImageFilterMode] = useState<'normal' | 'high_contrast' | 'rubbing_invert'>('normal');
   const [zoomLevel, setZoomLevel] = useState<number>(1);
   const [isPlayingAudio, setIsPlayingAudio] = useState<boolean>(false);
+  const playgroundAudioRef = useRef<HTMLAudioElement | null>(null);
 
   const sample = PLAYGROUND_SAMPLES[activeSampleIndex];
 
   const handlePlayAudio = () => {
-    setIsPlayingAudio(true);
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(sample.audioPronunciationText);
-      utterance.rate = 0.85;
-      utterance.pitch = 1.0;
-      utterance.lang = 'kn-IN';
-      utterance.onend = () => setIsPlayingAudio(false);
-      utterance.onerror = () => setIsPlayingAudio(false);
-      window.speechSynthesis.speak(utterance);
-    } else {
-      setTimeout(() => setIsPlayingAudio(false), 2000);
+    if (isPlayingAudio) {
+      if (playgroundAudioRef.current) {
+        playgroundAudioRef.current.pause();
+        playgroundAudioRef.current = null;
+      }
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      setIsPlayingAudio(false);
+      return;
     }
+
+    setIsPlayingAudio(true);
+
+    // Server-Side Audio Recitation Endpoint (/api/v1/audio/recite)
+    const audioUrl = `/api/v1/audio/recite?text=${encodeURIComponent(sample.audioPronunciationText)}&style=ancient_meter&lang=kn`;
+    const audio = new Audio(audioUrl);
+    playgroundAudioRef.current = audio;
+
+    audio.onended = () => {
+      setIsPlayingAudio(false);
+      playgroundAudioRef.current = null;
+    };
+
+    audio.onerror = () => {
+      // Fallback to client-side speech synthesis if offline or server disconnected
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(sample.audioPronunciationText);
+        utterance.rate = 0.85;
+        utterance.pitch = 1.0;
+        utterance.lang = 'kn-IN';
+        utterance.onend = () => setIsPlayingAudio(false);
+        utterance.onerror = () => setIsPlayingAudio(false);
+        window.speechSynthesis.speak(utterance);
+      } else {
+        setTimeout(() => setIsPlayingAudio(false), 2000);
+      }
+    };
+
+    audio.play().catch(() => {
+      audio.onerror?.(new Event('error'));
+    });
   };
 
   const handleOpenInWorkspace = () => {
@@ -370,7 +402,7 @@ export const LiveDeciphermentPlayground: React.FC<LiveDeciphermentPlaygroundProp
                 }`}
                 title="Listen to archaic phonological pronunciation"
               >
-                <Volume2 className="w-4 h-4 text-amber-700" />
+                {isPlayingAudio ? <VolumeX className="w-4 h-4 text-white" /> : <Volume2 className="w-4 h-4 text-amber-700" />}
                 <span>{isPlayingAudio ? 'Reciting...' : 'Pronounce'}</span>
               </button>
             </div>

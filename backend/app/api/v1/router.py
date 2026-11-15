@@ -8,6 +8,7 @@ from backend.app.api.v1.lexicon import router as lexicon_router
 from backend.app.api.v1.analysis import router as analysis_router
 from backend.app.api.v1.jobs import router as jobs_router
 from backend.app.api.v1.translate import router as translate_router
+from backend.app.api.v1.audio import router as audio_router
 
 api_v1_router = APIRouter()
 
@@ -20,4 +21,5 @@ api_v1_router.include_router(lexicon_router)
 api_v1_router.include_router(analysis_router)
 api_v1_router.include_router(jobs_router)
 api_v1_router.include_router(translate_router)
+api_v1_router.include_router(audio_router)
 

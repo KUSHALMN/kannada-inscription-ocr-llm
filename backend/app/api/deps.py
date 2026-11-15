@@ -68,3 +68,13 @@ def get_job_manager():
     return job_manager
 
 
+def get_audio_service():
+    """
+    Dependency provider for EpigraphAudioService.
+    Singleton audio synthesizer for Halegannada metric recitation.
+    """
+    from backend.app.services.audio_service import audio_service
+    return audio_service
+
+
+
