@@ -25,6 +25,7 @@ import {
   VolumeX,
   Sparkles,
   Layers,
+  AlertTriangle,
 } from 'lucide-react';
 
 interface AnalysisResultsViewProps {
@@ -213,6 +214,27 @@ export const AnalysisResultsView: React.FC<AnalysisResultsViewProps> = ({
       style={themeVars}
       className="space-y-6 transition-colors duration-300"
     >
+      {/* Alert Banner for Irrelevant / Non-Epigraphical Uploads */}
+      {(inscription.translation.modernKannada?.includes('ಅಸಂಬದ್ಧ') ||
+        inscription.translation.modernKannada?.includes('ಯಾವುದೇ ಪ್ರಾಚೀನ') ||
+        inscription.translation.stylisticNotes?.includes('Non-epigraphical') ||
+        inscription.transcription.recognizedText?.includes('No Ancient Epigraph')) && (
+        <div className="p-4 rounded-xl border border-amber-300 bg-amber-50/95 text-amber-900 shadow-xs flex items-start gap-3.5">
+          <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+          <div className="space-y-1">
+            <h3 className="font-serif font-bold text-sm text-amber-900 flex items-center gap-2">
+              ಅಸಂಬದ್ಧ ಅಥವಾ ಶಾಸನೇತರ ಚಿತ್ರ (Non-Epigraphical Image Detected)
+            </h3>
+            <p className="text-xs font-kannada leading-relaxed text-amber-900">
+              ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾದ ಚಿತ್ರದಲ್ಲಿ ಯಾವುದೇ ಪ್ರಾಚೀನ ಕನ್ನಡ ಅಥವಾ ಐತಿಹಾಸಿಕ ಶಿಲಾಶಾಸನದ ಲಿಪಿಗಳು ಪತ್ತೆಯಾಗಿಲ್ಲ. ದಯವಿಟ್ಟು ಸ್ಪಷ್ಟವಾದ ಶಿಲಾಶಾಸನ, ವೀರಗಲ್ಲು, ತಾಮ್ರಶಾಸನ ಅಥವಾ ತಾಳೆಗರಿ ಹಸ್ತಪ್ರತಿಯ ಚಿತ್ರವನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ.
+            </p>
+            <p className="text-xs text-amber-800 font-serif italic">
+              The uploaded image does not appear to contain an ancient Kannada inscription or epigraphical script. Please upload a clear photo of an inscription stone (Shilashasana), hero-stone (Viragallu), copper-plate grant (Tamrashasana), or ancient palm-leaf manuscript.
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* SECTION A: Results Header */}
       <div
         style={{

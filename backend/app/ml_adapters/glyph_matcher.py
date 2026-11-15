@@ -89,8 +89,9 @@ class HistoricalGlyphPrototypeMatcher:
         # 1. Apply Difference of Gaussians (DoG) to isolate chisel groove from grain
         dog_crop = CVStonePreprocessor.apply_difference_of_gaussians(gray_crop, sigma1=1.0, sigma2=2.5)
 
-        # 2. Adaptive Binarization
-        _, bin_crop = cv2.threshold(dog_crop, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+        # 2. Polarity-Adaptive Binarization (handles white-on-black rubbings and dark carvings)
+        thresh_mode = cv2.THRESH_BINARY_INV if gray_crop.mean() > 127 else cv2.THRESH_BINARY
+        _, bin_crop = cv2.threshold(gray_crop, 0, 255, thresh_mode + cv2.THRESH_OTSU)
 
         # 3. Morphological Skeletonization (1-pixel stroke centerlines)
         skel_crop = CVStonePreprocessor.morphological_skeletonize(bin_crop, max_iterations=15)
@@ -121,8 +122,11 @@ class HistoricalGlyphPrototypeMatcher:
                 best_score = score
                 best_match = proto
 
-        # Map correlation score [-1, 1] to normalized confidence [0.65, 0.99]
-        conf = max(0.65, min(0.99, round(0.70 + (max(0.0, best_score) * 0.29), 3)))
+        # Map correlation score [-1, 1] to normalized confidence
+        if best_score <= 0.15:
+            conf = max(0.0, round(float(best_score), 3))
+        else:
+            conf = min(0.99, round(0.55 + (float(best_score) * 0.44), 3))
 
         return (best_match["kannada_char"], best_match["iast"], conf)
 

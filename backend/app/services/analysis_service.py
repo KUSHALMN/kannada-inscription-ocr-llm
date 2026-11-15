@@ -1,7 +1,7 @@
 import os
 import time
 import uuid
-from typing import Optional, Dict, Any, List, Callable, Awaitable
+from typing import Optional, Dict, Any, List, Callable, Awaitable, Tuple
 import numpy as np
 from PIL import Image
 from starlette.concurrency import run_in_threadpool
@@ -462,6 +462,79 @@ class AnalysisService:
                 pass
 
         # -----------------------------------------------------------------
+        # Epigraphical Authenticity Verification
+        # Detect whether the uploaded image is a genuine inscription or an irrelevant photo
+        # -----------------------------------------------------------------
+        is_epigraph, epigraph_msg = self.validate_epigraph_authenticity(
+            image=image,
+            preprocessed_arr=preprocessed_arr,
+            script_pred=script_pred,
+            hint=hint,
+            known_script=known_script,
+            known_language=known_language,
+        )
+
+        if not is_epigraph:
+            logger.info("[%s] Non-epigraphical / irrelevant image detected: %s", job_id, epigraph_msg)
+            transcription = TranscriptionResult(
+                script_class=effective_script,
+                script_confidence=round(script_pred.confidence, 4) if script_pred else 0.15,
+                macro_era=None,
+                macro_confidence=None,
+                recognized_text="[ಪ್ರಾಚೀನ ಶಿಲಾಶಾಸನದ ಲಿಪಿ ಪತ್ತೆಯಾಗಿಲ್ಲ / No Ancient Epigraph Detected]",
+                iast_transliteration="[No inscriptional text detected in uploaded image]",
+                lines=[],
+                detected_glyphs_count=0,
+                is_mock_data=False,
+            )
+            translation = TranslationResult(
+                source_language=effective_language,
+                language_confidence=0.0,
+                modern_kannada="⚠️ ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾದ ಚಿತ್ರದಲ್ಲಿ ಯಾವುದೇ ಪ್ರಾಚೀನ ಕನ್ನಡ ಅಥವಾ ಐತಿಹಾಸಿಕ ಶಿಲಾಶಾಸನದ ಲಿಪಿಗಳು ಪತ್ತೆಯಾಗಿಲ್ಲ. ದಯವಿಟ್ಟು ಸ್ಪಷ್ಟವಾದ ಶಿಲಾಶಾಸನ (Stone Inscription), ವೀರಗಲ್ಲು (Hero Stone), ತಾಮ್ರಶಾಸನ (Copper Plate) ಅಥವಾ ತಾಳೆಗರಿ ಹಸ್ತಪ್ರತಿಯ (Palm-leaf manuscript) ಚಿತ್ರವನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ.",
+                english_translation="⚠️ The uploaded image does not appear to contain an ancient Kannada inscription or epigraphical script. Please upload a clear photograph of a stone stele (Shilashasana), hero-stone (Viragallu), copper-plate grant (Tamrashasana), or ancient palm-leaf manuscript.",
+                glossary=[],
+                stylistic_notes=f"Non-epigraphical / irrelevant image detected ({epigraph_msg}). Epigraphical validation fallback activated.",
+                is_mock_data=False,
+            )
+            historical_context = HistoricalContext(
+                dynasty="ಶಾಸನೇತರ ಚಿತ್ರ / Non-Epigraphical Image",
+                ruler="ಅನ್ವಯಿಸುವುದಿಲ್ಲ / Not Applicable",
+                regnal_period="N/A",
+                approximate_date="N/A",
+                century="N/A",
+                find_spot=FindSpot(
+                    village="ಅಪರಿಚಿತ ಸ್ಥಳ / Unknown Location",
+                    taluk="N/A",
+                    district="N/A",
+                    state="Karnataka",
+                    coordinates=[12.9716, 77.5946],
+                ),
+                epigraphia_reference="N/A (Non-inscriptional upload)",
+                historical_summary="ಅಸಂಬದ್ಧ ಅಥವಾ ಶಾಸನೇತರ ಚಿತ್ರ: ಈ ಚಿತ್ರದಲ್ಲಿ ಯಾವುದೇ ಐತಿಹಾಸಿಕ ಸಾಮ್ರಾಜ್ಯದ ಶಿಲಾಶಾಸನ ಅಥವಾ ತಾಮ್ರಶಾಸನದ ಕುರುಹುಗಳು ಕಂಡುಬಂದಿಲ್ಲ. / The uploaded image does not match any known historical inscriptional record.",
+                linguistic_significance="ಯಾವುದೇ ಪ್ರಾಚೀನ ಭಾಷಾ ಮಾದರಿ ಪತ್ತೆಯಾಗಿಲ್ಲ. / No historical linguistic text identified.",
+            )
+            total_ms = sum(timings.values())
+            timings["total_pipeline"] = round(total_ms, 2)
+            adapter_src = "mock_local" if self.is_demonstration else "fastapi_remote"
+            return AnalysisJobResult(
+                job_id=job_id,
+                status="completed",
+                inferred_script=effective_script,
+                inferred_language=effective_language,
+                image_url=image_url,
+                relief_image_url=relief_url,
+                rubbing_image_url=rubbing_url,
+                transcription=transcription,
+                translation=translation,
+                historical_context=historical_context,
+                is_demonstration_only=self.is_demonstration,
+                adapter_source=adapter_src,
+                timings=timings,
+                error_message=epigraph_msg,
+                per_class_probs=script_pred.per_class_probs if script_pred else None,
+            )
+
+        # -----------------------------------------------------------------
         # Step 4 & 5: Character Recognition & Transliteration
         # -----------------------------------------------------------------
         if on_step_progress:
@@ -646,6 +719,63 @@ class AnalysisService:
             error_message=error_message,
             per_class_probs=script_pred.per_class_probs if script_pred else None,
         )
+
+    def validate_epigraph_authenticity(
+        self,
+        image: Image.Image,
+        preprocessed_arr: Optional[np.ndarray],
+        script_pred: Optional[ScriptPrediction],
+        hint: str = "",
+        known_script: Optional[str] = None,
+        known_language: Optional[str] = None,
+    ) -> Tuple[bool, str]:
+        """
+        Validates whether the uploaded image is a genuine ancient Kannada inscription / stele / rubbing
+        or an irrelevant, out-of-domain image (e.g. selfie, car, pet, landscape, blank/noise).
+        """
+        # 1. Researcher explicit override
+        if (known_script and known_script != "uncertain") or (known_language and known_language != "uncertain"):
+            return True, "Researcher explicitly specified inscriptional script or language"
+
+        # 2. Epigraphical keywords in title, filename, or researcher notes
+        epigraph_keywords = [
+            "kadamba", "chalukya", "rashtrakuta", "hoysala", "vijayanagar", "wodeyar", "ashoka", "satavahana",
+            "ganga", "halmidi", "badami", "belur", "hampi", "shasana", "inscription", "stele", "hero stone",
+            "viragallu", "rubbing", "tamra", "copper", "edict", "cliff", "talagunda", "aihole", "sannati",
+            "prakrit", "halegannada", "purvada", "nadugannada", "epigraph", "estampage", "squeeze"
+        ]
+        hint_lower = (hint or "").lower()
+        for kw in epigraph_keywords:
+            if kw in hint_lower:
+                return True, f"Epigraphical domain keyword detected: '{kw}'"
+
+        # 3. Check for blank, textureless, or featureless image via Laplacian variance
+        if preprocessed_arr is not None:
+            if preprocessed_arr.dtype in (np.float32, np.float64):
+                uint8_img = np.clip(preprocessed_arr * 255.0, 0, 255).astype(np.uint8)
+            else:
+                uint8_img = preprocessed_arr.astype(np.uint8)
+
+            import cv2
+            gray = cv2.cvtColor(uint8_img, cv2.COLOR_RGB2GRAY) if len(uint8_img.shape) == 3 else uint8_img
+            lap_var = float(cv2.Laplacian(gray, cv2.CV_64F).var())
+            if lap_var < 15.0:
+                return False, f"Blank or textureless image (variance: {lap_var:.1f})"
+
+            # 4. Check Visual Stele Fingerprint Match (ORB keypoints, dHash, lithology)
+            if hasattr(self.classifier, "fingerprinter") and self.classifier.fingerprinter:
+                v_match = self.classifier.fingerprinter.match(preprocessed_arr)
+                if v_match:
+                    return True, f"Matched canonical historical stele: {v_match[1]}"
+
+        # 5. Check neural classifier confidence
+        if script_pred:
+            if script_pred.confidence >= 0.28:
+                return True, f"Neural classifier recognized inscriptional features (confidence: {script_pred.confidence:.2f})"
+            else:
+                return False, f"Low script confidence ({script_pred.confidence:.2f}) without historical epigraph evidence"
+
+        return True, "Default acceptance"
 
 
 analysis_service = AnalysisService()

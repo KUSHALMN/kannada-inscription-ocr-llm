@@ -238,26 +238,21 @@ class VisualSteleFingerprinter:
                 if max_good >= 25:
                     return best_cls, f"ORB invariant keypoints ({max_good} feature matches)"
 
-            # 3. Lithological stone signature & morphology
-            # Note: test_img might be RGB or BGR, calculate mean channels
-            mean_c = color.mean(axis=(0, 1))
-            # Test for red sandstone: R is significantly higher than G and B
-            r_val, g_val, b_val = float(mean_c[0]), float(mean_c[1]), float(mean_c[2])
-            # If input was RGB: r_val=mean_c[0], g_val=mean_c[1], b_val=mean_c[2]
-            # or if BGR: r_val=mean_c[2], b_val=mean_c[0]
-            r_max = max(r_val, b_val)
-            b_min = min(r_val, b_val)
-            if r_max > g_val + 20 and r_max > b_min + 40:
-                return '4_BadamiChalukyas', f"Badami Red Sandstone Lithology (Warmth R={r_max:.0f})"
+            # 3. Lithological stone signature & morphology (Requires co-occurring keypoint matches >= 18)
+            if max_good >= 18:
+                mean_c = color.mean(axis=(0, 1))
+                r_val, g_val, b_val = float(mean_c[0]), float(mean_c[1]), float(mean_c[2])
+                r_max = max(r_val, b_val)
+                b_min = min(r_val, b_val)
+                if r_max > g_val + 20 and r_max > b_min + 40:
+                    return '4_BadamiChalukyas', f"Badami Red Sandstone Lithology ({max_good} keypoints, Warmth R={r_max:.0f})"
 
-            # Dark Chloritic Schist / Soapstone (Hoysala temples: Belur, Halebidu)
-            if mean_c.mean() < 75:
-                return '7_Hoysala', f"Hoysala Chloritic Soapstone Lithology (Dark tone luminance={mean_c.mean():.1f})"
+                if mean_c.mean() < 75:
+                    return '7_Hoysala', f"Hoysala Chloritic Soapstone Lithology ({max_good} keypoints, luminance={mean_c.mean():.1f})"
 
-            # Tall granite hero stele (Kadamba / Halmidi arch)
-            h, w = test_uint8.shape[:2]
-            if (h / w) > 1.6 and mean_c.mean() > 130:
-                return '3_Kadamba', f"Kadamba Tall Granite Stele Morphology (aspect={h/w:.2f})"
+                h, w = test_uint8.shape[:2]
+                if (h / w) > 1.6 and mean_c.mean() > 130:
+                    return '3_Kadamba', f"Kadamba Tall Granite Stele Morphology ({max_good} keypoints, aspect={h/w:.2f})"
 
         except Exception as e:
             logger.debug("Visual fingerprint matching error: %s", e)

@@ -105,6 +105,28 @@ def translate_image(image_path: str):
     hint = os.path.basename(image_path).replace("_", " ").replace("-", " ")
     prediction = classifier.predict([img], hint=hint, image_arr=np.array(img))
 
+    # Verify if image is a genuine epigraph or an irrelevant/out-of-domain photo
+    from backend.app.services.analysis_service import AnalysisService
+    svc = AnalysisService()
+    is_epigraph, reason = svc.validate_epigraph_authenticity(
+        image=img,
+        preprocessed_arr=np.array(img),
+        script_pred=prediction,
+        hint=hint,
+    )
+    if not is_epigraph:
+        print("\n" + "!" * 75)
+        print("  ⚠️ NON-EPIGRAPHICAL / IRRELEVANT IMAGE DETECTED")
+        print("!" * 75)
+        print("  [ಹೊಸಗನ್ನಡ ಸಂದೇಶ]:")
+        print("  👉 ⚠️ ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾದ ಚಿತ್ರದಲ್ಲಿ ಯಾವುದೇ ಪ್ರಾಚೀನ ಕನ್ನಡ ಅಥವಾ ಐತಿಹಾಸಿಕ ಶಿಲಾಶಾಸನದ ಲಿಪಿಗಳು ಪತ್ತೆಯಾಗಿಲ್ಲ.")
+        print("     ದಯವಿಟ್ಟು ಸ್ಪಷ್ಟವಾದ ಶಿಲಾಶಾಸನ (Stone Inscription), ವೀರಗಲ್ಲು (Hero Stone), ತಾಮ್ರಶಾಸನ ಅಥವಾ ತಾಳೆಗರಿ ಹಸ್ತಪ್ರತಿಯ ಚಿತ್ರವನ್ನು ನೀಡಿ.\n")
+        print("  [English Fallback]:")
+        print("  👉 ⚠️ The uploaded image does not appear to contain an ancient Kannada inscription or epigraphical script.")
+        print(f"     Diagnosis: {reason}\n")
+        print("=" * 75)
+        return
+
     print(f"[+] Predicted Historical Script : {prediction.script_class.value.upper()}")
     print(f"[+] Classification Confidence   : {prediction.confidence * 100:.2f}%")
     if prediction.macro_era:

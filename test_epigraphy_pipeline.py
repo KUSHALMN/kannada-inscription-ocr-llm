@@ -229,6 +229,49 @@ def test_glyph_matching_and_wall_stitching():
     print(f"    [+] Multi-panel temple wall stitching succeeded: {pano.shape[1]}x{pano.shape[0]} px ({msg})")
 
 
+async def test_irrelevant_image_fallback():
+    print("[*] 7. Testing Irrelevant & Out-of-Domain Image Fallback...")
+    service = AnalysisService()
+
+    # 1. Blank textureless image
+    blank_img = Image.fromarray(np.ones((400, 400, 3), dtype=np.uint8) * 160)
+    res_blank = await service.execute_pipeline(
+        image=blank_img,
+        job_id="test-irrelevant-blank",
+        filename="random_wall.jpg",
+        title=None,
+        location=None,
+        dynasty=None,
+        known_script="uncertain",
+        known_language="uncertain",
+    )
+    assert res_blank.status == "completed"
+    assert len(res_blank.transcription.lines) == 0, "Non-epigraph image must have 0 line boxes"
+    assert ("ಯಾವುದೇ ಪ್ರಾಚೀನ" in res_blank.translation.modern_kannada or "ಅಸಂಬದ್ಧ" in res_blank.translation.modern_kannada)
+    assert "does not appear to contain" in res_blank.translation.english_translation
+    print("    [+] Blank/textureless image correctly triggered epigraphical fallback message!")
+
+    # 2. Non-epigraph vivid landscape
+    scenery = np.zeros((400, 400, 3), dtype=np.uint8)
+    scenery[:200, :] = [135, 206, 235]  # Sky blue
+    scenery[200:, :] = [34, 139, 34]    # Forest green
+    res_scenery = await service.execute_pipeline(
+        image=Image.fromarray(scenery),
+        job_id="test-irrelevant-scenery",
+        filename="sunset_view.jpg",
+        title=None,
+        location=None,
+        dynasty=None,
+        known_script="uncertain",
+        known_language="uncertain",
+    )
+    assert res_scenery.status == "completed"
+    assert len(res_scenery.transcription.lines) == 0
+    assert "ಯಾವುದೇ ಪ್ರಾಚೀನ" in res_scenery.translation.modern_kannada
+    assert "does not appear to contain" in res_scenery.translation.english_translation
+    print("    [+] Vivid landscape photo correctly triggered epigraphical fallback message!")
+
+
 def main():
     print("=" * 80)
     print("  ANCIENT KANNADA EPIGRAPHY AI VALIDATION SUITE")
@@ -239,6 +282,7 @@ def main():
     test_glyph_matching_and_wall_stitching()
     asyncio.run(test_full_analysis_pipeline())
     asyncio.run(test_unhinted_image_classification_and_translation())
+    asyncio.run(test_irrelevant_image_fallback())
     print("=" * 80)
     print("  ALL EPIGRAPHY OCR & TRANSLATION TESTS PASSED (100% SUCCESS)!")
     print("=" * 80)
