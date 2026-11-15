@@ -9,7 +9,6 @@ import {
   AlertCircle,
   RotateCcw,
   SearchCode,
-  ShieldCheck,
   Camera,
   Crop,
   Sparkles,
@@ -352,23 +351,6 @@ export const NewAnalysisView: React.FC<NewAnalysisViewProps> = ({
           </div>
         }
       />
-
-      {/* Archival Research Security Notice */}
-      <div className="bg-[#FAF7F2] border border-[#E8DEC8] p-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs shadow-xs">
-        <div className="flex items-center gap-3 text-[#564337] font-sans leading-relaxed">
-          <div className="w-8 h-8 rounded-lg bg-[#EFE5D2] border border-[#DFCBB0] flex items-center justify-center text-[#7C3517] shrink-0">
-            <ShieldCheck className="w-4 h-4" />
-          </div>
-          <div>
-            <span className="font-semibold text-[#1E120B]">Local Scholarly Session:</span>{' '}
-            <span>Field photographs and squeezes are processed privately within your browser workspace. Original image resolution and character geometry remain uncompressed.</span>
-          </div>
-        </div>
-        <div className="shrink-0 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#EAE2D2] border border-[#D8CABE] text-[#654B38] font-mono text-[11px] font-medium">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
-          <span>System Active</span>
-        </div>
-      </div>
 
       {/* Processing Overlay Dialog */}
       {isProcessing && (
